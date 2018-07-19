@@ -7,6 +7,7 @@
     <title>欣阳冷链系统</title>
     <link rel="stylesheet" href="plugins/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="css/app.css" media="all">
+
 </head>
 
 <body>
@@ -38,17 +39,11 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-filter="kitNavbar" kit-navbar>
                 <li class="layui-nav-item">
-                    <a class="" href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span> 基本元素</span></a>
+                    <a class="" href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span>冷链监控</span></a>
                     <dl class="layui-nav-child">
                         <dd>
-                            <a href="javascript:;" kit-target data-options="{url:'test.html',icon:'&#xe6c6;',title:'实时监控',id:'1'}">
-                                <i class="layui-icon">&#xe6c6;</i><span>实时监控</span></a>
-                        </dd>
-                        <dd>
-                            <a href="javascript:;" data-url="form.html" data-icon="fa-user" data-title="表单" kit-target data-id='2'><i class="fa fa-user" aria-hidden="true"></i><span> 表单</span></a>
-                        </dd>
-                        <dd>
-                            <a href="javascript:;" data-url="nav.html" data-icon="&#xe628;" data-title="导航栏" kit-target data-id='3'><i class="layui-icon">&#xe628;</i><span> 导航栏</span></a>
+                            <a href="javascript:;" kit-target data-options="{url:'module/beidou/map.html',icon:'&#xe628;',title:'实时监控',id:'1'}">
+                                <i class="layui-icon">&#xe628;</i><span> 实时监控</span></a>
                         </dd>
                     </dl>
                 </li>
@@ -73,7 +68,7 @@
     var message;
     layui.config({
         base: 'build/js/'
-    }).use(['app', 'message'], function() {
+    }).use(['app', 'message','jquery'], function() {
         var app = layui.app,
             $ = layui.jquery,
             layer = layui.layer;
