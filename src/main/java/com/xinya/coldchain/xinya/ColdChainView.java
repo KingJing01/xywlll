@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
  * @date 2018-7-19
  * @author  liyoujing
  */
-public class DefaultView extends WebMvcConfigurationSupport {
+public class ColdChainView extends WebMvcConfigurationSupport {
 
 
     @Override
