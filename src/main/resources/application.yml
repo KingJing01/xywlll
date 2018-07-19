@@ -3,7 +3,9 @@ server:
   servlet:
     context-path: /xinyang
 
+
 spring:
+  # 设置数据库的访问信息
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3308/coldchain
@@ -12,6 +14,7 @@ spring:
     username: root
   mvc:
     view:
+      # 设置视图的默认位置在module目录下
       prefix: /module/
 
 
