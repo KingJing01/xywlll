@@ -7,7 +7,7 @@
  * LICENSE:MIT
  */
 var tab;
-layui.define(['element', 'nprogress', 'form', 'table', 'loader', 'tab', 'navbar'], function(exports) {
+layui.define(['element', 'form', 'table', 'loader', 'tab', 'navbar'], function(exports) {
     var $ = layui.jquery,
         element = layui.element,
         layer = layui.layer,

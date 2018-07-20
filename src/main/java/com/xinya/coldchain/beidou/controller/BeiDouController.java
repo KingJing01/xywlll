@@ -1,0 +1,51 @@
+package com.xinya.coldchain.beidou.controller;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.xinya.coldchain.xinya.RestEasyServcie;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * 北斗接口访问数据Controller
+ * @author liyoujing
+ */
+@RestController
+@RequestMapping(value = "/beidou")
+public class BeiDouController {
+
+    public final String bdUrl = "http://139.224.65.40/gpsAPi/gpsapi.ashx?method=";
+
+    /**
+     * 获取当前北斗用户下所有的车辆信息.
+     *
+     * @return
+     */
+    @RequestMapping(value = "/get_vechicel_data_all")
+    public String getVechicelDataAll() {
+        String url = bdUrl + "LoadUserVehicles&username=xywl1&pwd=987987";
+        return RestEasyServcie.get(url);
+    }
+
+    @RequestMapping(value = "/get_vechiecl_data_by_no")
+    public String getVechicelDataByDevNo(String deviceNo) {
+        String url = bdUrl + "LoadVehiclePostion&systemno=" + deviceNo;
+        return RestEasyServcie.get(url);
+    }
+
+    @RequestMapping(value = "/get_vechicel_gps_all")
+    public Map<String, Object> getVechicelGpsAll() {
+        String url = bdUrl + "LoadAllVehiclesPostion&uid=45e9bde6-041b-4ccf-87c3-65e9b0541fa3&grade=2";
+        String resp = RestEasyServcie.get(url);
+        Map<String, String> map = new HashMap<>();
+        try {
+            return new ObjectMapper().readValue(resp, Map.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+}
