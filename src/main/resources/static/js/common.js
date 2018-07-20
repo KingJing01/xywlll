@@ -29,9 +29,11 @@ var common = {
         map.enableScrollWheelZoom(true);
     },
     //百度地图添加标注点
-    addMarkersBeidou: function (map, data) {
+    addMarkersBeidou: function (map, data,mapDiv) {
+        debugger;
         var map = map;
         if (data) {
+            map = new BMap.Map("allmap");
             var point = new BMap.Point(data[0].Lon, data[0].Lat);
             map.centerAndZoom(point, 12);
             map.enableScrollWheelZoom(true);

@@ -5,12 +5,12 @@
         map.centerAndZoom(point, 12);
         map.enableScrollWheelZoom(true);
         common.initContainer("#allmap");
-        getVechicelData(map);
+        getVechicelData(map,"allmap");
     }
 
-    getVechicelData = function(map){
+    getVechicelData = function(map,mapDiv){
         $.post("beidou/get_vechicel_gps_all",function (resp) {
-            common.addMarkersBeidou(map,resp.Data)
+            common.addMarkersBeidou(map,resp.Data,mapDiv)
         },'json')
 
     }
