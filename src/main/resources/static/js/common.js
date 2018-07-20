@@ -9,7 +9,7 @@ var common = {
     //监听浏览器窗口的界面变化
     changeDivHeight: function (container) {
         window.onresize = function (container) {
-            this.initContainer(container);
+            common.initContainer(container);
         }
     }
 

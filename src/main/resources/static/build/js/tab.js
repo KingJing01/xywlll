@@ -37,8 +37,9 @@ layui.define(["jquery", "element", "nprogress"],
                 var i = this,
                     e = i._config;
                 if (i._parentElem = e.elem, !i.tabDomExists()) {
-                    var a = ['<div class="layui-tab layui-tab-card kit-tab" lay-filter="' + i._filter + '">', '<ul class="layui-tab-title">', '<li class="layui-this" lay-id="-1"><i class="layui-icon">&#xe68e;</i> 面板</li>', "</ul>", '<div class="kit-tab-tool">操作&nbsp;<i class="fa fa-caret-down"></i></div>', '<div class="kit-tab-tool-body layui-anim layui-anim-upbit">', "<ul>", '<li class="kit-item" data-target="refresh">刷新当前选项卡</li>', '<li class="kit-line"></li>', '<li class="kit-item" data-target="closeCurrent">关闭当前选项卡</li>', '<li class="kit-item" data-target="closeOther">关闭其他选项卡</li>', '<li class="kit-line"></li>', '<li class="kit-item" data-target="closeAll">关闭所有选项卡</li>', "</ul>", "</div>", '<div class="layui-tab-content">', '<div class="layui-tab-item layui-show" lay-item-id="-1"><iframe src="' + e.mainUrl + '"></iframe></div>', "</div>", "</div>"];
+                    var a = ['<div class="layui-tab layui-tab-card kit-tab" lay-filter="' + i._filter + '">', '<ul class="layui-tab-title">', '<li class="layui-this" lay-id="-1"><i class="layui-icon">&#xe68e;</i> 面板</li>', "</ul>", '<div class="kit-tab-tool">操作&nbsp;<i class="fa fa-caret-down"></i></div>', '<div class="kit-tab-tool-body layui-anim layui-anim-upbit" style="z-index: 10">', "<ul>", /** '<li class="kit-item" data-target="refresh">刷新当前选项卡</li>', '<li class="kit-line"></li>',**/ '<li class="kit-item" data-target="closeCurrent">关闭当前选项卡</li>','<li class="kit-line"></li>', '<li class="kit-item" data-target="closeOther">关闭其他选项卡</li>', '<li class="kit-line"></li>', '<li class="kit-item" data-target="closeAll">关闭所有选项卡</li>', "</ul>", "</div>", '<div class="layui-tab-content">', '<div class="layui-tab-item layui-show" lay-item-id="-1"></iframe></div>', "</div>", "</div>"];
                     t(e.elem).html(a.join("")),
+                        layui.jquery("div[lay-item-id=-1]").load(e.mainUrl);
                         i._title = t(".kit-tab ul.layui-tab-title"),
                         i._content = t(".kit-tab div.layui-tab-content");
                     var l = t(".kit-tab-tool"),
@@ -55,7 +56,7 @@ layui.define(["jquery", "element", "nprogress"],
                                     var e = i._title.children("li[class=layui-this]").attr("lay-id");
                                     switch (a) {
                                         case "refresh":
-                                            var n = i._content.children("div[lay-item-id=" + e + "]").children("iframe");
+                                            var n = i._content.children("div[lay-item-id=" + e + "]").children("div");
                                             n.attr("src", n.attr("src"));
                                             break;
                                         case "closeCurrent":
@@ -83,7 +84,7 @@ layui.define(["jquery", "element", "nprogress"],
                 l.on("resize",
                     function() {
                         var e = t(i._parentElem).height();
-                        t(".kit-tab .layui-tab-content iframe").height(e - 45)
+                        t(".kit-tab .layui-tab-content div").height(e - 45)
                     }).resize()
             },
             tabExists: function(i) {
@@ -122,14 +123,14 @@ layui.define(["jquery", "element", "nprogress"],
                         t._title.append(r.join("")),
                         t._content.append(o),
                         layui.jquery("div[lay-item-id="+ s + "]").load(c);
-                     t.ext
+                        t.ext
                         t.getTab(s).find("i.layui-tab-close").off("click").on("click",
                             function() {
                                 a.closeBefore ? a.closeBefore(i) && t.tabDelete(s) : t.tabDelete(s)
                             }),
                         t.tabChange(s),
                         t.winResize(),
-                        t._content.find("div[lay-item-id=" + s + "]").find("iframe").on("load",
+                        t._content.find("div[lay-item-id=" + s + "]").find("div").on("load",
                             function() {
                                 NProgress.done()
                             }),
