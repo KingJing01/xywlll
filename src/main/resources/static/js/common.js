@@ -3,7 +3,6 @@ var common = {
     //动态调整tab load界面的高度  宽度已经自适应
     initContainer: function (container) {
         var height = $("#container").height();
-        alert(height + "    "+ container);
         $(container).css("height", height - 40);
     },
 
