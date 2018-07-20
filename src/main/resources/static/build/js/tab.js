@@ -117,9 +117,12 @@ layui.define(["jquery", "element", "nprogress"],
                         r.push("&nbsp;" + l),
                         r.push('<i class="layui-icon layui-unselect layui-tab-close">&#x1006;</i>'),
                         r.push("</li>");
-                    var o = '<div class="layui-tab-item layui-show" lay-item-id="' + s + '"><iframe src="' + c + '"></iframe></div>';
-                    t._title.append(r.join("")),
+                    //var o = '<div class="layui-tab-item layui-show" lay-item-id="' + s + '"><iframe src="' + c + '"></iframe></div>';
+                    var o = '<div class="layui-tab-item layui-show" lay-item-id="' + s + '"></div>';
+                        t._title.append(r.join("")),
                         t._content.append(o),
+                        layui.jquery("div[lay-item-id="+ s + "]").load(c);
+                     t.ext
                         t.getTab(s).find("i.layui-tab-close").off("click").on("click",
                             function() {
                                 a.closeBefore ? a.closeBefore(i) && t.tabDelete(s) : t.tabDelete(s)
