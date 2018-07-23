@@ -31,11 +31,11 @@
                 width:'273',
                 page: false,
                 cols: [[ //表头
-                    {field: 'SystemNo', title: '系统编号', width:150,align:'center'},
-                    {field: 'VehNof', title: '车牌号', width:120,align:'center'}
-
+                    {field: 'SystemNo', title: '司机手机号', width:150},
+                    {field: 'VehNof', title: '车牌号', width:120}
                 ]]
             });
+
         });
     }
 
