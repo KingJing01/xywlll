@@ -1,0 +1,6 @@
+/* 地图上表格展示 */
+#div_table{
+    position: absolute;
+    top: 50px;
+    left: 0;
+}
