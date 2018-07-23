@@ -53,7 +53,15 @@ var common = {
            // var label = new BMap.Label(data[i].,{offset:new BMap.Size(20,-10)});
             //marker.setLabel(label); //添加百度label
         }
+    },
+    //北斗根据当前车辆位置信息标注
+    addMarkerBeiDou : function (data,container) {
+        var map = new BMap.Map(container);
+        var point = new BMap.Point(data.Lon, data.Lat);
+        map.centerAndZoom(point, 14);
+        var myIcon = new BMap.Icon("images/car.png", new BMap.Size(80, 40));
+        var marker = new BMap.Marker(point, {icon: myIcon});
+        map.addOverlay(marker);
     }
-
 
 }
