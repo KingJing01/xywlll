@@ -2,15 +2,20 @@ package com.xinya.coldchain.beidou.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xinya.coldchain.xinya.RestEasyServcie;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
  * 北斗接口访问数据Controller
+ *
  * @author liyoujing
  */
 @RestController
@@ -20,14 +25,32 @@ public class BeiDouController {
     public final String bdUrl = "http://139.224.65.40/gpsAPi/gpsapi.ashx?method=";
 
     /**
-     * 获取当前北斗用户下所有的车辆信息.
-     *
-     * @return
+     * @param page  当前页数
+     * @param limit 每页显示条数
+     * @return 返回车辆信息的list
+     * @deprecated 获取当前北斗用户下所有的车辆信息.
      */
     @RequestMapping(value = "/get_vechicel_data_all")
-    public String getVechicelDataAll() {
+    public Map<String, Object> getVechicelDataAll(int page, int limit) {
         String url = bdUrl + "LoadUserVehicles&username=xywl1&pwd=987987";
-        return RestEasyServcie.get(url);
+        String value = RestEasyServcie.get(url);
+        ObjectMapper objectMapper = new ObjectMapper();
+        Map<String, Object> map = null;
+        List<Map<String, String>> dataList = new ArrayList<>();
+        try {
+            map = objectMapper.readValue(value, Map.class);
+            if (!StringUtils.isEmpty(map.get("Data"))) {
+                dataList = (ArrayList) map.get("Data");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("count",dataList.size());
+        resultMap.put("data",dataList);
+        resultMap.put("msg","");
+        resultMap.put("code",0);
+        return resultMap;
     }
 
     @RequestMapping(value = "/get_vechiecl_data_by_no")

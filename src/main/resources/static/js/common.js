@@ -18,25 +18,20 @@ var common = {
         var map = new BMap.Map(container);
         var point = new BMap.Point(116.331398, 39.897445);
         map.centerAndZoom(point, 12);
-
         function myFun(result) {
             var cityName = result.name;
             map.setCenter(cityName);
         }
-
         var myCity = new BMap.LocalCity();
         myCity.get(myFun);
         map.enableScrollWheelZoom(true);
     },
     //百度地图添加标注点
     addMarkersBeidou: function (map, data,mapDiv) {
-        debugger;
         var map = map;
         if (data) {
             map = new BMap.Map("allmap");
             var point = new BMap.Point(data[0].Lon, data[0].Lat);
-            map.centerAndZoom(point, 12);
-            map.enableScrollWheelZoom(true);
         } else {
             var point = new BMap.Point(116.331398, 39.897445);
             map.centerAndZoom(point, 12);
@@ -46,14 +41,17 @@ var common = {
             }
             var myCity = new BMap.LocalCity();
             myCity.get(myFun);
-            map.enableScrollWheelZoom(true);
         }
+        map.centerAndZoom(point, 12);
+        map.enableScrollWheelZoom(true);
         var pt = null;
         for (var i in data) {
             pt = new BMap.Point(data[i].Lon, data[i].Lat);
             var myIcon = new BMap.Icon("images/car.png", new BMap.Size(80, 40));
             var marker = new BMap.Marker(pt, {icon: myIcon});
             map.addOverlay(marker);
+           // var label = new BMap.Label(data[i].,{offset:new BMap.Size(20,-10)});
+            //marker.setLabel(label); //添加百度label
         }
     }
 
