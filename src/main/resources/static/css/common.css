@@ -4,3 +4,52 @@
     top: 50px;
     left: 10px;
 }
+
+/* 电子看板 */
+#ekan_div{
+    margin-top: 4rem;
+}
+
+.ekan_top_div{
+    width: auto;
+    display: flex;
+}
+
+.ekan_contain {
+    width: 23%;
+    float: left;
+    border: 1px solid black;
+    margin-left:1%;
+    border-radius: 5px;
+}
+
+.ekan_span {
+    height: 6rem;
+    width: 6rem;
+    background-color: red;
+    display: inline-block;
+    border-radius: 50%;
+    margin: 2% 5%;
+}
+
+.ekan_text{
+    display: inline-grid;
+    margin: 5%;
+}
+
+.ekan_text p{
+    line-height: 2rem;
+}
+
+.number_p{
+    font-size: 1.5rem;
+}
+
+.span_icon{
+    position: relative;
+    display: block;
+    color: white;
+    text-align: center;
+    top: 2rem;
+    font-size: 1.5rem;
+}
