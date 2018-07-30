@@ -79,3 +79,11 @@
     border: 1px solid black;
     margin-top:2rem;
 }
+
+#left_chart .chart_tab{
+    position: absolute;
+    width: 16rem;
+    height: 2rem;
+    right: 2rem;
+    top: 0;
+}

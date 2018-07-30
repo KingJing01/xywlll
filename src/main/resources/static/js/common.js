@@ -8,9 +8,9 @@ var common = {
 
     //监听浏览器窗口的界面变化
     changeDivHeight: function (container) {
-        /*window.onresize = function (container) {
+        window.onresize = function (container) {
             common.initContainer(container);
-        }*/
+        }
     },
 
     //初始化百度地图

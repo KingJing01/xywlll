@@ -3,14 +3,14 @@
 <div id="ekan_div">
     <!-- 看板上部4个展示div -->
     <div id="ekan_top_div">
-         <div class="ekan_contain">
-             <div class="ekan_span" style="background-color:#00c0ef"><span class="span_icon">iocn1</span></div>
-             <div class="ekan_text">
-                 <p>今日到货订单量</p>
-                 <p class="number_p">今日到货订单量</p>
-                 <p>同比上周</p>
-             </div>
-         </div>
+        <div class="ekan_contain">
+            <div class="ekan_span" style="background-color:#00c0ef"><span class="span_icon">iocn1</span></div>
+            <div class="ekan_text">
+                <p>今日到货订单量</p>
+                <p class="number_p">今日到货订单量</p>
+                <p>同比上周</p>
+            </div>
+        </div>
 
         <div class="ekan_contain">
             <div class="ekan_span" style="background-color:#dd4b39"><span class="span_icon">iocn2</span></div>
@@ -45,16 +45,31 @@
         <!--左侧图表div-->
         <div id="left_chart">
             <!--提货准点率-->
-            <div id="pick_up_rate" class="chart_div"></div>
+            <div id="pick_up_rate_container" style="position: relative">
+                <div id="pick_up_rate" class="chart_div"></div>
+                <div class="chart_tab layui-tab layui-tab-brief">
+                    <ul class="layui-tab-title">
+                        <li class="layui-this">近七天</li>
+                        <li>近一个月</li>
+                        <li>近半年</li>
+                    </ul>
+                </div>
+            </div>
             <!--到货准点率-->
-            <div id="arrival_rate" class="chart_div"></div>
+            <div id="arrival_rate_container" style="position: relative">
+                <div id="arrival_rate" class="chart_div"></div>
+                <div class="chart_tab layui-tab layui-tab-brief">
+                    <ul class="layui-tab-title">
+                        <li class="layui-this">近七天</li>
+                        <li>近一个月</li>
+                        <li>近半年</li>
+                    </ul>
+                </div>
+            </div>
         </div>
         <!--右侧图表div 饼图 -->
         <div id="right_chart">
         </div>
-
-
-
     </div>
 
 

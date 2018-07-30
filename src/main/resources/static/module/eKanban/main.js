@@ -93,6 +93,7 @@
         initPie();
         initPickUpRate();
         initArrivalRate();
+        common.changeDivHeight("#ekan_div");
     })
 
 }());
