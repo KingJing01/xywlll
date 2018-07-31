@@ -69,6 +69,17 @@
             <artifactId>resteasy-client</artifactId>
             <version>3.0.19.Final</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.axis</groupId>
+            <artifactId>axis</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>axis</groupId>
+            <artifactId>axis-jaxrpc</artifactId>
+            <version>1.4</version>
+        </dependency>
     </dependencies>
 
     <build>
