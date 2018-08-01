@@ -21,13 +21,13 @@
                requirejs(["module/eKanban/main"], function (main) {
                    main.load();
                 });
-
+                /* 订单系统点击 */
                 $("#order_system").on('click', function () {
                     requirejs(["module/eKanban/main"], function (list) {
                         list.load();
                     });
                 });
-
+                /* 车辆监控点击 */
                 $("#vehicle_monitoring").on('click', function () {
                     requirejs(["module/beidou/map"], function (list) {
                         list.load();

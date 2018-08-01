@@ -432,7 +432,7 @@ table.dataTable thead .sorting:after {
 /* 地图上表格展示 */
 #div_table{
     position: absolute;
-    top: 5%;
+    top: 8%;
     left: 15%;
     background-color: #fcf8e3;
 }
@@ -515,8 +515,40 @@ table.dataTable thead .sorting:after {
 
 #left_chart .chart_tab{
     position: absolute;
-    width: 16rem;
+    width: 30%;
     height: 2rem;
-    right: 2rem;
-    top: 0;
+    right: 2%;
+    top: 5%;
+}
+
+.chart_ul{
+    display: inline;
+    border-radius: 1px;
+}
+
+.chart_ul li {
+    float:right;
+    color:  #333333;
+    transition: all .5s;
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid #E9EEF3;
+}
+
+.chart_ul li:hover{
+    background-color: #E9EEF3;
 }
