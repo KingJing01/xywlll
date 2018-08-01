@@ -32,34 +32,35 @@
                     $('#car_data').bootstrapTable({
                         url: 'beidou/get_vechicel_data_all',
                         method: 'post',
-                        limit: 5,
-                        width: '273',
-                        pagination: false,
-                        columns: [{
-                            checkbox: true
-                        }, {
+                        pageNumber:1,
+                        pageSize:5,
+                        search:true,
+                        pagination: true,
+                        sidePagination: 'server',
+                        queryParams:function(params){
+                            var temp={};
+                            temp.page=this.pageNumber;
+                            temp.size=this.pageSize;
+                            return temp;
+                        },
+                        columns: [ {
                             field: 'SystemNo',
-                            title: '司机手机号'
+                            title: '司机手机号',
+                            width: 150
                         }, {
                             field: 'VehNof',
-                            title: '车牌号'
-                        }]
-                       /* cols: [[ //表头
-                            {field: 'SystemNo', title: '司机手机号', width: 150, event: "detail"},
-                            {field: 'VehNof', title: '车牌号', width: 120}
-                        ]]*/
-                    });
-                    /*table.on('tool(test)', function (obj) {
-                        debugger;
-                        var data = obj.data;
-                        var layEvent = obj.event;
-                        if (layEvent === 'detail') { //查看
-                            $.post("beidou/get_vechiecl_data_by_no", {deviceNo: data.SystemNo}, function (resp) {
-                                console.log(resp);
-                                common.addMarkerBeiDou(resp, 'allmap');
-                            }, 'json');
+                            title: '车牌号',
+                            width: 120
+                        }],
+                        onClickCell:function(field,value){
+                            if(field=='SystemNo'){
+                                $.post("beidou/get_vechiecl_data_by_no", {deviceNo: value}, function (resp) {
+                                    common.addMarkerBeiDou(resp, 'allmap');
+                                }, 'json');
+                            }
                         }
-                    });*/
+                    });
+
 
             }
             var vechicel = {};

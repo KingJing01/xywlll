@@ -25,13 +25,13 @@ public class BeiDouController {
     public final String bdUrl = "http://139.224.65.40/gpsAPi/gpsapi.ashx?method=";
 
     /**
-     * @param page  当前页数
-     * @param limit 每页显示条数
+     *
+     * @param pageable 分页对象
      * @return 返回车辆信息的list
      * @deprecated 获取当前北斗用户下所有的车辆信息.
      */
     @RequestMapping(value = "/get_vechicel_data_all")
-    public Map<String, Object> getVechicelDataAll(int page, int limit) {
+    public Map<String, Object> getVechicelDataAll(SpringDataWebProperties.Pageable pageable) {
         String url = bdUrl + "LoadUserVehicles&username=xywl1&pwd=987987";
         String value = RestEasyServcie.get(url);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -46,10 +46,8 @@ public class BeiDouController {
             e.printStackTrace();
         }
         Map<String, Object> resultMap = new HashMap<>();
-        resultMap.put("count",dataList.size());
-        resultMap.put("data",dataList);
-        resultMap.put("msg","");
-        resultMap.put("code",0);
+        resultMap.put("total",dataList.size());
+        resultMap.put("rows",dataList);
         return resultMap;
     }
 
