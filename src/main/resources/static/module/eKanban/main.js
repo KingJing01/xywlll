@@ -1,13 +1,14 @@
 (function () {
     // HTML 界面
-    var PAGE_HTML="module/eKanban/main";
+    var PAGE_HTML="module/eKanban/main.html";
     define(
         [
             'jquery',
+            'echarts',
             'text!' + PAGE_HTML
         ],
         function
-            ($, pageHtml) {
+            ($,echarts, pageHtml) {
             var initHtml = function () {
                 $("#page-wrapper").html(pageHtml);
             };
@@ -108,8 +109,10 @@
                 initArrivalRate();
                 common.changeDivHeight("#ekan_div");
             }
+            return ekanMain;
         });
 }).call(this);
+
 
 
 
