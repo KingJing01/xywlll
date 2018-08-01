@@ -34,7 +34,6 @@
                         method: 'post',
                         pageNumber:1,
                         pageSize:5,
-                        search:true,
                         pagination: true,
                         sidePagination: 'server',
                         queryParams:function(params){
@@ -52,12 +51,10 @@
                             title: '车牌号',
                             width: 120
                         }],
-                        onClickCell:function(field,value){
-                            if(field=='SystemNo'){
-                                $.post("beidou/get_vechiecl_data_by_no", {deviceNo: value}, function (resp) {
+                        onClickCell:function(field,value,row){
+                                $.post("beidou/get_vechiecl_data_by_no", {deviceNo: row.SystemNo}, function (resp) {
                                     common.addMarkerBeiDou(resp, 'allmap');
                                 }, 'json');
-                            }
                         }
                     });
 
