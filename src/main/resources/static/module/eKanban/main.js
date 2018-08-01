@@ -109,7 +109,7 @@
                 common.changeDivHeight("#ekan_div");
             }
         });
-}()).call(this);
+}).call(this);
 
 
 

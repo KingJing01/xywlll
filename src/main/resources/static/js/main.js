@@ -17,7 +17,7 @@
 
             mainFunction = function () {
                 //默认加载电子看板的界面
-               requirejs(["module/eKanban/main"], function (main) {
+               requirejs(["module/eKanban/main."], function (main) {
                    main.load();
                 });
                /* $("#btn_march_out").on('click', function () {

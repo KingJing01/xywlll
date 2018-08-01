@@ -16,15 +16,11 @@ public class WebServicesUtils {
 			Service service = new Service();
 			Call call = null;
 			call = (Call) service.createCall();
-			// 调用 getMessage
 			call.setOperationName(new QName(nameSpaceUri, method));
 			call.setTargetEndpointAddress(new java.net.URL(wsdlUrl));
 			result = (Map) call.invoke(params);
 		} catch (Exception e) {
 			e.printStackTrace();
-			result = new HashMap();
-			result.put("success", false);
-			result.put("msg", e.getMessage());
 		}
 		return result;
 	}
