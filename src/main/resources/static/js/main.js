@@ -27,6 +27,12 @@
                     });
                 });
 
+                $("#vehicle_monitoring").on('click', function () {
+                    requirejs(["module/beidou/map"], function (list) {
+                        list.load();
+                    });
+                });
+
             };
             return mainFunction;
         });
