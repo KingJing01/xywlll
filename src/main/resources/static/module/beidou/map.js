@@ -29,21 +29,27 @@
 
             //init table   for vechicel data
             var initTable = function () {
-                layui.use('table', function () {
-                    var table = layui.table;
-                    table.render({
-                        elem: '#car_data',
+                    $('#car_data').bootstrapTable({
                         url: 'beidou/get_vechicel_data_all',
+                        method: 'post',
                         limit: 5,
-                        method: 'Post',
                         width: '273',
-                        page: false,
-                        cols: [[ //表头
+                        pagination: false,
+                        columns: [{
+                            checkbox: true
+                        }, {
+                            field: 'SystemNo',
+                            title: '司机手机号'
+                        }, {
+                            field: 'VehNof',
+                            title: '车牌号'
+                        }]
+                       /* cols: [[ //表头
                             {field: 'SystemNo', title: '司机手机号', width: 150, event: "detail"},
                             {field: 'VehNof', title: '车牌号', width: 120}
-                        ]]
+                        ]]*/
                     });
-                    table.on('tool(test)', function (obj) {
+                    /*table.on('tool(test)', function (obj) {
                         debugger;
                         var data = obj.data;
                         var layEvent = obj.event;
@@ -53,16 +59,15 @@
                                 common.addMarkerBeiDou(resp, 'allmap');
                             }, 'json');
                         }
-                    });
-                });
+                    });*/
 
             }
             var vechicel = {};
             vechicel.load = function () {
                 initHtml();
                 initMap();
+                initTable();
                 common.changeDivHeight("#allmap");
-                //initTable();
             }
             return vechicel;
         }
