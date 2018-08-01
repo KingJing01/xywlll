@@ -3,8 +3,8 @@
     /* 需要的js 文件引入 */
     define([
         "vendor/bootstrap/js/bootstrap.min",
-        "js/common"
-
+        "js/common",
+    /*    "js/windownFont"*/
         ],
         function () {
 
@@ -20,12 +20,13 @@
                requirejs(["module/eKanban/main"], function (main) {
                    main.load();
                 });
-               /* $("#btn_march_out").on('click', function () {
-                    requirejs(["modules/salemarket/marchout/list"], function (list) {
+
+                $("#order_system").on('click', function () {
+                    requirejs(["module/eKanban/main"], function (list) {
                         list.load();
                     });
                 });
-                */
+
             };
             return mainFunction;
         });

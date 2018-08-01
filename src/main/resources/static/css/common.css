@@ -7,8 +7,8 @@ body {
 }
 #page-wrapper {
     padding: 0 15px;
-    min-height: 568px;
-    background-color: white;
+    min-height: 73rem;
+    background-color: #F5F5F5;
 }
 @media (min-width: 768px) {
     #page-wrapper {
@@ -438,52 +438,51 @@ table.dataTable thead .sorting:after {
 
 /* 电子看板 */
 #ekan_div{
-    margin-top: 4rem;
     margin-left: 1%;
 }
 
 #ekan_top_div{
-
+    margin-top: 2rem;
 }
 
 .ekan_contain {
+    position: relative;
     width: 23.5%;
     float: left;
     border: 1px solid #f4f8fe;
-    margin-right:1%;
+    margin-right: 1%;
     border-radius: 5px;
-    height: 8rem;
+    background-color: #ffffff;
 }
 
 .ekan_span {
+    float: left;
+    position: absolute;
     height: 6rem;
     width: 6rem;
-    display: inline-block;
     border-radius: 50%;
-    margin: 2% 5%;
+    margin: 8% 10%;
 }
 
 .ekan_text{
-    display: inline-grid;
-    margin: 5%;
+    float: right;
+    margin-right: 2rem;
 }
 
 .ekan_text p{
-    line-height: 2rem;
     color: #666666;
+    margin-top: 0.8rem;
 }
 
 .number_p{
-    font-size: 1.5rem;
+    font-size: 3rem;
     color:#5799FC !important;
 }
 
 .span_icon{
     position: relative;
-    display: block;
-    text-align: center;
-    top: 2rem;
-    left: 1.3rem;
+    top: 1.8rem;
+    left: 1.6rem;
 }
 
 /*电子看板 图表 */
@@ -503,13 +502,14 @@ table.dataTable thead .sorting:after {
     height: 38rem;
     margin-right: 2.5%;
     border: 1px solid #f4f8fe;
-    margin-top:2rem;
+    margin-top:3rem;
+    background-color: #ffffff;
 }
 
 .chart_div{
-    height: 18rem;
+    height: 23rem;
     border: 1px solid #f4f8fe;
-    margin-top:2rem;
+    margin-top: 3rem;
 }
 
 #left_chart .chart_tab{
