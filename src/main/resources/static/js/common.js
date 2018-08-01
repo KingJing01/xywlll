@@ -2,8 +2,8 @@ var common = {
 
     //动态调整tab load界面的高度  宽度已经自适应
     initContainer: function (container) {
-        var height = $("#container").height();
-        $(container).css("height", height - 40);
+        var height = $("#page-wrapper").height();
+        $(container).css("height",height);
     },
 
     //监听浏览器窗口的界面变化
