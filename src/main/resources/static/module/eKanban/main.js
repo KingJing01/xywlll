@@ -60,7 +60,7 @@
             var initPickUpRate = function () {
                 var myChart = echarts.init(document.getElementById('pick_up_rate'));
                 myChart.showLoading();
-                $.get('').done(function (data) {
+                $.get('ekan/pick_up_rate',{status:1}).done(function (data) {
                     myChart.hideLoading();
                     myChart.setOption({
                         title: {
@@ -85,7 +85,7 @@
             var initArrivalRate = function () {
                 var myChart = echarts.init(document.getElementById('arrival_rate'));
                 myChart.showLoading();
-                $.get('').done(function (data) {
+                $.get('ekan/arrival_rate',{status:1}).done(function (data) {
                     myChart.hideLoading();
                     myChart.setOption({
                         title: {

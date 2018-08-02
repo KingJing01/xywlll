@@ -7,9 +7,9 @@ package com.xinya.coldchain.utils;
  **/
 public class CommonUtil {
 
-    public static final String WSDLUrl = "http://127.0.0.1:8080/tms-webapp/services/{0}?wsdl";
+    public static final String WSDLUrl = "http://222.73.159.76:8081/tms-webapp/services/{0}?wsdl";
 
-    public static final String WSDLNameSpace = "http://127.0.0.1:8080/tms-webapp/services/{0}";
+    public static final String WSDLNameSpace = "http://222.73.159.76:8081/tms-webapp/services/{0}";
 
     //tms webservice 方法名
     // 到货准点率
