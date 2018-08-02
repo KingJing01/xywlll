@@ -82,10 +82,11 @@
                     });
                 });
             };
-            var initArrivalRate = function () {
+            var initArrivalRate = function (status) {
                 var myChart = echarts.init(document.getElementById('arrival_rate'));
                 myChart.showLoading();
-                $.get('ekan/arrival_rate',{status:1}).done(function (data) {
+                $.get('ekan/arrival_rate',{status:status}).done(function (data) {
+                    console.log(data)
                     myChart.hideLoading();
                     myChart.setOption({
                         title: {
@@ -95,13 +96,14 @@
                         xAxis: {
                             type: 'category',
                             boundaryGap: false,
-                            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                            //data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                            data:data.data.xAxis
                         },
                         yAxis: {
                             type: 'value'
                         },
                         series: [{
-                            data: [820, 932, 901, 934, 1290, 1330, 1320],
+                            data: data.data.yAxis,
                             type: 'line',
                             areaStyle: {}
                         }]
@@ -128,7 +130,7 @@
                 initHtml();
                 initPie();
                 initPickUpRate();
-                initArrivalRate();
+                initArrivalRate(1);
                 bindEvents();
             }
             return ekanMain;
