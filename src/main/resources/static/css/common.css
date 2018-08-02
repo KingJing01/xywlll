@@ -528,7 +528,7 @@ table.dataTable thead .sorting:after {
 }
 
 .chart_ul li {
-    float:right;
+    float:left;
     color:  #333333;
     transition: all .5s;
     display: inline-block;
