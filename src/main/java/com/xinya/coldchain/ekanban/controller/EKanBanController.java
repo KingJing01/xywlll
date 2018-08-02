@@ -21,21 +21,21 @@ public class EKanBanController {
 
     /**
      * 提货率
-     *
+     * @param status 近7天 近一个月 近半年的判断位
      * @return 返回tms数据
      */
     @RequestMapping(value = "pick_up_rate")
-    public Map<String, Object> getPickUpRate() {
+    public Map<String, Object> getPickUpRate(String status) {
         return null;
     }
 
     /**
      * 到货率
-     *
+     * @param status 近7天 近一个月 近半年的判断位
      * @return 返回tms数据
      */
     @RequestMapping(value = "arrival_rate")
-    public Map<String, Object> getArrivalRate() {
+    public Map<String, Object> getArrivalRate(String status) {
         return null;
     }
 
