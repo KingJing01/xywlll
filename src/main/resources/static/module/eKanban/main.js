@@ -16,7 +16,7 @@
             var initPie = function () {
                 var myChart = echarts.init(document.getElementById('right_chart'));
                 myChart.showLoading();
-                $.get('').done(function (data) {
+                $.get('ekan/exception_distribute').done(function (data) {
                     myChart.hideLoading();
                     myChart.setOption({
                         title: {
@@ -57,10 +57,10 @@
                     });
                 });
             };
-            var initPickUpRate = function () {
+            var initPickUpRate = function (status) {
                 var myChart = echarts.init(document.getElementById('pick_up_rate'));
                 myChart.showLoading();
-                $.get('').done(function (data) {
+                $.get('ekan/pick_up_rate',{status:status}).done(function (data) {
                     myChart.hideLoading();
                     myChart.setOption({
                         title: {
@@ -69,13 +69,13 @@
                         },
                         xAxis: {
                             type: 'category',
-                            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                            data: data.data.xAxis
                         },
                         yAxis: {
                             type: 'value'
                         },
                         series: [{
-                            data: [820, 932, 901, 934, 1290, 1330, 1320],
+                            data:  data.data.yAxis,
                             type: 'line',
                             smooth: true
                         }]
@@ -86,7 +86,6 @@
                 var myChart = echarts.init(document.getElementById('arrival_rate'));
                 myChart.showLoading();
                 $.get('ekan/arrival_rate',{status:status}).done(function (data) {
-                    console.log(data)
                     myChart.hideLoading();
                     myChart.setOption({
                         title: {
@@ -96,7 +95,6 @@
                         xAxis: {
                             type: 'category',
                             boundaryGap: false,
-                            //data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
                             data:data.data.xAxis
                         },
                         yAxis: {
@@ -129,7 +127,7 @@
             ekanMain.load = function () {
                 initHtml();
                 initPie();
-                initPickUpRate();
+                initPickUpRate(1);
                 initArrivalRate(1);
                 bindEvents();
             }

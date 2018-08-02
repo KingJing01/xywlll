@@ -28,6 +28,7 @@ public class EKanBanService {
     }
 
     public Map<String, Object> getExceptionDistribute() {
-        return null;
+        return WebServicesUtils.invokeWS(CommonUtil.WSDLUrl,
+                CommonUtil.WSDLNameSpace,CommonUtil.TMS_EXPTYPEDISTRI,null);
     }
 }
