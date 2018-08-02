@@ -45,8 +45,9 @@ public class EKanBanController {
      */
     @RequestMapping(value = "exception_distribute")
     public Map<String, Object> getExceptionDistribute() {
-        return null;
+        return eKanBanService.getExceptionDistribute();
     }
+
 
 }
 

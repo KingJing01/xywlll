@@ -6,19 +6,24 @@ package com.xinya.coldchain.utils;
  * @desc 监控系统通用后台参数
  **/
 public class CommonUtil {
+
+    public static final String WSDLUrl = "http://127.0.0.1:8080/tms-webapp/services/{0}?wsdl";
+
+    public static final String WSDLNameSpace = "http://127.0.0.1:8080/tms-webapp/services/{0}";
+
     //tms webservice 方法名
     // 到货准点率
-    private static final String TMS_ARRIONTIME ="arriOnTime";
+    public static final String TMS_ARRIONTIME ="arriOnTime";
     // 提货准点率
-    private static final String TMS_DELIONTIME ="deliOnTime";
+    public static final String TMS_DELIONTIME ="deliOnTime";
     // 异常分布
-    private static final String TMS_EXPTYPEDISTRI ="expTypeDistri";
+    public static final String TMS_EXPTYPEDISTRI ="expTypeDistri";
     //上月订单总量
-    private static final String TMS_LASTMONTH ="lastMonth";
+    public static final String TMS_LASTMONTH ="lastMonth";
     //昨日到货订单
-    private static final String TMS_YESTERDAYARRIVALBILLS ="yesterdayArrivalBills";
+    public static final String TMS_YESTERDAYARRIVALBILLS ="yesterdayArrivalBills";
     //昨日订单总量
-    private static final String TMS_YESTERDAYBILLS ="yesterdayBills";
+    public static final String TMS_YESTERDAYBILLS ="yesterdayBills";
     //昨日提货订单
-    private static final String TMS_YESTERDAYDELIBILLS ="yesterdayDeliBills";
+    public static final String TMS_YESTERDAYDELIBILLS ="yesterdayDeliBills";
 }

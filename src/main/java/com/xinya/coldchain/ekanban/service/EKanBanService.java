@@ -1,5 +1,7 @@
 package com.xinya.coldchain.ekanban.service;
 
+import com.xinya.coldchain.utils.CommonUtil;
+import com.xinya.coldchain.utils.WebServicesUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,11 +17,17 @@ import java.util.Map;
 public class EKanBanService {
 
     public Map<String, Object> getPickUpRate(String status) {
-        return null;
+        return WebServicesUtils.invokeWS(CommonUtil.WSDLUrl,
+                CommonUtil.WSDLNameSpace,CommonUtil.TMS_DELIONTIME,new String []{status});
     }
 
 
     public Map<String, Object> getArrivalRate(String status) {
+        return WebServicesUtils.invokeWS(CommonUtil.WSDLUrl,
+                CommonUtil.WSDLNameSpace,CommonUtil.TMS_ARRIONTIME,new String []{status});
+    }
+
+    public Map<String, Object> getExceptionDistribute() {
         return null;
     }
 }
