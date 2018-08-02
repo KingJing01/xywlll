@@ -45,10 +45,12 @@
                         columns: [ {
                             field: 'SystemNo',
                             title: '司机手机号',
+                            align:'center',
                             width: 150
                         }, {
                             field: 'VehNof',
                             title: '车牌号',
+                            align:'center',
                             width: 120
                         }],
                         onClickCell:function(field,value,row){

@@ -429,13 +429,14 @@ table.dataTable thead .sorting:after {
     }
 }
 
-/* 地图上表格展示 */
 #div_table{
     position: absolute;
     top: 8%;
     left: 15%;
     background-color: #fcf8e3;
 }
+
+
 
 /* 电子看板 */
 #ekan_div{
@@ -476,7 +477,7 @@ table.dataTable thead .sorting:after {
 }
 
 .number_p{
-    font-size: 3rem;
+    font-size: 1.5vw;
     color:#5799FC !important;
 }
 
@@ -551,4 +552,19 @@ table.dataTable thead .sorting:after {
 
 .chart_ul li:hover{
     background-color: #E9EEF3;
+}
+/* 非bootstrap 自适应 样式 */
+@media (min-width: 768px) {
+
+}
+
+/* 中等屏幕（桌面显示器，大于等于 992px） */
+@media (min-width: 992px) {
+
+
+}
+
+/* 大屏幕（大桌面显示器，大于等于 1200px） */
+@media (min-width: 1200px) {
+
 }
