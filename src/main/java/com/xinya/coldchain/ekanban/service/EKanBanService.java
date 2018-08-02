@@ -18,13 +18,13 @@ public class EKanBanService {
 
     public Map<String, Object> getPickUpRate(String status) {
         return WebServicesUtils.invokeWS(CommonUtil.WSDLUrl,
-                CommonUtil.WSDLNameSpace,CommonUtil.TMS_DELIONTIME,new String []{status});
+                CommonUtil.WSDLNameSpace,CommonUtil.TMS_DELIONTIME,new Object []{status});
     }
 
 
     public Map<String, Object> getArrivalRate(String status) {
         return WebServicesUtils.invokeWS(CommonUtil.WSDLUrl,
-                CommonUtil.WSDLNameSpace,CommonUtil.TMS_ARRIONTIME,new String []{status});
+                CommonUtil.WSDLNameSpace,CommonUtil.TMS_ARRIONTIME,new Object []{status});
     }
 
     public Map<String, Object> getExceptionDistribute() {
