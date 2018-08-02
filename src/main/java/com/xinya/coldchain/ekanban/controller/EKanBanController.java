@@ -26,7 +26,7 @@ public class EKanBanController {
      */
     @RequestMapping(value = "pick_up_rate")
     public Map<String, Object> getPickUpRate(String status) {
-        return null;
+        return eKanBanService.getPickUpRate(status);
     }
 
     /**
@@ -36,7 +36,7 @@ public class EKanBanController {
      */
     @RequestMapping(value = "arrival_rate")
     public Map<String, Object> getArrivalRate(String status) {
-        return null;
+        return eKanBanService.getArrivalRate(status);
     }
 
     /**
