@@ -19,6 +19,7 @@
                 var myChart = echarts.init(document.getElementById('right_chart'));
                 myChart.showLoading();
                 $.get('ekan/exception_distribute').done(function (data) {
+                    console.log(data);
                     myChart.hideLoading();
                     myChart.setOption({
                         title: {
@@ -32,21 +33,14 @@
                         legend: {
                             orient: 'horizontal',
                             bottom: '30',
-                            data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+                            data: data.data.legend
                         },
                         series: [
                             {
-                                name: '访问来源',
                                 type: 'pie',
                                 radius: ['50%', '70%'],
                                 center: ['50%', '40%'],
-                                data: [
-                                    {value: 335, name: '直接访问'},
-                                    {value: 310, name: '邮件营销'},
-                                    {value: 234, name: '联盟广告'},
-                                    {value: 135, name: '视频广告'},
-                                    {value: 1548, name: '搜索引擎'}
-                                ],
+                                data: data.data.series,
                                 itemStyle: {
                                     emphasis: {
                                         shadowBlur: 10,
@@ -116,19 +110,19 @@
                 /* 提货率 */
                 $("#pick_up_rate_container li").each(function (index) {
                     $(this).click(function () {
-                        initPickUpRate(index);
+                        initPickUpRate(index+1);
                     })
                 })
                 /* 到货率  */
                 $("#arrival_rate_container li").each(function (index) {
                     $(this).click(function () {
-                        initArrivalRate(index);
+                        initArrivalRate(index+1);
                     })
                 })
             };
             var ajaxCallBack = function (data,param) {
-                $(param + " .number_p").html(data.data.num[0]?data.data.num[0]:0);
-                $(param + " .span_rate").html(data.data.rate[0]?Number(data.data.rate[0]).toFixed(2)+"%":0);
+                $(param + " .number_p").html(data.data.num?data.data.num:0);
+                $(param + " .span_rate").html(data.data.rate?Number(data.data.rate).toFixed(2)+"%":0);
                 if(data.success){
                     $(param + "_span").attr("class",icon_up);
                     $(param + " .span_rate").addClass("ekan-up");
