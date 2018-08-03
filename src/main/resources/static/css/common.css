@@ -467,8 +467,8 @@ table.dataTable thead .sorting:after {
 }
 
 .ekan_text{
-    float: right;
-    margin-right: 2rem;
+    float: left;
+    margin-left: 40%;
 }
 
 .ekan_text p{
@@ -483,8 +483,12 @@ table.dataTable thead .sorting:after {
 
 .span_icon{
     position: relative;
-    top: 1.8rem;
-    left: 1.6rem;
+    top: 25%;
+    left: 20%;
+}
+
+.span_rate{
+    padding-left: 5px;
 }
 
 /*电子看板 图表 */
@@ -550,6 +554,12 @@ table.dataTable thead .sorting:after {
     border: 1px solid #E9EEF3;
 }
 
+.ekan-up{
+   color: #40B356;
+}
+.ekan-down{
+   color:#F43F3F;
+}
 .chart_ul li:hover{
     background-color: #E9EEF3;
 }

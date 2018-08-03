@@ -9,6 +9,8 @@
         ],
         function
             ($, echarts, pageHtml) {
+            var icon_up ="fa fa-caret-up ekan-up";
+            var icon_down ="fa fa-caret-down ekan-down";
             var initHtml = function () {
                 $("#page-wrapper").html(pageHtml);
             };
@@ -125,18 +127,28 @@
                 })
             };
             var ajaxCallBack = function (data,param) {
+                $(param + " .number_p").html(data.data.num[0]?data.data.num[0]:0);
+                $(param + " .span_rate").html(data.data.rate[0]?Number(data.data.rate[0]).toFixed(2)+"%":0);
+                if(data.success){
+                    $(param + "_span").attr("class",icon_up);
+                    $(param + " .span_rate").addClass("ekan-up");
+                }else{
+                    $(param + "_span").attr("class",icon_down);
+                    $(param + " .span_rate").addClass("ekan-down");
+                }
+                console.log(JSON.stringify(data)+"~"+param);
                 
             }
             /* 电子看板图标上方展示的信息 */
             var initEkanTop = function () {
                 /*今日到货订单量*/
-                common.ajaxfuncURL("",{},ajaxCallBack,"#day_arrival");
+                common.ajaxfuncURL("ekan/day_arrival",{},ajaxCallBack,"#day_arrival");
                 //今日提货订单量
-                common.ajaxfuncURL("",{},ajaxCallBack,"#day_pick");
+                common.ajaxfuncURL("ekan/day_pick",{},ajaxCallBack,"#day_pick");
                 //今日订单总量
-                common.ajaxfuncURL("",{},ajaxCallBack,"#day_total");
+                common.ajaxfuncURL("ekan/day_total",{},ajaxCallBack,"#day_total");
                 //本月订单总量
-                common.ajaxfuncURL("",{},ajaxCallBack,"#month_total");
+                common.ajaxfuncURL("ekan/month_total",{},ajaxCallBack,"#month_total");
 
             }
 
