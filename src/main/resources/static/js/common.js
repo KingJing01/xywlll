@@ -62,6 +62,26 @@ var common = {
         var myIcon = new BMap.Icon("images/car.png", new BMap.Size(80, 40));
         var marker = new BMap.Marker(point, {icon: myIcon});
         map.addOverlay(marker);
+    },
+    /**
+     *  通用 post ajax封装
+     * @param url  请求路径
+     * @param restData  请求参数
+     * @param callback 回掉函数
+     * @param param 预留参数
+     */
+    ajaxfuncURL: function (url,data,callback,param) {
+        $.ajax({
+            url: url,
+            type: "post",
+            data: data,
+            dataType: 'json',
+            success: function (res) {
+                callback(res,param);
+            },
+            error: function (res) {
+                console.log(res);
+            }
+        });
     }
-
 }

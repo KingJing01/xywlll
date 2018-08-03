@@ -48,6 +48,43 @@ public class EKanBanController {
         return eKanBanService.getExceptionDistribute();
     }
 
+    /**
+     * 今日到货订单量
+     * @return 返回tms数据
+     */
+    @RequestMapping(value = "day_arrival")
+    public Map<String, Object> getDayArrival() {
+        return eKanBanService.getDayArrival();
+    }
+
+    /**
+     * 今日提货订单量
+     * @return 返回tms数据
+     */
+    @RequestMapping(value = "day_pick")
+    public Map<String, Object> getDayPick() {
+        return eKanBanService.getDayPick();
+    }
+
+    /**
+     * 今日订单总量
+     * @return 返回tms数据
+     */
+    @RequestMapping(value = "day_total")
+    public Map<String, Object> getDayTotal() {
+        return eKanBanService.getDayTotal();
+    }
+
+    /**
+     * 本月订单总量
+     * @return 返回tms数据
+     */
+    @RequestMapping(value = "month_total")
+    public Map<String, Object> getMonthTotal() {
+        return eKanBanService.getMonthTotal();
+    }
+
+
 
 }
 

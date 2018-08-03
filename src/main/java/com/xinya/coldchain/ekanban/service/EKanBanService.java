@@ -31,4 +31,24 @@ public class EKanBanService {
         return WebServicesUtils.invokeWS(CommonUtil.WSDLUrl,
                 CommonUtil.WSDLNameSpace,CommonUtil.TMS_EXPTYPEDISTRI,null);
     }
+
+    public Map<String, Object> getDayArrival() {
+        return WebServicesUtils.invokeWS(CommonUtil.WSDLUrl,
+                CommonUtil.WSDLNameSpace,CommonUtil.TMS_YESTERDAYARRIVALBILLS,null);
+    }
+
+    public Map<String, Object> getDayPick() {
+        return  WebServicesUtils.invokeWS(CommonUtil.WSDLUrl,
+                CommonUtil.WSDLNameSpace,CommonUtil.TMS_YESTERDAYDELIBILLS,null);
+    }
+
+    public Map<String, Object> getDayTotal() {
+        return  WebServicesUtils.invokeWS(CommonUtil.WSDLUrl,
+                CommonUtil.WSDLNameSpace,CommonUtil.TMS_YESTERDAYBILLS,null);
+    }
+
+    public Map<String, Object> getMonthTotal() {
+        return  WebServicesUtils.invokeWS(CommonUtil.WSDLUrl,
+                CommonUtil.WSDLNameSpace,CommonUtil.TMS_LASTMONTH,null);
+    }
 }

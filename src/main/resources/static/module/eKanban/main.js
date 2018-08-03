@@ -57,6 +57,7 @@
                     });
                 });
             };
+            /* 提货率  */
             var initPickUpRate = function (status) {
                 var myChart = echarts.init(document.getElementById('pick_up_rate'));
                 myChart.showLoading();
@@ -82,6 +83,7 @@
                     });
                 });
             };
+            /* 到货率 */
             var initArrivalRate = function (status) {
                 var myChart = echarts.init(document.getElementById('arrival_rate'));
                 myChart.showLoading();
@@ -121,6 +123,21 @@
                         initArrivalRate(index);
                     })
                 })
+            };
+            var ajaxCallBack = function (data,param) {
+                
+            }
+            /* 电子看板图标上方展示的信息 */
+            var initEkanTop = function () {
+                /*今日到货订单量*/
+                common.ajaxfuncURL("",{},ajaxCallBack,"#day_arrival");
+                //今日提货订单量
+                common.ajaxfuncURL("",{},ajaxCallBack,"#day_pick");
+                //今日订单总量
+                common.ajaxfuncURL("",{},ajaxCallBack,"#day_total");
+                //本月订单总量
+                common.ajaxfuncURL("",{},ajaxCallBack,"#month_total");
+
             }
 
             var ekanMain = {};
@@ -130,6 +147,7 @@
                 initPickUpRate(1);
                 initArrivalRate(1);
                 bindEvents();
+                initEkanTop();
             }
             return ekanMain;
         });
