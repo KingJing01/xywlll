@@ -1,6 +1,7 @@
 package com.xinya.coldchain.sys.service;
 
 import com.xinya.coldchain.sys.dao.SysDao;
+import com.xinya.coldchain.sys.model.User;
 import com.xinya.coldchain.utils.DigestPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,10 +26,10 @@ public class SysService {
     public Map<String,Object> doLogin(String username, String password) {
         DigestPasswordEncoder encoder = new DigestPasswordEncoder();
         String psw = encoder.encodePassword(password, null);
-        Map<String,String> dbMap = sysDao.getUserInfoByParam(username,psw);
+        User user = sysDao.getUserInfoByParam(username,psw);
         Map<String,Object> resultMap = new HashMap<>();
         resultMap.put("success",false);
-        if(!StringUtils.isEmpty(dbMap)) {
+        if(!StringUtils.isEmpty(user)) {
             resultMap.put("success",true);
         }
         return resultMap;
