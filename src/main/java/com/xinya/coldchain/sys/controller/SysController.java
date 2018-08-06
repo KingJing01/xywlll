@@ -20,7 +20,7 @@ public class SysController {
     private SysService sysService;
 
     @RequestMapping(value = "login")
-    public Map<String,String> doLogin(String username,String password) {
+    public Map<String,Object> doLogin(String username,String password) {
         return sysService.doLogin(username,password);
     }
 
