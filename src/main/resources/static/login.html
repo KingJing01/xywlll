@@ -3,7 +3,8 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/style.css">
     <title>冷链物流云平台</title>
-    <script src="js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <script src="vendor/jquery/jquery.min.js"></script>
 </head>
 <body>
 <div class="dl">
@@ -18,11 +19,11 @@
         <div class="dly">
             <h5></h5>
             <span>
-                <i class="iconfont icon-user"></i>
+                <i class="fa fa-user"></i>
                 <input id="username" type="text" name="username">
             </span>
             <span>
-                <i class="iconfont icon-mima"></i>
+                <i class="fa fa-lock"></i>
                 <input id="password" type="password" name="password">
             </span>
             <span>
@@ -59,7 +60,7 @@
             return false;
         }
         $.ajax({
-            url: "login.html",
+            url: "sys/login",
             type: 'post',
             dataType: 'json',
             data: {username: $("#username").val(), password: $("#password").val()},

@@ -76,7 +76,7 @@
             <version>1.4</version>
         </dependency>
         <dependency>
-            <groupId>axis</groupId>
+            <groupId> org.apache.axis</groupId>
             <artifactId>axis-jaxrpc</artifactId>
             <version>1.4</version>
         </dependency>
@@ -114,6 +114,11 @@
             <groupId>wsdl4j</groupId>
             <artifactId>wsdl4j</artifactId>
             <version>1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>sqljdbc4</artifactId>
+            <version>4.0</version>
         </dependency>
     </dependencies>
 
