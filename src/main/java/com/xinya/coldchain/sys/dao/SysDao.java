@@ -13,7 +13,5 @@ import java.util.Map;
 
 public interface SysDao {
 
-    @Select(" select pk_user,user_code,user_type,user_name from nw_user \n"
-            + "where user_code=#{username} and user_password=#{pwd} and and dr=0 ")
-    Map<String,String> getUserInfoByParam(@Param("username") String username,@Param("pwd") String pwd);
+    Map<String,String> getUserInfoByParam(String username,String pwd);
 }
