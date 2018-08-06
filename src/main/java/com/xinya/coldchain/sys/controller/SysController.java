@@ -1,5 +1,7 @@
-package com.xinya.coldchain.sys;
+package com.xinya.coldchain.sys.controller;
 
+import com.xinya.coldchain.sys.service.SysService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -14,9 +16,12 @@ import java.util.Map;
 @RequestMapping(value = "sys")
 public class SysController {
 
+    @Autowired
+    private SysService sysService;
+
     @RequestMapping(value = "login")
     public Map<String,String> doLogin(String username,String password) {
-        return null;
+        return sysService.doLogin(username,password);
     }
 
 }
