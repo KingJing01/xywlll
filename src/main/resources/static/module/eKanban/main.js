@@ -11,33 +11,39 @@
             ($, echarts, pageHtml) {
             var icon_up = "fa fa-caret-up ekan-up";
             var icon_down = "fa fa-caret-down ekan-down";
+            var pieChart = null;
+            var pickUpChart = null;
+            var arrivalChart = null;
             var initHtml = function () {
                 $("#page-wrapper").html(pageHtml);
+                pieChart = echarts.init(document.getElementById('right_chart'));
+                pickUpChart = echarts.init(document.getElementById('pick_up_rate'));
+                arrivalChart= echarts.init(document.getElementById('arrival_rate'));
             };
             /*异常分布类型  饼图*/
             var initPie = function () {
-                var myChart = echarts.init(document.getElementById('right_chart'));
-                myChart.showLoading();
+                pieChart.showLoading();
                 $.get('ekan/exception_distribute').done(function (data) {
-                    myChart.hideLoading();
-                    myChart.setOption({
+                    pieChart.hideLoading();
+                    pieChart.setOption({
                         title: {
                             text: '异常类型分布',
                             x: 'left'
                         },
                         tooltip: {
                             trigger: 'item',
-                            formatter: "{a} <br/>{b} : {c} ({d}%)"
+                            formatter: "{b} : {c} ({d}%)"
                         },
                         legend: {
                             orient: 'horizontal',
                             bottom: '30',
                             data: data.data.legend
                         },
+                        color:['#FF7F00','#ccff99', '#BFEFFF', '#F2673D', '#5A99D0','#557DE0',  '#6BAE78', '#FFC35B','#71C671', '#CCCCCC', '#c4ccd3'],
                         series: [
                             {
                                 type: 'pie',
-                                radius: ['50%', '70%'],
+                                radius: ['35%', '55%'],
                                 center: ['50%', '40%'],
                                 data: data.data.series,
                                 itemStyle: {
@@ -54,11 +60,10 @@
             };
             /* 提货率  */
             var initPickUpRate = function (status) {
-                var myChart = echarts.init(document.getElementById('pick_up_rate'));
-                myChart.showLoading();
+                pickUpChart.showLoading();
                 $.get('ekan/pick_up_rate', {status: status}).done(function (data) {
-                    myChart.hideLoading();
-                    myChart.setOption({
+                    pickUpChart.hideLoading();
+                    pickUpChart.setOption({
                         title: {
                             text: '提货准点率',
                             x: 'left'
@@ -110,11 +115,10 @@
             };
             /* 到货率 */
             var initArrivalRate = function (status) {
-                var myChart = echarts.init(document.getElementById('arrival_rate'));
-                myChart.showLoading();
+                arrivalChart.showLoading();
                 $.get('ekan/arrival_rate', {status: status}).done(function (data) {
-                    myChart.hideLoading();
-                    myChart.setOption({
+                    arrivalChart.hideLoading();
+                    arrivalChart.setOption({
                         title: {
                             text: '到货准点率',
                             x: 'left'
@@ -213,6 +217,11 @@
                 initArrivalRate(1);
                 bindEvents();
                 initEkanTop();
+                window.onresize = function(){
+                    pieChart.resize();
+                    pickUpChart.resize();
+                    arrivalChart.resize();
+                }
             }
             return ekanMain;
         });
