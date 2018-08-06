@@ -1,6 +1,7 @@
 package com.xinya.coldchain.sys.service;
 
 import com.xinya.coldchain.sys.sys.dao.SysDao;
+import com.xinya.coldchain.utils.DigestPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +22,9 @@ public class SysService {
 
     public Map<String,String> doLogin(String username, String password) {
         Map<String,String> dbMap = sysDao.getUserInfoByUserName(username);
-        
+        DigestPasswordEncoder encoder = new DigestPasswordEncoder();
+        String encodePassword = encoder.encodePassword(password, null);
+
         return null;
         //return sysDao.doLogin(username,password);
     }
