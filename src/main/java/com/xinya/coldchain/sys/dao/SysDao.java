@@ -3,7 +3,6 @@ package com.xinya.coldchain.sys.dao;
 import com.xinya.coldchain.sys.model.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 
 import java.util.Map;
 
@@ -15,5 +14,5 @@ import java.util.Map;
 @Mapper
 public interface SysDao {
 
-    public User getUserInfoByParam(String username, String pwd);
+    Map<String,String> getUserInfoByParam(String username, String pwd);
 }

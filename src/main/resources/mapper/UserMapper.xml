@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xinya.coldchain.sys.dao.SysDao">
+<mapper namespace="mapper.UserMapper">
 
     <resultMap type="com.xinya.coldchain.sys.model.User" id="User">
         <id property="pk_user" column="pk_user"/>
@@ -11,7 +11,7 @@
         <result property="user_type" column="user_type"/>
     </resultMap>
 
-    <select id="getUserInfoByParam" resultMap="User">
+    <select id="getUserInfoByParam" resultType="hashmap">
         select pk_user,user_name,user_code,user_type from nw_user where dr=0 and user_code=#{0}
          and user_password=#{1}
     </select>

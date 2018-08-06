@@ -26,10 +26,10 @@ public class SysService {
     public Map<String,Object> doLogin(String username, String password) {
         DigestPasswordEncoder encoder = new DigestPasswordEncoder();
         String psw = encoder.encodePassword(password, null);
-        User user = sysDao.getUserInfoByParam(username,psw);
+        Map<String,String> dbMap= sysDao.getUserInfoByParam(username,psw);
         Map<String,Object> resultMap = new HashMap<>();
         resultMap.put("success",false);
-        if(!StringUtils.isEmpty(user)) {
+        if(!StringUtils.isEmpty(dbMap)) {
             resultMap.put("success",true);
         }
         return resultMap;
