@@ -9,8 +9,8 @@
         ],
         function
             ($, echarts, pageHtml) {
-            var icon_up ="fa fa-caret-up ekan-up";
-            var icon_down ="fa fa-caret-down ekan-down";
+            var icon_up = "fa fa-caret-up ekan-up";
+            var icon_down = "fa fa-caret-down ekan-down";
             var initHtml = function () {
                 $("#page-wrapper").html(pageHtml);
             };
@@ -19,7 +19,6 @@
                 var myChart = echarts.init(document.getElementById('right_chart'));
                 myChart.showLoading();
                 $.get('ekan/exception_distribute').done(function (data) {
-                    console.log(data);
                     myChart.hideLoading();
                     myChart.setOption({
                         title: {
@@ -57,24 +56,54 @@
             var initPickUpRate = function (status) {
                 var myChart = echarts.init(document.getElementById('pick_up_rate'));
                 myChart.showLoading();
-                $.get('ekan/pick_up_rate',{status:status}).done(function (data) {
+                $.get('ekan/pick_up_rate', {status: status}).done(function (data) {
                     myChart.hideLoading();
                     myChart.setOption({
                         title: {
                             text: '提货准点率',
                             x: 'left'
                         },
+                        tooltip: {
+                            trigger: 'axis',
+                            formatter: function (params) {
+                                return params[0].name + '<br />' + params[0].value + "%";
+                            }
+                        },
                         xAxis: {
                             type: 'category',
                             data: data.data.xAxis
                         },
                         yAxis: {
-                            type: 'value'
+                            axisLabel: {
+                                formatter: function (val) {
+                                    return val + '%';
+                                }
+                            }
                         },
                         series: [{
-                            data:  data.data.yAxis,
+                            data: data.data.yAxis,
                             type: 'line',
-                            smooth: true
+                            smooth: true,
+                            symbol: 'circle',
+                            symbolSize: 5,
+                            sampling: 'average',
+                            itemStyle: {
+                                normal: {
+                                    color: '#5799FC'
+                                }
+                            },
+                            stack: 'a',
+                            areaStyle: {
+                                normal: {
+                                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                        offset: 0,
+                                        color: '#5799FC'
+                                    }, {
+                                        offset: 1,
+                                        color: '#ffe'
+                                    }])
+                                }
+                            }
                         }]
                     });
                 });
@@ -83,25 +112,55 @@
             var initArrivalRate = function (status) {
                 var myChart = echarts.init(document.getElementById('arrival_rate'));
                 myChart.showLoading();
-                $.get('ekan/arrival_rate',{status:status}).done(function (data) {
+                $.get('ekan/arrival_rate', {status: status}).done(function (data) {
                     myChart.hideLoading();
                     myChart.setOption({
                         title: {
                             text: '到货准点率',
                             x: 'left'
                         },
+                        tooltip: {
+                            trigger: 'axis',
+                            formatter: function (params) {
+                                return params[0].name + '<br />' + params[0].value + "%";
+                            }
+                        },
                         xAxis: {
                             type: 'category',
                             boundaryGap: false,
-                            data:data.data.xAxis
+                            data: data.data.xAxis
                         },
                         yAxis: {
-                            type: 'value'
+                            axisLabel: {
+                                formatter: function (val) {
+                                    return val + '%';
+                                }
+                            }
                         },
                         series: [{
                             data: data.data.yAxis,
                             type: 'line',
-                            areaStyle: {}
+                            smooth: true,
+                            symbol: 'circle',
+                            symbolSize: 5,
+                            sampling: 'average',
+                            itemStyle: {
+                                normal: {
+                                    color: '#5799FC'
+                                }
+                            },
+                            stack: 'a',
+                            areaStyle: {
+                                normal: {
+                                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                        offset: 0,
+                                        color: '#5799FC'
+                                    }, {
+                                        offset: 1,
+                                        color: '#ffe'
+                                    }])
+                                }
+                            }
                         }]
                     });
                 });
@@ -110,39 +169,39 @@
                 /* 提货率 */
                 $("#pick_up_rate_container li").each(function (index) {
                     $(this).click(function () {
-                        initPickUpRate(index+1);
+                        initPickUpRate(index + 1);
                     })
                 })
                 /* 到货率  */
                 $("#arrival_rate_container li").each(function (index) {
                     $(this).click(function () {
-                        initArrivalRate(index+1);
+                        initArrivalRate(index + 1);
                     })
                 })
             };
-            var ajaxCallBack = function (data,param) {
-                $(param + " .number_p").html(data.data.num?data.data.num:0);
-                $(param + " .span_rate").html(data.data.rate?Number(data.data.rate).toFixed(2)+"%":0);
-                if(data.success){
-                    $(param + "_span").attr("class",icon_up);
+            var ajaxCallBack = function (data, param) {
+                $(param + " .number_p").html(data.data.num ? data.data.num : 0);
+                $(param + " .span_rate").html(data.data.rate ? Number(data.data.rate).toFixed(2) + "%" : 0);
+                if (data.success) {
+                    $(param + "_span").attr("class", icon_up);
                     $(param + " .span_rate").addClass("ekan-up");
-                }else{
-                    $(param + "_span").attr("class",icon_down);
+                } else {
+                    $(param + "_span").attr("class", icon_down);
                     $(param + " .span_rate").addClass("ekan-down");
                 }
-                console.log(JSON.stringify(data)+"~"+param);
-                
+                console.log(JSON.stringify(data) + "~" + param);
+
             }
             /* 电子看板图标上方展示的信息 */
             var initEkanTop = function () {
                 /*今日到货订单量*/
-                common.ajaxfuncURL("ekan/day_arrival",{},ajaxCallBack,"#day_arrival");
+                common.ajaxfuncURL("ekan/day_arrival", {}, ajaxCallBack, "#day_arrival");
                 //今日提货订单量
-                common.ajaxfuncURL("ekan/day_pick",{},ajaxCallBack,"#day_pick");
+                common.ajaxfuncURL("ekan/day_pick", {}, ajaxCallBack, "#day_pick");
                 //今日订单总量
-                common.ajaxfuncURL("ekan/day_total",{},ajaxCallBack,"#day_total");
+                common.ajaxfuncURL("ekan/day_total", {}, ajaxCallBack, "#day_total");
                 //本月订单总量
-                common.ajaxfuncURL("ekan/month_total",{},ajaxCallBack,"#month_total");
+                common.ajaxfuncURL("ekan/month_total", {}, ajaxCallBack, "#month_total");
 
             }
 
