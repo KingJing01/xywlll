@@ -217,6 +217,7 @@
                 initArrivalRate(1);
                 bindEvents();
                 initEkanTop();
+                /* 浏览器窗口改变 echarts改变 */
                 window.onresize = function(){
                     pieChart.resize();
                     pickUpChart.resize();
