@@ -1,10 +1,9 @@
 package com.xinya.coldchain.sys.dao;
 
-import com.xinya.coldchain.sys.model.User;
+import com.xinya.coldchain.sys.model.TmsUser;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.Map;
 
 /**
  * @author liyoujing
@@ -12,7 +11,7 @@ import java.util.Map;
  * @desc 系统通用模块Dao
  **/
 @Mapper
-public interface SysDao {
+public interface TmsUserDao {
 
-    Map<String,String> getUserInfoByParam(String username, String pwd);
+    public TmsUser getUserInfoByParam(@Param("username") String username,@Param("pwd") String pwd);
 }

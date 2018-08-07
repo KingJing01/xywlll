@@ -3,7 +3,7 @@ package com.xinya.coldchain.sys.model;
 /**
  * tms 返回登陆信息
  */
-public class User {
+public class TmsUser {
 
     private String pk_user;
     private String user_name;
