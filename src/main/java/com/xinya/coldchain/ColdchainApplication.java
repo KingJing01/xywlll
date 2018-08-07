@@ -9,6 +9,7 @@ import org.springframework.cache.annotation.EnableCaching;
  * SpringBoot启动界面.
  */
 @SpringBootApplication
+@EnableCaching
 @MapperScan("com.xinya.coldchain.*.dao")
 public class ColdchainApplication {
 
