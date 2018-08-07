@@ -1,85 +1,80 @@
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/style.css">
-    <title>冷链物流云平台</title>
-    <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
-    <script src="vendor/jquery/jquery.min.js"></script>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/style.css">
+<title>冷链物流云平台</title>
+<link rel="stylesheet" type="text/css"
+	href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
+<script src="vendor/jquery/jquery.min.js"></script>
 </head>
 <body>
-<div class="dl">
-    <!--登录头-->
-    <div class="dlt">
-        <h4>
-            <img src="images/logo.png" alt="">
-        </h4>
-    </div>
-    <!-- 登录主体-->
-    <div class="dlbody">
-        <div class="dly">
-            <h5></h5>
-            <span>
-                <i class="fa fa-user"></i>
-                <input id="username" type="text" name="username">
-            </span>
-            <span>
-                <i class="fa fa-lock"></i>
-                <input id="password" type="password" name="password">
-            </span>
-            <span>
-                <input type="button" value="登录" id="submit" onclick="login()">
-          </span>
+	<div class="dl">
+		<!--登录头-->
+		<div class="dlt">
+			<h4>
+				<img src="images/logo.png" alt="">
+			</h4>
+		</div>
+		
+		<!-- 登录主体-->
+		<div class="dlbody">
+			<div class="dly">
+				<h5></h5>
+				<span> <i class="fa fa-user"></i> <input id="username"
+					type="text" name="username">
+				</span> <span> <i class="fa fa-lock"></i> <input id="password"
+					type="password" name="password">
+				</span> 
+			    <p id="message_p" style="color:red;display:none"></p>
+				<span> <input type="button" value="登录" id="submit"
+					onclick="login()">
+				</span>
+			</div>
+		</div>
+	</div>
+	<script>
+		$(document).ready(function() {
+			$(function() {
+				$("#username,#password,#submit").keyup(function(event) {
+					code = event.which;
+					if (code == 13) {
+						login();
+					}
+				});
+			});
+		});
 
-
-            <div style="margin: auto"><span id="msg"></span></div>
-        </div>
-    </div>
-</div>
-<script>
-
-    $(document).ready(function () {
-        $(function () {
-            $("#username,#password,#submit").keyup(function (event) {
-                code = event.which;
-                if (code == 13) {
-                    login();
-                }
-            });
-        });
-    });
-
-    function login() {
-        if (!$("#username").val()) {
-            $("#username").focus();
-            $("#msg").val("请输入用户名！");
-            return false;
-        }
-        if (!$("#password").val()) {
-            $("#password").focus();
-            $("#msg").val("请输入密码！");
-            return false;
-        }
-        $.ajax({
-            url: "sys/login",
-            type: 'post',
-            dataType: 'json',
-            data: {username: $("#username").val(), password: $("#password").val()},
-            success: function (data) {
-                try {
-                    if (data.state == "200") {
-                        window.location.href = 'index.jsp';
-                    } else if (data.state == "911") {
-                        alert(data.msg);
-                    }
-                } catch (ex) {
-                    alert("登录失败,请重试");
-                }
-            },
-            error: function (err) {
-                console.error(err);
-            }
-        });
-    }
-</script>
+		function login() {
+			if (!$("#username").val()) {
+				$("#username").focus();
+				$("#message_p").fadeIn().html("请输入用户名！");
+				return false;
+			}
+			if (!$("#password").val()) {
+				$("#password").focus();
+				$("#message_p").fadeIn().html("请输入密码！");
+				return false;
+			}
+			$.ajax({
+				url : "sys/dologin",
+				type : 'post',
+				dataType : 'json',
+				data : {
+					username : $("#username").val(),
+					password : $("#password").val()
+				},
+				success : function(data) {
+					if (data.success == false) {
+						$("#message_p").fadeIn().html(data.message);
+					} else {
+						window.location.href = "module/index.html";
+					}
+				},
+				error : function(err) {
+					console.error(err);
+				}
+			});
+		}
+	</script>
 </body>
 </html>

@@ -20,19 +20,20 @@ import java.util.Map;
 @Transactional
 public class SysService {
 
-    @Autowired
-    private TmsUserDao tmsUserDao;
+	@Autowired
+	private TmsUserDao tmsUserDao;
 
-    public Map<String,Object> doLogin(String username, String password) {
-        DigestPasswordEncoder encoder = new DigestPasswordEncoder();
-        String psw = encoder.encodePassword(password, null);
-        TmsUser dbMap= tmsUserDao.getUserInfoByParam(username,psw);
-        Map<String,Object> resultMap = new HashMap<>();
-        resultMap.put("success",false);
-        if(!StringUtils.isEmpty(dbMap)) {
-            resultMap.put("success",true);
-        }
-        return resultMap;
-    }
+	public Map<String, Object> doLogin(String username, String password) {
+		DigestPasswordEncoder encoder = new DigestPasswordEncoder();
+		String psw = encoder.encodePassword(password, null);
+		TmsUser dbMap = tmsUserDao.getUserInfoByParam(username, psw);
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("success", true);
+		if (StringUtils.isEmpty(dbMap)) {
+			resultMap.put("success", false);
+			resultMap.put("message","用户名或密码错误");
+		}
+		return resultMap;
+	}
 
 }

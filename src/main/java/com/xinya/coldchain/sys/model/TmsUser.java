@@ -1,7 +1,7 @@
 package com.xinya.coldchain.sys.model;
 
 /**
- * tms 返回登陆信息
+ * tms用户登陆信息
  */
 public class TmsUser {
 
