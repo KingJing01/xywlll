@@ -1,6 +1,5 @@
 package com.xinya.coldchain.xinya.shiro;
 
-import com.sun.xml.internal.bind.v2.TODO;
 import com.xinya.coldchain.sys.model.TmsUser;
 import com.xinya.coldchain.sys.service.SysService;
 import org.apache.shiro.authc.AuthenticationException;
