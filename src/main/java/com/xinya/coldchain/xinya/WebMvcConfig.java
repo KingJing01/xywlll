@@ -15,14 +15,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
-    private static final Logger logger = LoggerFactory.getLogger(WebMvcConfig.class);
-
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        logger.info("========= 自定义路径跳转  ========================");
-        registry.addViewController("/").setViewName("../login.html");
-        registry.addViewController("/index").setViewName("../login.html");
-        registry.addViewController("/out").setViewName("../login.html");
-        registry.addViewController("/login").setViewName("index.html");
+        registry.addViewController("/").setViewName("login.html");
+        registry.addViewController("/index").setViewName("login.html");
+        registry.addViewController("/out").setViewName("login.html");
+        registry.addViewController("/loginSuccess").setViewName("index.html");
     }
 }
