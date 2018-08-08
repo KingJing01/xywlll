@@ -6,6 +6,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpSession;
  * @create 2018-08-06 上午 11:54
  * @desc 系统通用模块
  **/
-@Controller
+@RestController
 public class SysController {
 
 
@@ -32,22 +33,11 @@ public class SysController {
 			subject.login(usernamePasswordToken);
 			TmsUser user=(TmsUser) subject.getPrincipal();
 			session.setAttribute("user", user);
-			return "a";
+			return "index";
 		} catch(Exception e) {
 			//返回登录页面
-			return "a";
+			return "login";
 		}
 	}
-
-
-	@RequestMapping(value = "loginout")
-	public String loginout(HttpSession session) {
-		Subject subject = SecurityUtils.getSubject();
-		subject.logout();
-		session.removeAttribute("user");
-		return "redirect:/out";
-	}
-
-
 
 }
