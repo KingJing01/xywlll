@@ -21,6 +21,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         logger.info("========= 自定义路径跳转  ========================");
         registry.addViewController("/").setViewName("../login.html");
+        registry.addViewController("/index").setViewName("../login.html");
+        registry.addViewController("/out").setViewName("../login.html");
         registry.addViewController("/login").setViewName("index.html");
     }
 }

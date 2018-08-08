@@ -1,45 +1,66 @@
 package com.xinya.coldchain.sys.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * tms用户登陆信息
  */
+@Entity
+@Table(name = "nw_user")
 public class TmsUser {
+    @Id
+    private String pkUser;
+    @Column(name = "user_name")
+    private String userName;
+    @Column(name = "user_code")
+    private String userCode;
+    @Column(name = "user_type")
+    private String userType;
+    @Column(name = "user_password")
+    private String userPassword;
 
-    private String pk_user;
-    private String user_name;
-    private String user_code;
-    private String user_type;
-
-    public String getPk_user() {
-        return pk_user;
+    public String getPkUser() {
+        return pkUser;
     }
 
-    public void setPk_user(String pk_user) {
-        this.pk_user = pk_user;
+    public void setPkUser(String pkUser) {
+        this.pkUser = pkUser;
     }
 
-    public String getUser_name() {
-        return user_name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getUser_code() {
-        return user_code;
+    public String getUserCode() {
+        return userCode;
     }
 
-    public void setUser_code(String user_code) {
-        this.user_code = user_code;
+    public void setUserCode(String userCode) {
+        this.userCode = userCode;
     }
 
-    public String getUser_type() {
-        return user_type;
+    public String getUserType() {
+        return userType;
     }
 
-    public void setUser_type(String user_type) {
-        this.user_type = user_type;
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
+
+    public String getUserPassword() {
+        return userPassword;
+    }
+
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
+    }
+
 
 }

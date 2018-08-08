@@ -1,44 +1,51 @@
 package com.xinya.coldchain.sys.controller;
 
-import com.github.pagehelper.util.StringUtil;
-import com.xinya.coldchain.sys.service.SysService;
+import com.xinya.coldchain.sys.model.TmsUser;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author liyoujing
  * @create 2018-08-06 上午 11:54
  * @desc 系统通用模块
  **/
-@Controller
+@RestController
 @RequestMapping(value = "sys")
 public class SysController {
 
-	@Autowired
-	private SysService sysService;
 
 	@RequestMapping(value = "dologin")
-	@ResponseBody
-	public Map<String, Object> doLogin(String username, String password) {
-		Map<String,Object> resultMap = new HashMap<String, Object>();
-		if (StringUtils.isEmpty(username)) {
-			resultMap.put("message", "用户名不能为空");
-			resultMap.put("success", false);
-            return resultMap;
+	public String doLogin(HttpServletRequest request, HttpSession session) {
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken(username,password);
+		Subject subject = SecurityUtils.getSubject();
+		try {
+			//完成登录
+			subject.login(usernamePasswordToken);
+			TmsUser user=(TmsUser) subject.getPrincipal();
+			session.setAttribute("user", user);
+			return "redirect:/login";
+		} catch(Exception e) {
+			//返回登录页面
+			return "redirect:/index";
 		}
-		if (StringUtils.isEmpty(password)) {
-			resultMap.put("message", "请输入密码");
-			resultMap.put("success", false);
-            return resultMap;
-		}
-		return sysService.doLogin(username, password);
+	}
+
+
+	@RequestMapping(value = "loginout")
+	public String loginout(HttpSession session) {
+		Subject subject = SecurityUtils.getSubject();
+		subject.logout();
+		session.removeAttribute("user");
+		return "redirect:/out";
 	}
 
 }

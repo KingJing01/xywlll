@@ -64,11 +64,6 @@
 					password : $("#password").val()
 				},
 				success : function(data) {
-					if (data.success == false) {
-						$("#message_p").fadeIn().html(data.message);
-					} else {
-						window.location.href = "module/index.html";
-					}
 				},
 				error : function(err) {
 					console.error(err);
