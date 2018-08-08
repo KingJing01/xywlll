@@ -33,10 +33,10 @@ public class SysController {
 			subject.login(usernamePasswordToken);
 			TmsUser user=(TmsUser) subject.getPrincipal();
 			session.setAttribute("user", user);
-			return "/index";
+			return "/loginSuccess";
 		} catch(Exception e) {
 			//返回登录页面
-			return "/login";
+			return "/index";
 		}
 	}
 
