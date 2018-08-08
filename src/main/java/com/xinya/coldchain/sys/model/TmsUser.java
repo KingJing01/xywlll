@@ -9,7 +9,6 @@ import javax.persistence.Table;
  * tms用户登陆信息
  */
 @Entity
-@Table(name = "nw_user")
 public class TmsUser {
     @Id
     @Column(name = "pk_user")

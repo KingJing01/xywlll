@@ -34,9 +34,7 @@ public class ShiroConfiguration {
         LinkedHashMap<String, String> filterChainDefinitionMap=new LinkedHashMap<>();
         /* static 静态资源可以访问 */
         filterChainDefinitionMap.put("/static/**","anon");
-        filterChainDefinitionMap.put("/loginout","anon");
-        /* 登陆成功的界面需要验证 */
-        filterChainDefinitionMap.put("/loginSuccess", "authc");
+        filterChainDefinitionMap.put("/logout","logout");
         filterChainDefinitionMap.put("/*.*", "authc");
         bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return bean;

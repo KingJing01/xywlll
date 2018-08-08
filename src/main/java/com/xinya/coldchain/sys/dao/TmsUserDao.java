@@ -25,7 +25,7 @@ public interface TmsUserDao {
       * @param username 登陆用户名
       * @return 返回tms数据
       */
-     @Select("select pk_user,user_name,user_code,user_type,user_password from nw_user where dr=0 and \n"
+     @Select("select pk_user pkUser,user_name userName,user_code userCode,user_type userType ,user_password userPassword from nw_user where dr=0 and \n"
              + "user_code=#{username}")
      TmsUser getUserInfoByUsername(String username);
 }

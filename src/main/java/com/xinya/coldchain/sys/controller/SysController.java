@@ -5,6 +5,7 @@ import com.xinya.coldchain.sys.model.TmsUser;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +17,7 @@ import javax.servlet.http.HttpSession;
  * @create 2018-08-06 上午 11:54
  * @desc 系统通用模块
  **/
-@RestController
+@Controller
 @RequestMapping(value = "sys")
 public class SysController {
 
@@ -32,10 +33,10 @@ public class SysController {
 			subject.login(usernamePasswordToken);
 			TmsUser user=(TmsUser) subject.getPrincipal();
 			session.setAttribute("user", user);
-			return "redirect:/loginSuccess";
+			return "/index";
 		} catch(Exception e) {
 			//返回登录页面
-			return "redirect:/index";
+			return "/login";
 		}
 	}
 
@@ -47,5 +48,7 @@ public class SysController {
 		session.removeAttribute("user");
 		return "redirect:/out";
 	}
+
+
 
 }
