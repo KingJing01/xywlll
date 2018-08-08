@@ -54,6 +54,11 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
             <version>2.0.3.RELEASE</version>
         </dependency>
+        <!-- log -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
         <!--前台资源自动刷新-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

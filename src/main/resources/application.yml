@@ -36,6 +36,10 @@ spring:
     mapper-locations: classpath:mapper/*Mapper.xml
     type-aliases-package: com.xinya.coldchain.*.model
 
+logging:
+  config: classpath:logback-springboot.xml
+
+
 
 
 

@@ -12,6 +12,7 @@ import javax.persistence.Table;
 @Table(name = "nw_user")
 public class TmsUser {
     @Id
+    @Column(name = "pk_user")
     private String pkUser;
     @Column(name = "user_name")
     private String userName;

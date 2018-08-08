@@ -13,12 +13,6 @@ import org.apache.ibatis.annotations.Select;
  **/
 
 public interface TmsUserDao {
-     /**
-      *  用户名密码获取用户信息
-      */
-     @Select("select pk_user,user_name,user_code,user_type from nw_user where dr=0 and \n"
-     +"user_code=#{username} and user_password=#{pwd}")
-     TmsUser getUserInfoByParam(@Param("username") String username,@Param("pwd") String pwd);
 
      /**
       *
