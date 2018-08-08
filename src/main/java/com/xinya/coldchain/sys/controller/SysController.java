@@ -18,7 +18,6 @@ import javax.servlet.http.HttpSession;
  * @desc 系统通用模块
  **/
 @Controller
-@RequestMapping(value = "sys")
 public class SysController {
 
 
