@@ -53,10 +53,4 @@ public class SysController {
 		}
 	}
 
-
-	@RequestMapping(value = "login")
-	public String  testPage() {
-	  return "index";
-	}
-
 }
