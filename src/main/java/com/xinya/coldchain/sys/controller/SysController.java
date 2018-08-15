@@ -8,36 +8,55 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author liyoujing
  * @create 2018-08-06 上午 11:54
  * @desc 系统通用模块
  **/
-@RestController
+@Controller
 public class SysController {
+
+	@RequestMapping(value = {"/","/index"})
+	public String indexPage() {
+	  return "login";
+	}
 
 
 	@RequestMapping(value = "dologin")
-	public String doLogin(HttpServletRequest request, HttpSession session) {
+	@ResponseBody
+	public Map<String,String> doLogin(HttpServletRequest request, HttpSession session) {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken(username,password);
 		Subject subject = SecurityUtils.getSubject();
+		Map<String,String> map = new HashMap<>();
 		try {
 			//完成登录
 			subject.login(usernamePasswordToken);
 			TmsUser user=(TmsUser) subject.getPrincipal();
 			session.setAttribute("user", user);
-			return "index";
+			map.put("url","/xinyang/login");
+			return map;
 		} catch(Exception e) {
 			//返回登录页面
-			return "login";
+			map.put("url","/xinyang/index");
+			return map;
 		}
+	}
+
+
+	@RequestMapping(value = "login")
+	public String  testPage() {
+	  return "index";
 	}
 
 }

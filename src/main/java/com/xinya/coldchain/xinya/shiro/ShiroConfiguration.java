@@ -35,7 +35,7 @@ public class ShiroConfiguration {
         /* static 静态资源可以访问 */
         filterChainDefinitionMap.put("/static/**","anon");
         filterChainDefinitionMap.put("/loginout","logout");
-        filterChainDefinitionMap.put("/loginSuccess", "authc");
+        filterChainDefinitionMap.put("/login", "authc");
         filterChainDefinitionMap.put("/*.*", "authc");
         bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return bean;

@@ -58,16 +58,15 @@
 			$.ajax({
 				url : "dologin",
 				type : 'post',
-				dataType : 'json',
+                dataType:"json",
 				data : {
 					username : $("#username").val(),
 					password : $("#password").val()
 				},
 				success : function(data) {
-				    location.href=data;
+				    window.location.href=data.url;
 				},
 				error : function(err) {
-					console.error(err);
 				}
 			});
 		}

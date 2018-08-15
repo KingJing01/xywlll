@@ -17,6 +17,11 @@ spring:
     url: jdbc:sqlserver://222.73.159.77:1433;databaseName=tmstest
     username: sa
     password: Lm408083431
+
+  #thymeleaf:
+    #prefix: classpath:/templates/
+    #suffix: .html
+
   jpa:
       hibernate:
         ddl-auto: update
@@ -27,6 +32,7 @@ spring:
     view:
       # 设置视图的默认位置在module目录下
       prefix: /module/
+      suffix: .html
 
   #redis:
     #database: 0  #Redis数据库索引（默认为0）
