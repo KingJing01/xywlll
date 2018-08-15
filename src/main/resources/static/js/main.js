@@ -3,9 +3,10 @@
     /* 需要的js 文件引入 */
     define([
         "vendor/bootstrap/js/bootstrap.min",
+        "vendor/metisMenu/metisMenu",
         "vendor/bootstrap-table/bootstrap-table",
         "js/common",
-    /*    "js/windownFont"*/
+        "js/admin"
         ],
         function () {
 
