@@ -23,8 +23,5 @@ public class SysService {
 		return tmsUserDao.getUserInfoByUsername(username);
 	}
 
-	public TmsUser selectUserByPk(String pk) {
-		return tmsUserDao.selectUserByPk(pk);
-	}
 
 }
