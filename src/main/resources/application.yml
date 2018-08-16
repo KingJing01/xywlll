@@ -22,13 +22,13 @@ spring:
     #prefix: classpath:/templates/
     #suffix: .html
 
-  jpa:
-      hibernate:
-        ddl-auto: update
-        naming:
-          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      show-sql: true
-      database-platform: org.hibernate.dialect.SQLServer2008Dialect
+  #jpa:
+      #hibernate:
+        #ddl-auto: update
+        #naming:
+          #physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      #show-sql: true
+      #database-platform: org.hibernate.dialect.SQLServer2008Dialect
 
   mvc:
     view:
@@ -42,10 +42,7 @@ spring:
     #port: 6379  #redis端口号
 
   mybatis:
-    mapper-locations: classpath:mapper/*Mapper.xml
-    type-aliases-package: com.xinya.coldchain.*.model
-    configuration:
-      mapUnderscoreToCamelCase: true
+    mapper-locations: classpath:mapper/*.xml
 
 logging:
   config: classpath:logback-springboot.xml

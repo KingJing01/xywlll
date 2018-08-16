@@ -2,7 +2,7 @@ package com.xinya.coldchain.beidou.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xinya.coldchain.tools.RestEasyServcie;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
+import org.springframework.data.domain.Pageable;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,7 +31,7 @@ public class BeiDouController {
      * @deprecated 获取当前北斗用户下所有的车辆信息.
      */
     @RequestMapping(value = "/get_vechicel_data_all")
-    public Map<String, Object> getVechicelDataAll(SpringDataWebProperties.Pageable pageable) {
+    public Map<String, Object> getVechicelDataAll(Pageable pageable) {
         String url = bdUrl + "LoadUserVehicles&username=xywl1&pwd=987987";
         String value = RestEasyServcie.get(url);
         ObjectMapper objectMapper = new ObjectMapper();

@@ -1,11 +1,5 @@
 package com.xinya.coldchain.sys.model;
 
-import org.apache.ibatis.type.Alias;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 /**
  * tms用户登陆信息
