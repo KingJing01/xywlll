@@ -39,7 +39,6 @@ public class SysController {
 	public Map<String,String> doLogin(HttpServletRequest request, HttpSession session) {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		//TmsUser tmsUser = sysService.selectUserByPk("961be3c20e8b4b328b9204d74276ae04");
 		UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken(username,password);
 		Subject subject = SecurityUtils.getSubject();
 		Map<String,String> map = new HashMap<>();

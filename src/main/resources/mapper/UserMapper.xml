@@ -9,9 +9,6 @@
          <result column="user_type" property="userType" jdbcType="VARCHAR"></result>
          <result column="user_password" property="userPassword" jdbcType="VARCHAR"></result>
     </resultMap>
-    <select id="selectUserByPk" resultMap="TmsUser" parameterType="String">
-     select * from nw_user where pk_user = #{pk}
-    </select>
 
     <select id="getUserInfoByUsername" resultMap="TmsUser" parameterType="String">
         select pk_user,user_name,user_code,user_type,user_password  from nw_user where dr=0 and  user_code=#{username}

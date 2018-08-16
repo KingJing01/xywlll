@@ -17,9 +17,6 @@ public interface TmsUserMapper {
       * @param username 登陆用户名
       * @return 返回tms数据
       */
- /*    @Select("select pk_user pkUser,user_name userName,user_code userCode,user_type user_type,"
-             + "user_password userPassword from nw_user where dr=0 and  user_code=#{username}")*/
      TmsUser getUserInfoByUsername(String username);
 
-     TmsUser selectUserByPk(String pk);
 }
