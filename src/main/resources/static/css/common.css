@@ -574,6 +574,9 @@ table.dataTable thead .sorting:after {
     padding-top: 0.9rem;
     color: #535353;
 }
+.audit_table {
+    margin-top: 20px;
+}
 /* 非bootstrap 自适应 样式 */
 @media (min-width: 768px) {
 

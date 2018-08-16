@@ -2,12 +2,12 @@
 (function () {
     /* 需要的js 文件引入 */
     define([
-        "vendor/bootstrap/js/bootstrap.min",
-        "vendor/metisMenu/metisMenu",
-        "vendor/bootstrap-table/bootstrap-table",
-        "vendor/bootstrap-table/bootstrap-table-zh-CN.min",
-        "js/common",
-        "js/admin"
+            "vendor/bootstrap/js/bootstrap.min",
+            "vendor/bootstrap-table/bootstrap-table",
+            "vendor/metisMenu/metisMenu",
+            "vendor/bootstrap-table/bootstrap-table-zh-CN.min",
+            "js/common",
+            "js/admin"
         ],
         function () {
 
@@ -20,8 +20,8 @@
 
             mainFunction = function () {
                 //默认加载电子看板的界面
-               requirejs(["module/eKanban/main"], function (main) {
-                   main.load();
+                requirejs(["module/eKanban/main"], function (main) {
+                    main.load();
                 });
                 /* 订单系统点击 */
                 $("#order_system").on('click', function () {
