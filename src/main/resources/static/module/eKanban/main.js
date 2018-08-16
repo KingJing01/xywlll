@@ -1,3 +1,4 @@
+/* 电子看板模块的js */
 (function () {
     // HTML 界面
     var PAGE_HTML = "module/eKanban/main.html";

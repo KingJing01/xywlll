@@ -35,6 +35,13 @@
                     });
                 });
 
+                /* 货主审核*/
+                $("#host_audit").on('click', function () {
+                    requirejs(["module/userManage/cargoOwner"], function (list) {
+                        list.load();
+                    });
+                });
+
             };
             return mainFunction;
         });
