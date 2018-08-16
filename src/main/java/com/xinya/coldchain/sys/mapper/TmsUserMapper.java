@@ -1,6 +1,7 @@
-package com.xinya.coldchain.mapper;
+package com.xinya.coldchain.sys.mapper;
 
 import com.xinya.coldchain.sys.model.TmsUser;
+import org.apache.ibatis.annotations.Mapper;
 
 
 /**
@@ -8,7 +9,7 @@ import com.xinya.coldchain.sys.model.TmsUser;
  * @create 2018-08-06 下午 04:19
  * @desc 系统通用模块Dao
  **/
-
+@Mapper
 public interface TmsUserMapper {
 
      /**

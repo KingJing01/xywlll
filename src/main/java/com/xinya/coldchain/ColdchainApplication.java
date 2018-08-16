@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
  */
 
 @SpringBootApplication
-@MapperScan("com.xinya.coldchain.mapper")
+@MapperScan("com.xinya.coldchain.*.mapper")
 public class ColdchainApplication {
     public static void main(String[] args) {
         SpringApplication.run(ColdchainApplication.class, args);

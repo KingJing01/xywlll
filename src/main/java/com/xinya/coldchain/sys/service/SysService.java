@@ -1,6 +1,6 @@
 package com.xinya.coldchain.sys.service;
 
-import com.xinya.coldchain.mapper.TmsUserMapper;
+import com.xinya.coldchain.sys.mapper.TmsUserMapper;
 import com.xinya.coldchain.sys.model.TmsUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

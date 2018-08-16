@@ -41,8 +41,9 @@ spring:
     #host: localhost # redis服务器地址
     #port: 6379  #redis端口号
 
-  mybatis:
-    mapper-locations: classpath:mapper/*.xml
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.xinya.coldchain.*.model
 
 logging:
   config: classpath:logback-springboot.xml

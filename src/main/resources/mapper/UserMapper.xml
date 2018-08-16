@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xinya.coldchain.mapper.TmsUserMapper" >
+<mapper namespace="com.xinya.coldchain.sys.mapper.TmsUserMapper">
 
     <resultMap id="TmsUser" type="com.xinya.coldchain.sys.model.TmsUser">
          <id column="pk_user" property="pkUser" jdbcType="VARCHAR"></id>
@@ -9,12 +9,12 @@
          <result column="user_type" property="userType" jdbcType="VARCHAR"></result>
          <result column="user_password" property="userPassword" jdbcType="VARCHAR"></result>
     </resultMap>
-    <select id="selectUserByPk"  resultType="TmsUser" parameterType="String">
+    <select id="selectUserByPk" resultMap="TmsUser" parameterType="String">
      select * from nw_user where pk_user = #{pk}
     </select>
 
-    <select id="getUserInfoByUsername" resultType="TmsUser" parameterType="String">
-        select pk_user,user_name ,user_code ,user_type ,user_password  from nw_user where dr=0 and  user_code=#{username}
+    <select id="getUserInfoByUsername" resultMap="TmsUser" parameterType="String">
+        select pk_user,user_name,user_code,user_type,user_password  from nw_user where dr=0 and  user_code=#{username}
     </select>
 
 
