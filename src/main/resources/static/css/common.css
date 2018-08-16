@@ -563,6 +563,17 @@ table.dataTable thead .sorting:after {
 .chart_ul li:hover{
     background-color: #E9EEF3;
 }
+/* 审核模块样式 */
+.audit_container{
+    margin-top: 3%;
+}
+.audit_span{
+    display: block;
+    text-align: center;
+    font-size: 13px;
+    padding-top: 0.9rem;
+    color: #535353;
+}
 /* 非bootstrap 自适应 样式 */
 @media (min-width: 768px) {
 
