@@ -1,4 +1,4 @@
-package com.xinya.coldchain.xinya;
+package com.xinya.coldchain.tools;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;

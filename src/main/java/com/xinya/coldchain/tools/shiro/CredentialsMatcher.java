@@ -1,4 +1,4 @@
-package com.xinya.coldchain.xinya.shiro;
+package com.xinya.coldchain.tools.shiro;
 
 import com.xinya.coldchain.utils.DigestPasswordEncoder;
 import org.apache.shiro.authc.AuthenticationInfo;

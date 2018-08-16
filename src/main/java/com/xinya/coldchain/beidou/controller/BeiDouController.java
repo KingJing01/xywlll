@@ -1,7 +1,7 @@
 package com.xinya.coldchain.beidou.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.xinya.coldchain.xinya.RestEasyServcie;
+import com.xinya.coldchain.tools.RestEasyServcie;
 import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,4 +1,4 @@
-package com.xinya.coldchain.xinya.shiro;
+package com.xinya.coldchain.tools.shiro;
 
 import com.xinya.coldchain.sys.model.TmsUser;
 import com.xinya.coldchain.sys.service.SysService;

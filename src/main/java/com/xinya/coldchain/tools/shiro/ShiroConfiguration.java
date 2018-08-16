@@ -1,4 +1,4 @@
-package com.xinya.coldchain.xinya.shiro;
+package com.xinya.coldchain.tools.shiro;
 
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
