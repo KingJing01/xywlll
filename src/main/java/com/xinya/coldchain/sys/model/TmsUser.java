@@ -1,5 +1,7 @@
 package com.xinya.coldchain.sys.model;
 
+import org.apache.ibatis.type.Alias;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -8,19 +10,11 @@ import javax.persistence.Table;
 /**
  * tms用户登陆信息
  */
-@Entity
-@Table(name = "nw_user")
 public class TmsUser {
-    @Id
-    @Column(name = "pk_user")
     private String pkUser;
-    @Column(name = "user_name")
     private String userName;
-    @Column(name = "user_code")
     private String userCode;
-    @Column(name = "user_type")
     private String userType;
-    @Column(name = "user_password")
     private String userPassword;
 
     public String getPkUser() {

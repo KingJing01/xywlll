@@ -1,6 +1,6 @@
 package com.xinya.coldchain.sys.service;
 
-import com.xinya.coldchain.sys.dao.TmsUserDao;
+import com.xinya.coldchain.mapper.TmsUserMapper;
 import com.xinya.coldchain.sys.model.TmsUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,14 +13,18 @@ import org.springframework.transaction.annotation.Transactional;
  * @desc 系统通用模块Service.
  **/
 @Service(value = "sysService")
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class SysService {
 
 	@Autowired
-	private TmsUserDao tmsUserDao;
+	private TmsUserMapper tmsUserDao;
 
 	public TmsUser getUserInfoByUsername(String username) {
 		return tmsUserDao.getUserInfoByUsername(username);
+	}
+
+	public TmsUser selectUserByPk(String pk) {
+		return tmsUserDao.selectUserByPk(pk);
 	}
 
 }

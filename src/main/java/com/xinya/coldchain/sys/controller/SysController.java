@@ -2,9 +2,12 @@ package com.xinya.coldchain.sys.controller;
 
 import com.xinya.coldchain.sys.model.TmsUser;
 
+import com.xinya.coldchain.sys.service.SysService;
+import org.apache.ibatis.type.Alias;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,6 +25,9 @@ import java.util.Map;
 @Controller
 public class SysController {
 
+	@Autowired
+	private SysService sysService;
+
 	@RequestMapping(value = {"/","/index"})
 	public String indexPage() {
 	  return "login";
@@ -33,6 +39,7 @@ public class SysController {
 	public Map<String,String> doLogin(HttpServletRequest request, HttpSession session) {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		TmsUser tmsUser = sysService.selectUserByPk("961be3c20e8b4b328b9204d74276ae04");
 		UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken(username,password);
 		Subject subject = SecurityUtils.getSubject();
 		Map<String,String> map = new HashMap<>();

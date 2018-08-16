@@ -10,7 +10,7 @@ import org.springframework.cache.annotation.EnableCaching;
  */
 @SpringBootApplication
 @EnableCaching
-@MapperScan("com.xinya.coldchain.*.dao")
+@MapperScan("com.xinya.coldchain.*")
 public class ColdchainApplication {
 
     public static void main(String[] args) {
