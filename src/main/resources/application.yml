@@ -42,11 +42,10 @@ spring:
     #port: 6379  #redis端口号
 
   mybatis:
-    config-location: classpath:/mybatis-config.xml
-    #mapper-locations: classpath:mapper/*Mapper.xml
-    #type-aliases-package: com.xinya.coldchain.*.model
-    #configuration:
-      #mapUnderscoreToCamelCase: true
+    mapper-locations: classpath:mapper/*Mapper.xml
+    type-aliases-package: com.xinya.coldchain.*.model
+    configuration:
+      mapUnderscoreToCamelCase: true
 
 logging:
   config: classpath:logback-springboot.xml
