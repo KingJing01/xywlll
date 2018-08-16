@@ -37,7 +37,7 @@
 
                 /* 货主审核*/
                 $("#host_audit").on('click', function () {
-                    requirejs(["module/userManage/cargoOwner"], function (list) {
+                    requirejs(["module/userManage/cargoOwner/list"], function (list) {
                         list.load();
                     });
                 });

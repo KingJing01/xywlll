@@ -11,9 +11,9 @@
 
 
         var driverObject = {};
-        driverObject.load(function () {
+        driverObject.load = function () {
             initHtml();
-        })
+        }
         return driverObject;
 
     })

@@ -1,6 +1,6 @@
 /* 货主审核模块的 js  */
 (function () {
-    var HTML_PAGE = "module/userManage/cargoOwner/cargoOwner.html";
+    var HTML_PAGE = "module/userManage/cargoOwner/list.html";
     define([
         'jquery',
         'text!' + HTML_PAGE
@@ -11,9 +11,9 @@
 
 
         var hostObject = {};
-        hostObject.load(function () {
+        hostObject.load = function () {
             initHtml();
-        })
+        }
         return hostObject;
     })
 
