@@ -16,7 +16,7 @@
         SELECT ROW_NUMBER() OVER ( ORDER BY modify_time desc,create_time desc ) AS row_num,
         pk_customer,cust_name,cust_code,check_status,create_time from ts_customer
         where dr = 0
-        <if test="custCode != null and custCode !=''">
+        <if test="custCode != null and  custCode !=''">
             and cust_code  like #{custCode}
         </if>
     </select>

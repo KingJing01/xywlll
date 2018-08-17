@@ -567,6 +567,9 @@ table.dataTable thead .sorting:after {
 .audit_container{
     margin-top: 3%;
 }
+.audit_container .table thead{
+    background-color: #EAEAEA;
+}
 .audit_span{
     display: block;
     text-align: center;
@@ -577,6 +580,10 @@ table.dataTable thead .sorting:after {
 .audit_table {
     margin-top: 20px;
 }
+.audit_a {
+    padding-left: 1rem;
+}
+
 /* 非bootstrap 自适应 样式 */
 @media (min-width: 768px) {
 
