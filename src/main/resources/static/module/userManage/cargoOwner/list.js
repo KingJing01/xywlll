@@ -15,21 +15,47 @@
         //初始化bootstrap table
         var initTable = function () {
             $('#cargo_owner_table').bootstrapTable({
-                data:jsonData,
-                pageSize: 10,
+                //data:jsonData,
+                url:"cargo_owner/get_list_data",
+                method: 'post',
                 pageList:[10,15,20],
                 pagination:true,
                 locales: "zh-CN",
+                sidePagination:'server',
+                pageSize: 10,
+                pageNumber: 1,
+                responseHandler: function(resp){
+                  var data={};
+                  data.total = resp.total;
+                  data.row = resp.list;
+                  data.pageNumber = resp.pageNum;
+                  return data;
+                },
+                queryParams:function queryParams(params) {   //设置查询参数
+                    var param = {
+                        pageSize: this.pageSize,   //每页多少条数据
+                        pageNumber: this.pageNumber // 页码
+                    };
+                    return param;},
                 columns: [{
-                    field: 'id',
-                    title: 'Item ID'
+                    field: 'rowNum',
+                    title: '序号'
                 }, {
-                    field: 'name',
-                    title: 'Item Name'
+                    field: 'custName',
+                    title: '昵称'
                 }, {
-                    field: 'price',
-                    title: 'Item Price'
-                }, ]
+                    field: 'checkCode',
+                    title: '注册账号'
+                }, {
+                    field: 'checkStatus',
+                    title: '是否认证'
+                }, {
+                    field: 'createTime',
+                    title: '注册时间'
+                }, {
+                    field: 'checkStatus',
+                    title: '状态'
+                }]
             });
         }
 

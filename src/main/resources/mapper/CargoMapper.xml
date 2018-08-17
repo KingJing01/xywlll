@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xinya.coldchain.usermanager.mapper.CargoOwnerMapper">
+
+    <resultMap id="CargoOwner" type="com.xinya.coldchain.usermanager.model.CargoOwner">
+        <id column="row_num" property="rowNum" jdbcType="VARCHAR"></id>
+        <result column="pk_customer" property="pkCustomer" jdbcType="VARCHAR"></result>
+        <result column="cust_code" property="custCode" jdbcType="VARCHAR"></result>
+        <result column="cust_name" property="custName" jdbcType="VARCHAR"></result>
+        <result column="check_status" property="checkStatus" jdbcType="VARCHAR"></result>
+        <result column="create_time" property="createTime" jdbcType="VARCHAR"></result>
+    </resultMap>
+
+    <select id="getListData" resultMap="CargoOwner">
+        SELECT ROW_NUMBER() OVER ( ORDER BY modify_time desc,create_time desc ) AS row_num,
+        pk_customer,cust_name,cust_code,check_status,create_time from ts_customer
+        where dr = 0
+    </select>
+
+
+</mapper>
