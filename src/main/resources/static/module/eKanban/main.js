@@ -194,7 +194,6 @@
                     $(param + "_span").attr("class", icon_down);
                     $(param + " .span_rate").addClass("ekan-down");
                 }
-                console.log(JSON.stringify(data) + "~" + param);
 
             }
             /* 电子看板图标上方展示的信息 */

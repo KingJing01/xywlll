@@ -5,9 +5,9 @@
             "vendor/bootstrap/js/bootstrap.min",
             "vendor/bootstrap-table/bootstrap-table",
             "vendor/metisMenu/metisMenu",
-            "vendor/bootstrap-table/bootstrap-table-zh-CN.min",
             "js/common",
-            "js/admin"
+            "js/admin",
+            "vendor/bootstrap-table/bootstrap-table-zh-CN.min",
         ],
         function () {
 
