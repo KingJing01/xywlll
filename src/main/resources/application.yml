@@ -45,6 +45,15 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.xinya.coldchain.*.model
 
+#pagehelper
+pagehelper:
+  helper-dialect: sqlserver
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+
+
 logging:
   config: classpath:logback-springboot.xml
 
