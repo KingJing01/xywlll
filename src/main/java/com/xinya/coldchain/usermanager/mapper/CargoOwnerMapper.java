@@ -1,10 +1,11 @@
 package com.xinya.coldchain.usermanager.mapper;
 
 import com.xinya.coldchain.usermanager.model.CargoOwner;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface CargoOwnerMapper {
 
-    List<CargoOwner> getListData();
+    List<CargoOwner> getListData(@Param("custCode") String custCode);
 }

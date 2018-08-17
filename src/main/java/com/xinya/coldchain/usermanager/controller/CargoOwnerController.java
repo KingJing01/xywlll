@@ -8,6 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.ws.rs.DefaultValue;
+
 /**
  * 用户管理--货主管理模块
  *
@@ -21,8 +23,8 @@ public class CargoOwnerController {
     private CargoOwnerService cargoOwnerService;
 
     @RequestMapping(value = "get_list_data")
-    public PageInfo<CargoOwner> getListData(int pageSize, int pageNumber) {
-        return cargoOwnerService.getListData(pageSize, pageNumber);
+    public PageInfo<CargoOwner> getListData(int pageSize, int pageNumber, String custCode) {
+        return cargoOwnerService.getListData(pageSize, pageNumber, custCode);
     }
 
 }

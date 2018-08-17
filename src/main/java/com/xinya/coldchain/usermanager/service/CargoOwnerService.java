@@ -17,9 +17,9 @@ public class CargoOwnerService {
     @Autowired
     private CargoOwnerMapper cargoOwnerMapper;
 
-    public PageInfo<CargoOwner> getListData(int pageSize, int pageNum) {
+    public PageInfo<CargoOwner> getListData(int pageSize, int pageNum,String custCode) {
         PageHelper.startPage(pageNum,pageSize);
-        List<CargoOwner> list = cargoOwnerMapper.getListData();
+        List<CargoOwner> list = cargoOwnerMapper.getListData(custCode);
         PageInfo<CargoOwner> pageInfo = new PageInfo<>(list);
         return pageInfo;
     }
