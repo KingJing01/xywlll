@@ -1,13 +1,11 @@
 /* 货主审核模块的 js  */
 (function () {
     var HTML_PAGE = "module/userManage/cargoOwner/list.html";
-    var DEMO_DATA = "data/data1.json";
     var LIST_DATA = "cargo_owner/get_list_data";
     define([
         'jquery',
-        'text!' + HTML_PAGE,
-        'json!' + DEMO_DATA
-    ], function ($, pageHtml, jsonData) {
+        'text!' + HTML_PAGE
+    ], function ($, pageHtml) {
         //初始化界面
         var initHtml = function () {
             $("#page-wrapper").html(pageHtml);
@@ -59,7 +57,6 @@
                     formatter: function (value) {
                         return value == 2 ? '是' : '否';
                     }
-
                 }, {
                     field: 'createTime',
                     title: '注册时间',
@@ -75,11 +72,21 @@
                     field: 'pkCustomer',
                     title: '操作',
                     align: 'center',
-                    formatter: function (value) {
-                        return "<div id='" + value + "'><a href='#' class='detail'>查看</a><a href='#' class='freeze audit_a'>冻结</a><a href='#' class='del audit_a'>删除</a></div>";
+                    formatter: function (value, row) {
+                        var str = "<div id='" + value + "'><a href='#' class='detail'>查看</a>";
+                        if (row.lockedFlag == 'Y') {
+                            str += "<a href='#' class='thaw audit_a'>解冻</a>";
+                        } else {
+                            str += "<a href='#' class='freeze audit_a'>冻结</a>";
+                        }
+                        return str + "<a href='#' class='del audit_a'>删除</a></div>";
                     }
                 }]
             });
+        }
+        /* 列表点击事件的回调函数  列表数据刷新*/
+        var eventCallBack = function (resp) {
+            if (resp.success == 1) $("#cargo_owner_table").bootstrapTable('refresh');
         }
         //点击事件的绑定
         var bindEvent = function () {
@@ -91,29 +98,30 @@
             /* 表格事件绑定*/
             $("#cargo_owner_table").on('click', 'a', function () {
                 var id = $(this).parent("div").attr("id");
-                /*冻结*/
-                if($(this).hasClass("freeze")) {
-                    $.ajax({
-                        type: "PUT",
-                        url: "cargo_owner/"+id+"/"+ common.yesStatus,
-                        success: function(msg){
-                            if(msg.success==1) $("#cargo_owner_table").bootstrapTable('refresh');
-                        }
-                    });
- 
-                }else if($(this).hasClass("del")) {
-                  // 删除
-                    $.ajax({
-                        type: "DELETE",
-                        url: "cargo_owner/"+id,
-                        success: function(msg){
-                            if(msg.success==1) $("#cargo_owner_table").bootstrapTable('refresh');
-                        }
-                    });
-                }else {
-                  //查看
-
+                var url = null;
+                if ($(this).hasClass("freeze")) {
+                    /*冻结*/
+                    url ="cargo_owner/" + id + "/" + common.yesStatus;
+                    common.ajaxfuncURL(url,"PUT",{},eventCallBack);
+                } else if ($(this).hasClass("thaw")) {
+                    /*解冻*/
+                    url ="cargo_owner/" + id + "/" + common.noStatus;
+                    common.ajaxfuncURL(url,"PUT",{},eventCallBack);
+                } else if ($(this).hasClass("del")) {
+                    // 删除
+                    url = "cargo_owner/" + id;
+                    common.ajaxfuncURL(url,"DELETE",{},eventCallBack);
+                } else if($(this).hasClass("detail")) {
+                    //查看
+                    $("#cargo_table_div").hide();
+                    $("#cargo_detail_div").fadeIn("slow");
                 }
+            })
+            /* 详情界面的返回事件点击 */
+            $("#cargo_back").click(function () {
+                $("#cargo_detail_div").fadeOut("slow");
+                $("#cargo_owner_table").bootstrapTable('refresh');
+                $("#cargo_table_div").show();
             })
 
         }

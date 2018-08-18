@@ -199,13 +199,13 @@
             /* 电子看板图标上方展示的信息 */
             var initEkanTop = function () {
                 /*今日到货订单量*/
-                common.ajaxfuncURL("ekan/day_arrival", {}, ajaxCallBack, "#day_arrival");
+                common.ajaxfuncURL("ekan/day_arrival","post",{}, ajaxCallBack, "#day_arrival");
                 //今日提货订单量
-                common.ajaxfuncURL("ekan/day_pick", {}, ajaxCallBack, "#day_pick");
+                common.ajaxfuncURL("ekan/day_pick","post",{}, ajaxCallBack, "#day_pick");
                 //今日订单总量
-                common.ajaxfuncURL("ekan/day_total", {}, ajaxCallBack, "#day_total");
+                common.ajaxfuncURL("ekan/day_total","post",{}, ajaxCallBack, "#day_total");
                 //本月订单总量
-                common.ajaxfuncURL("ekan/month_total", {}, ajaxCallBack, "#month_total");
+                common.ajaxfuncURL("ekan/month_total","post",{}, ajaxCallBack, "#month_total");
 
             }
 

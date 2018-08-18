@@ -73,16 +73,17 @@ var common = {
         map.addOverlay(marker);
     },
     /**
-     *  通用 post ajax封装
+     *  通用ajax封装 异步请求
      * @param url  请求路径
      * @param restData  请求参数
+     * @param data  发送的数据
      * @param callback 回掉函数
-     * @param param 预留参数
+     * @param param 回调函数预留参数 不需要时不填
      */
-    ajaxfuncURL: function (url, data, callback, param) {
+    ajaxfuncURL: function (url,type,data, callback, param) {
         $.ajax({
             url: url,
-            type: "post",
+            type: type,
             data: data,
             dataType: 'json',
             success: function (res) {
