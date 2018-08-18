@@ -588,24 +588,25 @@ table.dataTable thead .sorting:after {
     border: none;
 }
 
-.audit_tab .nav-tabs-custom {
+.audit_tab .nav-tabs-container {
     margin-bottom: 20px;
     background: #fff;
     box-shadow: 0 1px 1px rgba(0,0,0,0.1);
     border-radius: 3px;
 }
-.audit_tab .nav-tabs-custom > .nav-tabs > li:first-of-type {
+.audit_tab .nav-tabs-container > .nav-tabs > li:first-of-type {
     margin-left: 0;
 }
-.audit_tab .nav-tabs-custom > .nav-tabs > li.active {
+.audit_tab .nav-tabs-container > .nav-tabs > li.active {
     border-bottom-color: #3c8dbc;
 }
-.audit_tab .nav-tabs-custom > .nav-tabs > li {
+.audit_tab .nav-tabs-container > .nav-tabs > li {
     border-top: 3px solid transparent;
     border-top-color: transparent;
     margin-bottom: -2px;
     margin-right: 5px;
 }
+
 /* 非bootstrap 自适应 样式 */
 @media (min-width: 768px) {
 
