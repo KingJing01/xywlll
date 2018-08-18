@@ -65,11 +65,11 @@
                     title: '注册时间',
                     align: 'center',
                 }, {
-                    field: 'checkStatus',
+                    field: 'lockedFlag',
                     title: '状态',
                     align: 'center',
                     formatter: function (value) {
-                        return value == 4 ? '冻结' : '正常';
+                        return value == 'Y' ? '冻结' : '正常';
                     }
                 }, {
                     field: 'pkCustomer',
@@ -95,7 +95,7 @@
                 if($(this).hasClass("freeze")) {
                     $.ajax({
                         type: "PUT",
-                        url: "cargo_owner/"+id+"/"+common.hasForbidden,
+                        url: "cargo_owner/"+id+"/"+ common.yesStatus,
                         success: function(msg){
                             if(msg.success==1) $("#cargo_owner_table").bootstrapTable('refresh');
                         }

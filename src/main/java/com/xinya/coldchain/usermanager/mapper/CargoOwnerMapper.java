@@ -11,5 +11,5 @@ public interface CargoOwnerMapper {
 
     int updateDrStatus(@Param("pkCustomer") String id);
 
-    int updateCheckStatus(@Param("pkCustomer") String id ,@Param("status") String status);
+    int updatelockedFlag(@Param("pkCustomer") String id ,@Param("status") String status);
 }

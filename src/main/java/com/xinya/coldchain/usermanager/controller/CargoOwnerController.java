@@ -52,8 +52,8 @@ public class CargoOwnerController {
      * @return 返回
      */
     @RequestMapping(value = "/{id}/{status}",method = RequestMethod.PUT)
-    public RespMessage updateCheckStatus(@PathVariable String id,@PathVariable String status) {
-        int flag = cargoOwnerService.updateCheckStatus(id,status);
+    public RespMessage updatelockedFlag(@PathVariable String id,@PathVariable String status) {
+        int flag = cargoOwnerService.updatelockedFlag(id,status);
         return new RespMessage(flag);
     }
 

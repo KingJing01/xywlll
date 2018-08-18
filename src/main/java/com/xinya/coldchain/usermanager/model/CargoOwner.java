@@ -7,6 +7,15 @@ public class CargoOwner {
     private String checkStatus;
     private String createTime;
     private String custName;
+    private String lockedFlag;
+
+    public String getLockedFlag() {
+        return lockedFlag;
+    }
+
+    public void setLockedFlag(String lockedFlag) {
+        this.lockedFlag = lockedFlag;
+    }
     public String getCustName() {
         return custName;
     }

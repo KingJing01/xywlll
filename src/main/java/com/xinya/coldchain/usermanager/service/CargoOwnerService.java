@@ -28,7 +28,7 @@ public class CargoOwnerService {
         return cargoOwnerMapper.updateDrStatus(id);
     }
 
-    public int updateCheckStatus(String id ,String status) {
-        return cargoOwnerMapper.updateCheckStatus(id,status);
+    public int updatelockedFlag(String id ,String status) {
+        return cargoOwnerMapper.updatelockedFlag(id,status);
     }
 }
