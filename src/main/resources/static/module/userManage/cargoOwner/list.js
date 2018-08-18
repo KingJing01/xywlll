@@ -114,15 +114,12 @@
                 } else if($(this).hasClass("detail")) {
                     //查看
                     $("#cargo_table_div").hide();
-                    $("#cargo_detail_div").fadeIn("slow");
+                    requirejs(["module/userManger/cargoOwner/detail"], function (main) {
+                        main.load();
+                    });
                 }
             })
-            /* 详情界面的返回事件点击 */
-            $("#cargo_back").click(function () {
-                $("#cargo_detail_div").fadeOut("slow");
-                $("#cargo_owner_table").bootstrapTable('refresh');
-                $("#cargo_table_div").show();
-            })
+
 
         }
 
