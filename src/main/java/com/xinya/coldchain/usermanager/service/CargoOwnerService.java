@@ -23,4 +23,8 @@ public class CargoOwnerService {
         PageInfo<CargoOwner> pageInfo = new PageInfo<>(list);
         return pageInfo;
     }
+
+    public int updateDrStatus(String id) {
+        return cargoOwnerMapper.updateDrStatus(id);
+    }
 }

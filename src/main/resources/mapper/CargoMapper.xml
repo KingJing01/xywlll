@@ -13,14 +13,18 @@
     </resultMap>
 
     <select id="getListData" resultMap="CargoOwner" parameterType="string">
-        <bind name="patter" value="'%' + custCode + '%'" />
+        <bind name="pattern" value="'%' + custCode + '%'" />
         SELECT ROW_NUMBER() OVER ( ORDER BY modify_time desc,create_time desc ) AS row_num,
         pk_customer,cust_name,cust_code,check_status,create_time from ts_customer
         where dr = 0
         <if test="custCode != null and  custCode !=''">
-            and cust_code  like #{patter}
+            and cust_code  like #{pattern}
         </if>
     </select>
+
+    <update id="updateDrStatus" parameterType="string">
+      update ts_customer set dr='1' where pk_customer=#{pkCustomer}
+    </update>
 
 
 </mapper>

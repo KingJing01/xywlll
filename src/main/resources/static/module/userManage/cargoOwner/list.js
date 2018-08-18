@@ -16,7 +16,7 @@
         //初始化bootstrap table
         var initTable = function () {
             $('#cargo_owner_table').bootstrapTable({
-                url:LIST_DATA,
+                url: LIST_DATA,
                 contentType: 'application/x-www-form-urlencoded',
                 method: 'post',
                 pageList: [10, 15, 20],
@@ -88,6 +88,27 @@
                     query: {custCode: $("#cargo_text").val()}
                 });
             })
+            /* 表格事件绑定*/
+            $("#cargo_owner_table").on('click', 'a', function () {
+                var id = $(this).parent("div").attr("id");
+                /*冻结*/
+                if($(this).hasClass("freeze")) {
+ 
+                }else if($(this).hasClass("del")) {
+                  // 删除
+                    $.ajax({
+                        type: "DELETE",
+                        url: "cargo_owner/"+id,
+                        success: function(msg){
+                            alert( "Data Saved: " + msg );
+                        }
+                    });
+                }else {
+                  //查看
+
+                }
+            })
+
         }
 
         var hostObject = {};
