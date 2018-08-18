@@ -8,16 +8,9 @@
             "vendor/vue/vue.min",
             "js/common",
             "js/admin",
-            "vendor/bootstrap-table/bootstrap-table-zh-CN.min",
+            "vendor/bootstrap-table/bootstrap-table-zh-CN.min"
         ],
         function () {
-
-            /**判断session是否失效，如失效则跳转到登录界面**/
-            $.ajaxSetup({
-                complete: function (data, TS) {
-                    /*common.isSessionFail(data);*/
-                }
-            });
 
             mainFunction = function () {
                 //默认加载电子看板的界面

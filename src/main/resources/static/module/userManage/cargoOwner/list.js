@@ -94,6 +94,7 @@
                 $("#cargo_owner_table").bootstrapTable('refresh', {
                     query: {custCode: $("#cargo_text").val()}
                 });
+                $("#cargo_text").val("");
             })
             /* 表格事件绑定*/
             $("#cargo_owner_table").on('click', 'a', function () {
