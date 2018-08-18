@@ -114,8 +114,8 @@
                 } else if($(this).hasClass("detail")) {
                     //查看
                     $("#cargo_table_div").hide();
-                    requirejs(["module/userManger/cargoOwner/detail"], function (main) {
-                        main.load();
+                    requirejs(["module/userManage/cargoOwner/detail"], function (list) {
+                        list.load();
                     });
                 }
             })
