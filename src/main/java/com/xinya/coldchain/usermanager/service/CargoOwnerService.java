@@ -27,4 +27,8 @@ public class CargoOwnerService {
     public int updateDrStatus(String id) {
         return cargoOwnerMapper.updateDrStatus(id);
     }
+
+    public int updateCheckStatus(String id ,String status) {
+        return cargoOwnerMapper.updateCheckStatus(id,status);
+    }
 }

@@ -93,6 +93,13 @@
                 var id = $(this).parent("div").attr("id");
                 /*冻结*/
                 if($(this).hasClass("freeze")) {
+                    $.ajax({
+                        type: "PUT",
+                        url: "cargo_owner/"+id+"/"+common.hasForbidden,
+                        success: function(msg){
+                            if(msg.success==1) $("#cargo_owner_table").bootstrapTable('refresh');
+                        }
+                    });
  
                 }else if($(this).hasClass("del")) {
                   // 删除
@@ -100,7 +107,7 @@
                         type: "DELETE",
                         url: "cargo_owner/"+id,
                         success: function(msg){
-                            alert( "Data Saved: " + msg );
+                            if(msg.success==1) $("#cargo_owner_table").bootstrapTable('refresh');
                         }
                     });
                 }else {

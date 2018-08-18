@@ -46,4 +46,15 @@ public class CargoOwnerController {
         return new RespMessage(flag);
     }
 
+    /**
+     * 冻结货主信息  更新check_status 4
+     * @param id 货主 pkCustomer
+     * @return 返回
+     */
+    @RequestMapping(value = "/{id}/{status}",method = RequestMethod.PUT)
+    public RespMessage updateCheckStatus(@PathVariable String id,@PathVariable String status) {
+        int flag = cargoOwnerService.updateCheckStatus(id,status);
+        return new RespMessage(flag);
+    }
+
 }

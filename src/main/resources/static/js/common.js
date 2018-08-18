@@ -1,5 +1,8 @@
 var common = {
-
+    toBeAudited:1,//待审核
+    hasAudited:2,//已审核
+    hasReject:3,//已驳回
+    hasForbidden:4,//禁用
     //动态调整tab load界面的高度  宽度已经自适应
     initContainer: function (container) {
         var height = $("#page-wrapper").height();

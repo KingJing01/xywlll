@@ -26,5 +26,9 @@
       update ts_customer set dr='1' where pk_customer=#{pkCustomer}
     </update>
 
+    <update id="updateCheckStatus" parameterType="string">
+      update ts_customer set check_status= #{status} where pk_customer=#{pkCustomer}
+    </update>
+
 
 </mapper>

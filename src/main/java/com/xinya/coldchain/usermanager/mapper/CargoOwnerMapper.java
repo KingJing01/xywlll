@@ -10,4 +10,6 @@ public interface CargoOwnerMapper {
     List<CargoOwner> getListData(@Param("custCode") String custCode);
 
     int updateDrStatus(@Param("pkCustomer") String id);
+
+    int updateCheckStatus(@Param("pkCustomer") String id ,@Param("status") String status);
 }
