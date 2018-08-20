@@ -28,4 +28,8 @@ public class CommonUtil {
     public static final String TMS_YESTERDAYBILLS ="yesterdayBills";
     //昨日提货订单
     public static final String TMS_YESTERDAYDELIBILLS ="yesterdayDeliBills";
+
+    public static  int respSuccess = 1;
+
+    public static  int respFail = 0;
 }

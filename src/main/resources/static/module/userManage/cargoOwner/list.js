@@ -116,7 +116,7 @@
                     //查看
                     $("#cargo_table_div").hide();
                     requirejs(["module/userManage/cargoOwner/detail"], function (list) {
-                        list.load();
+                        list.load(id);
                     });
                 }
             })

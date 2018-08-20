@@ -11,7 +11,7 @@
                 $("#cargo_detail_div").fadeIn("slow");
             }
             /*事件绑定*/
-            var bindEvent = function () {
+            var bindEvent = function (pkCustomer) {
                 /* 详情 返回 */
                 $("#cargo_back").click(function () {
                     $("#cargo_detail_div").fadeOut("slow");
@@ -19,7 +19,7 @@
                     $("#cargo_table_div").show();
                 })
             }
-            var initData = function () {
+            var initData = function (pkCustomer) {
                new Vue({
                     el: '#cargo_base_info',
                     data:{
@@ -34,10 +34,10 @@
 
 
             var cargoDetail = {};
-            cargoDetail.load = function () {
+            cargoDetail.load = function (pkCustomer) {
                 initDetailHtml();
-                initData();
-                bindEvent();
+                initData(pkCustomer);
+                bindEvent(pkCustomer);
             }
             return cargoDetail;
         }

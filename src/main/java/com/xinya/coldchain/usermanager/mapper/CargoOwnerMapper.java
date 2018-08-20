@@ -4,6 +4,7 @@ import com.xinya.coldchain.usermanager.model.CargoOwner;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface CargoOwnerMapper {
 
@@ -12,4 +13,6 @@ public interface CargoOwnerMapper {
     int updateDrStatus(@Param("pkCustomer") String id);
 
     int updatelockedFlag(@Param("pkCustomer") String id ,@Param("status") String status);
+
+    Map<String,String> getCargoInfoByCode(@Param("pkCustomer") String pkCustomer);
 }

@@ -8,7 +8,7 @@ public class CargoOwner {
     private String createTime;
     private String custName;
     private String lockedFlag;
-
+    private String customerPicture;
     public String getLockedFlag() {
         return lockedFlag;
     }

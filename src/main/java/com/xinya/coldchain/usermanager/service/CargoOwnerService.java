@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -29,5 +30,9 @@ public class CargoOwnerService {
 
     public int updatelockedFlag(String id ,String status) {
         return cargoOwnerMapper.updatelockedFlag(id,status);
+    }
+
+    public Map<String,String> getCargoInfoByCode(String pkCustomer) {
+        return cargoOwnerMapper.getCargoInfoByCode(pkCustomer);
     }
 }
