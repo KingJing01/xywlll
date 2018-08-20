@@ -68,6 +68,11 @@ public class CargoOwnerController {
         }
     }
 
+    /**
+     * 查看货主的基本信息
+     * @param pkCustomer 货主id
+     * @return 返回
+     */
     @RequestMapping(value = "/cargeinfo/{pkCustomer}", method = RequestMethod.POST)
     public RespMessage getCargoInfoByCode(@PathVariable String pkCustomer) {
         Map<String, String> map = null;

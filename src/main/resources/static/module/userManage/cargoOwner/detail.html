@@ -11,12 +11,12 @@
                         <img src="images/0.jpg" class="head_portrait_img">
                     </div>
                     <div class="col-md-10">
-                        <div class="info_div"><span>注册账号:</span>{{login_no}}</div>
+                        <div class="info_div"><span>注册账号:</span>{{resp.cust_code}}</div>
                         <div class="info_div"><span>账号类型:</span>货主</div>
-                        <div class="info_div"><span>账号昵称:</span>{{login_name}}</div>
+                        <div class="info_div"><span>账号昵称:</span>{{resp.cust_name}}</div>
                       <!--  <div class="info_div"><span>公司名称:</span>{{comp_name}}</div>-->
-                        <div class="info_div"><span>注册密码:</span>{{passwd}}</div>
-                        <div class="info_div"><span>注册日期:</span>{{regist_date}}</div>
+                        <div class="info_div"><span>注册密码:</span>*********</div>
+                        <div class="info_div"><span>注册日期:</span>{{resp.create_time}}</div>
                         <div class="action_div">
                             <button type="button" class="btn btn-primary">冻结</button>
                             <button type="button" class="btn btn-primary">删除</button>
