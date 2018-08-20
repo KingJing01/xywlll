@@ -19,7 +19,7 @@
                 method: 'post',
                 pageList: [10, 15, 20],
                 pagination: true,
-                locales: "zh-CN",
+               /* locales: "zh-CN",*/
                 sidePagination: 'server',
                 pageSize: 10,
                 pageNumber: 1,

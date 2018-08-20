@@ -5,7 +5,6 @@
             "vendor/bootstrap/js/bootstrap.min",
             "vendor/bootstrap-table/bootstrap-table",
             "vendor/metisMenu/metisMenu",
-            "vendor/vue/vue.min",
             "js/common",
             "js/admin",
             "vendor/bootstrap-table/bootstrap-table-zh-CN.min"
