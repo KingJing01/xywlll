@@ -3,6 +3,8 @@ package com.xinya.coldchain.sys.mapper;
 import com.xinya.coldchain.sys.model.TmsUser;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.Map;
+
 
 /**
  * @author liyoujing
@@ -18,5 +20,7 @@ public interface TmsUserMapper {
       * @return 返回tms数据
       */
      TmsUser getUserInfoByUsername(String username);
+
+     Map<String,String> getImgUrl();
 
 }

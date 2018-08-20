@@ -62,4 +62,8 @@ public class SysController {
 	  return "index";
 	}
 
+	@RequestMapping(value = "get_img_url")
+    public Map<String,String> getImgUrl() {
+		return sysService.getImgUrl();
+	}
 }

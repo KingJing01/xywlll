@@ -10,8 +10,14 @@
             "vendor/bootstrap-table/bootstrap-table-zh-CN.min"
         ],
         function () {
+            /*获取图片服务器地址*/
+            var loadImgUrl = function () {
+                common.ajaxfuncURL();
+
+            }
 
             mainFunction = function () {
+                loadImgUrl();
                 //默认加载电子看板的界面
                 requirejs(["module/eKanban/main"], function (main) {
                     main.load();

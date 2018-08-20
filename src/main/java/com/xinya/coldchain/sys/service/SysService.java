@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Map;
+
 
 /**
  * @author liyoujing
@@ -21,6 +23,10 @@ public class SysService {
 
 	public TmsUser getUserInfoByUsername(String username) {
 		return tmsUserDao.getUserInfoByUsername(username);
+	}
+
+	public Map<String,String> getImgUrl() {
+		return tmsUserDao.getImgUrl();
 	}
 
 
