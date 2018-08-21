@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xinya.coldchain.usermanager.mapper.TsAddressMapper">
+
+    <resultMap id="TsAddress" type="com.xinya.coldchain.usermanager.model.TsAddress">
+        <id column="pk_address" property="pkAddress"></id>
+        <result column="addr_type" property="addrType"></result>
+        <result column="addr_code" property="addrCode"></result>
+        <result column="addr_name" property="addrName"></result>
+        <result column="pk_province" property="pkProvince"></result>
+        <result column="pk_city" property="pkCity"></result>
+        <result column="pk_area" property="pkArea"></result>
+        <result column="detail_addr" property="detailAddr"></result>
+    </resultMap>
+
+    <select id="getTsAddressInfo" parameterType="string" resultMap="TsAddress">
+        select * from ts_address
+        <if test="detail_addr != null and  detail_addr !=''">
+            and detail_addr = #{detail_addr}
+        </if>
+    </select>
+
+    <insert id="addTsCustAddr" parameterType="java.util.Map">
+       insert into ts_cust_addr(pk_cust_addr,dr,ts,pk_customer,pk_address) VALUES
+       (REPLACE(NEWID(), '-', ''),'0',#{ts},#{pk},#{pkAddress});
+    </insert>
+
+
+
+
+</mapper>
