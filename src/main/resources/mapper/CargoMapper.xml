@@ -45,5 +45,19 @@
     and t1.pk_customer=#{pkCustomer}
     </select>
 
+    <update id="updateCustAndCorp" parameterType="java.util.Map" >
+        update ts_re_cust_corp set ts=#{ts},modify_user=#{modifyUser},modify_time=#{modifyTime},
+        check_status=#{code},check_man=#{modifyUser},check_time=#{modifyTime} where dr=0 and pk_customer=#{pk}
+    </update>
+    <update id="updateCust" parameterType="java.util.Map">
+          update ts_cust set ts=#{ts},modify_user=#{modifyUser},modify_time=#{modifyTime},
+        check_status=#{code} where dr=0 and pk_customer=#{pk}
+    </update>
+
+    <update id="updateCorp" parameterType="java.util.Map">
+          update nw_crop set ts=#{ts},modify_user=#{modifyUser},modify_time=#{modifyTime},
+        check_status=#{code} where dr=0 and  pk_corp = (select t.pk_corp from ts_re_cust_corp t
+         where t.pk_customer=#{pk} and t.dr=0)
+    </update>
 
 </mapper>

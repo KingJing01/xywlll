@@ -32,4 +32,12 @@ public class CommonUtil {
     public static  int respSuccess = 1;
 
     public static  int respFail = 0;
+    //未上传审核资料
+    public static int auditNever = 0;
+    //待审核
+    public static int auditWaited = 1;
+    //已审核
+    public static int audited = 2;
+    //审核驳回
+    public static int auditReject = 3;
 }

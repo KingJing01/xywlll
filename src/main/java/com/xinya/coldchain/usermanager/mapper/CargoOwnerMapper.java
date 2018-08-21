@@ -17,4 +17,11 @@ public interface CargoOwnerMapper {
     Map<String,String> getCargoInfoByCode(@Param("pkCustomer") String pkCustomer);
 
     Map<String,String> getCargoCorpInfoByCode(@Param("pkCustomer") String pkCustomer);
+
+    void updateCustAndCorp(Map<String,Object> map);
+
+    void updateCorp(Map<String,Object> map);
+
+    void updateCust(Map<String,Object> map);
+
 }

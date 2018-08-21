@@ -48,8 +48,8 @@
                 })
                 /*审核通过*/
                 $("#cargo_audit_sure").click(function () {
-
-
+                    var url = "cargo_audit/" + pkCustomer;
+                    common.ajaxfuncURL(url,"POST",{},actCallBack,$(this));
                 })
                 /*审核驳回*/
                 $("#cargo_audit_reject").click(function () {
