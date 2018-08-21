@@ -3,14 +3,14 @@
 <mapper namespace="com.xinya.coldchain.sys.mapper.NwRoleMapper">
     <resultMap id="NwRole" type="com.xinya.coldchain.sys.model.NwRole">
         <id column="pkRole" property="pkRole"></id>
-        <id column="pkRole" property="pkRole"></id>
-        <id column="pkRole" property="pkRole"></id>
-        <id column="pkRole" property="pkRole"></id>
-        <id column="pkRole" property="pkRole"></id>
+        <result column="dr" property="dr"></result>
+        <result column="ts" property="ts"></result>
+        <result column="role_code" property="roleCode"></result>
+        <result column="role_name" property="roleName"></result>
+        <result column="pk_corp" property="pkCrop"></result>
     </resultMap>
-    <select id="getNwRoleInfo" parameterType="string" resultMap="NwRole">
-        select * from nw_corp t left join ts_customer t1 on t.pk_corp = t1.pk_corp where t1.pk_customer=#{pk}
-        and t1.dr=0
+    <select id="getNwRoleInfo" parameterType="string" resultType="NwRole">
+       select * from nw_role where role_name = #{roleName} and dr=0
     </select>
 
 

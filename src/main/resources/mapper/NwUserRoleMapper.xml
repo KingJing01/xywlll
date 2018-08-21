@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xinya.coldchain.sys.mapper.NwUserRoleMapper">
+    <resultMap id="NwUserRole" type="com.xinya.coldchain.sys.model.NwUserRole">
+        <id column="pk_user_role" property="pkUserRole"></id>
+        <result column="dr" property="dr"></result>
+        <result column="ts" property="ts"></result>
+        <result column="pk_user" property="pkUser"></result>
+        <result column="pk_role" property="pkRole"></result>
+    </resultMap>
+    <insert id="addPkUserRole" parameterType="java.util.Map">
+   insert into nw_user_role(pk_user_role,dr,ts,pk_user,pk_role)
+   values (REPLACE(NEWID(), '-', ''),0,#{ts},#{pkUser},#{pkRole})
+    </insert>
+
+
+</mapper>

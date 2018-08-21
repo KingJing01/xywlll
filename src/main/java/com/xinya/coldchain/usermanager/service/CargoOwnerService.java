@@ -2,7 +2,10 @@ package com.xinya.coldchain.usermanager.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.xinya.coldchain.sys.mapper.NwRoleMapper;
+import com.xinya.coldchain.sys.mapper.NwUserRoleMapper;
 import com.xinya.coldchain.sys.mapper.TmsUserMapper;
+import com.xinya.coldchain.sys.model.NwUserRole;
 import com.xinya.coldchain.sys.model.TmsUser;
 import com.xinya.coldchain.usermanager.mapper.CargoOwnerMapper;
 import com.xinya.coldchain.sys.mapper.CorpMapper;
@@ -37,6 +40,12 @@ public class CargoOwnerService {
 
     @Autowired
     private TmsUserMapper tmsUserMapper;
+
+    @Autowired
+    private NwUserRoleMapper nwUserRoleMapper;
+
+    @Autowired
+    private NwRoleMapper nwRoleMapper;
 
     public PageInfo<CargoOwner> getListData(int pageSize, int pageNum, String custCode) {
         PageHelper.startPage(pageNum, pageSize);
@@ -80,7 +89,7 @@ public class CargoOwnerService {
         param.put("modifyUser", modifyUser);
         param.put("modifyTime", modifyTime);
         param.put("code", CommonUtil.audited);
-        param.put("pk", pkCustomer);
+        param.put("pkCustomer", pkCustomer);
         cargoOwnerMapper.updateCorp(param);
         cargoOwnerMapper.updateCust(param);
         cargoOwnerMapper.updateCustAndCorp(param);
@@ -93,10 +102,9 @@ public class CargoOwnerService {
         tsAddressMapper.addTsCustAddr(param);
         String custCode = cargoOwnerMapper.getCargoInfoByCode(pkCustomer).get("cust_code");
         String pkUser = tmsUserMapper.getUserInfoByUsername(custCode).getPkUser();
-
-
-
-
-
+        param.put("pkUser",pkUser);
+        String roleId = nwRoleMapper.getNwRoleInfo("车队经理").getPkRole();
+        param.put("pkRole",roleId);
+        nwUserRoleMapper.addPkUserRoleInfo(param);
     }
 }
