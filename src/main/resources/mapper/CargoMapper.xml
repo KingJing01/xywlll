@@ -13,13 +13,13 @@
     </resultMap>
 
     <select id="getListData" resultMap="CargoOwner" parameterType="string">
-        <bind name="pattern" value="'%' + custCode + '%'" />
-        SELECT ROW_NUMBER () OVER ( ORDER BY  t2.modify_time DESC, t2.create_time DESC ) AS row_num,
+        <bind name="pattern" value="'%' + custCode + '%'"/>
+        SELECT ROW_NUMBER () OVER ( ORDER BY t2.modify_time DESC, t2.create_time DESC ) AS row_num,
         t2.pk_customer, t2.cust_code, t2.cust_name,t2.create_time, t2.check_status,t2.locked_flag
-        FROM ts_re_cust_corp t1  LEFT JOIN ts_customer t2 ON t1.pk_customer = t2.pk_customer
+        FROM ts_re_cust_corp t1 LEFT JOIN ts_customer t2 ON t1.pk_customer = t2.pk_customer
         WHERE t1.dr = '0' and t2.dr='0'
         <if test="custCode != null and  custCode !=''">
-            and t2.cust_code  like #{pattern}
+            and t2.cust_code like #{pattern}
         </if>
     </select>
 
@@ -35,6 +35,14 @@
         SELECT t1.cust_code,t1.cust_name,t1.id_card_pos,t1.id_card_neg,t1.customer_picture, t2.corp_name,t1.create_time
   FROM ts_customer t1 LEFT JOIN nw_corp t2 ON t1.pk_corp = t2.pk_corp WHERE
 	t1.pk_customer = #{pkCustomer} AND t1.dr = 0
+    </select>
+
+    <select id="getCargoCorpInfoByCode" parameterType="string" resultType="java.util.Map">
+    SELECT t1.relation_license,t2.customer_picture,t2.id_card_neg,t2.id_card_pos, t3.corp_name,
+      t3.social_credit_code,t3.business_license, t2.cust_code,t3.address,t3.bank,t3.bank_account FROM ts_re_cust_corp t1
+    LEFT JOIN ts_customer t2 ON t1.pk_customer = t2.pk_customer
+    LEFT JOIN nw_corp t3 on t1.pk_corp = t3.pk_corp WHERE t1.dr = 0 AND t2.dr = 0 and t3.dr=0
+    and t1.pk_customer=#{pkCustomer}
     </select>
 
 

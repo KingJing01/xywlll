@@ -69,7 +69,7 @@ public class CargoOwnerController {
     }
 
     /**
-     * 查看货主的基本信息
+     * 查看货主(管理员)的基本信息
      * @param pkCustomer 货主id
      * @return 返回
      */
@@ -78,6 +78,22 @@ public class CargoOwnerController {
         Map<String, String> map = null;
         try {
             map = cargoOwnerService.getCargoInfoByCode(pkCustomer);
+            return new RespMessage("成功", CommonUtil.respSuccess, map);
+        } catch (Exception e) {
+            return new RespMessage(CommonUtil.respFail);
+        }
+    }
+
+    /**
+     * 获取货主(管理员)相关的企业信息.
+     * @param pkCustomer
+     * @return
+     */
+    @RequestMapping(value = "/cargecorpinfo/{pkCustomer}",method = RequestMethod.POST)
+    public RespMessage getCargoCorpInfoByCode(@PathVariable String pkCustomer) {
+        Map<String, String> map = null;
+        try {
+            map = cargoOwnerService.getCargoCorpInfoByCode(pkCustomer);
             return new RespMessage("成功", CommonUtil.respSuccess, map);
         } catch (Exception e) {
             return new RespMessage(CommonUtil.respFail);

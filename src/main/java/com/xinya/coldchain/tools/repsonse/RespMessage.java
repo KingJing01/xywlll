@@ -7,7 +7,7 @@ package com.xinya.coldchain.tools.repsonse;
 public class RespMessage {
     private String message;
     private int success;
-    private Object obejct;
+    private Object data;
 
     public String getMessage() {
         return message;
@@ -26,17 +26,17 @@ public class RespMessage {
     }
 
     public Object getObejct() {
-        return obejct;
+        return data;
     }
 
     public void setObejct(Object obejct) {
-        this.obejct = obejct;
+        this.data = data;
     }
 
-    public RespMessage(String message, int success, Object obejct) {
+    public RespMessage(String message, int success, Object data) {
         this.message = message;
         this.success = success;
-        this.obejct = obejct;
+        this.data = data;
     }
 
     public RespMessage(String message, int success) {
@@ -53,7 +53,7 @@ public class RespMessage {
         return "RespMessage{" +
                 "message='" + message + '\'' +
                 ", success=" + success +
-                ", obejct=" + obejct +
+                ", data=" + data +
                 '}';
     }
 }

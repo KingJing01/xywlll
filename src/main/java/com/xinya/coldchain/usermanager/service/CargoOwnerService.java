@@ -35,4 +35,7 @@ public class CargoOwnerService {
     public Map<String,String> getCargoInfoByCode(String pkCustomer) {
         return cargoOwnerMapper.getCargoInfoByCode(pkCustomer);
     }
+    public Map<String,String> getCargoCorpInfoByCode(String pkCustomer) {
+        return cargoOwnerMapper.getCargoCorpInfoByCode(pkCustomer);
+    }
 }

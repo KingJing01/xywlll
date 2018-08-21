@@ -630,6 +630,23 @@ table.dataTable thead .sorting:after {
     margin-left: 20px;
 }
 
+.img_span{
+    display: block;
+}
+/* 垂直附件的样式  */
+.img_vertical {
+    width: 20rem;
+    height: 25rem;
+    margin-left: 7.5rem;
+    margin-top: -4rem;
+}
+/*水平附件的样式*/
+.img_horizontal{
+    width: 28rem;
+    height: 15rem;
+    margin-left: 7rem;
+    margin-top: -4rem;
+}
 
 
 /* 非bootstrap 自适应 样式 */

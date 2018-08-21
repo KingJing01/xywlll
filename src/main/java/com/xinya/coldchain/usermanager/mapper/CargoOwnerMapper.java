@@ -15,4 +15,6 @@ public interface CargoOwnerMapper {
     int updatelockedFlag(@Param("pkCustomer") String id ,@Param("status") String status);
 
     Map<String,String> getCargoInfoByCode(@Param("pkCustomer") String pkCustomer);
+
+    Map<String,String> getCargoCorpInfoByCode(@Param("pkCustomer") String pkCustomer);
 }

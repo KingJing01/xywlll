@@ -54,25 +54,36 @@
 
                 })
             }
+            /* 数据初始化 */
             var initData = function (pkCustomer) {
+                /*基础信息的vue对象*/
                 baseInfoVue = new Vue({
                     el: '#cargo_base_info',
                     data: {
-                        resp: {
-                            'cust_code': '',
-                            'cust_name': '',
-                            'corp_name': '',
-                            'passwd': '********',
-                            'create_time': '',
-                            'customer_picture':''
-                        }
+                        resp: {}
                     },
                     mounted: function () {
                         var _self = this ;
                         common.ajaxfuncURL("cargo_owner/cargeinfo/" + pkCustomer, "POST", {}, function (resp) {
-                            var customer_picture = resp.obejct.customer_picture;
-                            customer_picture? resp.obejct.customer_picture = window.imgUrl+customer_picture:"";
-                            _self.resp = resp.obejct;
+                            var customer_picture = resp.data.customer_picture;
+                            customer_picture? resp.data.customer_picture = window.imgUrl+customer_picture:"";
+                            _self.resp = resp.data;
+
+                        })
+                    }
+                });
+                /* 公司信息的vue对象*/
+                corpInfoVue = new Vue({
+                    el: '#cargo_corp_info',
+                    data: {
+                        corp: {}
+                    },
+                    mounted: function () {
+                        var _self = this ;
+                        common.ajaxfuncURL("cargo_owner/cargecorpinfo/" + pkCustomer, "POST", {}, function (resp) {
+                            var data = resp.data;
+                           //customer_picture? resp.data.customer_picture = window.imgUrl+customer_picture:"";
+                            _self.corp = data;
 
                         })
                     }
