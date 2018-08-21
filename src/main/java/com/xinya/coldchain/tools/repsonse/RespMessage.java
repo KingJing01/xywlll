@@ -7,6 +7,15 @@ package com.xinya.coldchain.tools.repsonse;
 public class RespMessage {
     private String message;
     private int success;
+
+    public Object getData() {
+        return data;
+    }
+
+    public void setData(Object data) {
+        this.data = data;
+    }
+
     private Object data;
 
     public String getMessage() {
@@ -25,13 +34,7 @@ public class RespMessage {
         this.success = success;
     }
 
-    public Object getObejct() {
-        return data;
-    }
 
-    public void setObejct(Object obejct) {
-        this.data = data;
-    }
 
     public RespMessage(String message, int success, Object data) {
         this.message = message;

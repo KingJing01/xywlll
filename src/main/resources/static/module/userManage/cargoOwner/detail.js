@@ -6,6 +6,7 @@
             'text!' + HTML_DETAIL
         ], function ($, Vue, htmlDetail) {
             var baseInfoVue;//
+             var corpInfoVue;
             /*html加载*/
             var initDetailHtml = function () {
                 $("#cargo_detail_div").html(htmlDetail);
@@ -65,10 +66,9 @@
                     mounted: function () {
                         var _self = this ;
                         common.ajaxfuncURL("cargo_owner/cargeinfo/" + pkCustomer, "POST", {}, function (resp) {
-                            var customer_picture = resp.data.customer_picture;
-                            customer_picture? resp.data.customer_picture = window.imgUrl+customer_picture:"";
-                            _self.resp = resp.data;
-
+                            var data = resp.data;
+                            data.customer_picture?data.customer_picture = window.imgUrl+data.customer_picture:"images/top.jpg";
+                            _self.resp = data;
                         })
                     }
                 });
@@ -82,6 +82,7 @@
                         var _self = this ;
                         common.ajaxfuncURL("cargo_owner/cargecorpinfo/" + pkCustomer, "POST", {}, function (resp) {
                             var data = resp.data;
+                            data.customer_picture?data.customer_picture = window.imgUrl+data.customer_picture:"";
                            //customer_picture? resp.data.customer_picture = window.imgUrl+customer_picture:"";
                             _self.corp = data;
 
