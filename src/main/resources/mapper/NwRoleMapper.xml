@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xinya.coldchain.sys.mapper.NwRoleMapper">
     <resultMap id="NwRole" type="com.xinya.coldchain.sys.model.NwRole">
-        <id column="pkRole" property="pkRole"></id>
+        <id column="pk_role" property="pkRole"></id>
         <result column="dr" property="dr"></result>
         <result column="ts" property="ts"></result>
         <result column="role_code" property="roleCode"></result>
         <result column="role_name" property="roleName"></result>
         <result column="pk_corp" property="pkCrop"></result>
     </resultMap>
-    <select id="getNwRoleInfo" parameterType="string" resultType="NwRole">
+    <select id="getNwRoleInfo" parameterType="string" resultMap="NwRole">
        select * from nw_role where role_name = #{roleName} and dr=0
     </select>
 

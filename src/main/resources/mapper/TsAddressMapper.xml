@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xinya.coldchain.sys.model.TsAddressMapper">
+<mapper namespace="com.xinya.coldchain.sys.mapper.TsAddressMapper">
 
     <resultMap id="TsAddress" type="com.xinya.coldchain.sys.model.TsAddress">
         <id column="pk_address" property="pkAddress"></id>
@@ -22,7 +22,7 @@
 
     <insert id="addTsCustAddr" parameterType="java.util.Map">
        insert into ts_cust_addr(pk_cust_addr,dr,ts,pk_customer,pk_address) VALUES
-       (REPLACE(NEWID(), '-', ''),'0',#{ts},#{pk},#{pkAddress});
+       (REPLACE(NEWID(), '-', ''),'0',#{ts},#{pkCustomer},#{pkAddress});
     </insert>
 
     <update id="updateTsCustAddrisDefault" parameterType="string">
