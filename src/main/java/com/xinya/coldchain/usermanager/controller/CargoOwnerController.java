@@ -100,4 +100,20 @@ public class CargoOwnerController {
         }
     }
 
+    /**
+     * 审核成功
+     * @param pkCustomer 货主pk
+     * @return 返回
+     */
+    @RequestMapping(value = "/cargo_audit/{pkCustomer}",method = RequestMethod.POST)
+    public RespMessage cargoInfoAuditSuccess(@PathVariable String pkCustomer) {
+        try {
+            cargoOwnerService.cargoInfoAuditSuccess(pkCustomer);
+            return new RespMessage(CommonUtil.respSuccess);
+        } catch (Exception e) {
+            return new RespMessage(CommonUtil.respFail);
+        }
+
+    }
+
 }

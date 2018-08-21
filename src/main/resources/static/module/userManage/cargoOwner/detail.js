@@ -49,6 +49,7 @@
                 /*审核通过*/
                 $("#cargo_audit_sure").click(function () {
 
+
                 })
                 /*审核驳回*/
                 $("#cargo_audit_reject").click(function () {

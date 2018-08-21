@@ -2,8 +2,10 @@ package com.xinya.coldchain.usermanager.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.xinya.coldchain.sys.model.TmsUser;
 import com.xinya.coldchain.usermanager.mapper.CargoOwnerMapper;
 import com.xinya.coldchain.usermanager.model.CargoOwner;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,8 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Map;
 
+/** 货主service.
+ * @author liyoujing
+ */
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class CargoOwnerService {
     @Autowired
     private CargoOwnerMapper cargoOwnerMapper;
@@ -37,5 +42,14 @@ public class CargoOwnerService {
     }
     public Map<String,String> getCargoCorpInfoByCode(String pkCustomer) {
         return cargoOwnerMapper.getCargoCorpInfoByCode(pkCustomer);
+    }
+
+    /**
+     * 审核通过 更新ts_re_cust_corp ts_customer  nw_corp 的ts check_status modify_time
+     * @param pkCustomer
+     */
+    public void cargoInfoAuditSuccess(String pkCustomer) {
+        TmsUser user = (TmsUser) SecurityUtils.getSubject().getPrincipal();
+
     }
 }
