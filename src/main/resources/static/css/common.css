@@ -609,7 +609,8 @@ table.dataTable thead .sorting:after {
 /* 个人信息的头像*/
 .head_portrait_img {
     border-radius: 10rem;
-    width: 55%;
+    width: 12rem;
+    height: 12rem;
     margin: 20%;
 }
 /*基础信息div*/

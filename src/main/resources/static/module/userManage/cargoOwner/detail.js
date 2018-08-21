@@ -63,13 +63,17 @@
                             'cust_name': '',
                             'corp_name': '',
                             'passwd': '********',
-                            'create_time': ''
+                            'create_time': '',
+                            'customer_picture':''
                         }
                     },
                     mounted: function () {
                         var _self = this ;
                         common.ajaxfuncURL("cargo_owner/cargeinfo/" + pkCustomer, "POST", {}, function (resp) {
+                            var customer_picture = resp.obejct.customer_picture;
+                            customer_picture? resp.obejct.customer_picture = window.imgUrl+customer_picture:"";
                             _self.resp = resp.obejct;
+
                         })
                     }
                 });

@@ -14,8 +14,8 @@
         select pk_user,user_name,user_code,user_type,user_password  from nw_user where dr=0 and  user_code=#{username}
     </select>
 
-    <select id="getImgUrl" resultType="java.lang.Map">
-
+    <select id="getImgUrl" resultType="java.util.Map">
+        select param_value paramValue from nw_parameter where param_name='resourcePath'
     </select>
 
 

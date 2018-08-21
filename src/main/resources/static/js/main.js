@@ -12,8 +12,9 @@
         function () {
             /*获取图片服务器地址*/
             var loadImgUrl = function () {
-                common.ajaxfuncURL();
-
+                common.ajaxfuncURL("get_img_url",'POST',{},function (resp) {
+                    window.imgUrl = resp.paramValue;
+                });
             }
 
             mainFunction = function () {
