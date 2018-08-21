@@ -18,7 +18,8 @@
                         <div class="info_div"><span>注册密码:</span>*********</div>
                         <div class="info_div"><span>注册日期:</span>{{resp.create_time}}</div>
                         <div class="action_div">
-                            <button type="button" class="btn btn-primary" id="cargo_frozen">冻结</button>
+                            <button v-show="resp.lockedFlag!='Y'?true:false"type="button" class="btn btn-primary" id="cargo_frozen">冻结</button>
+                            <button v-show="resp.lockedFlag=='Y'?true:false" type="button" class="btn btn-primary" id="cargo_thaw">解冻</button>
                             <button type="button" class="btn btn-primary" id="cargo_delete">删除</button>
                         </div>
                     </div>

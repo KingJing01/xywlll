@@ -73,7 +73,7 @@
                     title: '操作',
                     align: 'center',
                     formatter: function (value, row) {
-                        var str = "<div id='" + value + "'><a href='#' class='detail'>查看</a>";
+                        var str = "<div id='" + value + "' checkStatus='"+row.checkStatus+"' lockedFlag='"+row.lockedFlag+"'><a href='#' class='detail'>查看</a>";
                         if (row.lockedFlag == 'Y') {
                             str += "<a href='#' class='thaw audit_a'>解冻</a>";
                         } else {
@@ -113,10 +113,12 @@
                     url = "cargo_owner/" + id;
                     common.ajaxfuncURL(url,"DELETE",{},eventCallBack);
                 } else if($(this).hasClass("detail")) {
+                    var checkStatus = $(this).parent("div").attr("checkStatus");
+                    var lockedFlag = $(this).parent("div").attr("lockedFlag");
                     //查看
                     $("#cargo_table_div").hide();
                     requirejs(["module/userManage/cargoOwner/detail"], function (list) {
-                        list.load(id);
+                        list.load(id,checkStatus,lockedFlag);
                     });
                 }
             })

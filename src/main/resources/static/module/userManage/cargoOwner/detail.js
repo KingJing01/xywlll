@@ -48,7 +48,7 @@
                 })
                 /*审核通过*/
                 $("#cargo_audit_sure").click(function () {
-                    var url = "cargo_audit/" + pkCustomer;
+                    var url = "cargo_owner/cargo_audit/" + pkCustomer;
                     common.ajaxfuncURL(url,"POST",{},actCallBack,$(this));
                 })
                 /*审核驳回*/
@@ -57,12 +57,12 @@
                 })
             }
             /* 数据初始化 */
-            var initData = function (pkCustomer) {
+            var initData = function (pkCustomer,checkStatus,lockedFlag) {
                 /*基础信息的vue对象*/
                 baseInfoVue = new Vue({
                     el: '#cargo_base_info',
                     data: {
-                        resp: {}
+                        resp: {'lockedFlag':lockedFlag}
                     },
                     mounted: function () {
                         var _self = this ;
@@ -77,7 +77,7 @@
                 corpInfoVue = new Vue({
                     el: '#cargo_corp_info',
                     data: {
-                        corp: {}
+                        corp: {'checkStatus':checkStatus}
                     },
                     mounted: function () {
                         var _self = this ;
@@ -96,9 +96,9 @@
             }
 
             var cargoDetail = {};
-            cargoDetail.load = function (pkCustomer) {
+            cargoDetail.load = function (pkCustomer,checkStatus,lockedFlag) {
                 initDetailHtml();
-                initData(pkCustomer);
+                initData(pkCustomer,checkStatus,lockedFlag);
                 bindEvent(pkCustomer);
             }
             return cargoDetail;
