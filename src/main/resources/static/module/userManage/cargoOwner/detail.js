@@ -67,7 +67,7 @@
                         var _self = this ;
                         common.ajaxfuncURL("cargo_owner/cargeinfo/" + pkCustomer, "POST", {}, function (resp) {
                             var data = resp.data;
-                            data.customer_picture = (data.customer_picture?window.imgUrl+data.customer_picture:"images/top.jpg");
+                            data.customer_picture = (data.customer_picture?window.imgUrl+data.customer_picture:common.noHeadPortrait);
                             _self.resp = data;
                         })
                     }
@@ -82,11 +82,11 @@
                         var _self = this ;
                         common.ajaxfuncURL("cargo_owner/cargecorpinfo/" + pkCustomer, "POST", {}, function (resp) {
                             var data = resp.data;
-                            data.customer_picture = (data.customer_picture?window.imgUrl+data.customer_picture:"images/top.jpg");
-                            data.relation_license = (data.relation_license?window.imgUrl+data.relation_license:"images/no-image.jpg");
-                            data.id_card_neg = (data.id_card_neg?window.imgUrl+data.id_card_neg:"images/no-image.jpg");
-                            data.id_card_pos = (data.id_card_pos?window.imgUrl+data.id_card_pos:"images/no-image.jpg");
-                            data.business_license = (data.business_license?window.imgUrl+data.business_license:"images/no-image.jpg");
+                            data.customer_picture = (data.customer_picture?window.imgUrl+data.customer_picture:common.noHeadPortrait);
+                            data.relation_license = (data.relation_license?window.imgUrl+data.relation_license:common.noImage);
+                            data.id_card_neg = (data.id_card_neg?window.imgUrl+data.id_card_neg:common.noImage);
+                            data.id_card_pos = (data.id_card_pos?window.imgUrl+data.id_card_pos:common.noImage);
+                            data.business_license = (data.business_license?window.imgUrl+data.business_license:common.noImage);
                             _self.corp = data;
 
                         })

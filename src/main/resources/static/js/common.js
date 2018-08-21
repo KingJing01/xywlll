@@ -5,6 +5,8 @@ var common = {
     hasForbidden: 4,//禁用
     yesStatus: 'Y',//冻结
     noStatus: 'N', //未冻结
+    noImage:"images/no-image.jpg",//默认无图片
+    noHeadPortrait:"images/top.jpg",//默认头像
     //动态调整tab load界面的高度  宽度已经自适应
     initContainer: function (container) {
         var height = $("#page-wrapper").height();
