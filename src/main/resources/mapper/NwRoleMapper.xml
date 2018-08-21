@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xinya.coldchain.usermanager.mapper.NwRoleMapper">
-    <resultMap id="NwRole" type="com.xinya.coldchain.usermanager.model.NwRole">
+<mapper namespace="com.xinya.coldchain.sys.mapper.NwRoleMapper">
+    <resultMap id="NwRole" type="com.xinya.coldchain.sys.model.NwRole">
         <id column="pkRole" property="pkRole"></id>
         <id column="pkRole" property="pkRole"></id>
         <id column="pkRole" property="pkRole"></id>

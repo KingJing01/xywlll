@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xinya.coldchain.usermanager.mapper.TsAddressMapper">
+<mapper namespace="com.xinya.coldchain.sys.model.TsAddressMapper">
 
-    <resultMap id="TsAddress" type="com.xinya.coldchain.usermanager.model.TsAddress">
+    <resultMap id="TsAddress" type="com.xinya.coldchain.sys.model.TsAddress">
         <id column="pk_address" property="pkAddress"></id>
         <result column="addr_type" property="addrType"></result>
         <result column="addr_code" property="addrCode"></result>

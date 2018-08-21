@@ -1,4 +1,4 @@
-package com.xinya.coldchain.usermanager.model;
+package com.xinya.coldchain.sys.model;
 
 public class TsAddress {
     private String pkAddress;

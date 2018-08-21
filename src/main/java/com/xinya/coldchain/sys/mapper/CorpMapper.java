@@ -1,4 +1,4 @@
-package com.xinya.coldchain.usermanager.mapper;
+package com.xinya.coldchain.sys.mapper;
 
 import org.apache.ibatis.annotations.Param;
 

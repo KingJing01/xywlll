@@ -1,7 +1,5 @@
-package com.xinya.coldchain.usermanager.mapper;
+package com.xinya.coldchain.sys.model;
 
-
-import com.xinya.coldchain.usermanager.model.TsAddress;
 
 import java.util.Map;
 

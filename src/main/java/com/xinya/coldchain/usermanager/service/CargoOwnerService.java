@@ -5,17 +5,16 @@ import com.github.pagehelper.PageInfo;
 import com.xinya.coldchain.sys.mapper.TmsUserMapper;
 import com.xinya.coldchain.sys.model.TmsUser;
 import com.xinya.coldchain.usermanager.mapper.CargoOwnerMapper;
-import com.xinya.coldchain.usermanager.mapper.CorpMapper;
-import com.xinya.coldchain.usermanager.mapper.TsAddressMapper;
+import com.xinya.coldchain.sys.mapper.CorpMapper;
+import com.xinya.coldchain.sys.model.TsAddressMapper;
 import com.xinya.coldchain.usermanager.model.CargoOwner;
-import com.xinya.coldchain.usermanager.model.TsAddress;
+import com.xinya.coldchain.sys.model.TsAddress;
 import com.xinya.coldchain.utils.CommonUtil;
 import com.xinya.coldchain.utils.DateUtils;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import java.util.*;
 
@@ -94,6 +93,7 @@ public class CargoOwnerService {
         tsAddressMapper.addTsCustAddr(param);
         String custCode = cargoOwnerMapper.getCargoInfoByCode(pkCustomer).get("cust_code");
         String pkUser = tmsUserMapper.getUserInfoByUsername(custCode).getPkUser();
+
 
 
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xinya.coldchain.usermanager.mapper.CorpMapper">
+<mapper namespace="com.xinya.coldchain.sys.mapper.CorpMapper">
     <select id="getCorpInfoByPkCustomer" parameterType="string" resultType="java.util.Map">
         select * from nw_corp t left join ts_customer t1 on t.pk_corp = t1.pk_corp where t1.pk_customer=#{pk}
         and t1.dr=0
