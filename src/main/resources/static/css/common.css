@@ -638,14 +638,16 @@ table.dataTable thead .sorting:after {
     width: 20rem;
     height: 25rem;
     margin-left: 7.5rem;
-    margin-top: -4rem;
+    margin-top: -2rem;
+    margin-bottom: 20px;
 }
 /*水平附件的样式*/
 .img_horizontal{
     width: 28rem;
     height: 15rem;
     margin-left: 7rem;
-    margin-top: -4rem;
+    margin-top: -2rem;
+    margin-bottom: 20px;
 }
 
 
