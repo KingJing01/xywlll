@@ -2,6 +2,7 @@ package com.xinya.coldchain.usermanager.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.xinya.coldchain.sys.mapper.TmsUserMapper;
 import com.xinya.coldchain.sys.model.TmsUser;
 import com.xinya.coldchain.usermanager.mapper.CargoOwnerMapper;
 import com.xinya.coldchain.usermanager.mapper.CorpMapper;
@@ -34,6 +35,9 @@ public class CargoOwnerService {
 
     @Autowired
     private TsAddressMapper tsAddressMapper;
+
+    @Autowired
+    private TmsUserMapper tmsUserMapper;
 
     public PageInfo<CargoOwner> getListData(int pageSize, int pageNum, String custCode) {
         PageHelper.startPage(pageNum, pageSize);
@@ -88,6 +92,10 @@ public class CargoOwnerService {
         //is_default 1
         tsAddressMapper.updateTsCustAddrisDefault(pkAddress);
         tsAddressMapper.addTsCustAddr(param);
+        String custCode = cargoOwnerMapper.getCargoInfoByCode(pkCustomer).get("cust_code");
+        String pkUser = tmsUserMapper.getUserInfoByUsername(custCode).getPkUser();
+
+
 
 
     }

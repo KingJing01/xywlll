@@ -12,4 +12,6 @@ public interface TsAddressMapper {
     int addTsCustAddr(Map<String,Object> map);
 
     int updateTsCustAddrisDefault(String pkAddress);
+
+
 }

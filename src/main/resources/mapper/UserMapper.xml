@@ -18,5 +18,8 @@
         select param_value paramValue from nw_parameter where param_name='resourcePath'
     </select>
 
+    <select id="getNwRoleInfo" parameterType="string">
+       select * from nw_role where role_name=
+    </select>
 
 </mapper>

@@ -60,4 +60,5 @@
          where t.pk_customer=#{pk} and t.dr=0)
     </update>
 
+
 </mapper>
