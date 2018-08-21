@@ -25,6 +25,10 @@
        (REPLACE(NEWID(), '-', ''),'0',#{ts},#{pk},#{pkAddress});
     </insert>
 
+    <update id="updateTsCustAddrisDefault" parameterType="string">
+        update ts_cust_addr set is_default=1 where pk_ddress =#{pkAddress} and dr=0
+    </update>
+
 
 
 

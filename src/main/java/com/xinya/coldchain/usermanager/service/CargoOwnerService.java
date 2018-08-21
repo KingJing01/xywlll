@@ -61,13 +61,12 @@ public class CargoOwnerService {
     /**
      * 审核通过 更新ts_re_cust_corp ts_customer  nw_corp 的ts check_status modify_time
      * ts_address  公司地址
-     * ts_cust_addr  新增关联关系  if_default 1
-     * 新增角色
+     * ts_cust_addr  新增关联关系  is_default 1
+     * 新增角色 nw_user_role
      *
      * @param pkCustomer
      */
     public void cargoInfoAuditSuccess(String pkCustomer) {
-        Map<String, String> result = corpMapper.getCorpInfoByPkCustomer(pkCustomer);
         TmsUser user = (TmsUser) SecurityUtils.getSubject().getPrincipal();
         Date date = new Date();
         String ts = DateUtils.dateToString(date, DateUtils.DATE_FORMAT_YYYYMMDDHHMMSSSSS);
@@ -82,15 +81,13 @@ public class CargoOwnerService {
         cargoOwnerMapper.updateCorp(param);
         cargoOwnerMapper.updateCust(param);
         cargoOwnerMapper.updateCustAndCorp(param);
-        String pkAddress = null;
-        if (!StringUtils.isEmpty(result.get("address"))) {
-            TsAddress tsAddress = tsAddressMapper.getTsAddressInfo(result.get("address"));
-            pkAddress = tsAddress.getPkAddress();
-            param.put("pkAddress",pkAddress);
-            tsAddressMapper.addTsCustAddr(param);
-
-        }
-
+        Map<String, String> result = corpMapper.getCorpInfoByPkCustomer(pkCustomer);
+        TsAddress tsAddress = tsAddressMapper.getTsAddressInfo(result.get("address"));
+        String pkAddress = tsAddress.getPkAddress();
+        param.put("pkAddress", pkAddress);
+        //is_default 1
+        tsAddressMapper.updateTsCustAddrisDefault(pkAddress);
+        tsAddressMapper.addTsCustAddr(param);
 
 
     }
