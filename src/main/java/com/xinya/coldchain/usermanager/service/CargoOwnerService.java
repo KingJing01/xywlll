@@ -92,7 +92,7 @@ public class CargoOwnerService {
         param.put("ts", ts);
         param.put("modifyUser", modifyUser);
         param.put("modifyTime", modifyTime);
-        param.put("code", CommonUtil.audited);
+        param.put("checkStatus", CommonUtil.audited);
         param.put("pkCustomer", pkCustomer);
         cargoOwnerMapper.updateCorp(param);
         cargoOwnerMapper.updateCust(param);
@@ -116,5 +116,22 @@ public class CargoOwnerService {
         String roleId = nwRoleMapper.getNwRoleInfo("车队经理").getPkRole();
         param.put("pkRole",roleId);
         nwUserRoleMapper.addPkUserRoleInfo(param);
+    }
+
+
+    public void cargoAuditReject(String pkCustomer,String reason) {
+        TmsUser user = (TmsUser) SecurityUtils.getSubject().getPrincipal();
+        Date date = new Date();
+        String ts = DateUtils.dateToString(date, DateUtils.DATE_FORMAT_YYYYMMDDHHMMSSSSS);
+        String modifyTime = DateUtils.dateToString(date, DateUtils.DEFAULT_DATE_FORMAT);
+        String modifyUser = user.getPkUser();
+        Map<String,Object> param = new HashMap<>();
+        param.put("pkCustomer",pkCustomer);
+        param.put("memo",reason);
+        param.put("ts",ts);
+        param.put("modifyTime",modifyTime);
+        param.put("modifyUser",modifyUser);
+        param.put("checkStatus",CommonUtil.auditReject);
+        cargoOwnerMapper.updateCust(param);
     }
 }

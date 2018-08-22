@@ -619,12 +619,16 @@ table.dataTable thead .sorting:after {
     line-height: 3rem;
 
 }
+.span_text {
+    margin-left: 20px;
+}
 .comp_info_div {
     margin-top: 2rem;
 }
 /*操作按钮的div*/
 .action_div{
-    margin-top: 10px;
+    margin-top: 20px;
+    margin-left: 15%;
 }
 .action_div button {
     margin-left: 20px;
@@ -635,17 +639,17 @@ table.dataTable thead .sorting:after {
 }
 /* 垂直附件的样式  */
 .img_vertical {
-    width: 20rem;
-    height: 25rem;
-    margin-left: 7.5rem;
+    width: 16rem;
+    height: 18rem;
+    margin-left: 8.5rem;
     margin-top: -2rem;
     margin-bottom: 20px;
 }
 /*水平附件的样式*/
 .img_horizontal{
-    width: 28rem;
-    height: 15rem;
-    margin-left: 7rem;
+    width: 20rem;
+    height: 14rem;
+    margin-left: 8.5rem;
     margin-top: -2rem;
     margin-bottom: 20px;
 }

@@ -5,6 +5,7 @@ import com.xinya.coldchain.tools.repsonse.RespMessage;
 import com.xinya.coldchain.usermanager.model.CargoOwner;
 import com.xinya.coldchain.usermanager.service.CargoOwnerService;
 import com.xinya.coldchain.utils.CommonUtil;
+import javafx.scene.chart.ValueAxis;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -109,12 +110,29 @@ public class CargoOwnerController {
     public RespMessage cargoInfoAuditSuccess(@PathVariable String pkCustomer) {
         try {
             cargoOwnerService.cargoInfoAuditSuccess(pkCustomer);
-            return new RespMessage(CommonUtil.respSuccess);
+            return new RespMessage("审核成功",CommonUtil.respSuccess);
         } catch (Exception e) {
             e.printStackTrace();
-            return new RespMessage(CommonUtil.respFail);
+            return new RespMessage("审核失败",CommonUtil.respFail);
         }
 
+    }
+
+    /**
+     * 审核驳回.
+     * @param pkCustomer 货主pk
+     * @param reason  驳回原因
+     * @return 返回
+     */
+    @RequestMapping(value = "/cargo_audit_reject/{pkCustomer}/{reason}",method = RequestMethod.POST)
+    public RespMessage cargoAuditReject(@PathVariable String pkCustomer,@PathVariable String reason) {
+        try {
+            cargoOwnerService.cargoAuditReject(pkCustomer,reason);
+            return new RespMessage("审核驳回成功",CommonUtil.respSuccess);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new RespMessage("审核驳回失败",CommonUtil.respFail);
+        }
     }
 
 }

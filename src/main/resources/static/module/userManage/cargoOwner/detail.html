@@ -11,13 +11,13 @@
                         <img  :src="resp.customer_picture" class="head_portrait_img">
                     </div>
                     <div class="col-md-10">
-                        <div class="info_div"><span>注册账号:</span>{{resp.cust_code}}</div>
-                        <div class="info_div"><span>账号类型:</span>货主</div>
-                        <div class="info_div"><span>账号昵称:</span>{{resp.cust_name}}</div>
+                        <div class="info_div"><label>注册账号:</label> <span class="span_text">{{resp.cust_code}}</span></div>
+                        <div class="info_div"><label>账号类型:</label><span class="span_text">货主</span></div>
+                        <div class="info_div"><label>账号昵称:</label><span class="span_text">{{resp.cust_name}}</span></div>
                         <!--  <div class="info_div"><span>公司名称:</span>{{comp_name}}</div>-->
-                        <div class="info_div"><span>注册密码:</span>*********</div>
-                        <div class="info_div"><span>注册日期:</span>{{resp.create_time}}</div>
-                        <div class="action_div">
+                        <div class="info_div"><label>注册密码:</label><span class="span_text">*********</span></div>
+                        <div class="info_div"><label>注册日期:</label><span class="span_text">{{resp.create_time}}</span></div>
+                        <div style="margin-top: 20px">
                             <button v-show="resp.lockedFlag!='Y'?true:false"type="button" class="btn btn-primary" id="cargo_frozen">冻结</button>
                             <button v-show="resp.lockedFlag=='Y'?true:false" type="button" class="btn btn-primary" id="cargo_thaw">解冻</button>
                             <button type="button" class="btn btn-primary" id="cargo_delete">删除</button>
@@ -27,17 +27,17 @@
             </div>
             <div class="tab-pane" id="cargo_corp_info">
                 <div class="comp_info_div">
-                    <div class="info_div"><span>公司全称:</span>{{corp.corp_name}}</div>
-                    <div class="info_div"><span>公司地址:</span><span id="cargo_corp_address">{{corp.address}}</span></div>
+                    <div class="info_div"><label>公司全称:</label><span class="span_text">{{corp.corp_name}}</span></div>
+                    <div class="info_div"><label>公司地址:</label><span class="span_text">{{corp.address}}</span></div>
                   <!--  <div class="info_div"><span>开户银行:</span>{{corp.bank}}</div>
                     <div class="info_div"><span>银行账号:</span>{{corp.bank_account}}</div>-->
-                    <div class="info_div"><span class="img_span">营业执照:</span>
+                    <div class="info_div"><label class="img_span">营业执照:</label>
                         <img class="img_vertical" :src="corp.business_license"></div>
-                    <div class="info_div"><span class="img_span">认证授权函:</span>
+                    <div class="info_div"><label class="img_span">认证授权函:</label>
                         <img class="img_vertical" :src="corp.relation_license"></div>
-                    <div class="info_div"><span class="img_span">个人照片:</span>
+                    <div class="info_div"><label class="img_span">个人照片:</label>
                         <img class="img_vertical" :src="corp.customer_picture"></div>
-                    <div class="info_div"><span class="img_span">身份证:</span>
+                    <div class="info_div"><label class="img_span">身份证:</label>
                         <img class="img_horizontal" :src="corp.id_card_pos">
                         <img class="img_horizontal" :src="corp.id_card_neg">
                     </div>
@@ -54,7 +54,7 @@
         <i class="fa fa-chevron-left fa-x"></i></a>
     </div>
 </div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -62,7 +62,7 @@
                 </button>
             </div>
             <div class="modal-body" id="cargo_model">
-                <span>{{message}}</span>
+                <span id="cargo_message"></span>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭

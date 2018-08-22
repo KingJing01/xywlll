@@ -45,18 +45,22 @@
     and t1.pk_customer=#{pkCustomer}
     </select>
 
-    <update id="updateCustAndCorp" parameterType="java.util.Map" >
+    <update id="updateCustAndCorp" parameterType="java.util.Map">
         update ts_re_cust_corp set ts=#{ts},modify_user=#{modifyUser},modify_time=#{modifyTime},
-        check_status=#{code},check_man=#{modifyUser},check_time=#{modifyTime} where dr=0 and pk_customer=#{pkCustomer}
+        check_status=#{checkStatus},check_man=#{modifyUser},check_time=#{modifyTime} where dr=0 and pk_customer=#{pkCustomer}
     </update>
     <update id="updateCust" parameterType="java.util.Map">
-          update ts_customer set ts=#{ts},modify_user=#{modifyUser},modify_time=#{modifyTime},
-        check_status=#{code} where dr=0 and pk_customer=#{pkCustomer}
+        update ts_customer set ts=#{ts},modify_user=#{modifyUser},modify_time=#{modifyTime},
+        check_status=#{checkStatus}
+        <if test="memo != null and  memo !=''">
+            , memo = #{memo}
+        </if>
+        where dr=0 and pk_customer=#{pkCustomer}
     </update>
 
     <update id="updateCorp" parameterType="java.util.Map">
           update nw_corp set ts=#{ts},modify_user=#{modifyUser},modify_time=#{modifyTime},
-        check_status=#{code} where dr=0 and  pk_corp = (select t.pk_corp from ts_re_cust_corp t
+        check_status=#{checkStatus} where dr=0 and  pk_corp = (select t.pk_corp from ts_re_cust_corp t
          where t.pk_customer=#{pkCustomer} and t.dr=0)
     </update>
 

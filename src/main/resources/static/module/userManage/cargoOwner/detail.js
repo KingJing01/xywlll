@@ -17,13 +17,9 @@
             }
             /*查看界面的操作的回调*/
             var actCallBack  = function (resp,but) {
-                var actionVue = new Vue({
-                    el:"#cargo_model",
-                    data:{
-                        'message':'action succss!'
-                    }
-                })
+                $("#cargo_message").text(resp.message);
                 $('#myModal').modal('show');
+                $(but.siblings()).attr('disabled',"true");
                 but.attr('disabled',"true");
 
             }

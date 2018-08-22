@@ -24,4 +24,5 @@ public interface CargoOwnerMapper {
 
     void updateCust(Map<String,Object> map);
 
+
 }
