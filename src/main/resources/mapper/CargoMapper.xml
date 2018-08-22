@@ -50,7 +50,7 @@
         check_status=#{code},check_man=#{modifyUser},check_time=#{modifyTime} where dr=0 and pk_customer=#{pkCustomer}
     </update>
     <update id="updateCust" parameterType="java.util.Map">
-          update ts_cust set ts=#{ts},modify_user=#{modifyUser},modify_time=#{modifyTime},
+          update ts_customer set ts=#{ts},modify_user=#{modifyUser},modify_time=#{modifyTime},
         check_status=#{code} where dr=0 and pk_customer=#{pkCustomer}
     </update>
 

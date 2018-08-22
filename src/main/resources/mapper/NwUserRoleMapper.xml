@@ -8,7 +8,7 @@
         <result column="pk_user" property="pkUser"></result>
         <result column="pk_role" property="pkRole"></result>
     </resultMap>
-    <insert id="addPkUserRole" parameterType="java.util.Map">
+    <insert id="addPkUserRoleInfo" parameterType="java.util.Map">
    insert into nw_user_role(pk_user_role,dr,ts,pk_user,pk_role)
    values (REPLACE(NEWID(), '-', ''),0,#{ts},#{pkUser},#{pkRole})
     </insert>

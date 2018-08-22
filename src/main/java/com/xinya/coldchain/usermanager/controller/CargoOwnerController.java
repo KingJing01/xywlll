@@ -61,6 +61,7 @@ public class CargoOwnerController {
             flag = cargoOwnerService.updatelockedFlag(id, status);
             return new RespMessage(flag);
         } catch (Exception e) {
+            e.printStackTrace();
             return new RespMessage(CommonUtil.respFail);
         }
     }
@@ -77,6 +78,7 @@ public class CargoOwnerController {
             map = cargoOwnerService.getCargoInfoByCode(pkCustomer);
             return new RespMessage("成功", CommonUtil.respSuccess, map);
         } catch (Exception e) {
+            e.printStackTrace();
             return new RespMessage(CommonUtil.respFail);
         }
     }
@@ -93,6 +95,7 @@ public class CargoOwnerController {
             map = cargoOwnerService.getCargoCorpInfoByCode(pkCustomer);
             return new RespMessage("成功", CommonUtil.respSuccess, map);
         } catch (Exception e) {
+            e.printStackTrace();
             return new RespMessage(CommonUtil.respFail);
         }
     }
@@ -108,6 +111,7 @@ public class CargoOwnerController {
             cargoOwnerService.cargoInfoAuditSuccess(pkCustomer);
             return new RespMessage(CommonUtil.respSuccess);
         } catch (Exception e) {
+            e.printStackTrace();
             return new RespMessage(CommonUtil.respFail);
         }
 

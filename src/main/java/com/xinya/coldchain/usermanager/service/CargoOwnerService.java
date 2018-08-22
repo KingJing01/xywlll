@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.xinya.coldchain.sys.mapper.NwRoleMapper;
 import com.xinya.coldchain.sys.mapper.NwUserRoleMapper;
 import com.xinya.coldchain.sys.mapper.TmsUserMapper;
+import com.xinya.coldchain.sys.model.NwCorp;
 import com.xinya.coldchain.sys.model.TmsUser;
 import com.xinya.coldchain.usermanager.mapper.CargoOwnerMapper;
 import com.xinya.coldchain.sys.mapper.CorpMapper;
@@ -14,9 +15,12 @@ import com.xinya.coldchain.sys.model.TsAddress;
 import com.xinya.coldchain.utils.CommonUtil;
 import com.xinya.coldchain.utils.DateUtils;
 import org.apache.shiro.SecurityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.util.*;
 
@@ -28,6 +32,7 @@ import java.util.*;
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class CargoOwnerService {
+    private static Logger logger = LoggerFactory.getLogger(CargoOwnerService.class);
     @Autowired
     private CargoOwnerMapper cargoOwnerMapper;
 
@@ -77,7 +82,7 @@ public class CargoOwnerService {
      *
      * @param pkCustomer
      */
-    public void cargoInfoAuditSuccess(String pkCustomer) {
+    public void cargoInfoAuditSuccess(String pkCustomer) throws Exception {
         TmsUser user = (TmsUser) SecurityUtils.getSubject().getPrincipal();
         Date date = new Date();
         String ts = DateUtils.dateToString(date, DateUtils.DATE_FORMAT_YYYYMMDDHHMMSSSSS);
@@ -92,8 +97,14 @@ public class CargoOwnerService {
         cargoOwnerMapper.updateCorp(param);
         cargoOwnerMapper.updateCust(param);
         cargoOwnerMapper.updateCustAndCorp(param);
-        Map<String, String> result = corpMapper.getCorpInfoByPkCustomer(pkCustomer);
-        TsAddress tsAddress = tsAddressMapper.getTsAddressInfo(result.get("address"));
+        NwCorp result = corpMapper.getCorpInfoByPkCustomer(pkCustomer);
+        if(StringUtils.isEmpty(result.getAddress())){
+            logger.error("货主绑定的企业信息的地址为空");
+        }
+        TsAddress tsAddress = tsAddressMapper.getTsAddressInfo(result.getAddress());
+        if(StringUtils.isEmpty(tsAddress)){
+            logger.error("货主审核 ts_address中不存在货主绑定的企业地址");
+        }
         String pkAddress = tsAddress.getPkAddress();
         param.put("pkAddress", pkAddress);
         //is_default 1

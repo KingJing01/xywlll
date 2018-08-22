@@ -79,7 +79,8 @@
                         } else {
                             str += "<a href='#' class='freeze audit_a'>冻结</a>";
                         }
-                        return str + "<a href='#' class='del audit_a'>删除</a></div>";
+                        //return str + "<a href='#' class='del audit_a'>删除</a></div>";
+                        return str + "</div>";
                     }
                 }]
             });

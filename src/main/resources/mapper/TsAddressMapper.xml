@@ -14,7 +14,7 @@
     </resultMap>
 
     <select id="getTsAddressInfo" parameterType="string" resultMap="TsAddress">
-        select * from ts_address
+        select * from ts_address where dr=0
         <if test="detail_addr != null and  detail_addr !=''">
             and detail_addr = #{detail_addr}
         </if>
@@ -26,7 +26,7 @@
     </insert>
 
     <update id="updateTsCustAddrisDefault" parameterType="string">
-        update ts_cust_addr set is_default=1 where pk_ddress =#{pkAddress} and dr=0
+        update ts_cust_addr set if_default=1 where pk_address =#{pkAddress} and dr=0
     </update>
 
 
