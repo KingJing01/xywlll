@@ -64,12 +64,14 @@
 <!-- 消息弹框-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content"style="width: 45%">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                 </button>
             </div>
-            <div class="modal-body" id="cargo_model">
+            <div class="modal-body" id="cargo_model" style="text-align: center">
+                <i class="fa fa-check-circle" style="font-size: 5rem;color: #0f97db;display: none" id="check_success" ></i><br>
+                <i class="fa fa-times-circle" style="font-size: 5rem;color: #c0a16b;display: none" id="check_error"></i><br>
                 <span id="cargo_message"></span>
             </div>
             <div class="modal-footer">

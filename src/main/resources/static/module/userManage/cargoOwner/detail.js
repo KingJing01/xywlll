@@ -17,6 +17,7 @@
             }
             /*查看界面的操作的回调*/
             var actCallBack = function (resp, but) {
+                resp.success=0?$("#check_error").show():$("#check_success").show();
                 $("#cargo_message").text(resp.message);
                 $('#myModal').modal('show');
                 $(but.siblings()).attr('disabled', "true");
@@ -85,7 +86,6 @@
                         var _self = this;
                         common.ajaxfuncURL("cargo_owner/cargeinfo/" + pkCustomer, "POST", {}, function (resp) {
                             var data = resp.data;
-                            //data.customer_picture = (data.customer_picture?window.imgUrl+data.customer_picture:common.noHeadPortrait);
                             data.photo = (data.photo ? window.imgUrl + data.photo : common.noHeadPortrait);
                             data.lockedFlag = (lockedFlag == 'Y' ? true : false);
                             _self.resp = data;
