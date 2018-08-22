@@ -8,7 +8,7 @@
             <div class="active tab-pane" id="cargo_base_info">
                 <div class="row">
                     <div class="col-md-2">
-                        <img  :src="resp.customer_picture" class="head_portrait_img">
+                        <img  :src="resp.photo" class="head_portrait_img">
                     </div>
                     <div class="col-md-10">
                         <div class="info_div"><label>注册账号:</label> <span class="span_text">{{resp.cust_code}}</span></div>
@@ -36,7 +36,7 @@
                     <div class="info_div"><label class="img_span">认证授权函:</label>
                         <img class="img_vertical" :src="corp.relation_license"></div>
                     <div class="info_div"><label class="img_span">个人照片:</label>
-                        <img class="img_vertical" :src="corp.customer_picture"></div>
+                        <img class="img_vertical" :src="corp.photo"></div>
                     <div class="info_div"><label class="img_span">身份证:</label>
                         <img class="img_horizontal" :src="corp.id_card_pos">
                         <img class="img_horizontal" :src="corp.id_card_neg">

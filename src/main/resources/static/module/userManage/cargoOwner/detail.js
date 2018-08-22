@@ -71,7 +71,8 @@
                         var _self = this ;
                         common.ajaxfuncURL("cargo_owner/cargeinfo/" + pkCustomer, "POST", {}, function (resp) {
                             var data = resp.data;
-                            data.customer_picture = (data.customer_picture?window.imgUrl+data.customer_picture:common.noHeadPortrait);
+                            //data.customer_picture = (data.customer_picture?window.imgUrl+data.customer_picture:common.noHeadPortrait);
+                            data.photo = (data.photo?window.imgUrl+data.photo:common.noHeadPortrait);
                             data.lockedFlag = (lockedFlag == 'Y' ? true : false);
                             _self.resp = data;
                         })
@@ -87,7 +88,7 @@
                         var _self = this ;
                         common.ajaxfuncURL("cargo_owner/cargecorpinfo/" + pkCustomer, "POST", {}, function (resp) {
                             var data = resp.data;
-                            data.customer_picture = (data.customer_picture?window.imgUrl+data.customer_picture:common.noHeadPortrait);
+                            data.photo = (data.photo?window.imgUrl+data.photo:common.noHeadPortrait);
                             data.relation_license = (data.relation_license?window.imgUrl+data.relation_license:common.noImage);
                             data.id_card_neg = (data.id_card_neg?window.imgUrl+data.id_card_neg:common.noImage);
                             data.id_card_pos = (data.id_card_pos?window.imgUrl+data.id_card_pos:common.noImage);
