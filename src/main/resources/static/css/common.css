@@ -653,7 +653,17 @@ table.dataTable thead .sorting:after {
     margin-top: -2rem;
     margin-bottom: 20px;
 }
-
+/* 模态框图片垂直*/
+.modal_img_vertical{
+    width: 50rem;
+    height: 60rem;
+    margin-left: 8%;
+}
+/* 模态框图片水平*/
+.modal_img_horizontal{
+    width: 56rem;
+    height: 40rem;
+}
 
 /* 非bootstrap 自适应 样式 */
 @media (min-width: 768px) {

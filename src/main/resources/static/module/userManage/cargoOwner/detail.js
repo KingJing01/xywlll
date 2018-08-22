@@ -6,21 +6,21 @@
             'text!' + HTML_DETAIL
         ], function ($, Vue, htmlDetail) {
             var baseInfoVue;//
-             var corpInfoVue;
+            var corpInfoVue;
             /*html加载*/
             var initDetailHtml = function () {
                 $("#cargo_detail_div").html(htmlDetail);
                 $("#cargo_detail_div").fadeIn("slow");
                 $('#myModal').modal({
-                    show:false
+                    show: false
                 });
             }
             /*查看界面的操作的回调*/
-            var actCallBack  = function (resp,but) {
+            var actCallBack = function (resp, but) {
                 $("#cargo_message").text(resp.message);
                 $('#myModal').modal('show');
-                $(but.siblings()).attr('disabled',"true");
-                but.attr('disabled',"true");
+                $(but.siblings()).attr('disabled', "true");
+                but.attr('disabled', "true");
 
             }
             /*事件绑定*/
@@ -34,33 +34,47 @@
 
                 /*冻结*/
                 $("#cargo_frozen").click(function () {
-                    var url ="cargo_owner/" + pkCustomer + "/" + common.yesStatus;
-                    common.ajaxfuncURL(url,"PUT",{},actCallBack,$(this));
+                    var url = "cargo_owner/" + pkCustomer + "/" + common.yesStatus;
+                    common.ajaxfuncURL(url, "PUT", {}, actCallBack, $(this));
                 })
                 /*解冻*/
                 $("#cargo_thaw").click(function () {
-                    var url ="cargo_owner/" + pkCustomer + "/" + common.noStatus;
-                    common.ajaxfuncURL(url,"PUT",{},actCallBack,$(this));
+                    var url = "cargo_owner/" + pkCustomer + "/" + common.noStatus;
+                    common.ajaxfuncURL(url, "PUT", {}, actCallBack, $(this));
                 })
                 /*删除*/
                 $("#cargo_delete").click(function () {
-                   var url = "cargo_owner/" + pkCustomer;
-                    common.ajaxfuncURL(url,"DELETE",{},actCallBack,$(this));
+                    var url = "cargo_owner/" + pkCustomer;
+                    common.ajaxfuncURL(url, "DELETE", {}, actCallBack, $(this));
                 })
                 /*审核通过*/
                 $("#cargo_audit_sure").click(function () {
                     var url = "cargo_owner/cargo_audit/" + pkCustomer;
-                    common.ajaxfuncURL(url,"POST",{},actCallBack,$(this));
+                    common.ajaxfuncURL(url, "POST", {}, actCallBack, $(this));
                 })
                 /*审核驳回*/
                 $("#cargo_audit_reject").click(function () {
-                    var reason="附件上传不符合规范";
-                    var url = "cargo_owner/cargo_audit_reject/" + pkCustomer+'/'+reason;
-                    common.ajaxfuncURL(url,"POST",{},actCallBack,$(this));
+                    var reason = "附件上传不符合规范";
+                    var url = "cargo_owner/cargo_audit_reject/" + pkCustomer + '/' + reason;
+                    common.ajaxfuncURL(url, "POST", {}, actCallBack, $(this));
+                })
+
+                $(".img_horizontal,.img_vertical").click(function () {
+                    var className =$(this).prop("className");
+                    var source = $(this).attr("src");
+                    if (source != common.noImage && source != common.noHeadPortrait) {
+                        $("#img_show").attr("src", source);
+                        if(className=="img_horizontal") {
+                            $("#img_show").attr("class", "modal_img_horizontal");
+                        }else{
+                            $("#img_show").attr("class", "modal_img_vertical");
+                        }
+                        $("#ShowImage_Form").modal();
+                    }
                 })
             }
             /* 数据初始化 */
-            var initData = function (pkCustomer,checkStatus,lockedFlag) {
+            var initData = function (pkCustomer, checkStatus, lockedFlag) {
                 /*基础信息的vue对象*/
                 baseInfoVue = new Vue({
                     el: '#cargo_base_info',
@@ -68,11 +82,11 @@
                         resp: {}
                     },
                     mounted: function () {
-                        var _self = this ;
+                        var _self = this;
                         common.ajaxfuncURL("cargo_owner/cargeinfo/" + pkCustomer, "POST", {}, function (resp) {
                             var data = resp.data;
                             //data.customer_picture = (data.customer_picture?window.imgUrl+data.customer_picture:common.noHeadPortrait);
-                            data.photo = (data.photo?window.imgUrl+data.photo:common.noHeadPortrait);
+                            data.photo = (data.photo ? window.imgUrl + data.photo : common.noHeadPortrait);
                             data.lockedFlag = (lockedFlag == 'Y' ? true : false);
                             _self.resp = data;
                         })
@@ -85,14 +99,14 @@
                         corp: {}
                     },
                     mounted: function () {
-                        var _self = this ;
+                        var _self = this;
                         common.ajaxfuncURL("cargo_owner/cargecorpinfo/" + pkCustomer, "POST", {}, function (resp) {
                             var data = resp.data;
-                            data.photo = (data.photo?window.imgUrl+data.photo:common.noHeadPortrait);
-                            data.relation_license = (data.relation_license?window.imgUrl+data.relation_license:common.noImage);
-                            data.id_card_neg = (data.id_card_neg?window.imgUrl+data.id_card_neg:common.noImage);
-                            data.id_card_pos = (data.id_card_pos?window.imgUrl+data.id_card_pos:common.noImage);
-                            data.business_license = (data.business_license?window.imgUrl+data.business_license:common.noImage);
+                            data.photo = (data.photo ? window.imgUrl + data.photo : common.noHeadPortrait);
+                            data.relation_license = (data.relation_license ? window.imgUrl + data.relation_license : common.noImage);
+                            data.id_card_neg = (data.id_card_neg ? window.imgUrl + data.id_card_neg : common.noImage);
+                            data.id_card_pos = (data.id_card_pos ? window.imgUrl + data.id_card_pos : common.noImage);
+                            data.business_license = (data.business_license ? window.imgUrl + data.business_license : common.noImage);
                             data.checkStatus = (checkStatus == 2 ? false : true);
                             _self.corp = data;
 
@@ -102,9 +116,9 @@
             }
 
             var cargoDetail = {};
-            cargoDetail.load = function (pkCustomer,checkStatus,lockedFlag) {
+            cargoDetail.load = function (pkCustomer, checkStatus, lockedFlag) {
                 initDetailHtml();
-                initData(pkCustomer,checkStatus,lockedFlag);
+                initData(pkCustomer, checkStatus, lockedFlag);
                 bindEvent(pkCustomer);
             }
             return cargoDetail;

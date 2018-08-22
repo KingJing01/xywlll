@@ -8,19 +8,26 @@
             <div class="active tab-pane" id="cargo_base_info">
                 <div class="row">
                     <div class="col-md-2">
-                        <img  :src="resp.photo" class="head_portrait_img">
+                        <img :src="resp.photo" class="head_portrait_img">
                     </div>
                     <div class="col-md-10">
-                        <div class="info_div"><label>注册账号:</label> <span class="span_text">{{resp.cust_code}}</span></div>
+                        <div class="info_div"><label>注册账号:</label> <span class="span_text">{{resp.cust_code}}</span>
+                        </div>
                         <div class="info_div"><label>账号类型:</label><span class="span_text">货主</span></div>
-                        <div class="info_div"><label>账号昵称:</label><span class="span_text">{{resp.cust_name}}</span></div>
+                        <div class="info_div"><label>账号昵称:</label><span class="span_text">{{resp.cust_name}}</span>
+                        </div>
                         <!--  <div class="info_div"><span>公司名称:</span>{{comp_name}}</div>-->
                         <div class="info_div"><label>注册密码:</label><span class="span_text">*********</span></div>
-                        <div class="info_div"><label>注册日期:</label><span class="span_text">{{resp.create_time}}</span></div>
+                        <div class="info_div"><label>注册日期:</label><span class="span_text">{{resp.create_time}}</span>
+                        </div>
                         <div style="margin-top: 20px;margin-left: 20px">
-                            <button v-show="resp.lockedFlag == false" type="button" class="btn btn-primary" id="cargo_frozen">冻结</button>
-                            <button v-show="resp.lockedFlag == true" type="button" class="btn btn-primary" id="cargo_thaw">解冻</button>
-                           <!-- <button type="button" class="btn btn-primary" id="cargo_delete">删除</button>-->
+                            <button v-show="resp.lockedFlag == false" type="button" class="btn btn-primary"
+                                    id="cargo_frozen">冻结
+                            </button>
+                            <button v-show="resp.lockedFlag == true" type="button" class="btn btn-primary"
+                                    id="cargo_thaw">解冻
+                            </button>
+                            <!-- <button type="button" class="btn btn-primary" id="cargo_delete">删除</button>-->
                         </div>
                     </div>
                 </div>
@@ -29,8 +36,8 @@
                 <div class="comp_info_div">
                     <div class="info_div"><label>公司全称:</label><span class="span_text">{{corp.corp_name}}</span></div>
                     <div class="info_div"><label>公司地址:</label><span class="span_text">{{corp.address}}</span></div>
-                  <!--  <div class="info_div"><span>开户银行:</span>{{corp.bank}}</div>
-                    <div class="info_div"><span>银行账号:</span>{{corp.bank_account}}</div>-->
+                    <!--  <div class="info_div"><span>开户银行:</span>{{corp.bank}}</div>
+                      <div class="info_div"><span>银行账号:</span>{{corp.bank_account}}</div>-->
                     <div class="info_div"><label class="img_span">营业执照:</label>
                         <img class="img_vertical" :src="corp.business_license"></div>
                     <div class="info_div"><label class="img_span">认证授权函:</label>
@@ -54,6 +61,7 @@
         <i class="fa fa-chevron-left fa-x"></i></a>
     </div>
 </div>
+<!-- 消息弹框-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -63,6 +71,20 @@
             </div>
             <div class="modal-body" id="cargo_model">
                 <span id="cargo_message"></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<!-- 图片放大 -->
+<div class="modal fade" id="ShowImage_Form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <img id="img_show" src="">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭
