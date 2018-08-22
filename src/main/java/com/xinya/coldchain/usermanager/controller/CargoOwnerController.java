@@ -60,10 +60,14 @@ public class CargoOwnerController {
         int flag = 0;
         try {
             flag = cargoOwnerService.updatelockedFlag(id, status);
-            return new RespMessage(flag);
+            if(CommonUtil.respSuccess ==flag) {
+                return new RespMessage("操作成功",flag);
+            } else {
+                return new RespMessage("操作失败",flag);
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            return new RespMessage(CommonUtil.respFail);
+            return new RespMessage("操作失败",CommonUtil.respFail);
         }
     }
 

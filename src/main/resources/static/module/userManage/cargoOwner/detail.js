@@ -34,7 +34,12 @@
 
                 /*冻结*/
                 $("#cargo_frozen").click(function () {
-                   var url ="cargo_owner/" + pkCustomer + "/" + common.yesStatus;
+                    var url ="cargo_owner/" + pkCustomer + "/" + common.yesStatus;
+                    common.ajaxfuncURL(url,"PUT",{},actCallBack,$(this));
+                })
+                /*解冻*/
+                $("#cargo_thaw").click(function () {
+                    var url ="cargo_owner/" + pkCustomer + "/" + common.noStatus;
                     common.ajaxfuncURL(url,"PUT",{},actCallBack,$(this));
                 })
                 /*删除*/
@@ -60,13 +65,14 @@
                 baseInfoVue = new Vue({
                     el: '#cargo_base_info',
                     data: {
-                        resp: {'lockedFlag':lockedFlag}
+                        resp: {}
                     },
                     mounted: function () {
                         var _self = this ;
                         common.ajaxfuncURL("cargo_owner/cargeinfo/" + pkCustomer, "POST", {}, function (resp) {
                             var data = resp.data;
                             data.customer_picture = (data.customer_picture?window.imgUrl+data.customer_picture:common.noHeadPortrait);
+                            data.lockedFlag = (lockedFlag == 'Y' ? true : false);
                             _self.resp = data;
                         })
                     }

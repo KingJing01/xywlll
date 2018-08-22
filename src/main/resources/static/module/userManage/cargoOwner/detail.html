@@ -17,10 +17,10 @@
                         <!--  <div class="info_div"><span>公司名称:</span>{{comp_name}}</div>-->
                         <div class="info_div"><label>注册密码:</label><span class="span_text">*********</span></div>
                         <div class="info_div"><label>注册日期:</label><span class="span_text">{{resp.create_time}}</span></div>
-                        <div style="margin-top: 20px">
-                            <button v-show="resp.lockedFlag!='Y'?true:false"type="button" class="btn btn-primary" id="cargo_frozen">冻结</button>
-                            <button v-show="resp.lockedFlag=='Y'?true:false" type="button" class="btn btn-primary" id="cargo_thaw">解冻</button>
-                            <button type="button" class="btn btn-primary" id="cargo_delete">删除</button>
+                        <div style="margin-top: 20px;margin-left: 20px">
+                            <button v-show="resp.lockedFlag == false" type="button" class="btn btn-primary" id="cargo_frozen">冻结</button>
+                            <button v-show="resp.lockedFlag == true" type="button" class="btn btn-primary" id="cargo_thaw">解冻</button>
+                           <!-- <button type="button" class="btn btn-primary" id="cargo_delete">删除</button>-->
                         </div>
                     </div>
                 </div>
