@@ -49,7 +49,9 @@
                 })
                 /*审核驳回*/
                 $("#cargo_audit_reject").click(function () {
-
+                    var reason="附件上传不符合规范";
+                    var url = "cargo_owner/cargo_audit_reject/" + pkCustomer+'/'+reason;
+                    common.ajaxfuncURL(url,"POST",{},actCallBack,$(this));
                 })
             }
             /* 数据初始化 */

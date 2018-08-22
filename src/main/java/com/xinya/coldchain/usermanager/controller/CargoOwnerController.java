@@ -128,10 +128,10 @@ public class CargoOwnerController {
     public RespMessage cargoAuditReject(@PathVariable String pkCustomer,@PathVariable String reason) {
         try {
             cargoOwnerService.cargoAuditReject(pkCustomer,reason);
-            return new RespMessage("审核驳回成功",CommonUtil.respSuccess);
+            return new RespMessage("成功驳回",CommonUtil.respSuccess);
         } catch (Exception e) {
             e.printStackTrace();
-            return new RespMessage("审核驳回失败",CommonUtil.respFail);
+            return new RespMessage("驳回失败",CommonUtil.respFail);
         }
     }
 
