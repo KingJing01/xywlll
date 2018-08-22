@@ -51,6 +51,13 @@
                     title: '注册账号',
                     align: 'center'
                 }, {
+                    field: 'custType',
+                    title: '类型',
+                    align: 'center',
+                    formatter: function (value) {
+                        return "货主";
+                    }
+                },{
                     field: 'checkStatus',
                     title: '是否认证',
                     align: 'center',
