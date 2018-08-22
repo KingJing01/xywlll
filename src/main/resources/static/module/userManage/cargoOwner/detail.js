@@ -81,7 +81,7 @@
                 corpInfoVue = new Vue({
                     el: '#cargo_corp_info',
                     data: {
-                        corp: {'checkStatus':checkStatus}
+                        corp: {}
                     },
                     mounted: function () {
                         var _self = this ;
@@ -92,6 +92,7 @@
                             data.id_card_neg = (data.id_card_neg?window.imgUrl+data.id_card_neg:common.noImage);
                             data.id_card_pos = (data.id_card_pos?window.imgUrl+data.id_card_pos:common.noImage);
                             data.business_license = (data.business_license?window.imgUrl+data.business_license:common.noImage);
+                            data.checkStatus = (checkStatus == 2 ? false : true);
                             _self.corp = data;
 
                         })
