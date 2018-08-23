@@ -24,16 +24,16 @@
             <div v-show="!flag" id="fleet_corp_info" style="margin-left: 10%;">
                 <div class="comp_info_div">
                     <div class="info_div"><label>公司全称:</label><span class="span_text">{{corp.corp_name}}</span></div>
-                    <div class="info_div"><label>运输类型:</label><span class="span_text">{{corp.corp_name}}</span></div>
-                    <div class="info_div"><label>开户银行:</label>{{corp.bank}}</div>
-                    <div class="info_div"><label>银行账号:</label>{{corp.bank_account}}</div>
-                    <div class="info_div"><label>信用代码:</label>{{corp.bank_account}}</div>
+                    <div class="info_div"><label>运输类型:</label><span class="span_text">{{corp.trans_type}}</span></div>
+                    <div class="info_div"><label>开户银行:</label><span class="span_text">{{corp.bank}}</span></div>
+                    <div class="info_div"><label>银行账号:</label><span class="span_text">{{corp.bank_account}}</span></div>
+                   <!-- <div class="info_div"><label>信用代码:</label>{{corp.bank_account}}</div>-->
                     <div class="info_div"><label class="img_span">营业执照:</label>
                         <img class="img_vertical" :src="corp.business_license"></div>
-                    <div class="info_div"><label class="img_span">道路运输许可证:</label>
-                        <img class="img_vertical" :src="corp.business_license"></div>
-                    <div class="info_div"><label>申请人姓名:</label>{{corp.bank_account}}</div>
-                    <div class="info_div"><label>身份证号:</label>{{corp.bank_account}}</div>
+                    <div class="info_div"><label class="img_span">运输许可证:</label>
+                        <img class="img_vertical" :src="corp.road_trans_license"></div>
+                    <div class="info_div"><label>申请人姓名:</label><span class="span_text">{{corp.carr_name}}</span></div>
+                    <div class="info_div"><label>身份证号:</label><span class="span_text">{{corp.id}}</span></div>
                     <div class="info_div"><label class="img_span">身份证:</label>
                         <img class="img_horizontal" :src="corp.id_card_pos">
                     </div>
