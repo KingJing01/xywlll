@@ -49,7 +49,11 @@
 
     <update id="updateCustAndCorp" parameterType="java.util.Map">
         update ts_re_cust_corp set ts=#{ts},modify_user=#{modifyUser},modify_time=#{modifyTime},
-        check_status=#{checkStatus},check_man=#{modifyUser},check_time=#{modifyTime} where dr=0 and pk_customer=#{pkCustomer}
+        check_status=#{checkStatus},check_man=#{modifyUser},check_time=#{modifyTime}
+        <if test="memo != null and  memo !=''">
+            , memo = #{memo}
+        </if>
+        where dr=0 and pk_customer=#{pkCustomer}
     </update>
     <update id="updateCust" parameterType="java.util.Map">
         update ts_customer set ts=#{ts},modify_user=#{modifyUser},modify_time=#{modifyTime},

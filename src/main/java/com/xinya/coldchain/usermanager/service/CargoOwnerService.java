@@ -133,5 +133,6 @@ public class CargoOwnerService {
         param.put("modifyUser",modifyUser);
         param.put("checkStatus",CommonUtil.auditReject);
         cargoOwnerMapper.updateCust(param);
+        cargoOwnerMapper.updateCustAndCorp(param);
     }
 }
