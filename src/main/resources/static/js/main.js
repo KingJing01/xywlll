@@ -6,8 +6,8 @@
             "vendor/bootstrap-table/bootstrap-table",
             "vendor/metisMenu/metisMenu",
             "js/common",
+            "vendor/bootstrap-table/bootstrap-table-zh-CN.min",
             "js/admin",
-            "vendor/bootstrap-table/bootstrap-table-zh-CN.min"
         ],
         function () {
             $.ajaxSetup({

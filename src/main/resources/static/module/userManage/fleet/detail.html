@@ -1,0 +1,115 @@
+<div class="row audit_tab">
+    <div class="col-lg-11 nav-tabs-container">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#fleet_base_info" data-toggle="tab">基本信息</a></li>
+            <li><a href="#fleet_corp_info" data-toggle="tab">公司信息</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="active tab-pane" id="fleet_base_info">
+                <div class="row">
+                    <div class="col-md-2">
+                        <img :src="resp.photo" class="head_portrait_img">
+                    </div>
+                    <div class="col-md-10">
+                        <div class="info_div"><label>注册账号:</label> <span class="span_text">{{resp.cust_code}}</span>
+                        </div>
+                        <div class="info_div"><label>账号类型:</label><span class="span_text">货主</span></div>
+                        <div class="info_div"><label>账号昵称:</label><span class="span_text">{{resp.cust_name}}</span>
+                        </div>
+                        <!--  <div class="info_div"><span>公司名称:</span>{{comp_name}}</div>-->
+                        <div class="info_div"><label>注册密码:</label><span class="span_text">*********</span></div>
+                        <div class="info_div"><label>注册日期:</label><span class="span_text">{{resp.create_time}}</span>
+                        </div>
+                        <div style="margin-top: 20px;margin-left: 20px">
+                            <button v-show="resp.lockedFlag == false" type="button" class="btn btn-primary"
+                                    id="fleet_frozen">冻结
+                            </button>
+                            <button v-show="resp.lockedFlag == true" type="button" class="btn btn-primary"
+                                    id="fleet_thaw">解冻
+                            </button>
+                            <!-- <button type="button" class="btn btn-primary" id="fleet_delete">删除</button>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="fleet_corp_info">
+                <div class="comp_info_div">
+                    <div class="info_div"><label>公司全称:</label><span class="span_text">{{corp.corp_name}}</span></div>
+                    <div class="info_div"><label>公司地址:</label><span class="span_text">{{corp.address}}</span></div>
+                    <!--  <div class="info_div"><span>开户银行:</span>{{corp.bank}}</div>
+                      <div class="info_div"><span>银行账号:</span>{{corp.bank_account}}</div>-->
+                    <div class="info_div"><label class="img_span">营业执照:</label>
+                        <img class="img_vertical" :src="corp.business_license"></div>
+                    <div class="info_div"><label class="img_span">认证授权函:</label>
+                        <img class="img_vertical" :src="corp.relation_license"></div>
+                    <div class="info_div"><label class="img_span">个人照片:</label>
+                        <img class="img_vertical" :src="corp.photo"></div>
+                    <div class="info_div"><label class="img_span">身份证:</label>
+                        <img class="img_horizontal" :src="corp.id_card_pos">
+                        <img class="img_horizontal" :src="corp.id_card_neg">
+                    </div>
+                    <div class="action_div" v-show="corp.checkStatus">
+                        <button type="button" class="btn btn-primary" id="fleet_audit_sure">审核通过</button>
+                        <button type="button" class="btn btn-primary" id="fleet_audit_reject">驳回审核</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 回退按钮 -->
+    <div class="col-md-1"><a href="#" id="fleet_back" class="btn btn-default">
+        <i class="fa fa-chevron-left fa-x"></i></a>
+    </div>
+</div>
+<!-- 消息弹框-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content"style="width: 45%">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                </button>
+            </div>
+            <div class="modal-body" id="fleet_model" style="text-align: center">
+                <i class="fa fa-check-circle" style="font-size: 5rem;color: #0f97db;display: none" id="check_success" ></i><br>
+                <i class="fa fa-times-circle" style="font-size: 5rem;color: #c0a16b;display: none" id="check_error"></i><br>
+                <span id="fleet_message"></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<!-- 图片放大 -->
+<div class="modal fade" id="ShowImage_Form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <img id="img_show" src="">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<!-- 审核驳回原因 -->
+<div class="modal fade" id="model_audit_reject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>驳回原因:</label>
+                    <textarea class="form-control" id="textarea_audit_reject" rows="3"></textarea>
+                    <span class="audit_reject_span" style="color: red" hidden>*审核驳回时须填写详细原因</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btn_audit_reject" class="btn btn-primary">保存</button>
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
