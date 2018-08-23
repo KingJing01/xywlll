@@ -3,7 +3,8 @@
 <mapper namespace="com.xinya.coldchain.usermanager.mapper.DriverMapper">
 
     <resultMap id="driver" type="com.xinya.coldchain.usermanager.model.Driver">
-        <id column="row_num" property="rowNum" jdbcType="VARCHAR"></id>
+        <id  column="pk_driver" property="pkDriver" jdbcType="VARCHAR"></id>
+        <result column="row_num" property="rowNum" jdbcType="VARCHAR"></result>
         <result column="driver_code" property="driverCode" jdbcType="VARCHAR"></result>
         <result column="driver_name" property="driverName" jdbcType="VARCHAR"></result>
         <result column="check_status" property="checkStatus" jdbcType="VARCHAR"></result>
@@ -16,7 +17,6 @@
         <result column="photo" property="photo" jdbcType="VARCHAR"></result>
         <result column="dr" property="dr" jdbcType="VARCHAR"></result>
         <result column="ts" property="ts" jdbcType="VARCHAR"></result>
-        <result column="pk_driver" property="pkDriver" jdbcType="VARCHAR"></result>
         <result column="create_time" property="createTime" jdbcType="VARCHAR"></result>
     </resultMap>
 

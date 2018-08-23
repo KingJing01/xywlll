@@ -43,6 +43,13 @@
                     });
                 });
 
+                /* 司机审核*/
+                $("#driver_audit").on('click', function () {
+                    requirejs(["module/userManage/driver/list"], function (list) {
+                        list.load();
+                    });
+                });
+
             };
             return mainFunction;
         });

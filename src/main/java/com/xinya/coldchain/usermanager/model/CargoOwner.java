@@ -9,6 +9,33 @@ public class CargoOwner {
     private String custName;
     private String lockedFlag;
     private String customerPicture;
+    private String dr;
+    private String ts;
+
+    public String getCustomerPicture() {
+        return customerPicture;
+    }
+
+    public void setCustomerPicture(String customerPicture) {
+        this.customerPicture = customerPicture;
+    }
+
+    public String getDr() {
+        return dr;
+    }
+
+    public void setDr(String dr) {
+        this.dr = dr;
+    }
+
+    public String getTs() {
+        return ts;
+    }
+
+    public void setTs(String ts) {
+        this.ts = ts;
+    }
+
     public String getLockedFlag() {
         return lockedFlag;
     }
@@ -16,9 +43,11 @@ public class CargoOwner {
     public void setLockedFlag(String lockedFlag) {
         this.lockedFlag = lockedFlag;
     }
+
     public String getCustName() {
         return custName;
     }
+
     public void setCustName(String custName) {
         this.custName = custName;
     }

@@ -3,13 +3,15 @@
 <mapper namespace="com.xinya.coldchain.usermanager.mapper.CargoOwnerMapper">
 
     <resultMap id="CargoOwner" type="com.xinya.coldchain.usermanager.model.CargoOwner">
-        <id column="row_num" property="rowNum" jdbcType="VARCHAR"></id>
-        <result column="pk_customer" property="pkCustomer" jdbcType="VARCHAR"></result>
+        <id column="pk_customer" property="pkCustomer" jdbcType="VARCHAR"></id>
+        <result column="row_num" property="rowNum" jdbcType="VARCHAR"></result>
         <result column="cust_code" property="custCode" jdbcType="VARCHAR"></result>
         <result column="cust_name" property="custName" jdbcType="VARCHAR"></result>
         <result column="check_status" property="checkStatus" jdbcType="VARCHAR"></result>
         <result column="create_time" property="createTime" jdbcType="VARCHAR"></result>
         <result column="locked_flag" property="lockedFlag" jdbcType="VARCHAR"></result>
+        <result column="dr" property="dr" jdbcType="VARCHAR"></result>
+        <result column="ts" property="ts" jdbcType="VARCHAR"></result>
     </resultMap>
 
     <select id="getListData" resultMap="CargoOwner" parameterType="string">
