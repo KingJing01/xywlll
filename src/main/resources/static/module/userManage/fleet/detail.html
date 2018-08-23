@@ -9,7 +9,7 @@
                     <div class="info_div"><label>手机号码:</label><span class="span_text">{{resp.mobile}}</span></div>
                     <div class="info_div"><label>注册日期:</label><span class="span_text">{{resp.create_time}}</span></div>
                     <div class="info_div"><label class="img_span">身份证:</label> <img class="img_horizontal"
-                                                                                    :src="resp.id_card_post"></div>
+                                                                                    :src="resp.id_card_pos"></div>
                     <div style="margin-top: 20px;margin-left: 20px">
                         <button v-show="resp.lockedFlag == false" type="button" class="btn btn-primary"
                                 id="fleet_frozen">冻结
