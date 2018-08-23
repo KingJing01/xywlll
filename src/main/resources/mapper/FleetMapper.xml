@@ -61,6 +61,10 @@
         ORDER BY t2.ts desc
     </select>
 
+    <update id="updatelockedFlag" parameterType="string">
+      update ts_carrier set locked_flag= #{status} where pk_carrier=#{pkCarrier}
+    </update>
+
 
 
 </mapper>

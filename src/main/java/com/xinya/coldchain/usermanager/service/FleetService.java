@@ -34,4 +34,8 @@ public class FleetService {
         }
         return resultMap;
     }
+
+    public  int updatelockedFlag(String pkCarrier, String status){
+       return fleetMapper.updatelockedFlag(pkCarrier,status);
+    }
 }

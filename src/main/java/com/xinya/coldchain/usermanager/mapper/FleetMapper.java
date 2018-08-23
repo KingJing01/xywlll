@@ -13,4 +13,6 @@ public interface FleetMapper {
     Map<String,String> getFleetPersonInfo(@Param("pkCarrier") String pkCarrier);
 
     Map<String,String> getFleetEntInfo(@Param("pkCarrier") String pkCarrier);
+
+    int updatelockedFlag(@Param("pkCarrier")String pkCarrier,@Param("status") String status);
 }

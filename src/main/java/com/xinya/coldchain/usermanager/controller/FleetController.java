@@ -8,6 +8,7 @@ import com.xinya.coldchain.utils.CommonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
@@ -28,7 +29,7 @@ public class FleetController {
         return fleetService.getListData(pageSize,pageNumber,code);
     }
 
-    @RequestMapping(value = "fleetInfo/{pkCarrier}/{carrType}")
+    @RequestMapping(value = "fleetInfo/{pkCarrier}/{carrType}",method = RequestMethod.POST)
     public RespMessage getFleetInfo(@PathVariable String pkCarrier,@PathVariable int carrType) {
         Map<String, String> map = null;
         try {
@@ -39,4 +40,27 @@ public class FleetController {
             return new RespMessage(CommonUtil.respFail);
         }
     }
+
+    /**
+     *
+     * @param pkCarrier
+     * @param status
+     * @return
+     */
+    @RequestMapping(value = "{pkCarrier}/{status}" ,method = RequestMethod.PUT)
+    public RespMessage updatelockedFlag(@PathVariable String pkCarrier, @PathVariable String status) {
+        int flag = 0;
+        try {
+            flag = fleetService.updatelockedFlag(pkCarrier, status);
+            if(CommonUtil.respSuccess ==flag) {
+                return new RespMessage("操作成功",flag);
+            } else {
+                return new RespMessage("操作失败",flag);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new RespMessage("操作失败",CommonUtil.respFail);
+        }
+    }
+
 }
