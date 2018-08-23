@@ -5,7 +5,6 @@ import com.xinya.coldchain.tools.repsonse.RespMessage;
 import com.xinya.coldchain.usermanager.model.CargoOwner;
 import com.xinya.coldchain.usermanager.service.CargoOwnerService;
 import com.xinya.coldchain.utils.CommonUtil;
-import javafx.scene.chart.ValueAxis;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -128,8 +127,8 @@ public class CargoOwnerController {
      * @param reason  驳回原因
      * @return 返回
      */
-    @RequestMapping(value = "/cargo_audit_reject/{pkCustomer}/{reason}",method = RequestMethod.POST)
-    public RespMessage cargoAuditReject(@PathVariable String pkCustomer,@PathVariable String reason) {
+    @RequestMapping(value = "/cargo_audit_reject/{pkCustomer}",method = RequestMethod.POST)
+    public RespMessage cargoAuditReject(@PathVariable String pkCustomer,String reason) {
         try {
             cargoOwnerService.cargoAuditReject(pkCustomer,reason);
             return new RespMessage("成功驳回",CommonUtil.respSuccess);

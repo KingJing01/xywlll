@@ -11,9 +11,7 @@
             var initDetailHtml = function () {
                 $("#cargo_detail_div").html(htmlDetail);
                 $("#cargo_detail_div").fadeIn("slow");
-                $('#myModal').modal({
-                    show: false
-                });
+                $('#myModal').modal({ show: false});
             }
             /*查看界面的操作的回调*/
             var actCallBack = function (resp, but) {
@@ -55,11 +53,18 @@
                 })
                 /*审核驳回*/
                 $("#cargo_audit_reject").click(function () {
-                    var reason = "附件上传不符合规范";
-                    var url = "cargo_owner/cargo_audit_reject/" + pkCustomer + '/' + reason;
-                    common.ajaxfuncURL(url, "POST", {}, actCallBack, $(this));
+                    $('#model_audit_reject').modal('show');
+                });
+                $("#btn_audit_reject").click(function () {
+                    var reason = $("#textarea_audit_reject").val();
+                    if(!reason) {
+                        $(".audit_reject_span").show();
+                        return false;
+                    }
+                    $('#model_audit_reject').modal('hide');
+                    var url = "cargo_owner/cargo_audit_reject/" + pkCustomer;
+                    common.ajaxfuncURL(url, "POST", {reason:reason}, actCallBack, $(this));
                 })
-
                 $(".img_horizontal,.img_vertical").click(function () {
                     var className =$(this).prop("className");
                     var source = $(this).attr("src");
