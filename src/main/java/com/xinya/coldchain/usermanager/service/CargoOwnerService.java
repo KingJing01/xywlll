@@ -113,7 +113,7 @@ public class CargoOwnerService {
         String custCode = cargoOwnerMapper.getCargoInfoByCode(pkCustomer).get("cust_code");
         String pkUser = tmsUserMapper.getUserInfoByUsername(custCode).getPkUser();
         param.put("pkUser",pkUser);
-        String roleId = nwRoleMapper.getNwRoleInfo("车队经理").getPkRole();
+        String roleId = nwRoleMapper.getNwRoleInfo("货主经理").getPkRole();
         param.put("pkRole",roleId);
         nwUserRoleMapper.addPkUserRoleInfo(param);
     }
