@@ -4,8 +4,13 @@ import com.xinya.coldchain.usermanager.model.Fleet;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface FleetMapper {
 
     List<Fleet> getListData(@Param("carrCode") String code);
+
+    Map<String,String> getFleetPersonInfo(@Param("pkCarrier") String pkCarrier);
+
+    Map<String,String> getFleetEntInfo(@Param("pkCarrier") String pkCarrier);
 }

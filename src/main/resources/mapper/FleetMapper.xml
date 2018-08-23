@@ -38,7 +38,27 @@
         <if test="carrCode != null and  carrCode !=''">
             and carr_code like #{pattern}
         </if>
+
     </select>
+
+    <select id="getFleetPersonInfo" parameterType="string" resultType="java.util.Map">
+        SELECT pk_carrier, dr,ts, carr_code, carr_name,carr_type,priority,pk_corp,pk_customer, phone,mobile,
+        email,contact,contact_post,address,locked_flag,create_time,billing_rule,carrier_picture,
+        id_card_pos,id_card_neg,check_status, driving_licence  FROM  ts_carrier where dr= 0
+        <if test="pkCarrier !=null and pkCarrier!=''">
+            and pk_carrier =#{pkCarrier}
+        </if>
+    </select>
+
+    <select id="getFleetEntInfo" parameterType="string" resultType="java.util.Map">
+        SELECT pk_carrier, dr,ts, carr_code, carr_name,carr_type,priority,pk_corp,pk_customer, phone,mobile,
+        email,contact,contact_post,address,locked_flag,create_time,billing_rule,carrier_picture,
+        id_card_pos,id_card_neg,check_status, driving_licence  FROM  ts_carrier where dr= 0
+        <if test="pkCarrier !=null and pkCarrier!=''">
+            and pk_carrier =#{pkCarrier}
+        </if>
+    </select>
+
 
 
 </mapper>

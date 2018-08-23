@@ -40,4 +40,8 @@ public class CommonUtil {
     public static int audited = 2;
     //审核驳回
     public static int auditReject = 3;
+    /*车队类型*/
+    public static int fleetEmp = 2;
+
+    public static int fleetPerson = 3;
 }
