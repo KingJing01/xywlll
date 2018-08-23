@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xinya.coldchain.usermanager.mapper.FleetMapper">
+    <resultMap id="fleet" type="com.xinya.coldchain.usermanager.model.Fleet">
+        <id  column="pk_carrier" property="pkCarrier" jdbcType="VARCHAR"></id>
+        <result column="row_num" property="rowNum" jdbcType="VARCHAR"></result>
+        <result column="dr" property="dr" jdbcType="VARCHAR"></result>
+        <result column="ts" property="ts" jdbcType="VARCHAR"></result>
+        <result column="carr_code" property="carrCode" jdbcType="VARCHAR"></result>
+        <result column="carr_name" property="carrName" jdbcType="VARCHAR"></result>
+        <result column="carr_type" property="carrType" jdbcType="VARCHAR"></result>
+        <result column="priority" property="priority" jdbcType="VARCHAR"></result>
+        <result column="pk_corp" property="pkCorp" jdbcType="VARCHAR"></result>
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"></result>
+        <result column="pk_customer" property="pkCustomer" jdbcType="VARCHAR"></result>
+        <result column="id_card_neg" property="idCardNeg" jdbcType="VARCHAR"></result>
+        <result column="id_card_pos" property="idCardPos" jdbcType="VARCHAR"></result>
+        <result column="phone" property="phone" jdbcType="VARCHAR"></result>
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"></result>
+        <result column="email" property="email" jdbcType="VARCHAR"></result>
+        <result column="contact" property="contact" jdbcType="VARCHAR"></result>
+        <result column="contact_post" property="contactPost" jdbcType="VARCHAR"></result>
+        <result column="locked_flag" property="lockedFlag" jdbcType="VARCHAR"></result>
+        <result column="create_time" property="createTime" jdbcType="VARCHAR"></result>
+        <result column="billing_rule" property="billingRule" jdbcType="VARCHAR"></result>
+        <result column="carrier_picture" property="carrierPicture" jdbcType="VARCHAR"></result>
+        <result column="check_status" property="checkStatus" jdbcType="VARCHAR"></result>
+        <result column="driving_licence" property="drivingLicence" jdbcType="VARCHAR"></result>
+        <result column="billing_rule" property="billingRule" jdbcType="VARCHAR"></result>
+    </resultMap>
+
+    <select id="getListData" resultMap="fleet" parameterType="string">
+        <bind name="pattern" value="'%' + carrCode + '%'"/>
+        SELECT ROW_NUMBER () OVER ( ORDER BY modify_time DESC, create_time DESC ) AS row_num,
+        pk_carrier, dr,ts, carr_code, carr_name,carr_type,priority,pk_corp,pk_customer, phone,mobile,
+        email,contact,contact_post,address,locked_flag,create_time,billing_rule,carrier_picture,
+        id_card_pos,id_card_neg,check_status, driving_licence  FROM  ts_carrier where dr= 0
+        <if test="carrCode != null and  carrCode !=''">
+            and carr_code like #{pattern}
+        </if>
+    </select>
+
+
+</mapper>

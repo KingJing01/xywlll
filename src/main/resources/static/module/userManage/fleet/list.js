@@ -1,7 +1,7 @@
 /* 司机模块审核的 js  */
 (function () {
-    var HTML_PAGE = "module/userManage/driver/list.html";
-    var LIST_DATA = "driver/get_list_data";
+    var HTML_PAGE = "module/userManage/fleet/list.html";
+    var LIST_DATA = "fleet/get_list_data";
     define([
         'jquery',
         'text!' + HTML_PAGE
@@ -12,7 +12,7 @@
 
         //初始化bootstrap table
         var initTable = function () {
-            $('#driver_owner_table').bootstrapTable({
+            $('#fleet_owner_table').bootstrapTable({
                 url: LIST_DATA,
                 contentType: 'application/x-www-form-urlencoded',
                 method: 'post',
@@ -42,11 +42,11 @@
                     align: 'center',
                     valign: 'middle'
                 }, {
-                    field: 'driverName',
-                    title: '司机名',
+                    field: 'carrName',
+                    title: '车队名称',
                     align: 'center'
                 }, {
-                    field: 'driverCode',
+                    field: 'carrCode',
                     title: '注册账号',
                     align: 'center'
                 }, {
@@ -54,7 +54,7 @@
                     title: '类型',
                     align: 'center',
                     formatter: function (value) {
-                        return "司机";
+                        return "车队";
                     }
                 },{
                     field: 'checkStatus',
@@ -75,7 +75,7 @@
                         return value == 'Y' ? '冻结' : '正常';
                     }
                 }, {
-                    field: 'pkDriver',
+                    field: 'pkCarrier',
                     title: '操作',
                     align: 'center',
                     formatter: function (value, row) {
@@ -92,20 +92,20 @@
             });
         }
         var bindEvent = function () {
-            $("#driver_search").click(function () {
-                $("#driver_owner_table").bootstrapTable('refresh', {
-                    query: {code: $("#driver_text").val()}
+            $("#fleet_search").click(function () {
+                $("#fleet_owner_table").bootstrapTable('refresh', {
+                    query: {code: $("#fleet_text").val()}
                 });
-                $("#driver_text").val("");
+                $("#fleet_text").val("");
             })
         }
-        var driverObject = {};
-        driverObject.load = function () {
+        var fleetObject = {};
+        fleetObject.load = function () {
             initHtml();
             initTable();
             bindEvent();
         }
-        return driverObject;
+        return fleetObject;
 
     })
 

@@ -49,6 +49,12 @@
                         list.load();
                     });
                 });
+                /* 车队审核*/
+                $("#fleet_audit").on('click', function () {
+                    requirejs(["module/userManage/fleet/list"], function (list) {
+                        list.load();
+                    });
+                });
 
             };
             return mainFunction;
