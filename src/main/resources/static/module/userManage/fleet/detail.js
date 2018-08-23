@@ -99,7 +99,7 @@
                                 data.id_card_pos = (data.id_card_pos ? window.imgUrl + data.id_card_pos : common.noImage);
                                 _self.resp = data;
                             } else {
-                                data.id_card_post = (data.id_card_post ? window.imgUrl + data.id_card_post : common.noImage);
+                                data.id_card_pos = (data.id_card_pos ? window.imgUrl + data.id_card_pos : common.noImage);
                                 data.business_license = (data.business_license ? window.imgUrl + data.business_license : common.noImage);
                                 data.road_trans_license = (data.road_trans_license ? window.imgUrl + data.road_trans_license : common.noImage);
                                 _self.corp = data;
