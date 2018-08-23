@@ -50,11 +50,11 @@
                     title: '注册账号',
                     align: 'center'
                 }, {
-                    field: 'custType',
+                    field: 'carrType',
                     title: '类型',
                     align: 'center',
                     formatter: function (value) {
-                        return "车队";
+                        return value == 3 ? '个体' : '企业';
                     }
                 },{
                     field: 'checkStatus',
