@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xinya.coldchain.usermanager.mapper.DriverMapper">
+
+    <resultMap id="driver" type="com.xinya.coldchain.usermanager.model.Driver">
+        <id column="row_num" property="rowNum" jdbcType="VARCHAR"></id>
+        <result column="driver_code" property="driverCode" jdbcType="VARCHAR"></result>
+        <result column="driver_name" property="driverName" jdbcType="VARCHAR"></result>
+        <result column="check_status" property="checkStatus" jdbcType="VARCHAR"></result>
+        <result column="driver_status" property="driverStatus" jdbcType="VARCHAR"></result>
+        <result column="driver_picture" property="driverPicture" jdbcType="VARCHAR"></result>
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"></result>
+        <result column="driver_lic" property="driverLic" jdbcType="VARCHAR"></result>
+        <result column="id_card_neg" property="idCardNeg" jdbcType="VARCHAR"></result>
+        <result column="id_card_pos" property="idCardPos" jdbcType="VARCHAR"></result>
+        <result column="photo" property="photo" jdbcType="VARCHAR"></result>
+        <result column="dr" property="dr" jdbcType="VARCHAR"></result>
+        <result column="ts" property="ts" jdbcType="VARCHAR"></result>
+        <result column="pk_driver" property="pkDriver" jdbcType="VARCHAR"></result>
+        <result column="create_time" property="createTime" jdbcType="VARCHAR"></result>
+    </resultMap>
+
+    <select id="getListData" resultMap="driver" parameterType="string">
+        <bind name="pattern" value="'%' + driverCode + '%'"/>
+        SELECT ROW_NUMBER () OVER ( ORDER BY modify_time DESC, create_time DESC ) AS row_num,create_time,
+        pk_driver,driver_code,driver_name,check_status,driver_status,driver_score,dr,ts,
+        driver_picture,mobile,driver_lic,id_card_neg,id_card_pos,photo FROM ts_driver
+        WHERE dr = 0
+        <if test="driverCode != null and  driverCode !=''">
+            and driver_code like #{pattern}
+        </if>
+    </select>
+
+
+</mapper>
