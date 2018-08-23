@@ -10,9 +10,19 @@
             "vendor/bootstrap-table/bootstrap-table-zh-CN.min"
         ],
         function () {
+            $.ajaxSetup({
+                type: 'POST',
+                complete: function (xhr, status) {
+                    var sessionStatus = xhr.getResponseHeader('sessionstatus');
+                    if (sessionStatus == 'timeout') {
+                        window.location.href="loginout";
+                    }
+                }
+            });
+
             /*获取图片服务器地址*/
             var loadImgUrl = function () {
-                common.ajaxfuncURL("get_img_url",'POST',{},function (resp) {
+                common.ajaxfuncURL("get_img_url", 'POST', {}, function (resp) {
                     window.imgUrl = resp.paramValue;
                 });
             }

@@ -20,6 +20,7 @@
                 $('#myModal').modal('show');
                 $(but.siblings()).attr('disabled', "true");
                 but.attr('disabled', "true");
+                $("#textarea_audit_reject").val("");
 
             }
             /*事件绑定*/
@@ -63,7 +64,7 @@
                     }
                     $('#model_audit_reject').modal('hide');
                     var url = "cargo_owner/cargo_audit_reject/" + pkCustomer;
-                    common.ajaxfuncURL(url, "POST", {reason:reason}, actCallBack, $(this));
+                    common.ajaxfuncURL(url, "POST", {reason:reason}, actCallBack, $("#cargo_audit_reject"));
                 })
                 $(".img_horizontal,.img_vertical").click(function () {
                     var className =$(this).prop("className");
