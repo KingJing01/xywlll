@@ -429,15 +429,6 @@ table.dataTable thead .sorting:after {
     }
 }
 
-#div_table{
-    position: absolute;
-    top: 8%;
-    left: 15%;
-    background-color: #fcf8e3;
-}
-
-
-
 /* 电子看板 */
 #ekan_div{
     margin-left: 1%;
@@ -468,7 +459,7 @@ table.dataTable thead .sorting:after {
 
 .ekan_text{
     float: left;
-    margin-left: 40%;
+    margin-left: 42%;
 }
 
 .ekan_text p{
@@ -664,19 +655,9 @@ table.dataTable thead .sorting:after {
     width: 56rem;
     height: 40rem;
 }
-
-/* 非bootstrap 自适应 样式 */
-@media (min-width: 768px) {
-
-}
-
-/* 中等屏幕（桌面显示器，大于等于 992px） */
-@media (min-width: 992px) {
-
-
-}
-
-/* 大屏幕（大桌面显示器，大于等于 1200px） */
-@media (min-width: 1200px) {
-
+/*地图表格样式*/
+#div_table{
+    position: absolute;
+    top: 8%;
+    background-color: #fcf8e3;
 }
