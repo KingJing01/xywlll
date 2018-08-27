@@ -11,11 +11,11 @@
             var initDetailHtml = function () {
                 $("#cargo_detail_div").html(htmlDetail);
                 $("#cargo_detail_div").fadeIn("slow");
-                $('#myModal').modal({ show: false});
+                $('#myModal').modal({show: false});
             }
             /*查看界面的操作的回调*/
             var actCallBack = function (resp, but) {
-                resp.success=0?$("#check_error").show():$("#check_success").show();
+                resp.success = 0 ? $("#check_error").show() : $("#check_success").show();
                 $("#cargo_message").text(resp.message);
                 $('#myModal').modal('show');
                 $(but.siblings()).attr('disabled', "true");
@@ -58,22 +58,22 @@
                 });
                 $("#btn_audit_reject").click(function () {
                     var reason = $("#textarea_audit_reject").val();
-                    if(!reason) {
+                    if (!reason) {
                         $(".audit_reject_span").show();
                         return false;
                     }
                     $('#model_audit_reject').modal('hide');
                     var url = "cargo_owner/cargo_audit_reject/" + pkCustomer;
-                    common.ajaxfuncURL(url, "POST", {reason:reason}, actCallBack, $("#cargo_audit_reject"));
+                    common.ajaxfuncURL(url, "POST", {reason: reason}, actCallBack, $("#cargo_audit_reject"));
                 })
                 $(".img_horizontal,.img_vertical").click(function () {
-                    var className =$(this).prop("className");
+                    var className = $(this).prop("className");
                     var source = $(this).attr("src");
                     if (source != common.noImage && source != common.noHeadPortrait) {
                         $("#img_show").attr("src", source);
-                        if(className=="img_horizontal") {
+                        if (className == "img_horizontal") {
                             $("#img_show").attr("class", "modal_img_horizontal");
-                        }else{
+                        } else {
                             $("#img_show").attr("class", "modal_img_vertical");
                         }
                         $("#ShowImage_Form").modal();
@@ -108,14 +108,15 @@
                         var _self = this;
                         common.ajaxfuncURL("cargo_owner/cargecorpinfo/" + pkCustomer, "POST", {}, function (resp) {
                             var data = resp.data;
-                            data.photo = (data.photo ? window.imgUrl + data.photo : common.noHeadPortrait);
-                            data.relation_license = (data.relation_license ? window.imgUrl + data.relation_license : common.noImage);
-                            data.id_card_neg = (data.id_card_neg ? window.imgUrl + data.id_card_neg : common.noImage);
-                            data.id_card_pos = (data.id_card_pos ? window.imgUrl + data.id_card_pos : common.noImage);
-                            data.business_license = (data.business_license ? window.imgUrl + data.business_license : common.noImage);
-                            data.checkStatus = (checkStatus == 2 ? false : true);
-                            _self.corp = data;
-
+                            if (data) {
+                                data.photo = (data.photo ? window.imgUrl + data.photo : common.noHeadPortrait);
+                                data.relation_license = (data.relation_license ? window.imgUrl + data.relation_license : common.noImage);
+                                data.id_card_neg = (data.id_card_neg ? window.imgUrl + data.id_card_neg : common.noImage);
+                                data.id_card_pos = (data.id_card_pos ? window.imgUrl + data.id_card_pos : common.noImage);
+                                data.business_license = (data.business_license ? window.imgUrl + data.business_license : common.noImage);
+                                data.checkStatus = (checkStatus == 2 ? false : true);
+                                _self.corp = data;
+                            }
                         })
                     }
                 });
