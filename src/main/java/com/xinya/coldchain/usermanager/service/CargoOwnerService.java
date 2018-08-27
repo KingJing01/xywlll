@@ -94,27 +94,29 @@ public class CargoOwnerService {
         param.put("modifyTime", modifyTime);
         param.put("checkStatus", CommonUtil.audited);
         param.put("pkCustomer", pkCustomer);
-        cargoOwnerMapper.updateCorp(param);
-        cargoOwnerMapper.updateCust(param);
-        cargoOwnerMapper.updateCustAndCorp(param);
         NwCorp result = corpMapper.getCorpInfoByPkCustomer(pkCustomer);
         if(StringUtils.isEmpty(result.getAddress())){
             logger.error("货主绑定的企业信息的地址为空");
+            throw new Exception();
         }
         TsAddress tsAddress = tsAddressMapper.getTsAddressInfo(result.getAddress());
         if(StringUtils.isEmpty(tsAddress)){
             logger.error("货主审核 ts_address中不存在货主绑定的企业地址");
+            throw new Exception();
         }
         String pkAddress = tsAddress.getPkAddress();
         param.put("pkAddress", pkAddress);
-        //is_default 1
-        tsAddressMapper.updateTsCustAddrisDefault(pkAddress);
-        tsAddressMapper.addTsCustAddr(param);
         String custCode = cargoOwnerMapper.getCargoInfoByCode(pkCustomer).get("cust_code");
         String pkUser = tmsUserMapper.getUserInfoByUsername(custCode).getPkUser();
         param.put("pkUser",pkUser);
         String roleId = nwRoleMapper.getNwRoleInfo("货主经理").getPkRole();
         param.put("pkRole",roleId);
+        cargoOwnerMapper.updateCorp(param);
+        cargoOwnerMapper.updateCust(param);
+        cargoOwnerMapper.updateCustAndCorp(param);
+        //is_default 1
+        tsAddressMapper.updateTsCustAddrisDefault(pkAddress);
+        tsAddressMapper.addTsCustAddr(param);
         nwUserRoleMapper.addPkUserRoleInfo(param);
     }
 

@@ -15,4 +15,8 @@ public interface FleetMapper {
     Map<String,String> getFleetEntInfo(@Param("pkCarrier") String pkCarrier);
 
     int updatelockedFlag(@Param("pkCarrier")String pkCarrier,@Param("status") String status);
+
+    void updateCarrAndCorp(Map<String,Object> map);
+
+    void updateFleet(Map<String,Object> map);
 }

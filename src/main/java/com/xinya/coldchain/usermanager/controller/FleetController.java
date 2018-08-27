@@ -63,4 +63,36 @@ public class FleetController {
         }
     }
 
+    /**
+     * 审核驳回.
+     * @param pkCarrier 承运商pk
+     * @param reason  驳回原因
+     * @return 返回
+     */
+    @RequestMapping(value = "/fleet_reject/{pkCarrier}",method = RequestMethod.POST)
+    public RespMessage fleetInfoReject(@PathVariable String pkCarrier,String reason) {
+        try {
+            fleetService.fleetInfoReject(pkCarrier,reason);
+            return new RespMessage("成功驳回",CommonUtil.respSuccess);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new RespMessage("驳回失败",CommonUtil.respFail);
+        }
+    }
+    /**
+     * 审核成功
+     * @param pkCarrier 承运商pk
+     * @return 返回
+     */
+    @RequestMapping(value = "/fleet_audit/{pkCarrier}",method = RequestMethod.POST)
+    public RespMessage fleetInfoAuditSuccess(@PathVariable String pkCarrier) {
+        try {
+            fleetService.fleetInfoAuditSuccess(pkCarrier);
+            return new RespMessage("审核成功",CommonUtil.respSuccess);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new RespMessage("审核失败",CommonUtil.respFail);
+        }
+
+    }
 }
