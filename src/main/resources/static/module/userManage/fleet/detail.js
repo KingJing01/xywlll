@@ -81,7 +81,6 @@
             }
             /* 数据初始化 */
             var initData = function (pkCarrier, checkStatus, lockedFlag, carrType) {
-                console.log(carrType);
                 /* 信息的展示 */
                 infoVue = new Vue({
                     el: "#fleet_div",
