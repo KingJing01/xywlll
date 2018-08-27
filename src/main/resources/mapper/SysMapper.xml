@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xinya.coldchain.sys.mapper.SysMapper">
+
+
+    <select id="getDictonaryData" resultType="java.util.Map">
+       select t.display_name,t.value from nw_data_dict_b t
+       where t.pk_data_dict = (select t1.pk_data_dict from nw_data_dict t1 where t1.dr=0
+       <if test="dataTypeCode!=null and  dataTypeCode !=''">
+      and t1.datatype_code = #{dataTypeCode}
+       </if>
+       ) and t.dr=0
+    </select>
+
+
+</mapper>

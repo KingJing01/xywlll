@@ -38,6 +38,8 @@ spring:
       prefix: /module/
       suffix: .html
 
+
+
   #redis:
     #database: 0  #Redis数据库索引（默认为0）
     #host: localhost # redis服务器地址
@@ -58,6 +60,8 @@ pagehelper:
 
 logging:
   config: classpath:logback-springboot.xml
+
+
 
 
 

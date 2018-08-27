@@ -42,10 +42,10 @@ public class FleetController {
     }
 
     /**
-     *
-     * @param pkCarrier
-     * @param status
-     * @return
+     *  修改车队的状态为冻结还是解冻.
+     * @param pkCarrier  承运商id
+     * @param status 状态码
+     * @return 返回
      */
     @RequestMapping(value = "{pkCarrier}/{status}" ,method = RequestMethod.PUT)
     public RespMessage updatelockedFlag(@PathVariable String pkCarrier, @PathVariable String status) {
