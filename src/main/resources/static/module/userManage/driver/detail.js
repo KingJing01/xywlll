@@ -23,7 +23,7 @@
 
             }
             /*事件绑定*/
-            var bindEvent = function (pkCarrier) {
+            var bindEvent = function (pkDriver) {
                 /* 详情 返回 */
                 $("#driver_back").click(function () {
                     $("#driver_detail_div").hide();
@@ -33,22 +33,22 @@
 
                 /*冻结*/
                 $("#driver_frozen").click(function () {
-                    var url = "driver/" + pkCarrier + "/" + common.yesStatus;
+                    var url = "driver/" + pkDriver + "/" + common.yesStatus;
                     common.ajaxfuncURL(url, "PUT", {}, actCallBack, $(this));
                 })
                 /*解冻*/
                 $("#driver_thaw").click(function () {
-                    var url = "driver/" + pkCarrier + "/" + common.noStatus;
+                    var url = "driver/" + pkDriver + "/" + common.noStatus;
                     common.ajaxfuncURL(url, "PUT", {}, actCallBack, $(this));
                 })
                 /*删除*/
                 $("#driver_delete").click(function () {
-                    var url = "driver_owner/" + pkCarrier;
+                    var url = "driver_owner/" + pkDriver;
                     common.ajaxfuncURL(url, "DELETE", {}, actCallBack, $(this));
                 })
                 /*审核通过*/
                 $("#driver_audit_sure").click(function () {
-                    var url = "driver/driver_audit/" + pkCarrier;
+                    var url = "driver/driver_audit/" + pkDriver;
                     common.ajaxfuncURL(url, "POST", {}, actCallBack, $(this));
                 })
                 /*审核驳回*/
@@ -62,7 +62,7 @@
                         return false;
                     }
                     $('#model_audit_reject').modal('hide');
-                    var url = "driver/driver_reject/" + pkCarrier;
+                    var url = "driver/driver_reject/" + pkDriver;
                     common.ajaxfuncURL(url, "POST", {reason: reason}, actCallBack, $("#driver_audit_reject"));
                 })
                 $(".img_horizontal,.img_vertical").click(function () {
@@ -80,31 +80,25 @@
                 })
             }
             /* 数据初始化 */
-            var initData = function (pkCarrier, checkStatus, lockedFlag, carrType) {
+            var initData = function (pkDriver, checkStatus, lockedFlag) {
                 /* 信息的展示 */
                 infoVue = new Vue({
                     el: "#driver_div",
                     data: {
-                        flag: (carrType == 3 ? true : false),
                         resp: {},
                         corp: {}
                     },
                     mounted: function () {
                         var _self = this;
-                        common.ajaxfuncURL("driver/driverInfo/" + pkCarrier + "/" + carrType, "POST", {}, function (resp) {
+                        common.ajaxfuncURL("driver/driverInfo/" + pkDriver + "/" + carrType, "POST", {}, function (resp) {
                             var data = resp.data;
                             if (data) {
                                 data.lockedFlag = (lockedFlag == 'Y' ? true : false);
                                 data.checkStatus = (checkStatus == 2 ? false : true);
-                                if (carrType == 3) {
-                                    data.id_card_pos = (data.id_card_pos ? window.imgUrl + data.id_card_pos : common.noImage);
-                                    _self.resp = data;
-                                } else {
-                                    data.id_card_pos = (data.id_card_pos ? window.imgUrl + data.id_card_pos : common.noImage);
-                                    data.business_license = (data.business_license ? window.imgUrl + data.business_license : common.noImage);
-                                    data.road_trans_license = (data.road_trans_license ? window.imgUrl + data.road_trans_license : common.noImage);
-                                    _self.corp = data;
-                                }
+                                data.id_card_pos = (data.id_card_pos ? window.imgUrl + data.id_card_pos : common.noImage);
+                                data.business_license = (data.business_license ? window.imgUrl + data.business_license : common.noImage);
+                                data.road_trans_license = (data.road_trans_license ? window.imgUrl + data.road_trans_license : common.noImage);
+                                _self.corp = data;
                             }
                         })
                     }
@@ -112,10 +106,10 @@
             }
 
             var driverDetail = {};
-            driverDetail.load = function (pkCarrier, checkStatus, lockedFlag, carrType) {
+            driverDetail.load = function (pkDriver, checkStatus, lockedFlag) {
                 initDetailHtml();
-                initData(pkCarrier, checkStatus, lockedFlag, carrType);
-                bindEvent(pkCarrier);
+                initData(pkDriver, checkStatus, lockedFlag);
+                bindEvent(pkDriver);
             }
             return driverDetail;
         }

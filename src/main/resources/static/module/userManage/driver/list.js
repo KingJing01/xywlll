@@ -98,6 +98,32 @@
                 });
                 $("#driver_text").val("");
             })
+            /* 表格事件绑定*/
+            $("#fleet_owner_table").on('click', 'a', function () {
+                var id = $(this).parent("div").attr("id");
+                var url = null;
+                if ($(this).hasClass("freeze")) {
+                    /*冻结*/
+                    url ="driver/" + id + "/" + common.yesStatus;
+                    common.ajaxfuncURL(url,"PUT",{},eventCallBack);
+                } else if ($(this).hasClass("thaw")) {
+                    /*解冻*/
+                    url ="driver/" + id + "/" + common.noStatus;
+                    common.ajaxfuncURL(url,"PUT",{},eventCallBack);
+                } else if ($(this).hasClass("del")) {
+                    // 删除
+                    url = "driver/" + id;
+                    common.ajaxfuncURL(url,"DELETE",{},eventCallBack);
+                } else if($(this).hasClass("detail")) {
+                    var checkStatus = $(this).parent("div").attr("checkStatus");
+                    var lockedFlag = $(this).parent("div").attr("lockedFlag");
+                    //查看
+                    $("#driver_table_div").hide();
+                    requirejs(["module/userManage/driver/detail"], function (list) {
+                        list.load(id,checkStatus,lockedFlag);
+                    });
+                }
+            })
         }
         var driverObject = {};
         driverObject.load = function () {
