@@ -3,6 +3,16 @@ package com.xinya.coldchain.usermanager.model;
 public class Driver {
     private String pkDriver;
 
+    private String lockedFlag;
+
+    public String getLockedFlag() {
+        return lockedFlag;
+    }
+
+    public void setLockedFlag(String lockedFlag) {
+        this.lockedFlag = lockedFlag;
+    }
+
     public String getPkDriver() {
         return pkDriver;
     }

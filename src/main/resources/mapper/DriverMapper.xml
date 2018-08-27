@@ -21,12 +21,12 @@
     </resultMap>
 
     <select id="getListData" resultMap="driver" parameterType="java.util.Map">
-        <bind name="pattern" value="'%' + driverCode + '%'"/>
-        SELECT  ROW_NUMBER () OVER ( ORDER BY t1.modify_time DESC, t1.create_time DESC ) AS row_num,t.pk_carrier,
-        t1.ts,t1.dr,t1.driver_code, t1.driver_name, t1.mobile,t1.pk_carrier,t1.driver_lic,t1.create_time,t1.mobile,
-        t1.id_card_pos,t1.check_status FROM ts_re_driver_carr t
-        LEFT JOIN ts_driver t1 ON t.pk_driver = t1.pk_driver where t.dr=0 and t1.dr=0
+        SELECT  ROW_NUMBER () OVER ( ORDER BY t1.modify_time DESC, t1.create_time DESC ) AS row_num,t1.pk_driver,
+        t1.driver_code, t1.driver_name,t1.check_status,t1.driver_status,t1.driver_picture, t1.mobile,t1.driver_lic,
+        t1.id_card_pos,t1.id_card_neg,t1.photo,  t1.ts,t1.dr,t1.create_time,t1.locked_flag
+        FROM ts_re_driver_carr t  LEFT JOIN ts_driver t1 ON t.pk_driver = t1.pk_driver where t.dr=0 and t1.dr=0
         <if test="driverCode != null and  driverCode !=''">
+            <bind name="pattern" value="'%' + driverCode + '%'"/>
             and t1.driver_code like #{pattern}
         </if>
         <if test="pkDriver != null and  pkDriver !=''">

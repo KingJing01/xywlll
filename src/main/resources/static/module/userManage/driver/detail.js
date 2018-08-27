@@ -86,19 +86,17 @@
                     el: "#driver_div",
                     data: {
                         resp: {},
-                        corp: {}
                     },
                     mounted: function () {
                         var _self = this;
-                        common.ajaxfuncURL("driver/driverInfo/" + pkDriver + "/" + carrType, "POST", {}, function (resp) {
+                        common.ajaxfuncURL("driver/driverInfo/" + pkDriver, "POST", {}, function (resp) {
                             var data = resp.data;
                             if (data) {
-                                data.lockedFlag = (lockedFlag == 'Y' ? true : false);
+                               /* data.lockedFlag = (lockedFlag == 'Y' ? false : true);*/
                                 data.checkStatus = (checkStatus == 2 ? false : true);
-                                data.id_card_pos = (data.id_card_pos ? window.imgUrl + data.id_card_pos : common.noImage);
-                                data.business_license = (data.business_license ? window.imgUrl + data.business_license : common.noImage);
-                                data.road_trans_license = (data.road_trans_license ? window.imgUrl + data.road_trans_license : common.noImage);
-                                _self.corp = data;
+                                data.idCardPos = (data.idCardPos ? window.imgUrl + data.idCardPos : common.noImage);
+                                data.driverLic = (data.driverLic ? window.imgUrl + data.driverLic : common.noImage);
+                                _self.resp = data;
                             }
                         })
                     }

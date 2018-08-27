@@ -50,7 +50,7 @@
                     title: '注册账号',
                     align: 'center'
                 }, {
-                    field: 'custType',
+                    field: 'driverType',
                     title: '类型',
                     align: 'center',
                     formatter: function (value) {
@@ -99,7 +99,7 @@
                 $("#driver_text").val("");
             })
             /* 表格事件绑定*/
-            $("#fleet_owner_table").on('click', 'a', function () {
+            $("#driver_owner_table").on('click', 'a', function () {
                 var id = $(this).parent("div").attr("id");
                 var url = null;
                 if ($(this).hasClass("freeze")) {
@@ -116,11 +116,11 @@
                     common.ajaxfuncURL(url,"DELETE",{},eventCallBack);
                 } else if($(this).hasClass("detail")) {
                     var checkStatus = $(this).parent("div").attr("checkStatus");
-                    var lockedFlag = $(this).parent("div").attr("lockedFlag");
+                  /*  var lockedFlag = $(this).parent("div").attr("lockedFlag");*/
                     //查看
                     $("#driver_table_div").hide();
                     requirejs(["module/userManage/driver/detail"], function (list) {
-                        list.load(id,checkStatus,lockedFlag);
+                        list.load(id,checkStatus);
                     });
                 }
             })
