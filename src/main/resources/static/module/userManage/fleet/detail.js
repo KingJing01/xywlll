@@ -23,7 +23,7 @@
 
             }
             /*事件绑定*/
-            var bindEvent = function (pkCarrier) {
+            var bindEvent = function (pkCarrier,carrType) {
                 /* 详情 返回 */
                 $("#fleet_back").click(function () {
                     $("#fleet_detail_div").hide();
@@ -47,12 +47,12 @@
                     common.ajaxfuncURL(url, "DELETE", {}, actCallBack, $(this));
                 })
                 /*审核通过*/
-                $("#fleet_audit_sure").click(function () {
-                    var url = "fleet/fleet_audit/" + pkCarrier;
+                $("#fleet_audit_sure,#fleet_audit_person_sure").click(function () {
+                    var url = "fleet/fleet_audit/" + pkCarrier+"/"+carrType;
                     common.ajaxfuncURL(url, "POST", {}, actCallBack, $(this));
                 })
                 /*审核驳回*/
-                $("#fleet_audit_reject").click(function () {
+                $("#fleet_audit_reject,#fleet_audit_person_reject").click(function () {
                     $('#model_audit_reject').modal('show');
                 });
                 $("#btn_audit_reject").click(function () {
@@ -63,7 +63,7 @@
                     }
                     $('#model_audit_reject').modal('hide');
                     var url = "fleet/fleet_reject/" + pkCarrier;
-                    common.ajaxfuncURL(url, "POST", {reason: reason}, actCallBack, $("#fleet_audit_reject"));
+                    common.ajaxfuncURL(url, "POST", {reason: reason}, actCallBack, $("#fleet_audit_reject,#fleet_audit_person_reject"));
                 })
                 $(".img_horizontal,.img_vertical").click(function () {
                     var className = $(this).prop("className");
@@ -98,6 +98,7 @@
                                 data.checkStatus = (checkStatus == 2 ? false : true);
                                 if (carrType == 3) {
                                     data.id_card_pos = (data.id_card_pos ? window.imgUrl + data.id_card_pos : common.noImage);
+                                    data.driving_licence = (data.driving_licence ? window.imgUrl + data.driving_licence : common.noImage);
                                     _self.resp = data;
                                 } else {
                                     data.id_card_pos = (data.id_card_pos ? window.imgUrl + data.id_card_pos : common.noImage);
@@ -115,7 +116,7 @@
             fleetDetail.load = function (pkCarrier, checkStatus, lockedFlag, carrType) {
                 initDetailHtml();
                 initData(pkCarrier, checkStatus, lockedFlag, carrType);
-                bindEvent(pkCarrier);
+                bindEvent(pkCarrier,carrType);
             }
             return fleetDetail;
         }

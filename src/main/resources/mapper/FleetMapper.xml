@@ -71,6 +71,9 @@
         <if test="memo != null and  memo !=''">
             , memo = #{memo}
         </if>
+        <if test="inviteCode != null and  inviteCode !=''">
+            , invite_code = #{inviteCode}
+        </if>
         where dr=0 and pk_carrier=#{pkCarrier}
     </update>
 
@@ -84,9 +87,10 @@
 
     </update>
 
-
-
-
+    <select id="getUserInfoByCarrPk" parameterType="string" resultType="java.util.Map">
+  select t2.pk_user from ts_carrier t1 LEFT JOIN nw_user t2 on t1.carr_code = t2.user_code
+  where t1.dr=0 and t2.dr=0  and t1.pk_carrier=#{pkCarrier}
+    </select>
 
 
 </mapper>

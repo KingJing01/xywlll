@@ -19,4 +19,6 @@ public interface FleetMapper {
     void updateCarrAndCorp(Map<String,Object> map);
 
     void updateFleet(Map<String,Object> map);
+
+    Map<String,String> getUserInfoByCarrPk(@Param("pkCarrier") String pkCarrier);
 }

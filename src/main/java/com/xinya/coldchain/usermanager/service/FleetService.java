@@ -2,12 +2,16 @@ package com.xinya.coldchain.usermanager.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.xinya.coldchain.sys.mapper.NwRoleMapper;
+import com.xinya.coldchain.sys.mapper.NwUserRoleMapper;
 import com.xinya.coldchain.sys.mapper.SysMapper;
+import com.xinya.coldchain.sys.mapper.TmsUserMapper;
 import com.xinya.coldchain.sys.model.TmsUser;
 import com.xinya.coldchain.usermanager.mapper.FleetMapper;
 import com.xinya.coldchain.usermanager.model.Fleet;
 import com.xinya.coldchain.utils.CommonUtil;
 import com.xinya.coldchain.utils.DateUtils;
+import com.xinya.coldchain.utils.RandomCodeUtil;
 import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +35,13 @@ public class FleetService {
     @Autowired
     private SysMapper sysMapper;
 
+    @Autowired
+    private NwRoleMapper nwRoleMapper;
+
+    @Autowired
+    private NwUserRoleMapper nwUserRoleMapper;
+
+
     public PageInfo<Fleet> getListData(int pageSize, int pageNum, String code) {
         PageHelper.startPage(pageNum, pageSize);
         List<Fleet> list = fleetMapper.getListData(code);
@@ -44,6 +55,9 @@ public class FleetService {
             resultMap = fleetMapper.getFleetPersonInfo(pkCarrier);
         } else {
             resultMap = fleetMapper.getFleetEntInfo(pkCarrier);
+            if (StringUtils.isEmpty(resultMap)) {
+                return null;
+            }
             StringBuffer buffer = new StringBuffer();
             if (!StringUtils.isEmpty(resultMap.get("trans_type"))) {
                 String transType = resultMap.get("trans_type");
@@ -89,14 +103,12 @@ public class FleetService {
     }
 
     /**
-     * 审核通过 更新 ts_re_carr_corp ts_carrier  nw_corp 的ts check_status modify_time
-     * ts_address  公司地址
-     * ts_cust_addr  新增关联关系  is_default 1
+     * 审核通过
      * 新增角色 nw_user_role
-     *
-     * @param pkCarrier
+     * @param pkCarrier 承运商pk
+     * @param carrType 承运商类型  2 企业  3 个人
      */
-    public void fleetInfoAuditSuccess(String pkCarrier) throws Exception {
+    public void fleetInfoAuditSuccess(String pkCarrier, int carrType) throws Exception {
         TmsUser user = (TmsUser) SecurityUtils.getSubject().getPrincipal();
         Date date = new Date();
         String ts = DateUtils.dateToString(date, DateUtils.DATE_FORMAT_YYYYMMDDHHMMSSSSS);
@@ -108,6 +120,21 @@ public class FleetService {
         param.put("modifyTime", modifyTime);
         param.put("checkStatus", CommonUtil.audited);
         param.put("pkCarrier", pkCarrier);
+        /*  6位唯一的邀请码 */
+        String inviteCode = RandomCodeUtil.generaRandom(6);
+        param.put("inviteCode",inviteCode);
+        String pkUser=fleetMapper.getUserInfoByCarrPk(pkCarrier).get("pk_user");
+        param.put("pkUser",pkUser);
+        String roleId = nwRoleMapper.getNwRoleInfo("车队经理").getPkRole();
+        param.put("pkRole",roleId);
+        //个人车队审核
+        if (CommonUtil.fleetPerson == carrType) {
+            fleetMapper.updateFleet(param);
+            nwUserRoleMapper.addPkUserRoleInfo(param);
+        } else {
+
+
+        }
         /*NwCorp result = corpMapper.getCorpInfoByPkCustomer(pkCustomer);
         if (StringUtils.isEmpty(result.getAddress())) {
             logger.error("货主绑定的企业信息的地址为空");

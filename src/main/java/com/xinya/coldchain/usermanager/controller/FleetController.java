@@ -81,13 +81,18 @@ public class FleetController {
     }
     /**
      * 审核成功
+     * 个人车队，直接更新ts_carrier的状态
+     * 企业车队  ts_re_carr_corp 承运商和公司关系表
+     *          当公司表create_user就是企业承运商nw_user的pk_user 说明是第一关系  进行正常审核的流程
+     *          当前审核的承运商nw_user的pk_user不等于公司表create_user 判断公司审核状态 公司已审核，进行正常的审核流程，赋予角色
+     *          公司未审核，当前审核直接驳回，进行提示
      * @param pkCarrier 承运商pk
      * @return 返回
      */
-    @RequestMapping(value = "/fleet_audit/{pkCarrier}",method = RequestMethod.POST)
-    public RespMessage fleetInfoAuditSuccess(@PathVariable String pkCarrier) {
+    @RequestMapping(value = "/fleet_audit/{pkCarrier}/{carrType}",method = RequestMethod.POST)
+    public RespMessage fleetInfoAuditSuccess(@PathVariable String pkCarrier,@PathVariable int carrType) {
         try {
-            fleetService.fleetInfoAuditSuccess(pkCarrier);
+            fleetService.fleetInfoAuditSuccess(pkCarrier,carrType);
             return new RespMessage("审核成功",CommonUtil.respSuccess);
         } catch (Exception e) {
             e.printStackTrace();
