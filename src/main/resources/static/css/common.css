@@ -646,14 +646,14 @@ table.dataTable thead .sorting:after {
 }
 /* 模态框图片垂直*/
 .modal_img_vertical{
-    width: 50rem;
-    height: 60rem;
-    margin-left: 8%;
+    width: 80%;
+    margin-left: 10%;
 }
 /* 模态框图片水平*/
 .modal_img_horizontal{
-    width: 56rem;
-    height: 40rem;
+    width: 80%;
+    margin-left: 10%;
+    height: 35rem;
 }
 /*地图表格样式*/
 #div_table{
