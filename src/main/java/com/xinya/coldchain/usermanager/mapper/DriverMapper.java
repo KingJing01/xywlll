@@ -13,4 +13,6 @@ public interface DriverMapper {
     int updateDriver(Map<String,Object> map);
 
     int updateDriverAndCarr(Map<String,Object> map);
+
+    List<Map<String,Object>> getCarrierCheckStatus(@Param("pkDriver") String pkDriver);
 }

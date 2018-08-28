@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.apache.shiro.SecurityUtils;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -58,5 +59,26 @@ public class DriverService {
         param.put("checkStatus",CommonUtil.auditReject);
         driverMapper.updateDriver(param);
         driverMapper.updateDriverAndCarr(param);
+    }
+
+    public List<Map<String,Object>> getCarrierCheckStatus(String pkDriver) {
+        return driverMapper.getCarrierCheckStatus(pkDriver);
+    }
+
+    public void driverAuditSuccess(String pkDriver) {
+        TmsUser user = (TmsUser) SecurityUtils.getSubject().getPrincipal();
+        Date date = new Date();
+        String ts = DateUtils.dateToString(date, DateUtils.DATE_FORMAT_YYYYMMDDHHMMSSSSS);
+        String modifyTime = DateUtils.dateToString(date, DateUtils.DEFAULT_DATE_FORMAT);
+        String modifyUser = user.getPkUser();
+        Map<String, Object> param = new HashMap<>();
+        param.put("ts", ts);
+        param.put("modifyUser", modifyUser);
+        param.put("modifyTime", modifyTime);
+        param.put("checkStatus", CommonUtil.audited);
+        param.put("pkDriver", pkDriver);
+        driverMapper.updateDriver(param);
+        driverMapper.updateDriverAndCarr(param);
+
     }
 }
