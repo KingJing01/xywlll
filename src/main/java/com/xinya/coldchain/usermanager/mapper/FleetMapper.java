@@ -21,4 +21,6 @@ public interface FleetMapper {
     void updateFleet(Map<String,Object> map);
 
     Map<String,String> getUserInfoByCarrPk(@Param("pkCarrier") String pkCarrier);
+
+    int checkInviteCode(@Param("inviteCode") String inviteCode);
 }

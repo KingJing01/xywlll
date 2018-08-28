@@ -92,5 +92,9 @@
   where t1.dr=0 and t2.dr=0  and t1.pk_carrier=#{pkCarrier}
     </select>
 
+    <select id="checkInviteCode" parameterType="string" resultType="java.lang.Integer">
+        select count(0) from ts_carrier where invite_code = #{inviteCode}
+    </select>
+
 
 </mapper>

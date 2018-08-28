@@ -121,7 +121,12 @@ public class FleetService {
         param.put("checkStatus", CommonUtil.audited);
         param.put("pkCarrier", pkCarrier);
         /*  6位唯一的邀请码 */
-        String inviteCode = RandomCodeUtil.generaRandom(6);
+        String inviteCode = null;
+        int index = 1;
+        do{
+          inviteCode = RandomCodeUtil.generaRandom(6);
+          index =  fleetMapper.checkInviteCode(inviteCode);
+        }while(index == 0);
         param.put("inviteCode",inviteCode);
         String pkUser=fleetMapper.getUserInfoByCarrPk(pkCarrier).get("pk_user");
         param.put("pkUser",pkUser);
