@@ -158,7 +158,7 @@ public class FleetService {
                     nwUserRoleMapper.addPkUserRoleInfo(param);
                 } else {
                     result.put("flag",CommonUtil.respFail);
-                    result.put("message","公司未经审核,车队无法审核");
+                    result.put("message","公司未通过审核,车队无法审核");
                 }
             }
         }

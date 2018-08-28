@@ -15,7 +15,7 @@
             }
             /*查看界面的操作的回调*/
             var actCallBack = function (resp, but) {
-                resp.success = 0 ? $("#check_error").show() : $("#check_success").show();
+                resp.success == 0 ? $("#check_error").show() : $("#check_success").show();
                 $("#cargo_message").text(resp.message);
                 $('#myModal').modal('show');
                 $(but.siblings()).attr('disabled', "true");
