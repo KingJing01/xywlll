@@ -65,6 +65,12 @@
       update ts_carrier set locked_flag= #{status} where pk_carrier=#{pkCarrier}
     </update>
 
+    <update id="updateCorp" parameterType="java.util.Map">
+     update nw_corp set ts=#{ts},modify_user=#{modifyUser},modify_time=#{modifyTime},
+        check_status=#{checkStatus} where dr=0 and  pk_corp = (select t.pk_corp from ts_re_carr_corp t
+         where t.pk_carrier=#{pkCarrier} and t.dr=0)
+    </update>
+
     <update id="updateFleet" parameterType="java.util.Map">
         update ts_carrier set ts=#{ts},modify_user=#{modifyUser},modify_time=#{modifyTime},
         check_status=#{checkStatus}

@@ -10,17 +10,19 @@ public interface FleetMapper {
 
     List<Fleet> getListData(@Param("carrCode") String code);
 
-    Map<String,String> getFleetPersonInfo(@Param("pkCarrier") String pkCarrier);
+    Map<String, String> getFleetPersonInfo(@Param("pkCarrier") String pkCarrier);
 
-    Map<String,String> getFleetEntInfo(@Param("pkCarrier") String pkCarrier);
+    Map<String, String> getFleetEntInfo(@Param("pkCarrier") String pkCarrier);
 
-    int updatelockedFlag(@Param("pkCarrier")String pkCarrier,@Param("status") String status);
+    int updatelockedFlag(@Param("pkCarrier") String pkCarrier, @Param("status") String status);
 
-    void updateCarrAndCorp(Map<String,Object> map);
+    int updateCarrAndCorp(Map<String, Object> map);
 
-    void updateFleet(Map<String,Object> map);
+    int updateFleet(Map<String, Object> map);
 
-    Map<String,String> getUserInfoByCarrPk(@Param("pkCarrier") String pkCarrier);
+    int updateCorp(Map<String, Object> map);
+
+    Map<String, String> getUserInfoByCarrPk(@Param("pkCarrier") String pkCarrier);
 
     int checkInviteCode(@Param("inviteCode") String inviteCode);
 }

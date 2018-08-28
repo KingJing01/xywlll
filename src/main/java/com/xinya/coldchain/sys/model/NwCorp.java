@@ -10,6 +10,27 @@ public class NwCorp {
     private String bank;
     private String bankAccount;
     private String url;
+    private String createUser;
+    private int checkStatus;
+
+    public int getCheckStatus() {
+        return checkStatus;
+    }
+
+    public void setCheckStatus(int checkStatus) {
+        this.checkStatus = checkStatus;
+    }
+
+
+
+    public String getCreateUser() {
+        return createUser;
+    }
+
+    public void setCreateUser(String createUser) {
+        this.createUser = createUser;
+    }
+
     public String getPkCorp() {
         return pkCorp;
     }

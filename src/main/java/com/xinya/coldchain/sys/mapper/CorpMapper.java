@@ -5,5 +5,7 @@ import org.apache.ibatis.annotations.Param;
 
 public interface CorpMapper {
 
-   NwCorp getCorpInfoByPkCustomer(@Param("pk") String pkCustomer);
+   NwCorp getCorpInfoByPkCustomer(@Param("pkCustomer") String pkCustomer);
+
+   NwCorp getCorpInfoByPkCarrier(@Param("pkCarrier") String pkCarrier);
 }

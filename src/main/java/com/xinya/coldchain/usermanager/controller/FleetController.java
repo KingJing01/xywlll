@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -91,9 +92,10 @@ public class FleetController {
      */
     @RequestMapping(value = "/fleet_audit/{pkCarrier}/{carrType}",method = RequestMethod.POST)
     public RespMessage fleetInfoAuditSuccess(@PathVariable String pkCarrier,@PathVariable int carrType) {
+        Map<String,Object> result = new HashMap<String, Object>();
         try {
-            fleetService.fleetInfoAuditSuccess(pkCarrier,carrType);
-            return new RespMessage("审核成功",CommonUtil.respSuccess);
+            result = fleetService.fleetInfoAuditSuccess(pkCarrier,carrType);
+            return new RespMessage(result.get("message").toString(),(int)result.get("flag"));
         } catch (Exception e) {
             e.printStackTrace();
             return new RespMessage("审核失败",CommonUtil.respFail);

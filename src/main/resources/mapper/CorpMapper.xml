@@ -11,13 +11,22 @@
         <result column="bank" property="bank" jdbcType="VARCHAR"></result>
         <result column="bank_account" property="bankAccount" jdbcType="VARCHAR"></result>
         <result column="url" property="url" jdbcType="VARCHAR"></result>
+        <result column="create_user" property="createUser" jdbcType="VARCHAR"></result>
+        <result column="check_status" property="checkStatus" jdbcType="VARCHAR"></result>
     </resultMap>
 
     <select id="getCorpInfoByPkCustomer" resultMap="NwCorp" parameterType="string" >
-        select t.pk_corp,t.ts,t.dr,t.corp_code,t.corp_name,t.address,t.bank,t.bank_account,t.url
-        from nw_corp t left join ts_customer t1 on t.pk_corp = t1.pk_corp where t1.pk_customer=#{pk}
+        select t.pk_corp,t.ts,t.dr,t.corp_code,t.corp_name,t.address,t.bank,t.bank_account,t.url,t.check_status
+        from nw_corp t left join ts_customer t1 on t.pk_corp = t1.pk_corp where t1.pk_customer=#{pkCustomer}
         and t1.dr=0
     </select>
+
+    <select id="getCorpInfoByPkCarrier" parameterType="string" resultMap="NwCorp">
+        select t.pk_corp,t.ts,t.dr,t.corp_code,t.corp_name,t.address,t.bank,t.bank_account,t.url,t.create_user,t.check_status
+        from nw_corp t left join ts_re_carr_corp t1 on t.pk_corp = t1.pk_corp where t1.pk_carrier=#{pkCarrier}
+        and t1.dr=0
+    </select>
+
 
 
 </mapper>

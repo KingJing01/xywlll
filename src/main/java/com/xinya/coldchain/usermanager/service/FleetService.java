@@ -2,10 +2,8 @@ package com.xinya.coldchain.usermanager.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.xinya.coldchain.sys.mapper.NwRoleMapper;
-import com.xinya.coldchain.sys.mapper.NwUserRoleMapper;
-import com.xinya.coldchain.sys.mapper.SysMapper;
-import com.xinya.coldchain.sys.mapper.TmsUserMapper;
+import com.xinya.coldchain.sys.mapper.*;
+import com.xinya.coldchain.sys.model.NwCorp;
 import com.xinya.coldchain.sys.model.TmsUser;
 import com.xinya.coldchain.usermanager.mapper.FleetMapper;
 import com.xinya.coldchain.usermanager.model.Fleet;
@@ -40,6 +38,9 @@ public class FleetService {
 
     @Autowired
     private NwUserRoleMapper nwUserRoleMapper;
+
+    @Autowired
+    private CorpMapper corpMapper;
 
 
     public PageInfo<Fleet> getListData(int pageSize, int pageNum, String code) {
@@ -105,10 +106,14 @@ public class FleetService {
     /**
      * 审核通过
      * 新增角色 nw_user_role
+     *
      * @param pkCarrier 承运商pk
-     * @param carrType 承运商类型  2 企业  3 个人
+     * @param carrType  承运商类型  2 企业  3 个人
      */
-    public void fleetInfoAuditSuccess(String pkCarrier, int carrType) throws Exception {
+    public Map<String,Object> fleetInfoAuditSuccess(String pkCarrier, int carrType) throws Exception {
+        Map<String,Object> result  = new HashMap<String, Object>();
+        result.put("flag",CommonUtil.respSuccess);
+        result.put("message","审核通过");
         TmsUser user = (TmsUser) SecurityUtils.getSubject().getPrincipal();
         Date date = new Date();
         String ts = DateUtils.dateToString(date, DateUtils.DATE_FORMAT_YYYYMMDDHHMMSSSSS);
@@ -124,47 +129,40 @@ public class FleetService {
         String inviteCode = null;
         int index = -1;
         /*数据库唯一性判断 */
-        do{
-          inviteCode = RandomCodeUtil.generaRandom(6);
-          index =  fleetMapper.checkInviteCode(inviteCode);
-        }while(index > 0);
-        param.put("inviteCode",inviteCode);
-        String pkUser=fleetMapper.getUserInfoByCarrPk(pkCarrier).get("pk_user");
-        param.put("pkUser",pkUser);
+        do {
+            inviteCode = RandomCodeUtil.generaRandom(6);
+            index = fleetMapper.checkInviteCode(inviteCode);
+        } while (index > 0);
+        param.put("inviteCode", inviteCode);
+        String pkUser = fleetMapper.getUserInfoByCarrPk(pkCarrier).get("pk_user");
+        param.put("pkUser", pkUser);
         String roleId = nwRoleMapper.getNwRoleInfo("车队经理").getPkRole();
-        param.put("pkRole",roleId);
+        param.put("pkRole", roleId);
         //个人车队审核
         if (CommonUtil.fleetPerson == carrType) {
             fleetMapper.updateFleet(param);
             nwUserRoleMapper.addPkUserRoleInfo(param);
         } else {
-
-
+            NwCorp nwCorp = corpMapper.getCorpInfoByPkCarrier(pkCarrier);
+            String corpCreteuser = nwCorp.getCreateUser();
+            /* 等于表示 承运商和公司是同一个创建人 第一关系*/
+            if (corpCreteuser.equals(pkUser)) {
+                fleetMapper.updateCorp(param);
+                fleetMapper.updateFleet(param);
+                fleetMapper.updateCarrAndCorp(param);
+                nwUserRoleMapper.addPkUserRoleInfo(param);
+            } else {
+                if (CommonUtil.audited == nwCorp.getCheckStatus()) {
+                    fleetMapper.updateFleet(param);
+                    fleetMapper.updateCarrAndCorp(param);
+                    nwUserRoleMapper.addPkUserRoleInfo(param);
+                } else {
+                    result.put("flag",CommonUtil.respFail);
+                    result.put("message","公司信息未审核成功，车队信息无法审核");
+                }
+            }
         }
-        /*NwCorp result = corpMapper.getCorpInfoByPkCustomer(pkCustomer);
-        if (StringUtils.isEmpty(result.getAddress())) {
-            logger.error("货主绑定的企业信息的地址为空");
-            throw new Exception();
-        }
-        TsAddress tsAddress = tsAddressMapper.getTsAddressInfo(result.getAddress());
-        if (StringUtils.isEmpty(tsAddress)) {
-            logger.error("货主审核 ts_address中不存在货主绑定的企业地址");
-            throw new Exception();
-        }
-        String pkAddress = tsAddress.getPkAddress();
-        param.put("pkAddress", pkAddress);
-        String custCode = cargoOwnerMapper.getCargoInfoByCode(pkCustomer).get("cust_code");
-        String pkUser = tmsUserMapper.getUserInfoByUsername(custCode).getPkUser();
-        param.put("pkUser", pkUser);
-        String roleId = nwRoleMapper.getNwRoleInfo("货主经理").getPkRole();
-        param.put("pkRole", roleId);
-        cargoOwnerMapper.updateCorp(param);
-        cargoOwnerMapper.updateCust(param);
-        cargoOwnerMapper.updateCustAndCorp(param);
-        //is_default 1
-        tsAddressMapper.updateTsCustAddrisDefault(pkAddress);
-        tsAddressMapper.addTsCustAddr(param);
-        nwUserRoleMapper.addPkUserRoleInfo(param);*/
+        return result;
     }
 
 }
