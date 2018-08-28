@@ -9,4 +9,8 @@ import java.util.Map;
 public interface DriverMapper {
 
     List<Driver> getListData(Map<String,String> map);
+
+    int updateDriver(Map<String,Object> map);
+
+    int updateDriverAndCarr(Map<String,Object> map);
 }

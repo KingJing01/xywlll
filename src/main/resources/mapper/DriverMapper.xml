@@ -34,5 +34,23 @@
         </if>
     </select>
 
+    <update id="updateDriver" parameterType="java.util.Map">
+        update ts_driver set ts=#{ts},modify_user=#{modifyUser},modify_time=#{modifyTime},
+        check_status=#{checkStatus}
+        <if test="memo != null and  memo !=''">
+            , memo = #{memo}
+        </if>
+        where dr=0 and pk_driver=#{pkDriver}
+    </update>
+
+    <update id="updateDriverAndCarr" parameterType="java.util.Map">
+        update ts_re_driver_carr set ts=#{ts},modify_user=#{modifyUser},modify_time=#{modifyTime},
+        check_status=#{checkStatus},check_man=#{modifyUser},check_time=#{modifyTime}
+        <if test="memo != null and  memo !=''">
+            , memo = #{memo}
+        </if>
+        where dr=0 and pk_driver=#{pkDriver}
+    </update>
+
 
 </mapper>
