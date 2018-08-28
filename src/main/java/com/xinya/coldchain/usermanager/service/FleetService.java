@@ -123,6 +123,7 @@ public class FleetService {
         /*  6位唯一的邀请码 */
         String inviteCode = null;
         int index = -1;
+        /*数据库唯一性判断 */
         do{
           inviteCode = RandomCodeUtil.generaRandom(6);
           index =  fleetMapper.checkInviteCode(inviteCode);

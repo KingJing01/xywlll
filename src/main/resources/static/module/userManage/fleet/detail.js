@@ -99,6 +99,8 @@
                                 if (carrType == 3) {
                                     data.id_card_pos = (data.id_card_pos ? window.imgUrl + data.id_card_pos : common.noImage);
                                     data.driving_licence = (data.driving_licence ? window.imgUrl + data.driving_licence : common.noImage);
+                                    data.driver_licence = (data.driver_licence ? window.imgUrl + data.driver_licence : common.noImage);
+                                    data.road_trans_license = (data.road_trans_license ? window.imgUrl + data.road_trans_license : common.noImage);
                                     _self.resp = data;
                                 } else {
                                     data.id_card_pos = (data.id_card_pos ? window.imgUrl + data.id_card_pos : common.noImage);

@@ -30,21 +30,21 @@
     </resultMap>
 
     <select id="getListData" resultMap="fleet" parameterType="string">
-        <bind name="pattern" value="'%' + carrCode + '%'"/>
-        SELECT ROW_NUMBER () OVER ( ORDER BY modify_time DESC, create_time DESC ) AS row_num,
-        pk_carrier, dr,ts, carr_code, carr_name,carr_type,priority,pk_corp,pk_customer, phone,mobile,
-        email,contact,contact_post,address,locked_flag,create_time,billing_rule,carrier_picture,
-        id_card_pos,id_card_neg,check_status, driving_licence FROM ts_carrier where dr= 0
+        SELECT ROW_NUMBER () OVER ( ORDER BY t.modify_time DESC, t.create_time DESC ) AS row_num, t.pk_carrier, t.dr,t.ts,
+        t.carr_code,t.carr_name,t.carr_type,t.priority,t.pk_corp,t.pk_customer,t.phone,t.mobile,t.email,t.contact,t.contact_post,
+        t.address,t.locked_flag,t.create_time,t.billing_rule,t.check_status FROM  ts_re_carr_corp t1
+        left join ts_carrier t on t1.pk_carrier = t.pk_carrier where t1.dr=0 and t.dr=0
         <if test="carrCode != null and  carrCode !=''">
-            and carr_code like #{pattern}
+            <bind name="pattern" value="'%' + carrCode + '%'"/>
+            and t.carr_code like #{pattern}
         </if>
 
     </select>
 
     <select id="getFleetPersonInfo" parameterType="string" resultType="java.util.Map">
-        SELECT pk_carrier, dr,ts, carr_code, carr_name,carr_type,priority,pk_corp,pk_customer, phone,mobile,
-        email,contact,contact_post,address,locked_flag,create_time,billing_rule,carrier_picture,
-        id_card_pos,id_card_neg,check_status, driving_licence FROM ts_carrier where dr= 0
+        SELECT pk_carrier, dr,ts, carr_code, carr_name,carr_type,priority,pk_corp,pk_customer, phone,mobile,road_trans_license,
+        email,contact,contact_post,address,locked_flag,create_time,billing_rule,carrier_picture,driver_license,
+        id_card_pos,id_card_neg,check_status,driving_licence FROM ts_carrier where dr= 0
         <if test="pkCarrier !=null and pkCarrier!=''">
             and pk_carrier =#{pkCarrier}
         </if>
