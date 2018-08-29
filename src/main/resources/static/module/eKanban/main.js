@@ -19,7 +19,7 @@
                 $("#page-wrapper").html(pageHtml);
                 pieChart = echarts.init(document.getElementById('right_chart'));
                 pickUpChart = echarts.init(document.getElementById('pick_up_rate'));
-                arrivalChart= echarts.init(document.getElementById('arrival_rate'));
+                arrivalChart = echarts.init(document.getElementById('arrival_rate'));
             };
             /*异常分布类型  饼图*/
             var initPie = function () {
@@ -27,6 +27,15 @@
                 $.get('ekan/exception_distribute').done(function (data) {
                     pieChart.hideLoading();
                     pieChart.setOption({
+                        noDataLoadingOption: {
+                            text: '暂无数据',
+                            effect: 'bubble',
+                            effectOption: {
+                                effect: {
+                                    n: 0
+                                }
+                            }
+                        },
                         title: {
                             text: '异常类型分布',
                             x: 'left'
@@ -38,15 +47,15 @@
                         legend: {
                             orient: 'horizontal',
                             bottom: '30',
-                            data: data.data.legend
+                            data: data.data.series?data.data.series:["无异常"]
                         },
-                        color:['#FF7F00','#ccff99', '#BFEFFF', '#F2673D', '#5A99D0','#557DE0',  '#6BAE78', '#FFC35B','#71C671', '#CCCCCC', '#c4ccd3'],
+                        color: ['#FF7F00', '#ccff99', '#BFEFFF', '#F2673D', '#5A99D0', '#557DE0', '#6BAE78', '#FFC35B', '#71C671', '#CCCCCC', '#c4ccd3'],
                         series: [
                             {
                                 type: 'pie',
                                 radius: ['35%', '55%'],
                                 center: ['50%', '40%'],
-                                data: data.data.series,
+                                data: data.data.series?data.data.series:[{value:0, name:'无异常'}],
                                 itemStyle: {
                                     emphasis: {
                                         shadowBlur: 10,
@@ -199,13 +208,13 @@
             /* 电子看板图标上方展示的信息 */
             var initEkanTop = function () {
                 /*今日到货订单量*/
-                common.ajaxfuncURL("ekan/day_arrival","post",{}, ajaxCallBack, "#day_arrival");
+                common.ajaxfuncURL("ekan/day_arrival", "post", {}, ajaxCallBack, "#day_arrival");
                 //今日提货订单量
-                common.ajaxfuncURL("ekan/day_pick","post",{}, ajaxCallBack, "#day_pick");
+                common.ajaxfuncURL("ekan/day_pick", "post", {}, ajaxCallBack, "#day_pick");
                 //今日订单总量
-                common.ajaxfuncURL("ekan/day_total","post",{}, ajaxCallBack, "#day_total");
+                common.ajaxfuncURL("ekan/day_total", "post", {}, ajaxCallBack, "#day_total");
                 //本月订单总量
-                common.ajaxfuncURL("ekan/month_total","post",{}, ajaxCallBack, "#month_total");
+                common.ajaxfuncURL("ekan/month_total", "post", {}, ajaxCallBack, "#month_total");
 
             }
 
@@ -218,7 +227,7 @@
                 bindEvents();
                 initEkanTop();
                 /* 浏览器窗口改变 echarts改变 */
-                window.onresize = function(){
+                window.onresize = function () {
                     pieChart.resize();
                     pickUpChart.resize();
                     arrivalChart.resize();
