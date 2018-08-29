@@ -53,7 +53,7 @@ public class SysController {
 			StringBuffer str = new StringBuffer();
 			str.append("appkey=ca1d6a0d5d1983d874001cea&");
 			str.append("timestamp=").append(timestamp);
-			str.append("&random_str="+"123");
+			str.append("&random_str="+user.getUserCode());
 			str.append("&key=5c0ead5838e03110b1e4bb6f");
 			String signature = DigestUtils.md5Hex(str.toString());
 			map.put("url","/xinyang/login");

@@ -67,6 +67,9 @@
             },
             success: function (data) {
                 window.location.href = data.url;
+                sessionStorage.setItem("timestamp",data.timestamp);
+                sessionStorage.setItem("signature",data.signature);
+                sessionStorage.setItem("userCode",data.userCode);
             },
             error: function (err) {
             }

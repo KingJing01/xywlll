@@ -4,10 +4,12 @@
     define([
             "vendor/bootstrap/js/bootstrap.min",
             "vendor/bootstrap-table/bootstrap-table",
+           /* "vendor/bootstrap-table/bootstrap-table-zh-CN.min",*/
             "vendor/metisMenu/metisMenu",
+            "vendor/jpush/jmessage-sdk-web.2.6.0.min",
             "js/common",
-            "vendor/bootstrap-table/bootstrap-table-zh-CN.min",
-            "js/admin",
+            "js/jpush",
+            "js/admin"
         ],
         function () {
             $.ajaxSetup({
@@ -65,6 +67,8 @@
                         list.load();
                     });
                 });
+                jpush.JimInit();
+
 
             };
             return mainFunction;
