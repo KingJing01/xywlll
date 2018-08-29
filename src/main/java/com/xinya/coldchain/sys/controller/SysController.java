@@ -3,6 +3,7 @@ package com.xinya.coldchain.sys.controller;
 import com.xinya.coldchain.sys.model.TmsUser;
 
 import com.xinya.coldchain.sys.service.SysService;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.ibatis.type.Alias;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -44,11 +45,21 @@ public class SysController {
 		Subject subject = SecurityUtils.getSubject();
 		Map<String,String> map = new HashMap<>();
 		try {
+			String timestamp = String.valueOf(System.currentTimeMillis());
 			//完成登录
 			subject.login(usernamePasswordToken);
 			TmsUser user=(TmsUser) subject.getPrincipal();
 			session.setAttribute("user", user);
+			StringBuffer str = new StringBuffer();
+			str.append("appkey=ca1d6a0d5d1983d874001cea&");
+			str.append("timestamp=").append(timestamp);
+			str.append("&random_str="+"123");
+			str.append("&key=5c0ead5838e03110b1e4bb6f");
+			String signature = DigestUtils.md5Hex(str.toString());
 			map.put("url","/xinyang/login");
+			map.put("timestamp",timestamp);
+			map.put("signature",signature);
+			map.put("userCode",user.getUserCode());
 			return map;
 		} catch(Exception e) {
 			//返回登录页面
