@@ -47,6 +47,11 @@ public class RespMessage {
         this.success = success;
     }
 
+    public RespMessage(int success,Object data) {
+        this.data = data;
+        this.success = success;
+    }
+
     public RespMessage(int success) {
         this.success = success;
     }
