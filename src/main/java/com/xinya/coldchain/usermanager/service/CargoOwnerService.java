@@ -99,7 +99,7 @@ public class CargoOwnerService {
             logger.error("货主绑定的企业信息的地址为空");
             throw new Exception();
         }
-        TsAddress tsAddress = tsAddressMapper.getTsAddressInfo(result.getAddress());
+        TsAddress tsAddress = tsAddressMapper.getTsAddressInfo(result.getPkCorp());
         if(StringUtils.isEmpty(tsAddress)){
             logger.error("货主审核 ts_address中不存在货主绑定的企业地址");
             throw new Exception();

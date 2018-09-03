@@ -1,7 +1,8 @@
 var jpush = {
 
     JimInit: function () {
-        var JIM = new JMessage();
+        var JIM = new JMessage({debug : true});
+        //初始化
         JIM.init({
             "appkey": 'ca1d6a0d5d1983d874001cea',
             "random_str": sessionStorage.getItem("userCode"),
@@ -14,6 +15,9 @@ var jpush = {
             console.log("极光推送 成功" + data);
         }).onFail(function (data) {
             console.log("极光推送 失败" + data);
+        });
+        //断线监听
+        JIM.onDisconnect(function(){
         });
 
     }

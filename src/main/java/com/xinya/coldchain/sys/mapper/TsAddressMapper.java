@@ -8,7 +8,7 @@ import java.util.Map;
 
 public interface TsAddressMapper {
 
-    TsAddress getTsAddressInfo(@Param("detail_addr") String detailAddr);
+    TsAddress getTsAddressInfo(@Param("pkCorp") String pkCorp);
 
     int addTsCustAddr(Map<String,Object> map);
 

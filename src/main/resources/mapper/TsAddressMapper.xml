@@ -15,8 +15,8 @@
 
     <select id="getTsAddressInfo" parameterType="string" resultMap="TsAddress">
         select * from ts_address where dr=0
-        <if test="detail_addr != null and  detail_addr !=''">
-            and detail_addr = #{detail_addr}
+        <if test="pkCorp != null and  pkCorp !=''">
+            and pk_corp = #{pkCorp}
         </if>
     </select>
 
