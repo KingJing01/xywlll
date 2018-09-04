@@ -8,12 +8,12 @@ package com.xinya.coldchain.utils;
 public class CommonUtil {
 
     //public static final String WSDLUrl = "http://222.73.159.76:8089/tms/services/ElecSignageEndPoint?wsdl";
-    //public static final String WSDLUrl = "http://222.73.159.76:8081/tms-webapp/services/ElecSignageEndPoint?wsdl";
-    public static final String WSDLUrl = "http://47.97.214.8:8080/tms-webapp/services/ElecSignageEndPoint?wsdl";
+    public static final String WSDLUrl = "http://222.73.159.76:8081/tms-webapp/services/ElecSignageEndPoint?wsdl";
+    //public static final String WSDLUrl = "http://47.97.214.8:8080/tms-webapp/services/ElecSignageEndPoint?wsdl";
 
     //public static final String WSDLNameSpace = "http://222.73.159.76:8089/tms/services/ElecSignageEndPoint";
-    //public static final String WSDLNameSpace = "http://222.73.159.76:8081/tms-webapp/services/ElecSignageEndPoint";
-    public static final String WSDLNameSpace = "http://47.97.214.8:8080/tms-webapp/services/ElecSignageEndPoint";
+    public static final String WSDLNameSpace = "http://222.73.159.76:8081/tms-webapp/services/ElecSignageEndPoint";
+    //public static final String WSDLNameSpace = "http://47.97.214.8:8080/tms-webapp/services/ElecSignageEndPoint";
 
     //tms webservice 方法名
     // 到货准点率
