@@ -140,6 +140,14 @@ public class Driver {
     public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
+    public String getLicType() {
+        return licType;
+    }
+
+    public void setLicType(String licType) {
+        this.licType = licType;
+    }
+
 
     private String driverCode;
     private String driverName;
@@ -152,6 +160,7 @@ public class Driver {
     private String idCardNeg;
     private String idCardPos;
     private String photo;
+    private String licType;
     private String dr;
     private String ts;
     private String rowNum;

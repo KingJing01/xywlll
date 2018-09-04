@@ -27,15 +27,6 @@
                 $.get('ekan/exception_distribute').done(function (data) {
                     pieChart.hideLoading();
                     pieChart.setOption({
-                        noDataLoadingOption: {
-                            text: '暂无数据',
-                            effect: 'bubble',
-                            effectOption: {
-                                effect: {
-                                    n: 0
-                                }
-                            }
-                        },
                         title: {
                             text: '异常类型分布',
                             x: 'left'

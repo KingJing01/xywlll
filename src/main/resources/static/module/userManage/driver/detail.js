@@ -95,6 +95,7 @@
                                /* data.lockedFlag = (lockedFlag == 'Y' ? false : true);*/
                                 data.checkStatus = (checkStatus == 2 ? false : true);
                                 data.idCardPos = (data.idCardPos ? window.imgUrl + data.idCardPos : common.noImage);
+                                data.idCardEng = (data.idCardEng ? window.imgUrl + data.idCardEng : common.noImage);
                                 data.driverLic = (data.driverLic ? window.imgUrl + data.driverLic : common.noImage);
                                 _self.resp = data;
                             }

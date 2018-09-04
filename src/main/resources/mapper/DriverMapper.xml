@@ -15,6 +15,7 @@
         <result column="id_card_neg" property="idCardNeg" jdbcType="VARCHAR"></result>
         <result column="id_card_pos" property="idCardPos" jdbcType="VARCHAR"></result>
         <result column="photo" property="photo" jdbcType="VARCHAR"></result>
+        <result column="lic_type" property="licType" jdbcType="VARCHAR"></result>
         <result column="dr" property="dr" jdbcType="VARCHAR"></result>
         <result column="ts" property="ts" jdbcType="VARCHAR"></result>
         <result column="create_time" property="createTime" jdbcType="VARCHAR"></result>
@@ -23,7 +24,7 @@
     <select id="getListData" resultMap="driver" parameterType="java.util.Map">
         SELECT ROW_NUMBER () OVER ( ORDER BY t1.modify_time DESC, t1.create_time DESC ) AS row_num,t1.pk_driver,
         t1.driver_code, t1.driver_name,t1.check_status,t1.driver_status,t1.driver_picture, t1.mobile,t1.driver_lic,
-        t1.id_card_pos,t1.id_card_neg,t1.photo, t1.ts,t1.dr,t1.create_time,t1.locked_flag
+        t1.id_card_pos,t1.id_card_neg,t1.photo, t1.ts,t1.dr,t1.create_time,t1.locked_flag,t1.lic_type
         FROM ts_re_driver_carr t LEFT JOIN ts_driver t1 ON t.pk_driver = t1.pk_driver where t.dr=0 and t1.dr=0
         <if test="driverCode != null and  driverCode !=''">
             <bind name="pattern" value="'%' + driverCode + '%'"/>
