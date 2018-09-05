@@ -78,6 +78,13 @@
                         list.load();
                     });
                 });
+                /* 调度载配*/
+                $("#dispatch_match").on('click', function () {
+                    sessionStorage.setItem("currentMenu", $(this).attr("id"));
+                    requirejs(["module/dispatch/match/list"], function (list) {
+                        list.load();
+                    });
+                });
 
                 jpush.JimInit();
             };
