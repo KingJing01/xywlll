@@ -661,3 +661,19 @@ table.dataTable thead .sorting:after {
     top: 8%;
     background-color: #fcf8e3;
 }
+
+/*自定义 tab分页的样式 */
+.nav-tabs-sun>li.active>a, .nav-tabs-sun>li.active>a:focus, .nav-tabs-sun>li.active>a:hover {
+    color: #555;
+    cursor: default;
+    background-color: #fff;
+    border-top: 4px solid #337ab7;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom-color: transparent;
+}
+.nav-tabs-sun>li>a:hover{
+    background-color: #fff;
+    border: 0px;
+}
+
