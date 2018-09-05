@@ -668,12 +668,20 @@ table.dataTable thead .sorting:after {
     cursor: default;
     background-color: #fff;
     border-top: 4px solid #337ab7;
+    border-bottom-color: transparent;
     border-left: 0px;
     border-right: 0px;
-    border-bottom-color: transparent;
+
 }
+.nav-tabs-sun>li>a{
+     background-color: #fff;
+     border-top: 4px solid #fff;
+     border-left: 0px;
+     border-right: 0px;
+ }
 .nav-tabs-sun>li>a:hover{
     background-color: #fff;
-    border: 0px;
+    border-top: 4px solid #fff;
+    border-bottom-color: #fff;
 }
 
