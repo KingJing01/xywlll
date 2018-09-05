@@ -1,4 +1,4 @@
-/* requirejs 业务操作的模板js */
+/* 调度装配 js */
 (function () {
     var HTML_LIST = "module/dispatch/match/list.html";
     define([
