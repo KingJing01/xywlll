@@ -86,6 +86,11 @@
                     });
                 });
 
+                $("#login_out").on('click', function () {
+                    sessionStorage.setItem("currentMenu","");
+                    window.location.href="loginout";
+                });
+
                 jpush.JimInit();
             };
             return mainFunction;
