@@ -89,6 +89,7 @@
                     sessionStorage.setItem("currentMenu","");
                     window.location.href="loginout";
                 });
+                $('#side-menu').metisMenu({ toggle: false });
 
                 jpush.JimInit();
             };

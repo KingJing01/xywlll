@@ -70,9 +70,7 @@ body {
 .sidebar .sidebar-search {
     padding: 15px;
 }
-.sidebar ul li {
-    border-bottom: 1px solid #e7e7e7;
-}
+
 .sidebar ul li a.active {
     background-color: #eeeeee;
 }
@@ -683,5 +681,17 @@ table.dataTable thead .sorting:after {
     background-color: #fff;
     border-top: 4px solid #fff;
     border-bottom-color: #fff;
+}
+
+#side-menu a {
+    color: #A9B7C7;
+}
+
+#side-menu a:focus{
+    color: #fff;
+}
+
+#side-menu li:hover{
+    background-color: #4F5980;
 }
 
