@@ -13,7 +13,6 @@
         ],
         function () {
             $.ajaxSetup({
-                type: 'POST',
                 complete: function (xhr, status) {
                     var sessionStatus = xhr.getResponseHeader('sessionstatus');
                     if (sessionStatus == 'timeout') {
