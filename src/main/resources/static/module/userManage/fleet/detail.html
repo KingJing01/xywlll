@@ -8,7 +8,8 @@
                     <div class="info_div"><label>账号昵称:</label><span class="span_text">{{resp.carr_name}}</span></div>
                     <div class="info_div"><label>手机号码:</label><span class="span_text">{{resp.mobile}}</span></div>
                     <div class="info_div"><label>注册日期:</label><span class="span_text">{{resp.create_time}}</span></div>
-                    <div class="info_div"><label class="img_span">身份证:</label> <img class="img_horizontal" :src="resp.id_card_pos"></div>
+                    <div class="info_div"><label class="img_span">身份证:</label> <img class="img_horizontal" :src="resp.id_card_pos"><img class="img_horizontal"
+                                                                                                                                        :src="resp.id_card_eng"></div>
                     <div class="info_div"><label class="img_span">驾驶证:</label> <img class="img_horizontal" :src="resp.driver_licence"></div>
                     <div class="info_div"><label class="img_span">行驶证:</label> <img class="img_horizontal" :src="resp.driving_licence"></div>
                     <div class="info_div"><label class="img_span" style="margin-left: -50px">道路运输许可证:</label> <img class="img_horizontal" :src="resp.road_trans_license"></div>
@@ -34,6 +35,7 @@
                     <div class="info_div"><label>身份证号:</label><span class="span_text">{{corp.id}}</span></div>
                     <div class="info_div"><label class="img_span">身份证:</label>
                         <img class="img_horizontal" :src="corp.id_card_pos">
+                        <img class="img_horizontal" :src="corp.id_card_eng">
                     </div>
                     <div class="action_div" v-show="corp.checkStatus">
                         <button type="button" class="btn btn-primary" id="fleet_audit_sure">审核通过</button>

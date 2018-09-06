@@ -52,7 +52,7 @@
 
     <select id="getFleetEntInfo" parameterType="string" resultType="java.util.Map">
         SELECT t2.pk_carrier, t1.corp_name, t2.carr_name,t2.trans_type, t1.bank, t1.bank_account, t1.business_license,
-        t2.road_trans_license, t2.id_card_pos, t2.ts,t2.id FROM ts_re_carr_corp t
+        t2.road_trans_license, t2.id_card_pos,t2.id_card_neg, t2.ts,t2.id FROM ts_re_carr_corp t
         LEFT JOIN ts_carrier t2 ON t.pk_carrier = t2.pk_carrier
         LEFT JOIN nw_corp t1 ON t.pk_corp = t1.pk_corp WHERE t.dr = 0 AND t1.dr = 0 AND t2.dr = 0
         <if test="pkCarrier !=null and pkCarrier!=''">

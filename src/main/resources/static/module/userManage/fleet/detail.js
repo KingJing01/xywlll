@@ -96,14 +96,14 @@
                             if (data) {
                                 data.lockedFlag = (lockedFlag == 'Y' ? true : false);
                                 data.checkStatus = (checkStatus == 2 ? false : true);
+                                data.id_card_pos = (data.id_card_pos ? window.imgUrl + data.id_card_pos : common.noImage);
+                                data.id_card_eng = (data.id_card_eng ? window.imgUrl + data.id_card_eng : common.noImage);
+                                data.road_trans_license = (data.road_trans_license ? window.imgUrl + data.road_trans_license : common.noImage);
                                 if (carrType == 3) {
-                                    data.id_card_pos = (data.id_card_pos ? window.imgUrl + data.id_card_pos : common.noImage);
                                     data.driving_licence = (data.driving_licence ? window.imgUrl + data.driving_licence : common.noImage);
                                     data.driver_licence = (data.driver_licence ? window.imgUrl + data.driver_licence : common.noImage);
-                                    data.road_trans_license = (data.road_trans_license ? window.imgUrl + data.road_trans_license : common.noImage);
                                     _self.resp = data;
                                 } else {
-                                    data.id_card_pos = (data.id_card_pos ? window.imgUrl + data.id_card_pos : common.noImage);
                                     data.business_license = (data.business_license ? window.imgUrl + data.business_license : common.noImage);
                                     data.road_trans_license = (data.road_trans_license ? window.imgUrl + data.road_trans_license : common.noImage);
                                     _self.corp = data;
