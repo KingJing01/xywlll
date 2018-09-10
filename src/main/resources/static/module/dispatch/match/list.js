@@ -1,17 +1,18 @@
 /* 调度装配 js */
 (function () {
     var HTML_LIST = "module/dispatch/match/list.html";
+    var JSON_DATA ="tms_system/public/httpEdi/Sto/loadData.do";
     define([
             'jquery',
             'text!' + HTML_LIST
-        ], function ($, htmllist) {
+        ], function ($, htmlList) {
             /*指定位置加载html界面*/
             var initDetailHtml = function () {
-                $("#page-wrapper").html(htmllist);
+                $("#page-wrapper").html(htmlList);
             }
             var initTable = function () {
                 $('#dispatch_match_table').bootstrapTable({
-                    url: "cargo_owner/get_list_data",
+                    url: JSON_DATA,
                     contentType: 'application/x-www-form-urlencoded',
                     method: 'post',
                     pageList: [10, 15, 20],
@@ -23,7 +24,6 @@
                         var param = {
                             pageSize: this.pageSize,   //每页多少条数据
                             pageNumber: this.pageNumber, // 页码
-                            custCode: null
                         };
                         return param;
                     },
