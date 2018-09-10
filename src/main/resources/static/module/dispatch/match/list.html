@@ -1,11 +1,93 @@
 <div id="dispatch_match_div" class="row">
     <div class="col-lg-11 nav-tabs-container">
         <ul class="nav nav-tabs nav-tabs-sun">
-            <li class="active"><a href="#cargo_base_info" data-toggle="tab">调度配载</a></li>
+            <li class="active"><a href="#dispatch_match_info" data-toggle="tab">调度配载</a></li>
         </ul>
         <div class="tab-content">
-            <div class="active tab-pane" id="cargo_base_info">
+            <div class="active tab-pane" id="dispatch_match_info">
+                <form id="dispatch_match_search" class="row form-horizontal">
+                    <div class="row form_row">
+                        <div class="col-md-4">
+                            <label class="col-sm-4 control-label">发货单号:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="请输入">
+                            </div>
+                        </div>
+                        <div class="col-md-4"><label class="col-sm-4 control-label">货物类型:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="请选择">
+                            </div>
+                        </div>
+                        <div class="col-md-4"><label class="col-sm-4 control-label">运段状态:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="请选择">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form_row">
+                        <div class="col-md-4">
+                            <label class="col-sm-4 control-label">运输类别:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="请选择">
+                            </div>
+                        </div>
+                        <div class="col-md-4"><label class="col-sm-4 control-label">提货城市:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="请选择">
+                            </div>
+                        </div>
+                        <div class="col-md-4"><label class="col-sm-4 control-label">收货城市:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="请选择">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form_row">
+                        <div class="col-md-4">
+                            <label class="col-sm-4 control-label">货物重量:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="请输入">
+                            </div>
+                        </div>
+                        <div class="col-md-4"><label class="col-sm-4 control-label">货物体积:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="请输入">
+                            </div>
+                        </div>
+                        <div class="col-md-4"><label class="col-sm-4 control-label">货物件数:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="请输入">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form_row">
+                        <div class="col-md-4">
+                            <label class="col-sm-4 control-label">要求提货日期:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="请选择">
+                            </div>
+                        </div>
+                        <div class="col-md-4"><label class="col-sm-4 control-label">要求到货日期:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="请选择">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <!-- <label class="col-sm-4 control-label">货物件数:</label>
+                             <div class="col-sm-8">
+                                 <input type="text" class="form-control" placeholder="Email">
+                             </div>-->
+                        </div>
+                    </div>
+                </form>
+                <div id="dispatch_match_table">
+
+                </div>
+
             </div>
+
+
         </div>
     </div>
+</div>
 </div>

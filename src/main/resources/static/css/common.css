@@ -815,4 +815,8 @@ table.dataTable thead .sorting:after {
     top: 10%;
 }
 
+.form_row{
+    margin-top: 15px;
+}
+
 
