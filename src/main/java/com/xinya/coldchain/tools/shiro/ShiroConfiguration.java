@@ -32,6 +32,8 @@ public class ShiroConfiguration {
         bean.setSuccessUrl("/loginSuccess");
         //TODO 配置访问权限
         LinkedHashMap<String, String> filterChainDefinitionMap=new LinkedHashMap<>();
+        //开放请求接口
+        filterChainDefinitionMap.put("/tms_system","anon");
         /* static 静态资源可以访问 */
         filterChainDefinitionMap.put("/static/**","anon");
         filterChainDefinitionMap.put("/loginout","logout");
