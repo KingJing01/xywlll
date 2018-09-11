@@ -67,9 +67,9 @@
                 var weight = length > 1 ? 0 : totalData._data.weight;
                 var volumn = length > 1 ? 0 : totalData._data.volume;
                 for (var  k= 0; k < length; k++) {
-                    num = num + Number(data[j].num_count);
-                    weight = weight + Number(data[j].weight_count);
-                    volumn = volumn + Number(data[j].volume_count);
+                    num = num - Number(data[k].num_count);
+                    weight = weight - Number(data[k].weight_count);
+                    volumn = volumn - Number(data[k].volume_count);
                 }
                 changeTotalData(num, weight, volumn);
             }
