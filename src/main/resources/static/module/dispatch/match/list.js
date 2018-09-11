@@ -40,10 +40,12 @@
 
                 $("#delivery_date").datetimepicker({
                     format: 'yyyy-mm-dd',
+                    minView: "month",
                     language: 'zh-CN'
                 });
                 $("#arrival_date").datetimepicker({
                     format: 'yyyy-mm-dd',
+                    minView: "month",
                     language: 'zh-CN'
                 });
             }
