@@ -1,7 +1,7 @@
 /* 调度装配 js */
 (function () {
     var HTML_LIST = "module/dispatch/match/list.html";
-    var JSON_DATA ="tms_system/public/httpEdi/Sto/loadData.do";
+    var JSON_DATA = "tms_system/public/httpEdi/Sto/loadData.do";
     define([
             'jquery',
             'text!' + HTML_LIST
@@ -10,23 +10,23 @@
             var initDetailHtml = function () {
                 $("#page-wrapper").html(htmlList);
             }
-            
+
             var initComponent = function () {
                 $("#deli_city").click(function (e) {
-                    SelCity(this,e);
+                    SelCity(this, e);
                 });
                 $("#arrival_city").click(function (e) {
-                    SelCity(this,e);
+                    SelCity(this, e);
                 });
             }
             var initTable = function () {
                 $('#dispatch_match_table').bootstrapTable({
                     url: JSON_DATA,
-                    contentType: 'application/x-www-form-urlencoded',
+                    contentType: 'application/json',
                     method: 'post',
                     pageList: [10, 15, 20],
                     pagination: true,
-                    sidePagination: 'server',
+                    //sidePagination: 'server',
                     pageSize: 10,
                     pageNumber: 1,
                     queryParams: function queryParams(params) {   //设置查询参数
@@ -37,58 +37,58 @@
                         return param;
                     },
                     responseHandler: function (res) {
-                        return {
-                            "total": res.total,
-                            "rows": res.list
-                        };
+                        return res.datas;
+                        /*  return {
+                              "total": res.total,
+                              "rows": res.list
+                          };*/
                     },
                     columns: [{
                         title: 'checked',
-                        checkbox : true
-                    },{
+                        checkbox: true
+                    }, {
                         field: 'rowNum',
                         title: '序号',
                         align: 'center',
                         valign: 'middle'
                     }, {
-                        field: 'custName',
+                        field: 'vbillno',
                         title: '运段号',
                         align: 'center'
                     }, {
-                        field: 'custCode',
+                        field: 'bill_origin',
                         title: '订单来源',
                         align: 'center'
                     }, {
-                        field: 'custType',
+                        field: 'goods_type',
                         title: '货物类型',
-                        align: 'center',
-                        formatter: function (value) {
-                            return "货主";
-                        }
+                        align: 'center'
                     }, {
-                        field: 'checkStatus',
+                        field: 'num_weight_volume',
                         title: '件/重/体',
                         align: 'center',
                         formatter: function (value) {
-                            return value == 2 ? '是' : '否';
+                            var arr = new Array();
+                            arr = value.split(",");
+                            return arr[0]+"件/"+arr[1]*1+"吨/"+arr[2]*1+"立方";
                         }
                     }, {
-                        field: 'createTime',
+                        field: 'pk_trans_type',
                         title: '运输类别',
-                        align: 'center',
+                        align: 'center'
                     }, {
-                        field: 'lockedFlag',
+                        field: 'deli',
                         title: '提货',
                         align: 'center',
                         formatter: function (value) {
-                            return value == 'Y' ? '冻结' : '正常';
+                            return  value.replace(","," \n ");
                         }
-                    },{
-                        field: 'lockedFlag',
+                    }, {
+                        field: 'arri',
                         title: '到货',
                         align: 'center',
                         formatter: function (value) {
-                            return value == 'Y' ? '冻结' : '正常';
+                            return  value.replace(","," \n ");
                         }
                     }, {
                         field: 'pkCustomer',

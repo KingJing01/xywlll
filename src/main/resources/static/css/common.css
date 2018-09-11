@@ -807,7 +807,12 @@ table.dataTable thead .sorting:after {
     color: #F5F5F5;
 }
 
-#nav_div .nav > li > a:hover,#nav_div .nav > li > a:focus {
+#nav_div .nav > li > .menu_a_first:focus{
+    background-color: #4F5980;
+    border-left: 2px solid #5799FC;
+
+}
+#nav_div .nav > li > .menu_a:hover,#nav_div .nav > li > .menu_a:focus {
     background-color: #4F5980;
 }
 
