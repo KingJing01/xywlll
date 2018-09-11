@@ -812,7 +812,9 @@ table.dataTable thead .sorting:after {
 #side-menu a:focus {
     color: #F5F5F5;
 }
-
+#nav_div .nav > li > .menu_a_first:hover{
+    background-color: #4F5980;
+}
 #nav_div .nav > li > .menu_a_first:focus{
     background-color: #4F5980;
     border-left: 2px solid #5799FC;
