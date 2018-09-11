@@ -5,8 +5,9 @@
     define([
             'jquery',
             'vue',
+            'moment',
             'text!' + HTML_LIST
-        ], function ($, Vue, htmlList) {
+        ], function ($, Vue,moment, htmlList) {
             var totalData;
             /*指定位置加载html界面*/
             var initDetailHtml = function () {
@@ -39,10 +40,10 @@
                 });
 
                 $("#delivery_date").datetimepicker({
-                    dates:"zh-CN"
+                    locale: moment.locale('zh-cn')
                 });
                 $("#arrival_date").datetimepicker({
-                    dates:"zh-CN"
+                    locale: moment.locale('zh-cn')
                 });
             }
             /*增加统计的数据*/
