@@ -92,6 +92,7 @@
                         return param;
                     },
                     responseHandler: function (res) {
+                        changeTotalData(0, 0, 0);
                          return {
                               "total": res.totalRecords,
                               "rows": res.records
