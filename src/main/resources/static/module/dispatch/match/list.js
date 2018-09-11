@@ -39,11 +39,11 @@
                     SelCity(this, e);
                 });
 
-                $("#delivery_date").datetimepicker({
-                    locale: moment.locale('zh-cn')
+                $("#delivery_date").datepicker({
+                    language:"zh-CN"
                 });
-                $("#arrival_date").datetimepicker({
-                    locale: moment.locale('zh-cn')
+                $("#arrival_date").datepicker({
+                    language:"zh-CN"
                 });
             }
             /*增加统计的数据*/
@@ -82,22 +82,21 @@
                     pageList: [10, 15, 20],
                     pagination: true,
                     locales: "zh-CN",
-                    //sidePagination: 'server',
+                    sidePagination: 'server',
                     pageSize: 10,
                     pageNumber: 1,
                     queryParams: function queryParams(params) {   //设置查询参数
                         var param = {
-                            pageSize: this.pageSize,   //每页多少条数据
-                            pageNumber: this.pageNumber, // 页码
+                            pageSize: this.pageSize+'',   //每页多少条数据
+                            pageNumber: this.pageNumber+'', // 页码
                         };
                         return param;
                     },
                     responseHandler: function (res) {
-                        return res.datas;
-                        /*  return {
-                              "total": res.total,
-                              "rows": res.list
-                          };*/
+                         return {
+                              "total": 128,
+                              "rows": res.datas
+                          };
                     },
                     columns: [{
                         title: 'checked',

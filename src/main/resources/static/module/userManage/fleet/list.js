@@ -5,7 +5,7 @@
     define([
         'jquery',
         'text!' + HTML_PAGE
-    ], function ($, pageHtml) {
+    ], function ($,pageHtml) {
         var initHtml = function () {
             $("#page-wrapper").html(pageHtml);
         }
@@ -18,7 +18,6 @@
                 method: 'post',
                 pageList: [10, 15, 20],
                 pagination: true,
-                locale: moment.locale('zh-cn'),
                 sidePagination: 'server',
                 pageSize: 10,
                 pageNumber: 1,

@@ -18,7 +18,6 @@
                 method: 'post',
                 pageList: [10, 15, 20],
                 pagination: true,
-                locale: moment.locale('zh-cn'),
                 sidePagination: 'server',
                 pageSize: 10,
                 pageNumber: 1,
