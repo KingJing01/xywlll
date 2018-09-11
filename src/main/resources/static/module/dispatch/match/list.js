@@ -54,10 +54,9 @@
                 var weight = length > 1 ? 0 : totalData._data.weight;
                 var volumn = length > 1 ? 0 : totalData._data.volume;
                 for (var j = 0; j < length; j++) {
-                    var arr = data[j].num_weight_volume.split(",");
-                    num = num + Number(arr[0]);
-                    weight = weight + Number(arr[1]);
-                    volumn = volumn + Number(arr[2]);
+                    num = num + Number(data[j].num_count);
+                    weight = weight + Number(data[j].weight_count);
+                    volumn = volumn + Number(data[j].volume_count);
                 }
                 changeTotalData(num, weight, volumn);
             }
@@ -68,10 +67,9 @@
                 var weight = length > 1 ? 0 : totalData._data.weight;
                 var volumn = length > 1 ? 0 : totalData._data.volume;
                 for (var  k= 0; k < length; k++) {
-                    var arr = data[k].num_weight_volume.split(",");
-                    num = num - Number(arr[0]);
-                    weight = weight - Number(arr[1]);
-                    volumn = volumn - Number(arr[2]);
+                    num = num + Number(data[j].num_count);
+                    weight = weight + Number(data[j].weight_count);
+                    volumn = volumn + Number(data[j].volume_count);
                 }
                 changeTotalData(num, weight, volumn);
             }
@@ -95,8 +93,8 @@
                     },
                     responseHandler: function (res) {
                          return {
-                              "total": 128,
-                              "rows": res.datas
+                              "total": res.totalRecords,
+                              "rows": res.records
                           };
                     },
                     columns: [{
@@ -127,10 +125,8 @@
                         field: 'num_weight_volume',
                         title: '件/重/体',
                         align: 'center',
-                        formatter: function (value) {
-                            var arr = new Array();
-                            arr = value.split(",");
-                            return arr[0] + "件/" + arr[1] * 1 + "吨/" + arr[2] * 1 + "立方";
+                        formatter: function (value,row) {
+                            return row.num_count + "件/" +row.weight_count * 1 + "吨/" + row.volume_count * 1 + "立方";
                         }
                     }, {
                         field: 'pk_trans_type',
@@ -140,15 +136,15 @@
                         field: 'deli',
                         title: '提货',
                         align: 'center',
-                        formatter: function (value) {
-                            return value.replace(",", " \n ");
+                        formatter: function (value,row) {
+                            return row.deli_city+" \n "+row.req_deli_date;
                         }
                     }, {
                         field: 'arri',
                         title: '到货',
                         align: 'center',
-                        formatter: function (value) {
-                            return value.replace(",", " \n ");
+                        formatter: function (value,row) {
+                            return row.arri_city+" \n "+row.req_arri_date;
                         }
                     }, {
                         field: 'pkCustomer',
