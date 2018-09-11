@@ -37,6 +37,13 @@
                 $("#arrival_city").click(function (e) {
                     SelCity(this, e);
                 });
+
+                $("#delivery_date").datetimepicker({
+                    dates:"zh-CN"
+                });
+                $("#arrival_date").datetimepicker({
+                    dates:"zh-CN"
+                });
             }
             /*增加统计的数据*/
             var addTotalData = function (data) {
@@ -73,6 +80,7 @@
                     method: 'post',
                     pageList: [10, 15, 20],
                     pagination: true,
+                    locales: "zh-CN",
                     //sidePagination: 'server',
                     pageSize: 10,
                     pageNumber: 1,
