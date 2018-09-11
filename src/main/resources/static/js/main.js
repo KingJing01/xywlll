@@ -4,8 +4,7 @@
     define([
             "vendor/bootstrap/js/bootstrap.min",
             "vendor/bootstrap-table/bootstrap-table",
-            "vendor/bootstrap-datepicker/bootstrap-datepicker.min",
-            "vendor/bootstrap-datepicker/bootstrap-datepicker.zh-CN",
+            "vendor/bootstrap-datepicker/bootstrap-datetimepicker.min",
             "vendor/metisMenu/metisMenu",
             "vendor/jpush/jmessage-sdk-web.2.6.0.min",
             "vendor/citypicker/cityJson",

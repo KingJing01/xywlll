@@ -38,11 +38,11 @@
                     SelCity(this, e);
                 });
 
-                $("#delivery_date").datepicker({
-                    language:"zh-CN"
+                $("#delivery_date").datetimepicker({
+                    /*language:"zh-CN"*/
                 });
-                $("#arrival_date").datepicker({
-                    language:"zh-CN"
+                $("#arrival_date").datetimepicker({
+                   /* language:"zh-CN"*/
                 });
             }
             /*增加统计的数据*/
