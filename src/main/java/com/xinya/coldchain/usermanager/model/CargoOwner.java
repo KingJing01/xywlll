@@ -1,7 +1,6 @@
 package com.xinya.coldchain.usermanager.model;
 
 public class CargoOwner {
-    private String rowNum;
     private String pkCustomer;
     private String custCode;
     private String checkStatus;
@@ -50,14 +49,6 @@ public class CargoOwner {
 
     public void setCustName(String custName) {
         this.custName = custName;
-    }
-
-    public String getRowNum() {
-        return rowNum;
-    }
-
-    public void setRowNum(String rowNum) {
-        this.rowNum = rowNum;
     }
 
     public String getPkCustomer() {

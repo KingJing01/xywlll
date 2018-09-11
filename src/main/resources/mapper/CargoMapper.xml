@@ -4,7 +4,6 @@
 
     <resultMap id="CargoOwner" type="com.xinya.coldchain.usermanager.model.CargoOwner">
         <id column="pk_customer" property="pkCustomer" jdbcType="VARCHAR"></id>
-        <result column="row_num" property="rowNum" jdbcType="VARCHAR"></result>
         <result column="cust_code" property="custCode" jdbcType="VARCHAR"></result>
         <result column="cust_name" property="custName" jdbcType="VARCHAR"></result>
         <result column="check_status" property="checkStatus" jdbcType="VARCHAR"></result>
@@ -16,8 +15,7 @@
 
     <select id="getListData" resultMap="CargoOwner" parameterType="string">
         <bind name="pattern" value="'%' + custCode + '%'"/>
-        SELECT ROW_NUMBER () OVER ( ORDER BY t2.modify_time DESC, t2.create_time DESC ) AS row_num,
-        t2.pk_customer, t2.cust_code, t2.cust_name,t2.create_time, t2.check_status,t2.locked_flag
+        SELECT t2.pk_customer, t2.cust_code, t2.cust_name,t2.create_time, t2.check_status,t2.locked_flag
         FROM ts_re_cust_corp t1 LEFT JOIN ts_customer t2 ON t1.pk_customer = t2.pk_customer
         WHERE t1.dr = '0' and t2.dr=0
         <if test="custCode != null and  custCode !=''">

@@ -24,15 +24,6 @@ public class Fleet {
     private String idCardNeg;
     private String checkStatus;
     private String drivingLicence;
-    private String rowNum;
-
-    public String getRowNum() {
-        return rowNum;
-    }
-
-    public void setRowNum(String rowNum) {
-        this.rowNum = rowNum;
-    }
 
     public String getPkCarrier() {
         return pkCarrier;

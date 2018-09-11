@@ -125,14 +125,6 @@ public class Driver {
         this.ts = ts;
     }
 
-    public String getRowNum() {
-        return rowNum;
-    }
-
-    public void setRowNum(String rowNum) {
-        this.rowNum = rowNum;
-    }
-
     public String getCreateTime() {
         return createTime;
     }
@@ -163,7 +155,6 @@ public class Driver {
     private String licType;
     private String dr;
     private String ts;
-    private String rowNum;
     private String createTime;
 
 

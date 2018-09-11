@@ -3,7 +3,6 @@
 <mapper namespace="com.xinya.coldchain.usermanager.mapper.FleetMapper">
     <resultMap id="fleet" type="com.xinya.coldchain.usermanager.model.Fleet">
         <id column="pk_carrier" property="pkCarrier" jdbcType="VARCHAR"></id>
-        <result column="row_num" property="rowNum" jdbcType="VARCHAR"></result>
         <result column="dr" property="dr" jdbcType="VARCHAR"></result>
         <result column="ts" property="ts" jdbcType="VARCHAR"></result>
         <result column="carr_code" property="carrCode" jdbcType="VARCHAR"></result>
@@ -30,8 +29,8 @@
     </resultMap>
 
     <select id="getListData" resultMap="fleet" parameterType="string">
-        SELECT ROW_NUMBER () OVER ( ORDER BY t.modify_time DESC, t.create_time DESC ) AS row_num, t.pk_carrier, t.dr,t.ts,
-        t.carr_code,t.carr_name,t.carr_type,t.priority,t.pk_corp,t.pk_customer,t.phone,t.mobile,t.email,t.contact,t.contact_post,
+        SELECT  t.pk_carrier, t.dr,t.ts, t.carr_code,t.carr_name,t.carr_type,t.priority,t.pk_corp,t.pk_customer,
+       t.phone,t.mobile,t.email,t.contact,t.contact_post,
         t.address,t.locked_flag,t.create_time,t.billing_rule,t.check_status FROM   ts_carrier t
        where  t.dr=0
         <if test="carrCode != null and  carrCode !=''">
