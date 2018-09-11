@@ -10,10 +10,16 @@
   min-height: 568px;
   background-color: white;
 }
+
+.nav_head{
+  width: 185px;
+  background-color: #485173;
+  height: 51px;
+}
 @media (min-width: 768px) {
   #page-wrapper {
     position: inherit;
-    margin: 0 0 0 250px;
+    margin: 0 0 0 185px;
     padding: 0 30px;
     border-left: 1px solid #e7e7e7;
   }
@@ -97,7 +103,7 @@
   .sidebar {
     z-index: 1;
     position: absolute;
-    width: 250px;
+    width: 185px;
     margin-top: 51px;
   }
   .navbar-top-links .dropdown-messages,

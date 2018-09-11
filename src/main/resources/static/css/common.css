@@ -799,6 +799,12 @@ table.dataTable thead .sorting:after {
     border-bottom-color: #fff;
 }
 
+.menu_a_first{
+    padding-left: 5%;
+}
+.menu_a{
+    padding-left: 12%;
+}
 #side-menu a {
     color: #A9B7C7;
 }
