@@ -40,7 +40,14 @@
                     field: 'rowNum',
                     title: '序号',
                     align: 'center',
-                    valign: 'middle'
+                    field: 'num',
+                    title: '序号',
+                    align: 'center',
+                    formatter:function(value,row,index){
+                        var pageSize=$('#driver_owner_table').bootstrapTable('getOptions').pageSize
+                        var pageNumber=$('#driver_owner_table').bootstrapTable('getOptions').pageNumber;
+                        return pageSize * (pageNumber - 1) + index + 1;
+                    }
                 }, {
                     field: 'driverName',
                     title: '司机名',

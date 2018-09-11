@@ -51,7 +51,9 @@
                         title: '序号',
                         align: 'center',
                         formatter:function(value,row,index){
-                            return index+1;
+                            var pageSize=$('#dispatch_match_table').bootstrapTable('getOptions').pageSize
+                            var pageNumber=$('#dispatch_match_table').bootstrapTable('getOptions').pageNumber;
+                            return pageSize * (pageNumber - 1) + index + 1;
                         }
                     }, {
                         field: 'vbillno',

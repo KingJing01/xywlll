@@ -37,10 +37,14 @@
                     };
                 },
                 columns: [{
-                    field: 'rowNum',
                     title: '序号',
+                    field: 'num',
                     align: 'center',
-                    valign: 'middle'
+                    formatter:function(value,row,index){
+                        var pageSize=$('#fleet_owner_table').bootstrapTable('getOptions').pageSize
+                        var pageNumber=$('#fleet_owner_table').bootstrapTable('getOptions').pageNumber;
+                        return pageSize * (pageNumber - 1) + index + 1;
+                    }
                 }, {
                     field: 'carrName',
                     title: '车队名称',

@@ -38,10 +38,14 @@
                     };
                 },
                 columns: [{
-                    field: 'rowNum',
+                    field: 'num',
                     title: '序号',
                     align: 'center',
-                    valign: 'middle'
+                    formatter:function(value,row,index){
+                        var pageSize=$('#cargo_owner_table').bootstrapTable('getOptions').pageSize
+                        var pageNumber=$('#cargo_owner_table').bootstrapTable('getOptions').pageNumber;
+                        return pageSize * (pageNumber - 1) + index + 1;
+                    }
                 }, {
                     field: 'custName',
                     title: '昵称',
