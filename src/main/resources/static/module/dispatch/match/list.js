@@ -5,9 +5,8 @@
     define([
             'jquery',
             'vue',
-            'moment',
             'text!' + HTML_LIST
-        ], function ($, Vue,moment, htmlList) {
+        ], function ($, Vue, htmlList) {
             var totalData;
             /*指定位置加载html界面*/
             var initDetailHtml = function () {
