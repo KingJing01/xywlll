@@ -3,7 +3,8 @@
     /* 需要的js 文件引入 */
     define([
             "vendor/bootstrap/js/bootstrap.min",
-            "vendor/bootstrap-table/bootstrap-table",
+            "vendor/bootstrap-table/bootstrap-table.min",
+            "vendor/bootstrap-table/bootstrap-table-zh-CN.min",
             "vendor/bootstrap-datepicker/bootstrap-datetimepicker.min",
             "vendor/bootstrap-datepicker/bootstrap-datetimepicker.zh-CN",
             "vendor/metisMenu/metisMenu",
