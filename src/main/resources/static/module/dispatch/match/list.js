@@ -54,9 +54,9 @@
                 var weight = length > 1 ? 0 : totalData._data.weight;
                 var volumn = length > 1 ? 0 : totalData._data.volume;
                 for (var j = 0; j < length; j++) {
-                    num = num + Number(data[j].num_count);
-                    weight = weight + Number(data[j].weight_count);
-                    volumn = volumn + Number(data[j].volume_count);
+                    num = (num*100 + data[j].num_count*100)/100;
+                    weight = (weight*100 + data[j].weight_count*100)/100;
+                    volumn = (volumn*100 + data[j].volume_count*100)/100;
                 }
                 changeTotalData(num, weight, volumn);
             }
@@ -67,9 +67,9 @@
                 var weight = length > 1 ? 0 : totalData._data.weight;
                 var volumn = length > 1 ? 0 : totalData._data.volume;
                 for (var  k= 0; k < length; k++) {
-                    num = num - Number(data[k].num_count);
-                    weight = weight - Number(data[k].weight_count);
-                    volumn = volumn - Number(data[k].volume_count);
+                    num = (num*100 - data[k].num_count*100)/100;
+                    weight = (weight*100 - data[k].weight_count*100)/100;
+                    volumn = (volumn*100 - data[k].volume_count*100)/100;
                 }
                 changeTotalData(num, weight, volumn);
             }
