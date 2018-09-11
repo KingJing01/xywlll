@@ -7,6 +7,9 @@
             /* "vendor/bootstrap-table/bootstrap-table-zh-CN.min",*/
             "vendor/metisMenu/metisMenu",
             "vendor/jpush/jmessage-sdk-web.2.6.0.min",
+            "vendor/citypicker/cityJson.js",
+            "vendor/citypicker/citySet.js",
+            "vendor/citypicker/Popt.js",
             "js/common",
             "js/jpush",
             "js/admin"

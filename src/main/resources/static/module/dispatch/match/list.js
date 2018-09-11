@@ -10,6 +10,15 @@
             var initDetailHtml = function () {
                 $("#page-wrapper").html(htmlList);
             }
+            
+            var initComponent = function () {
+                $("#deli_city").click(function (e) {
+                    SelCity(this,e);
+                });
+                $("#arrival_city").click(function (e) {
+                    SelCity(this,e);
+                });
+            }
             var initTable = function () {
                 $('#dispatch_match_table').bootstrapTable({
                     url: JSON_DATA,
@@ -106,6 +115,7 @@
             var object = {};
             object.load = function () {
                 initDetailHtml();
+                initComponent();
                 initTable();
                 bindEvent();
             }
