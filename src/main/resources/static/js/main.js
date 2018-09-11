@@ -94,10 +94,6 @@
                 });
                 $('#side-menu').metisMenu({ toggle: false });
 
-                $(".menu_a").on('click',function(e){
-                    e.stopPropagation();
-                })
-
                 jpush.JimInit();
             };
             return mainFunction;

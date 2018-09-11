@@ -812,16 +812,15 @@ table.dataTable thead .sorting:after {
 #side-menu a:focus {
     color: #F5F5F5;
 }
-#nav_div .nav > li > .menu_a_first:hover{
-    background-color: #4F5980;
-}
-#nav_div .nav > li > .menu_a_first:focus{
-    background-color: #4F5980;
+#nav_div .nav > li > .menu_a_first:hover,#nav_div .nav > li > .menu_a_first:focus{
     border-left: 2px solid #5799FC;
-
+    background: -webkit-linear-gradient(left, #4F5980 , #485173); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(right, #4F5980,#485173); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(right, #4F5980,#485173); /* Firefox 3.6 - 15 */
+    background: linear-gradient(to right, #4F5980 ,#485173); /* 标准的语法（必须放在最后） */
 }
 #nav_div .nav > li > .menu_a:hover,#nav_div .nav > li > .menu_a:focus {
-    background-color: #4F5980;
+    background-color: #485173;
 }
 
 #div_table{

@@ -47,10 +47,12 @@
                         title: 'checked',
                         checkbox: true
                     }, {
-                        field: 'rowNum',
+                        field: 'num',
                         title: '序号',
                         align: 'center',
-                        valign: 'middle'
+                        formatter:function(value,row,index){
+                            return index+1;
+                        }
                     }, {
                         field: 'vbillno',
                         title: '运段号',
@@ -95,13 +97,7 @@
                         title: '操作',
                         align: 'center',
                         formatter: function (value, row) {
-                            var str = "<div id='" + value + "' checkStatus='" + row.checkStatus + "' lockedFlag='" + row.lockedFlag + "'><a href='#' class='detail'>查看</a>";
-                            if (row.lockedFlag == 'Y') {
-                                str += "<a href='#' class='thaw audit_a'>解冻</a>";
-                            } else {
-                                str += "<a href='#' class='freeze audit_a'>冻结</a>";
-                            }
-                            //return str + "<a href='#' class='del audit_a'>删除</a></div>";
+                            var str = "<div id='" + value + "'><a href='#' class='detail'>查看</a><a href='#' class='thaw audit_a'>放弃订单</a>";
                             return str + "</div>";
                         }
                     }]
