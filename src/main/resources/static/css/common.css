@@ -770,7 +770,7 @@ table.dataTable thead .sorting:after {
 /*地图表格样式*/
 #div_table {
     position: absolute;
-    top: 8%;
+    top: 13%;
     background-color: #fcf8e3;
 }
 
