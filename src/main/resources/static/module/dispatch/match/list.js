@@ -41,12 +41,14 @@
                 $("#delivery_date").datetimepicker({
                     format: 'yyyy-mm-dd',
                     minView: "month",
-                    language: 'zh-CN'
+                    language: 'zh-CN',
+                    value:new Date()
                 });
                 $("#arrival_date").datetimepicker({
                     format: 'yyyy-mm-dd',
                     minView: "month",
-                    language: 'zh-CN'
+                    language: 'zh-CN',
+                    value:new Date()
                 });
             }
             /*增加统计的数据*/
