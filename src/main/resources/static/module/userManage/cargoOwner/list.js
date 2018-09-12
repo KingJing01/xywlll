@@ -22,20 +22,6 @@
                 sidePagination: 'server',
                 pageSize: 10,
                 pageNumber: 1,
-                queryParams: function queryParams(params) {   //设置查询参数
-                    var param = {
-                        pageSize: this.pageSize,   //每页多少条数据
-                        pageNumber: this.pageNumber, // 页码
-                        custCode: null
-                    };
-                    return param;
-                },
-                responseHandler: function (res) {
-                    return {
-                        "total": res.total,
-                        "rows": res.list
-                    };
-                },
                 columns: [{
                     field: 'num',
                     title: '序号',
@@ -92,7 +78,22 @@
                         //return str + "<a href='#' class='del audit_a'>删除</a></div>";
                         return str + "</div>";
                     }
-                }]
+                }],
+                queryParams: function queryParams(params) {   //设置查询参数
+                    var param = {
+                        pageSize: this.pageSize,   //每页多少条数据
+                        pageNumber: this.pageNumber, // 页码
+                        custCode: null
+                    };
+                    return param;
+                },
+                responseHandler: function (res) {
+                    return {
+                        "total": res.total,
+                        "rows": res.list
+                    };
+                }
+
             });
         }
         /* 列表点击事件的回调函数  列表数据刷新*/

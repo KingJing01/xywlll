@@ -95,6 +95,31 @@
                     volumn = (volumn * 100 - data[k].volume_count * 100) / 100;
                 }
                 changeTotalData(num, weight, volumn);
+            };
+            /*搜索数据*/
+            var searchDataFun = function (number, size) {
+                var formData = $('#dispatch_match_search').serialize();
+                var submitData = decodeURIComponent(formData, true);
+                var resp = common.formDataAnalyse(submitData);
+                if (resp.weight_count_floor && resp.weight_count_top) {
+                    resp.weight_count = resp.weight_count_floor + "," + resp.weight_count_top;
+                } else if (resp.weight_count_floor && !resp.weight_count_top) {
+                    resp.weight_count = resp.weight_count_floor + ",";
+                } else if (!resp.weight_count_floor && resp.weight_count_top) {
+                    resp.weight_count = "," + resp.weight_count_top;
+                }
+                if (resp.volume_count_floor && resp.volume_count_top) {
+                    resp.volume_count = resp.volume_count_floor + "," + resp.volume_count_top;
+                } else if (!resp.volume_count_floor && resp.volume_count_top) {
+                    resp.volume_count = "," + resp.volume_count_top;
+                } else if (resp.volume_count_floor && !resp.volume_count_top) {
+                    resp.volume_count = resp.volume_count_floor + ",";
+                }
+                resp.pageSize = size + "";
+                resp.pageNumber = number + "";
+                $("#dispatch_match_table").bootstrapTable('refresh', {
+                    query: resp
+                });
             }
             var initTable = function () {
                 $('#dispatch_match_table').bootstrapTable({
@@ -111,6 +136,7 @@
                         var param = {
                             pageSize: this.pageSize + '',   //每页多少条数据
                             pageNumber: this.pageNumber + '', // 页码
+                            vbillstatus: "10"
                         };
                         return param;
                     },
@@ -194,18 +220,19 @@
                     },
                     onUncheckAll: function () {
                         changeTotalData(0, 0, 0)
+                    },
+                    onPageChange: function (number, size) {
+                        searchDataFun(number, size);
                     }
                 });
             }
+
             /* 事件绑定操作 */
             var bindEvent = function () {
                 /*搜索按钮的点击事件*/
                 $("#dispatch_match_btn").click(function () {
-                    var data = $('#dispatch_match_search').serialize();
-                    var submitData = decodeURIComponent(data, true);
-                    common.formDataAnalyse(submitData);
-                    alert("form 数据" + resp);
-
+                    size = $('#dispatch_match_table').bootstrapTable('getOptions').pageSize;
+                    searchDataFun(1,size) ;
                 })
                 /*重置按钮*/
                 $("#dispatch_match_reset").click(function () {
