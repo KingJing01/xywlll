@@ -842,4 +842,9 @@ table.dataTable thead .sorting:after {
 ._citys1 a:hover { color: #fff; background-color: #56b4f8; }
 .AreaS { background-color: #56b4f8 !important; color: #fff !important; }
 
+#dispatch_match_total label{
+    width: 30px;
+    text-align: center;
+}
+
 
