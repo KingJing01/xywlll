@@ -2,12 +2,10 @@
 (function () {
     /* 需要的js 文件引入 */
     define([
-            "vendor/bootstrap/js/bootstrap.min",
             "vendor/bootstrap-table/bootstrap-table.min",
             "vendor/bootstrap-table/bootstrap-table-zh-CN.min",
             "vendor/bootstrap-datepicker/bootstrap-datetimepicker.min",
             "vendor/bootstrap-datepicker/bootstrap-datetimepicker.zh-CN",
-            "vendor/bootstrap-select/bootstrap-select.min",
             "vendor/metisMenu/metisMenu",
             "vendor/jpush/jmessage-sdk-web.2.6.0.min",
             "vendor/citypicker/cityJson",

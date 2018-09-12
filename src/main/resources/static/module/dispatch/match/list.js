@@ -2,15 +2,15 @@
 (function () {
     var HTML_LIST = "module/dispatch/match/list.html";
     var JSON_DATA = "tms_system/public/httpEdi/Sto/loadData.do";
-    var JSON_TRANS ="/xinyang/json/trans_type.json";
-    var JSON_TRANS_STATUS ="/xinyang/json/trans_status.json";
+    var JSON_TRANS = "/xinyang/json/trans_type.json";
+    var JSON_TRANS_STATUS = "/xinyang/json/trans_status.json";
     define([
             'jquery',
             'vue',
             'text!' + HTML_LIST,
             'json!' + JSON_TRANS,
-             'json!'+ JSON_TRANS_STATUS
-        ], function ($, Vue, htmlList,transJson,transStatusJson) {
+            'json!' + JSON_TRANS_STATUS
+        ], function ($, Vue, htmlList, transJson, transStatusJson) {
             var totalData;
             var searchData;
             /*指定位置加载html界面*/
@@ -22,33 +22,6 @@
                 totalData._data.weight = weight;
                 totalData._data.volume = volume;
             }
-
-            /*利用vue进行界面内容的渲染*/
-            var initVueData = function () {
-                totalData = new Vue({
-                    el: '#dispatch_match_total',
-                    data: {
-                        num: 0,
-                        weight: 0,
-                        volume: 0
-                    }
-                });
-                searchData = new Vue ({
-                    el:"#dispatch_match_search",
-                    data:{
-                        transData:transJson,
-                        transStatus:transStatusJson,
-                        goodsType:{},
-                    },
-                    mounted: function () {
-                        var _self = this;
-                        common.ajaxfuncURL("tms_system/public/httpEdi/Sto/getGoodsType.do", "POST", {}, function (resp) {
-                            _self.goodsType = resp.datas;
-                        })
-                    }
-                })
-            }
-
             var initComponent = function () {
                 $("#deli_city").click(function (e) {
                     SelCity(this, e);
@@ -60,8 +33,7 @@
                 $("#delivery_date").datetimepicker({
                     format: 'yyyy-mm-dd',
                     minView: "month",
-                    language: 'zh-CN',
-                    value:new Date()
+                    language: 'zh-CN'
                 });
                 $("#arrival_date").datetimepicker({
                     format: 'yyyy-mm-dd',
@@ -69,6 +41,35 @@
                     language: 'zh-CN'
                 });
             }
+            /*利用vue进行界面内容的渲染*/
+            var initVueData = function () {
+                totalData = new Vue({
+                    el: '#dispatch_match_total',
+                    data: {
+                        num: 0,
+                        weight: 0,
+                        volume: 0
+                    }
+                });
+                searchData = new Vue({
+                    el: "#dispatch_match_search",
+                    data: {
+                        transData: transJson,
+                        transStatus: transStatusJson,
+                        goodsType: {},
+                    },
+                    mounted: function () {
+                        var _self = this;
+                        common.ajaxfuncURL("tms_system/public/httpEdi/Sto/getGoodsType.do", "POST", {}, function (resp) {
+                            _self.goodsType = resp.datas;
+                        })
+                        _self.$nextTick(function () {
+                            initComponent();
+                        })
+                    },
+                })
+            }
+
             /*增加统计的数据*/
             var addTotalData = function (data) {
                 length = data.length;
@@ -76,9 +77,9 @@
                 var weight = length > 1 ? 0 : totalData._data.weight;
                 var volumn = length > 1 ? 0 : totalData._data.volume;
                 for (var j = 0; j < length; j++) {
-                    num = (num*100 + data[j].num_count*100)/100;
-                    weight = (weight*100 + data[j].weight_count*100)/100;
-                    volumn = (volumn*100 + data[j].volume_count*100)/100;
+                    num = (num * 100 + data[j].num_count * 100) / 100;
+                    weight = (weight * 100 + data[j].weight_count * 100) / 100;
+                    volumn = (volumn * 100 + data[j].volume_count * 100) / 100;
                 }
                 changeTotalData(num, weight, volumn);
             }
@@ -88,10 +89,10 @@
                 var num = length > 1 ? 0 : totalData._data.num;
                 var weight = length > 1 ? 0 : totalData._data.weight;
                 var volumn = length > 1 ? 0 : totalData._data.volume;
-                for (var  k= 0; k < length; k++) {
-                    num = (num*100 - data[k].num_count*100)/100;
-                    weight = (weight*100 - data[k].weight_count*100)/100;
-                    volumn = (volumn*100 - data[k].volume_count*100)/100;
+                for (var k = 0; k < length; k++) {
+                    num = (num * 100 - data[k].num_count * 100) / 100;
+                    weight = (weight * 100 - data[k].weight_count * 100) / 100;
+                    volumn = (volumn * 100 - data[k].volume_count * 100) / 100;
                 }
                 changeTotalData(num, weight, volumn);
             }
@@ -108,17 +109,17 @@
                     pageNumber: 1,
                     queryParams: function queryParams(params) {   //设置查询参数
                         var param = {
-                            pageSize: this.pageSize+'',   //每页多少条数据
-                            pageNumber: this.pageNumber+'', // 页码
+                            pageSize: this.pageSize + '',   //每页多少条数据
+                            pageNumber: this.pageNumber + '', // 页码
                         };
                         return param;
                     },
                     responseHandler: function (res) {
                         changeTotalData(0, 0, 0);
-                         return {
-                              "total": res.totalRecords,
-                              "rows": res.records
-                          };
+                        return {
+                            "total": res.totalRecords,
+                            "rows": res.records
+                        };
                     },
                     columns: [{
                         title: 'checked',
@@ -148,8 +149,8 @@
                         field: 'num_weight_volume',
                         title: '件/重/体',
                         align: 'center',
-                        formatter: function (value,row) {
-                            return row.num_count + "件/" +row.weight_count * 1 + "吨/" + row.volume_count * 1 + "立方";
+                        formatter: function (value, row) {
+                            return row.num_count + "件/" + row.weight_count * 1 + "吨/" + row.volume_count * 1 + "立方";
                         }
                     }, {
                         field: 'pk_trans_type',
@@ -159,15 +160,15 @@
                         field: 'deli',
                         title: '提货',
                         align: 'center',
-                        formatter: function (value,row) {
-                            return row.deli_city+" \n "+row.req_deli_date;
+                        formatter: function (value, row) {
+                            return row.deli_province + row.deli_city + " \n " + row.req_deli_date;
                         }
                     }, {
                         field: 'arri',
                         title: '到货',
                         align: 'center',
-                        formatter: function (value,row) {
-                            return row.arri_city+" \n "+row.req_arri_date;
+                        formatter: function (value, row) {
+                            return row.arri_province + row.arri_city + " \n " + row.req_arri_date;
                         }
                     }, {
                         field: 'pkCustomer',
@@ -198,13 +199,25 @@
             }
             /* 事件绑定操作 */
             var bindEvent = function () {
+                /*搜索按钮的点击事件*/
+                $("#dispatch_match_btn").click(function () {
+                    var data = $('#dispatch_match_search').serialize();
+                    var submitData = decodeURIComponent(data, true);
+                    common.formDataAnalyse(submitData);
+                    alert("form 数据" + resp);
+
+                })
+                /*重置按钮*/
+                $("#dispatch_match_reset").click(function () {
+
+                })
+
 
             }
 
             var object = {};
             object.load = function () {
                 initDetailHtml();
-                initComponent();
                 initTable();
                 initVueData();
                 bindEvent();

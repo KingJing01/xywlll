@@ -5,8 +5,8 @@ var common = {
     hasForbidden: 4,//禁用
     yesStatus: 'Y',//冻结
     noStatus: 'N', //未冻结
-    noImage:"images/no-image.jpg",//默认无图片
-    noHeadPortrait:"images/top.jpg",//默认头像
+    noImage: "images/no-image.jpg",//默认无图片
+    noHeadPortrait: "images/top.jpg",//默认头像
     //动态调整tab load界面的高度  宽度已经自适应
     initContainer: function (container) {
         var height = $("#page-wrapper").height();
@@ -82,7 +82,7 @@ var common = {
      * @param callback 回掉函数
      * @param param 回调函数预留参数 不需要时不填
      */
-    ajaxfuncURL: function (url,type,data, callback, param) {
+    ajaxfuncURL: function (url, type, data, callback, param) {
         $.ajax({
             url: url,
             type: type,
@@ -95,5 +95,14 @@ var common = {
                 console.log(res);
             }
         });
+    },
+    /*bootstrap获取form表单的数据*/
+    formDataAnalyse: function (data) {
+        var resp = new Object();
+        strs = data.split("&");
+        for (var i = 0; i < strs.length; i++) {
+            resp[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+        }
+        return resp;
     }
 }

@@ -10,12 +10,12 @@
                         <div class="col-md-4">
                             <label class="col-sm-4 control-label">发货单号:</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="请输入">
+                                <input type="text" class="form-control" name="invoice_vbillno" placeholder="请输入">
                             </div>
                         </div>
                         <div class="col-md-4"><label class="col-sm-4 control-label">货物类型:</label>
                             <div class="col-sm-8">
-                                    <select class="form-control" id="goods_status">
+                                    <select class="form-control" id="goods_status" name="goods_type">
                                         <option v-for="goods in goodsType" v-bind:value="goods.key">
                                             {{ goods.name }}
                                         </option>
@@ -24,7 +24,7 @@
                         </div>
                         <div class="col-md-4"><label class="col-sm-4 control-label">运段状态:</label>
                             <div class="col-sm-8">
-                                <select class="form-control">
+                                <select class="form-control" name="vbillstatus">
                                     <option v-for="status in transStatus" v-bind:value="status.value">
                                         {{ status.text }}
                                     </option>
@@ -36,7 +36,7 @@
                         <div class="col-md-4">
                             <label class="col-sm-4 control-label">运输类别:</label>
                             <div class="col-sm-8">
-                                <select class="form-control">
+                                <select class="form-control" name="pk_trans_type">
                                     <option v-for="trans in transData" v-bind:value="trans.value">
                                         {{ trans.text }}
                                     </option>
@@ -45,12 +45,12 @@
                         </div>
                         <div class="col-md-4"><label class="col-sm-4 control-label">提货城市:</label>
                             <div class="col-sm-8">
-                                <input type="text" id="deli_city" class="form-control" placeholder="请选择">
+                                <input type="text" id="deli_city" class="form-control" name="deli_city" placeholder="请选择">
                             </div>
                         </div>
                         <div class="col-md-4"><label class="col-sm-4 control-label">收货城市:</label>
                             <div class="col-sm-8">
-                                <input type="text" id="arrival_city" class="form-control" placeholder="请选择">
+                                <input type="text" id="arrival_city" class="form-control" name="arri_city" placeholder="请选择">
                             </div>
                         </div>
                     </div>
@@ -58,23 +58,23 @@
                         <div class="col-md-4">
                             <label class="col-sm-4 control-label">货物重量:</label>
                             <div class="col-second-input">
-                                <input type="text" class="form-control" placeholder="请输入">
+                                <input type="text" class="form-control" name="weight_count_floor" placeholder="请输入">
                             </div>
                             <div class="col-second-input">
-                                <input type="text" class="form-control" placeholder="请输入">
+                                <input type="text" class="form-control" name="weight_count_top" placeholder="请输入">
                             </div>
                         </div>
                         <div class="col-md-4"><label class="col-sm-4 control-label">货物体积:</label>
                             <div class="col-second-input">
-                                <input type="text" class="form-control" placeholder="请输入">
+                                <input type="text" class="form-control" name="volume_count_floor" placeholder="请输入">
                             </div>
                             <div class="col-second-input">
-                                <input type="text" class="form-control" placeholder="请输入">
+                                <input type="text" class="form-control" name="volume_count_top"placeholder="请输入">
                             </div>
                         </div>
                         <div class="col-md-4"><label class="col-sm-4 control-label">货物件数:</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="请输入">
+                                <input type="text" class="form-control" name="num_count" placeholder="请输入">
                             </div>
                         </div>
                     </div>
@@ -82,19 +82,19 @@
                         <div class="col-md-4">
                             <label class="col-sm-4 control-label">要求提货日期:</label>
                             <div class="col-sm-8">
-                                <input type="text" id="delivery_date" class="form-control">
+                                <input type="text" id="delivery_date" class="form-control" name="req_deli_date">
                             </div>
                         </div>
                         <div class="col-md-4"><label class="col-sm-4 control-label">要求到货日期:</label>
                             <div class="col-sm-8">
-                                <input type="text" id="arrival_date" class="form-control">
+                                <input type="text" id="arrival_date" class="form-control" name="req_arri_date">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <span class="col-sm-3"></span>
-                            <button type="button" class="btn btn-info col-sm-3">查询</button>
+                            <button type="button" class="btn btn-info col-sm-3" id="dispatch_match_btn">查询</button>
                             <span class="col-sm-2"></span>
-                            <button type="button" class="btn btn-info col-sm-3">重置</button>
+                            <button type="button" class="btn btn-info col-sm-3" id="dispatch_match_reset">重置</button>
                             <span class="col-sm-1"></span>
                         </div>
                     </div>
