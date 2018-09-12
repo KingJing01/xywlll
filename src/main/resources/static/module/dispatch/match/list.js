@@ -3,12 +3,14 @@
     var HTML_LIST = "module/dispatch/match/list.html";
     var JSON_DATA = "tms_system/public/httpEdi/Sto/loadData.do";
     var JSON_TRANS ="/xinyang/json/trans_type.json";
+    var JSON_TRANS_STATUS ="/xinyang/json/trans_status.json";
     define([
             'jquery',
             'vue',
             'text!' + HTML_LIST,
-            'json!' + JSON_TRANS
-        ], function ($, Vue, htmlList,transJson) {
+            'json!' + JSON_TRANS,
+             'json!'+ JSON_TRANS_STATUS
+        ], function ($, Vue, htmlList,transJson,transStatusJson) {
             var totalData;
             var searchData;
             /*指定位置加载html界面*/
@@ -34,7 +36,8 @@
                 searchData = new Vue ({
                     el:"#dispatch_match_search",
                     data:{
-                        transData:transJson
+                        transData:transJson,
+                        transStatus:transStatusJson
                     }
                 })
             }
