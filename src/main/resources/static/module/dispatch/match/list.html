@@ -15,12 +15,10 @@
                         </div>
                         <div class="col-md-4"><label class="col-sm-4 control-label">货物类型:</label>
                             <div class="col-sm-8">
-                                    <select class="form-control">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
+                                    <select class="form-control" id="goods_status">
+                                        <option v-for="goods in goodsType" v-bind:value="goods.key">
+                                            {{ goods.name }}
+                                        </option>
                                     </select>
                             </div>
                         </div>

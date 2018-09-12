@@ -2,8 +2,8 @@
 (function () {
     var HTML_LIST = "module/dispatch/match/list.html";
     var JSON_DATA = "tms_system/public/httpEdi/Sto/loadData.do";
-    var JSON_TRANS ="json/trans_type.json";
-    var JSON_TRANS_STATUS ="json/trans_status.json";
+    var JSON_TRANS ="/xinyang/json/trans_type.json";
+    var JSON_TRANS_STATUS ="/xinyang/json/trans_status.json";
     define([
             'jquery',
             'vue',
@@ -37,7 +37,14 @@
                     el:"#dispatch_match_search",
                     data:{
                         transData:transJson,
-                        transStatus:transStatusJson
+                        transStatus:transStatusJson,
+                        goodsType:{},
+                    },
+                    mounted: function () {
+                        var _self = this;
+                        common.ajaxfuncURL("tms_system/public/httpEdi/Sto/getGoodsType.do", "POST", {}, function (resp) {
+                            _self.goodsType = resp.datas;
+                        })
                     }
                 })
             }
@@ -59,8 +66,7 @@
                 $("#arrival_date").datetimepicker({
                     format: 'yyyy-mm-dd',
                     minView: "month",
-                    language: 'zh-CN',
-                    value:new Date()
+                    language: 'zh-CN'
                 });
             }
             /*增加统计的数据*/
