@@ -236,9 +236,10 @@
                 })
                 /*重置按钮*/
                 $("#dispatch_match_reset").click(function () {
-
+                    document.getElementById("dispatch_match_search").reset();
+                    size = $('#dispatch_match_table').bootstrapTable('getOptions').pageSize;
+                    searchDataFun(1,size) ;
                 })
-
 
             }
 
