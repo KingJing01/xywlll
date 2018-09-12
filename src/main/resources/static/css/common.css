@@ -847,4 +847,13 @@ table.dataTable thead .sorting:after {
     text-align: center;
 }
 
+.col-second-input{
+    width: 32%;
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
 

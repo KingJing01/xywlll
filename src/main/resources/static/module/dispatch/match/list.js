@@ -2,12 +2,15 @@
 (function () {
     var HTML_LIST = "module/dispatch/match/list.html";
     var JSON_DATA = "tms_system/public/httpEdi/Sto/loadData.do";
+    var JSON_TRANS ="/xinyang/json/trans_type.json";
     define([
             'jquery',
             'vue',
-            'text!' + HTML_LIST
-        ], function ($, Vue, htmlList) {
+            'text!' + HTML_LIST,
+            'json!' + JSON_TRANS
+        ], function ($, Vue, htmlList,transJson) {
             var totalData;
+            var searchData;
             /*指定位置加载html界面*/
             var initDetailHtml = function () {
                 $("#page-wrapper").html(htmlList);
@@ -28,6 +31,12 @@
                         volume: 0
                     }
                 });
+                searchData = new Vue ({
+                    el:"#dispatch_match_search",
+                    data:{
+                        transData:transJson
+                    }
+                })
             }
 
             var initComponent = function () {
