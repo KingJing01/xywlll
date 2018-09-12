@@ -232,13 +232,15 @@
                 /*搜索按钮的点击事件*/
                 $("#dispatch_match_btn").click(function () {
                     size = $('#dispatch_match_table').bootstrapTable('getOptions').pageSize;
-                    searchDataFun(1,size) ;
+                    searchDataFun(1, size);
+                    $("#dispatch_match_table").bootstrapTable("refreshOptions", {pageNumber: 1});
                 })
                 /*重置按钮*/
                 $("#dispatch_match_reset").click(function () {
                     document.getElementById("dispatch_match_search").reset();
                     size = $('#dispatch_match_table').bootstrapTable('getOptions').pageSize;
-                    searchDataFun(1,size) ;
+                    searchDataFun(1, size);
+                    $("#dispatch_match_table").bootstrapTable("refreshOptions", {pageNumber: 1});
                 })
 
             }
