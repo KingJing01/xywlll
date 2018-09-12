@@ -2,8 +2,8 @@
 (function () {
     var HTML_LIST = "module/dispatch/match/list.html";
     var JSON_DATA = "tms_system/public/httpEdi/Sto/loadData.do";
-    var JSON_TRANS ="/xinyang/json/trans_type.json";
-    var JSON_TRANS_STATUS ="/xinyang/json/trans_status.json";
+    var JSON_TRANS ="json/trans_type.json";
+    var JSON_TRANS_STATUS ="json/trans_status.json";
     define([
             'jquery',
             'vue',
