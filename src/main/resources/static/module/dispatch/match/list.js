@@ -77,9 +77,9 @@
                 var weight = length > 1 ? 0 : totalData._data.weight;
                 var volumn = length > 1 ? 0 : totalData._data.volume;
                 for (var j = 0; j < length; j++) {
-                    num = (num * 100 + data[j].num_count * 100) / 100;
-                    weight = (weight * 100 + data[j].weight_count * 100) / 100;
-                    volumn = (volumn * 100 + data[j].volume_count * 100) / 100;
+                    num = parseFloat((num + data[j].num_count).toFixed(2));
+                    weight = parseFloat((weight + data[j].weight_count).toFixed(2));
+                    volumn = parseFloat((volumn + data[j].volume_count).toFixed(2));
                 }
                 changeTotalData(num, weight, volumn);
             }
@@ -90,9 +90,9 @@
                 var weight = length > 1 ? 0 : totalData._data.weight;
                 var volumn = length > 1 ? 0 : totalData._data.volume;
                 for (var k = 0; k < length; k++) {
-                    num = (num * 100 - data[k].num_count * 100) / 100;
-                    weight = (weight * 100 - data[k].weight_count * 100) / 100;
-                    volumn = (volumn * 100 - data[k].volume_count * 100) / 100;
+                    num = parseFloat((num - data[k].num_count).toFixed(2));
+                    weight = parseFloat((weight - data[k].weight_count).toFixed(2));
+                    volumn = parseFloat((volumn - data[k].volume_count).toFixed(2));
                 }
                 changeTotalData(num, weight, volumn);
             };
@@ -128,13 +128,13 @@
                     pagination: true,
                     locales: "zh-CN",
                     sidePagination: 'server',
+                    clickToSelect: true,
                     pageSize: 10,
                     pageNumber: 1,
                     queryParams: function queryParams(params) {   //设置查询参数
                         var param = {
                             pageSize: this.pageSize + '',   //每页多少条数据
-                            pageNumber: this.pageNumber + '', // 页码
-                            vbillstatus: "10"
+                            pageNumber: this.pageNumber + '' // 页码
                         };
                         return param;
                     },

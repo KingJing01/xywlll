@@ -26,6 +26,7 @@
                         <div class="col-md-4"><label class="col-sm-4 control-label">运段状态:</label>
                             <div class="col-sm-8">
                                 <select class="form-control" name="vbillstatus">
+                                    <option value="">全部</option>
                                     <option v-for="status in transStatus" v-bind:value="status.value">
                                         {{ status.text }}
                                     </option>
