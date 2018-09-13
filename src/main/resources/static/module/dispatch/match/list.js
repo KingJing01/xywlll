@@ -115,6 +115,12 @@
                 } else if (resp.volume_count_floor && !resp.volume_count_top) {
                     resp.volume_count = resp.volume_count_floor + ",";
                 }
+                if (resp.deli_city_hproper) {
+                    resp.deli_city = resp.deli_city_hproper;
+                }
+                if (resp.arrival_city_hproper) {
+                    resp.arri_city = resp.arrival_city_hproper;
+                }
                 resp.pageSize = size + "";
                 resp.pageNumber = number + "";
                 return resp;
