@@ -1,7 +1,8 @@
-﻿function SelCity(obj,e) {
+﻿function SelCity(obj, e) {
+    var cityId = obj.id;
     var ths = obj;
-    var dal = '<div class="_citys"><span title="关闭" id="cColse" >×</span><ul id="_citysheng" class="_citys0"><li class="citySel">省份</li><li>城市</li><li>区县</li></ul><div id="_citys0" class="_citys1"></div><div style="display:none" id="_citys1" class="_citys1"></div><div style="display:none" id="_citys2" class="_citys1"></div></div>';
-    Iput.show({ id: ths, event: e, content: dal,width:"470"});
+    var dal = '<div class="_citys"><span title="关闭" id="cColse" >×</span><ul id="_citysheng" class="_citys0"><li class="citySel">省份</li><li>城市</li><!--<li>区县</li>--></ul><div id="_citys0" class="_citys1"></div><div style="display:none" id="_citys1" class="_citys1"></div><div style="display:none" id="_citys2" class="_citys1"></div></div>';
+    Iput.show({id: ths, event: e, content: dal, width: "470"});
     $("#cColse").click(function () {
         Iput.colse();
     });
@@ -19,73 +20,74 @@
         $("._citys1:eq(1)").show();
         $("#_citys0 a,#_citys1 a,#_citys2 a").removeClass("AreaS");
         $(this).addClass("AreaS");
-        var lev = $(this).data("name");
-        ths.value = $(this).data("name");
-        if (document.getElementById("hcity") == null) {
+        var lev = $(this).data("id");
+        if (document.getElementById(cityId + "_hcity") == null) {
             var hcitys = $('<input>', {
                 type: 'hidden',
-                name: "hcity",
+                name: cityId + "_hcity",
                 "data-id": $(this).data("id"),
-                id: "hcity",
+                id: cityId + "_hcity",
                 val: lev
             });
             $(ths).after(hcitys);
         }
         else {
-            $("#hcity").val(lev);
-            $("#hcity").attr("data-id", $(this).data("id"));
+            $("#" + cityId + "_hcity").val(lev);
+            $("#" + cityId + "_hcity").attr("data-id", $(this).data("id"));
         }
         $("#_citys1 a").click(function () {
             $("#_citys1 a,#_citys2 a").removeClass("AreaS");
             $(this).addClass("AreaS");
-            var lev =  $(this).data("name");
-            if (document.getElementById("hproper") == null) {
+            var lev = $(this).data("id");
+            if (document.getElementById(cityId + "_hproper") == null) {
                 var hcitys = $('<input>', {
                     type: 'hidden',
-                    name: "hproper",
+                    name: cityId + "_hproper",
                     "data-id": $(this).data("id"),
-                    id: "hproper",
+                    id: cityId + "_hproper",
                     val: lev
                 });
                 $(ths).after(hcitys);
             }
             else {
-                $("#hproper").attr("data-id", $(this).data("id"));
-                $("#hproper").val(lev);
+                $("#" + cityId + "_hproper").attr("data-id", $(this).data("id"));
+                $("#" + cityId + "_hproper").val(lev);
             }
-            var bc = $("#hcity").val();
-            ths.value = bc+ "-" + $(this).data("name");
+            ths.value = $(this).data("name");
+            Iput.colse();
 
-            var ar = getArea($(this));
+            //var ar = getArea($(this));
 
-            $("#_citys2 a").remove();
-            $("#_citys2").append(ar);
-            $("._citys1").hide();
-            $("._citys1:eq(2)").show();
+            // $("#_citys2 a").remove();
+            // $("#_citys2").append(ar);
+            // $("._citys1").hide();
+            // $("._citys1:eq(2)").show();
 
-            $("#_citys2 a").click(function () {
+            /*$("#_citys2 a").click(function () {
                 $("#_citys2 a").removeClass("AreaS");
                 $(this).addClass("AreaS");
-                var lev = $(this).data("name");
-                if (document.getElementById("harea") == null) {
+                var lev = $(this).data("id");
+                if (document.getElementById(cityId + "_harea") == null) {
                     var hcitys = $('<input>', {
                         type: 'hidden',
-                        name: "harea",
+                        name: cityId + "_harea",
                         "data-id": $(this).data("id"),
-                        id: "harea",
+                        id: cityId + "_harea",
                         val: lev
                     });
                     $(ths).after(hcitys);
                 }
                 else {
-                    $("#harea").val(lev);
-                    $("#harea").attr("data-id", $(this).data("id"));
+                    $("#" + cityId + "_harea").val(lev);
+                    $("#" + cityId + "_harea").attr("data-id", $(this).data("id"));
                 }
-                var bc = $("#hcity").val();
-                var bp = $("#hproper").val();
-                ths.value = bc + "-" + bp + "-" + $(this).data("name");
+                var bc = $("#" + cityId + "_hcity").val();
+                var bp = $("#" + cityId + "_hproper").val();
+                /!* ths.value = bc + "-" + bp + "-" + $(this).data("name");*!/
+                ths.value = $("#" + cityId + "_hproper").val() + $(this).data("name");
                 Iput.colse();
-            });
+            });*/
+
 
         });
     });
@@ -116,6 +118,7 @@ function getCity(obj) {
     $("#_citysheng li:eq(1)").addClass("citySel");
     return g;
 }
+
 function getArea(obj) {
     var c = obj.data('id');
     var e = area;
