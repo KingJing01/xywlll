@@ -117,9 +117,7 @@
                 }
                 resp.pageSize = size + "";
                 resp.pageNumber = number + "";
-                $("#dispatch_match_table").bootstrapTable('refresh', {
-                    query: resp
-                });
+                return resp;
             }
             var initTable = function () {
                 $('#dispatch_match_table').bootstrapTable({
@@ -220,9 +218,6 @@
                     },
                     onUncheckAll: function () {
                         changeTotalData(0, 0, 0)
-                    },
-                    onPageChange: function (number, size) {
-                        searchDataFun(number, size);
                     }
                 });
             }
@@ -232,15 +227,15 @@
                 /*搜索按钮的点击事件*/
                 $("#dispatch_match_btn").click(function () {
                     size = $('#dispatch_match_table').bootstrapTable('getOptions').pageSize;
-                    searchDataFun(1, size);
-                    $("#dispatch_match_table").bootstrapTable("refreshOptions", {pageNumber: 1});
+                    resp = searchDataFun(1, size);
+                    $("#dispatch_match_table").bootstrapTable("refreshOptions", {pageNumber: 1, queryParams: resp});
                 })
                 /*重置按钮*/
                 $("#dispatch_match_reset").click(function () {
                     document.getElementById("dispatch_match_search").reset();
                     size = $('#dispatch_match_table').bootstrapTable('getOptions').pageSize;
-                    searchDataFun(1, size);
-                    $("#dispatch_match_table").bootstrapTable("refreshOptions", {pageNumber: 1});
+                    resp = searchDataFun(1, size);
+                    $("#dispatch_match_table").bootstrapTable("refreshOptions", {pageNumber: 1, queryParams: resp});
                 })
 
             }
