@@ -245,6 +245,8 @@
                 /*重置按钮*/
                 $("#dispatch_match_reset").click(function () {
                     document.getElementById("dispatch_match_search").reset();
+                    $("#deli_city_hproper").val();
+                    $("#arrival_city_hproper").val();
                     size = $('#dispatch_match_table').bootstrapTable('getOptions').pageSize;
                     resp = searchDataFun(1, size);
                     $("#dispatch_match_table").bootstrapTable("refreshOptions", {pageNumber: 1, queryParams: resp});
