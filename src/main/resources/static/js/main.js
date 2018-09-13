@@ -4,9 +4,7 @@
     define([
             "vendor/bootstrap/js/bootstrap.min",
             "vendor/bootstrap-table/bootstrap-table.min",
-            "vendor/bootstrap-table/bootstrap-table-zh-CN.min",
             "vendor/bootstrap-datepicker/bootstrap-datetimepicker.min",
-            "vendor/bootstrap-datepicker/bootstrap-datetimepicker.zh-CN",
             "vendor/metisMenu/metisMenu",
             "vendor/jpush/jmessage-sdk-web.2.6.0.min",
             "vendor/citypicker/cityJson",
@@ -14,7 +12,8 @@
             "vendor/citypicker/Popt",
             "js/common",
             "js/jpush",
-            "js/admin"
+            "js/admin",
+            "js/plugins"
         ],
         function () {
             $.ajaxSetup({
