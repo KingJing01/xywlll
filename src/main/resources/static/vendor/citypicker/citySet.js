@@ -106,7 +106,7 @@ function getCity(obj) {
     var f;
     var g = '';
     for (var i = 0, plen = e.length; i < plen; i++) {
-        if (e[i]['id'] == parseInt(c)) {
+        if (e[i]['id'] == c) {
             f = e[i]['city'];
             break
         }
@@ -125,7 +125,7 @@ function getArea(obj) {
     var f = [];
     var g = '';
     for (var i = 0, plen = e.length; i < plen; i++) {
-        if (e[i]['pid'] == parseInt(c)) {
+        if (e[i]['pid'] == c) {
             f.push(e[i]);
         }
     }
