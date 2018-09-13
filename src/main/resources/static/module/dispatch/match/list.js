@@ -33,12 +33,14 @@
                 $("#delivery_date").datetimepicker({
                     format: 'yyyy-mm-dd',
                     minView: "month",
-                    language: 'zh-CN'
+                    language: 'zh-CN',
+                    value:new Date()
                 });
                 $("#arrival_date").datetimepicker({
                     format: 'yyyy-mm-dd',
                     minView: "month",
-                    language: 'zh-CN'
+                    language: 'zh-CN',
+                    value:new Date()
                 });
             }
             /*利用vue进行界面内容的渲染*/
