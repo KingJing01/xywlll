@@ -218,6 +218,12 @@
                     },
                     onUncheckAll: function () {
                         changeTotalData(0, 0, 0)
+                    },
+                    onPageChange: function (number, size) {
+                        resp = searchDataFun(number, size);
+                        $("#dispatch_match_table").bootstrapTable('refreshOptions', {
+                            queryParams: resp
+                        });
                     }
                 });
             }
