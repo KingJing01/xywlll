@@ -256,6 +256,7 @@
 
                 $("#dispatch_match_table").on('click', '.a_vbillno', function () {
                     $("#dispatch_match_div_list").hide();
+                    $("#dispatch_match_div_detail").show();
                     requirejs(["module/dispatch/match/detail"], function (list) {
                         list.load();
                     });

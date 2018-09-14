@@ -11,7 +11,10 @@
             }
             /* 事件绑定操作 */
             var bindEvent = function () {
-
+                $(".dispatch_match_back").click(function () {
+                    $("#dispatch_match_div_detail").hide();
+                    $("#dispatch_match_div_list").show();
+                })
             }
 
             var object = {};
