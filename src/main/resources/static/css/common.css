@@ -899,7 +899,7 @@ table.dataTable thead .sorting:after {
     text-align: center;
     cursor: pointer;
     font-size: 13px;
-    text-decoration:none;
+    text-decoration: none;
 }
 
 ._citys1 a:hover {
@@ -925,6 +925,11 @@ table.dataTable thead .sorting:after {
     min-height: 1px;
     padding-right: 15px;
     padding-left: 15px;
+}
+
+.toolbar button {
+    float: right;
+    margin-right: 15px;
 }
 
 

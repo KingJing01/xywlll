@@ -15,12 +15,12 @@
                         </div>
                         <div class="col-md-4"><label class="col-sm-4 control-label">货物类型:</label>
                             <div class="col-sm-8">
-                                    <select class="form-control" id="goods_status" name="goods_type">
-                                        <option value="" hidden></option>
-                                        <option v-for="goods in goodsType" v-bind:value="goods.key">
-                                            {{ goods.name }}
-                                        </option>
-                                    </select>
+                                <select class="form-control" id="goods_status" name="goods_type">
+                                    <option value="" hidden></option>
+                                    <option v-for="goods in goodsType" v-bind:value="goods.key">
+                                        {{ goods.name }}
+                                    </option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-4"><label class="col-sm-4 control-label">运段状态:</label>
@@ -48,12 +48,14 @@
                         </div>
                         <div class="col-md-4"><label class="col-sm-4 control-label">提货城市:</label>
                             <div class="col-sm-8">
-                                <input type="text" id="deli_city" class="form-control" name="deli_city" placeholder="请选择">
+                                <input type="text" id="deli_city" class="form-control" name="deli_city"
+                                       placeholder="请选择">
                             </div>
                         </div>
                         <div class="col-md-4"><label class="col-sm-4 control-label">收货城市:</label>
                             <div class="col-sm-8">
-                                <input type="text" id="arrival_city" class="form-control" name="arri_city" placeholder="请选择">
+                                <input type="text" id="arrival_city" class="form-control" name="arri_city"
+                                       placeholder="请选择">
                             </div>
                         </div>
                     </div>
@@ -72,7 +74,7 @@
                                 <input type="text" class="form-control" name="volume_count_floor" placeholder="请输入">
                             </div>
                             <div class="col-second-input">
-                                <input type="text" class="form-control" name="volume_count_top"placeholder="请输入">
+                                <input type="text" class="form-control" name="volume_count_top" placeholder="请输入">
                             </div>
                         </div>
                         <div class="col-md-4"><label class="col-sm-4 control-label">货物件数:</label>
@@ -104,11 +106,19 @@
                 </form>
 
                 <div id="dispatch_match_table_div" style="margin-top: 3%">
-                    <div id="dispatch_match_total" style="margin-bottom: 2%">
-                  <span>合计:&nbsp;&nbsp;&nbsp;&nbsp;件数:&nbsp;&nbsp;<label>{{num}}</label>
+                    <div class="row">
+                        <div id="dispatch_match_total" style="margin-bottom: 2%" class="col-md-6">
+                         <span>合计:&nbsp;&nbsp;&nbsp;&nbsp;件数:&nbsp;&nbsp;<label>{{num}}</label>
                       &nbsp;&nbsp;件</span>&nbsp;&nbsp;&nbsp;&nbsp;重量:&nbsp;&nbsp;<label>{{weight}}</label>
-                        &nbsp;&nbsp;吨<span>&nbsp;&nbsp;体积:&nbsp;&nbsp;<label>{{volume}}</label>&nbsp;&nbsp;立方&nbsp;&nbsp;</span>
-                        <button type="button" class="btn btn-info">派车</button>
+                            &nbsp;&nbsp;吨<span>&nbsp;&nbsp;体积:&nbsp;&nbsp;<label>{{volume}}</label>&nbsp;&nbsp;立方&nbsp;&nbsp;</span>
+                            <button type="button" class="btn btn-info">派车</button>
+                        </div>
+                        <div class="toolbar col-md-6" style="float: right">
+                           <!-- <button type="button" class="btn btn-warning">查看</button>-->
+                            <button type="button" class="btn btn-success">取消拆段</button>
+                            <button type="button" class="btn btn-warning">放弃订单</button>
+                            <button type="button" class="btn btn-default">拆量</button>
+                        </div>
                     </div>
                     <table id="dispatch_match_table">
 
