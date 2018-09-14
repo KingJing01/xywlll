@@ -165,7 +165,10 @@
                     }, {
                         field: 'vbillno',
                         title: '运段号',
-                        align: 'center'
+                        align: 'center',
+                        formatter: function (value, row) {
+                            return "<a href='#' class='a_vbillno'>" + value + "</a>";
+                        }
                     }, {
                         field: 'bill_origin',
                         title: '订单来源',
@@ -249,6 +252,13 @@
                     size = $('#dispatch_match_table').bootstrapTable('getOptions').pageSize;
                     resp = searchDataFun(1, size);
                     $("#dispatch_match_table").bootstrapTable("refreshOptions", {pageNumber: 1, queryParams: resp});
+                })
+
+                $("#dispatch_match_table").on('click', '.a_vbillno', function () {
+                    $("#dispatch_match_div_list").hide();
+                    requirejs(["module/dispatch/match/detail"], function (list) {
+                        list.load();
+                    });
                 })
 
             }

@@ -1,21 +1,21 @@
-/* requirejs 业务操作的模板js */
+/* 订单详情 */
 (function () {
-    var HTML_DETAIL = "";
+    var HTML_DETAIL = "module/dispatch/match/detail.html";
     define([
             'jquery',
             'text!' + HTML_DETAIL
         ], function ($, htmlDetail) {
             /*指定位置加载html界面*/
             var initDetailHtml = function () {
-                $("XX").html(htmlDetail);
+                $("#dispatch_match_div_detail").html(htmlDetail);
             }
             /* 事件绑定操作 */
             var bindEvent = function () {
-                
+
             }
 
             var object = {};
-             object.load = function () {
+            object.load = function () {
                 initDetailHtml();
                 bindEvent();
             }
