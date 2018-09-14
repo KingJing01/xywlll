@@ -5,6 +5,7 @@
             "vendor/bootstrap/js/bootstrap.min",
             "vendor/bootstrap-table/bootstrap-table.min",
             "vendor/bootstrap-datepicker/bootstrap-datetimepicker.min",
+            "vendor/bootstrap-validator/bootstrapValidator.min",
             "vendor/metisMenu/metisMenu",
             "vendor/jpush/jmessage-sdk-web.2.6.0.min",
             "vendor/citypicker/cityJson",
