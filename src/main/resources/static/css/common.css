@@ -940,5 +940,12 @@ table.dataTable thead .sorting:after {
     margin-top: 8px;
 }
 
+.span_label{
+    display: block;
+    color: #5A6474;
+    font-size: 13px;
+    padding: 5px;
+}
+
 
 
