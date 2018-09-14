@@ -199,15 +199,15 @@
                         formatter: function (value, row) {
                             return row.arri_province + row.arri_city + " \n " + row.req_arri_date;
                         }
-                    }/*, {
+                    }, {
                         field: 'pkCustomer',
                         title: '操作',
                         align: 'center',
                         formatter: function (value, row) {
-                            var str = "<div id='" + value + "'><a href='#' class='detail'>查看</a><a href='#' class='thaw audit_a'>放弃订单</a>";
+                            var str = "<div id='" + value + "'><a href='#' class='a_action detail'>拆量</a><a href='#' class='a_action'>拆段</a>";
                             return str + "</div>";
                         }
-                    }*/],
+                    }],
                     onCheck: function (row) {
                         var arr = new Array();
                         arr[0] = row;

@@ -932,4 +932,8 @@ table.dataTable thead .sorting:after {
     margin-right: 15px;
 }
 
+.a_action {
+    margin-left: 10px
+}
+
 
