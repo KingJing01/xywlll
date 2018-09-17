@@ -11,6 +11,7 @@
             "vendor/citypicker/cityJson",
             "vendor/citypicker/citySet",
             "vendor/citypicker/Popt",
+            "vendor/jquery_raty/jquery.raty",
             "js/common",
             "js/jpush",
             "js/admin",

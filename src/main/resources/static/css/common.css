@@ -947,5 +947,18 @@ table.dataTable thead .sorting:after {
     padding: 5px;
 }
 
+.span_div {
+    color: #5A6474;
+    font-size: 13px;
+    line-height: 50px;
+    padding-left: 10%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.span_div_type .span_div{
+    padding-left: 15%;
+}
+
 
 
