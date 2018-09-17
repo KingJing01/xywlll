@@ -169,6 +169,10 @@
                         formatter: function (value, row) {
                             return "<a href='#' class='a_vbillno'>" + value + "</a>";
                         }
+                    },{
+                        field: 'invoice_vbillno',
+                        title: '发货单号',
+                        align: 'center'
                     }, {
                         field: 'bill_origin',
                         title: '订单来源',
