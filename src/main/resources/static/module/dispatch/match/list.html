@@ -1,112 +1,115 @@
 <div id="dispatch_match_div" class="row">
     <div id="dispatch_match_div_list">
-    <div class="col-lg-11 nav-tabs-container">
-        <ul class="nav nav-tabs nav-tabs-sun">
-            <li class="active"><a href="#dispatch_match_info" data-toggle="tab">调度配载</a></li>
-        </ul>
-        <div class="tab-content">
-            <div class="active tab-pane" id="dispatch_match_info">
-                <form id="dispatch_match_search" class="row form-horizontal">
-                    <div class="row form_row">
-                        <div class="col-md-4">
-                            <label class="col-sm-4 control-label">运段号:</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" name="vbillno" placeholder="请输入">
+        <div class="col-lg-11 nav-tabs-container">
+            <ul class="nav nav-tabs nav-tabs-sun">
+                <li class="active"><a href="#dispatch_match_info" data-toggle="tab">调度配载</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="active tab-pane" id="dispatch_match_info">
+                    <form id="dispatch_match_search" class="row form-horizontal">
+                        <div class="row form_row">
+                            <div class="col-md-4">
+                                <label class="col-sm-4 control-label">运段号:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" name="vbillno" placeholder="请输入">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="col-sm-4 control-label">发货单号:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" name="invoice_vbillno" placeholder="请输入">
+                                </div>
+                            </div>
+                            <div class="col-md-4"><label class="col-sm-4 control-label">运段状态:</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" name="vbillstatus">
+                                        <option value="">全部</option>
+                                        <option v-for="status in transStatus" v-bind:value="status.value">
+                                            {{ status.text }}
+                                        </option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-4"><label class="col-sm-4 control-label">货物类型:</label>
-                            <div class="col-sm-8">
-                                <select class="form-control" id="goods_status" name="goods_type">
-                                    <option value="" hidden></option>
-                                    <option v-for="goods in goodsType" v-bind:value="goods.key">
-                                        {{ goods.name }}
-                                    </option>
-                                </select>
+                        <div class="row form_row">
+                            <div class="col-md-4"><label class="col-sm-4 control-label">货物类型:</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="goods_status" name="goods_type">
+                                        <option value="" hidden></option>
+                                        <option v-for="goods in goodsType" v-bind:value="goods.key">
+                                            {{ goods.name }}
+                                        </option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-4"><label class="col-sm-4 control-label">运段状态:</label>
-                            <div class="col-sm-8">
-                                <select class="form-control" name="vbillstatus">
-                                    <option value="">全部</option>
-                                    <option v-for="status in transStatus" v-bind:value="status.value">
-                                        {{ status.text }}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row form_row">
-                        <div class="col-md-4">
-                            <label class="col-sm-4 control-label">运输类别:</label>
-                            <div class="col-sm-8">
-                                <select class="form-control" name="pk_trans_type">
-                                    <option value="" hidden></option>
-                                    <option v-for="trans in transData" v-bind:value="trans.value">
-                                        {{ trans.text }}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-4"><label class="col-sm-4 control-label">提货城市:</label>
-                            <div class="col-sm-8">
-                                <input type="text" id="deli_city" class="form-control" name="deli_city"
-                                       placeholder="请选择">
-                            </div>
-                        </div>
-                        <div class="col-md-4"><label class="col-sm-4 control-label">收货城市:</label>
-                            <div class="col-sm-8">
-                                <input type="text" id="arrival_city" class="form-control" name="arri_city"
-                                       placeholder="请选择">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row form_row">
-                        <div class="col-md-4">
-                            <label class="col-sm-4 control-label">货物重量:</label>
-                            <div class="col-second-input">
-                                <input type="text" class="form-control" name="weight_count_floor" placeholder="请输入">
-                            </div>
-                            <div class="col-second-input">
-                                <input type="text" class="form-control" name="weight_count_top" placeholder="请输入">
-                            </div>
-                        </div>
-                        <div class="col-md-4"><label class="col-sm-4 control-label">货物体积:</label>
-                            <div class="col-second-input">
-                                <input type="text" class="form-control" name="volume_count_floor" placeholder="请输入">
-                            </div>
-                            <div class="col-second-input">
-                                <input type="text" class="form-control" name="volume_count_top" placeholder="请输入">
-                            </div>
-                        </div>
-                        <div class="col-md-4"><label class="col-sm-4 control-label">货物件数:</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" name="num_count" placeholder="请输入">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row form_row">
-                        <div class="col-md-4">
-                            <label class="col-sm-4 control-label">要求提货日期:</label>
-                            <div class="col-sm-8">
-                                <input type="text" id="delivery_date" class="form-control" name="req_deli_date">
-                            </div>
-                        </div>
-                        <div class="col-md-4"><label class="col-sm-4 control-label">要求到货日期:</label>
-                            <div class="col-sm-8">
-                                <input type="text" id="arrival_date" class="form-control" name="req_arri_date">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <span class="col-sm-3"></span>
-                            <button type="button" class="btn btn-info col-sm-3" id="dispatch_match_btn">查询</button>
-                            <span class="col-sm-2"></span>
-                            <button type="button" class="btn btn-info col-sm-3" id="dispatch_match_reset">重置</button>
-                            <span class="col-sm-1"></span>
-                        </div>
-                    </div>
-                </form>
 
-                <div id="dispatch_match_table_div" style="margin-top: 3%">
+                            <div class="col-md-4"><label class="col-sm-4 control-label">提货城市:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="deli_city" class="form-control" name="deli_city"
+                                           placeholder="请选择">
+                                </div>
+                            </div>
+                            <div class="col-md-4"><label class="col-sm-4 control-label">收货城市:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="arrival_city" class="form-control" name="arri_city"
+                                           placeholder="请选择">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form_row">
+                            <div class="col-md-4">
+                                <label class="col-sm-4 control-label">运输类别:</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" name="pk_trans_type">
+                                        <option value="" hidden></option>
+                                        <option v-for="trans in transData" v-bind:value="trans.value">
+                                            {{ trans.text }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="col-sm-4 control-label">货物重量:</label>
+                                <div class="col-second-input">
+                                    <input type="text" class="form-control" name="weight_count_floor" placeholder="请输入">
+                                </div>
+                                <div class="col-second-input">
+                                    <input type="text" class="form-control" name="weight_count_top" placeholder="请输入">
+                                </div>
+                            </div>
+                            <div class="col-md-4"><label class="col-sm-4 control-label">货物体积:</label>
+                                <div class="col-second-input">
+                                    <input type="text" class="form-control" name="volume_count_floor" placeholder="请输入">
+                                </div>
+                                <div class="col-second-input">
+                                    <input type="text" class="form-control" name="volume_count_top" placeholder="请输入">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form_row">
+                            <div class="col-md-4">
+                                <label class="col-sm-4 control-label">要求提货日期:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="delivery_date" class="form-control" name="req_deli_date">
+                                </div>
+                            </div>
+                            <div class="col-md-4"><label class="col-sm-4 control-label">要求到货日期:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="arrival_date" class="form-control" name="req_arri_date">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <span class="col-sm-3"></span>
+                                <button type="button" class="btn btn-info col-sm-3" id="dispatch_match_btn">查询</button>
+                                <span class="col-sm-2"></span>
+                                <button type="button" class="btn btn-info col-sm-3" id="dispatch_match_reset">重置
+                                </button>
+                                <span class="col-sm-1"></span>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div id="dispatch_match_table_div" style="margin-top: 3%">
                         <div id="dispatch_match_total" style="margin-bottom: 2%">
                          <span>合计:&nbsp;&nbsp;&nbsp;&nbsp;件数:&nbsp;&nbsp;<label>{{num}}</label>
                       &nbsp;&nbsp;件</span>&nbsp;&nbsp;&nbsp;&nbsp;重量:&nbsp;&nbsp;<label>{{weight}}</label>
@@ -114,22 +117,22 @@
                             <button type="button" class="btn btn-info">派车</button>
                             <button type="button" class="btn btn-info">处理</button>
                         </div>
-                       <!-- <div class="toolbar col-md-6" style="float: right">
-                           &lt;!&ndash; <button type="button" class="btn btn-warning">查看</button>&ndash;&gt;
-                            <button type="button" class="btn btn-success">取消拆段</button>
-                            <button type="button" class="btn btn-warning">放弃订单</button>
-                            <button type="button" class="btn btn-default">拆量</button>
-                        </div>-->
-                    <table id="dispatch_match_table">
+                        <!-- <div class="toolbar col-md-6" style="float: right">
+                            &lt;!&ndash; <button type="button" class="btn btn-warning">查看</button>&ndash;&gt;
+                             <button type="button" class="btn btn-success">取消拆段</button>
+                             <button type="button" class="btn btn-warning">放弃订单</button>
+                             <button type="button" class="btn btn-default">拆量</button>
+                         </div>-->
+                        <table id="dispatch_match_table">
 
-                    </table>
+                        </table>
+
+                    </div>
+
 
                 </div>
-
-
             </div>
         </div>
-    </div>
     </div>
     <div id="dispatch_match_div_detail" hidden></div>
 </div>
