@@ -17,10 +17,19 @@
                 })
             }
 
+            var initCompoment = function () {
+                $('#carrier_raty').raty({
+                    readOnly: true,
+                    score: 3,
+                    starHalf   : 'images/star-half.png',
+                    starOff    : 'images/star-off.png',
+                    starOn     : 'images/star-on.png'});
+            }
             var object = {};
             object.load = function () {
                 initDetailHtml();
                 bindEvent();
+                initCompoment();
             }
             return object;
         }
