@@ -1,5 +1,6 @@
 package com.xinya.coldchain.tools.shiro;
 
+import com.xinya.coldchain.tools.shiro.filter.ShiroPermissionsFilter;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -12,7 +13,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.servlet.Filter;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * @author liyoujing
@@ -23,58 +26,65 @@ import java.util.LinkedHashMap;
 public class ShiroConfiguration {
     private static Logger logger = LoggerFactory.getLogger(ShiroConfiguration.class);
 
-    @Bean(name="shiroFilter")
+    @Bean(name = "shiroFilter")
     public ShiroFilterFactoryBean shiroFilter(@Qualifier("securityManager") SecurityManager manager) {
-        ShiroFilterFactoryBean bean=new ShiroFilterFactoryBean();
+        ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
+        //获取默认的过滤器map
         bean.setSecurityManager(manager);
         //TODO 配置登录的url和登录成功的url
         bean.setLoginUrl("/index");
         bean.setSuccessUrl("/loginSuccess");
         //TODO 配置访问权限
-        LinkedHashMap<String, String> filterChainDefinitionMap=new LinkedHashMap<>();
+        LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         //开放请求接口
-        filterChainDefinitionMap.put("/tms_system","anon");
+        filterChainDefinitionMap.put("/tms_system", "anon");
         /* static 静态资源可以访问 */
-        filterChainDefinitionMap.put("/static/**","anon");
-        filterChainDefinitionMap.put("/loginout","logout");
+        filterChainDefinitionMap.put("/static/**", "anon");
+        filterChainDefinitionMap.put("/loginout", "logout");
         filterChainDefinitionMap.put("/login", "authc");
         filterChainDefinitionMap.put("/*.*", "authc");
         bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return bean;
     }
+
     //配置核心安全事务管理器
-    @Bean(name="securityManager")
+    @Bean(name = "securityManager")
     public SecurityManager securityManager(@Qualifier("authRealm") AuthRealm authRealm) {
         logger.info("--------------shiro已经加载----------------");
-        DefaultWebSecurityManager manager=new DefaultWebSecurityManager();
+        DefaultWebSecurityManager manager = new DefaultWebSecurityManager();
         manager.setRealm(authRealm);
         return manager;
     }
+
     //配置自定义的权限登录器
-    @Bean(name="authRealm")
+    @Bean(name = "authRealm")
     public AuthRealm authRealm(@Qualifier("credentialsMatcher") CredentialsMatcher matcher) {
-        AuthRealm authRealm=new AuthRealm();
+        AuthRealm authRealm = new AuthRealm();
         authRealm.setCredentialsMatcher(matcher);
         return authRealm;
     }
+
     //配置自定义的密码比较器
-    @Bean(name="credentialsMatcher")
+    @Bean(name = "credentialsMatcher")
     public CredentialsMatcher credentialsMatcher() {
         return new CredentialsMatcher();
     }
+
     @Bean
-    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor(){
+    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
         return new LifecycleBeanPostProcessor();
     }
+
     @Bean
-    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator(){
-        DefaultAdvisorAutoProxyCreator creator=new DefaultAdvisorAutoProxyCreator();
+    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
+        DefaultAdvisorAutoProxyCreator creator = new DefaultAdvisorAutoProxyCreator();
         creator.setProxyTargetClass(true);
         return creator;
     }
+
     @Bean
     public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(@Qualifier("securityManager") SecurityManager manager) {
-        AuthorizationAttributeSourceAdvisor advisor=new AuthorizationAttributeSourceAdvisor();
+        AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
         advisor.setSecurityManager(manager);
         return advisor;
     }
