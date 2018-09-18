@@ -282,7 +282,7 @@
                         resp = searchDataFun(1, size);
                         $("#dispatch_match_table").bootstrapTable("refreshOptions", {pageNumber: 1, queryParams: resp});
                     } else {
-                        alert(data.msg);
+                        common.commonModalShow(data.msg);
                     }
                 }
 

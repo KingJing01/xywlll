@@ -105,5 +105,9 @@ var common = {
             resp[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
         }
         return resp;
+    },
+    commonModalShow: function (message) {
+        $("#com_modal").modal("show");
+        $("#com_modal_div").text(message);
     }
 }
