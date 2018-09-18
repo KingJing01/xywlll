@@ -75,7 +75,7 @@ var common = {
         map.addOverlay(marker);
     },
     /**
-     *  通用ajax封装 异步请求
+     *  通用ajax封装 异步请求  json格式数据传输
      * @param url  请求路径
      * @param restData  请求参数
      * @param data  发送的数据
@@ -86,7 +86,8 @@ var common = {
         $.ajax({
             url: url,
             type: type,
-            data: data,
+            data: JSON.stringify(data),
+            contentType: "application/json",
             dataType: 'json',
             success: function (res) {
                 callback(res, param);

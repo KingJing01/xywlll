@@ -2,6 +2,8 @@
 (function () {
     var HTML_LIST = "module/dispatch/match/list.html";
     var JSON_DATA = "tms_system/public/httpEdi/Sto/loadData.do";
+    var CANCEL_SECTION = "tms_system/public/httpEdi/Sto/cancelSplitSect.do";
+    var CANCEL_AMOUNT = "tms_system/public/httpEdi/Sto/cancelSplitNum.do";
     var JSON_TRANS = "/xinyang/json/trans_type.json";
     var JSON_TRANS_STATUS = "/xinyang/json/trans_status.json";
     define([
@@ -169,7 +171,7 @@
                         formatter: function (value, row) {
                             return "<a href='#' class='a_vbillno'>" + value + "</a>";
                         }
-                    },{
+                    }, {
                         field: 'invoice_vbillno',
                         title: '发货单号',
                         align: 'center'
@@ -207,11 +209,19 @@
                             return row.arri_province + row.arri_city + " \n " + row.req_arri_date;
                         }
                     }, {
-                        field: 'pkCustomer',
+                        field: 'seg_type',
                         title: '操作',
                         align: 'center',
                         formatter: function (value, row) {
-                            var str = "<div id='" + value + "'><a href='#' class='a_action detail'>拆量</a><a href='#' class='a_action'>拆段</a>";
+                            //seg_type  0表示分段  1表示分量  2表示原始的
+                            var str = "<div id='" + row.pk_segment + "'>";
+                            if (value == '0') {
+                                str += "<a href='#' class='a_action cancel_section'>取消拆段</a>";
+                            } else if (value == '1') {
+                                str += "<a href='#' class='a_action cancel_amount'>取消拆量</a>";
+                            } else {
+                                str += "<a href='#' class='a_action amount'>拆量</a><a href='#' class='a_action section'>拆段</a>"
+                            }
                             return str + "</div>";
                         }
                     }],
@@ -264,6 +274,41 @@
                     requirejs(["module/dispatch/match/detail"], function (list) {
                         list.load();
                     });
+                })
+                //表单界面的刷新
+                var eventCallBack = function (data) {
+                    if (data.success == true) {
+                        size = $('#dispatch_match_table').bootstrapTable('getOptions').pageSize;
+                        resp = searchDataFun(1, size);
+                        $("#dispatch_match_table").bootstrapTable("refreshOptions", {pageNumber: 1, queryParams: resp});
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+
+                /* 表格事件绑定*/
+                $("#dispatch_match_table").on('click', 'a', function () {
+                    var pk_segment = $(this).parent("div").attr("id");
+                    if ($(this).hasClass("cancel_section")) {
+                        /*取消拆段*/
+                        common.ajaxfuncURL(CANCEL_SECTION, "POST", {pk_segment: pk_segment}, eventCallBack);
+                    } else if ($(this).hasClass("cancel_amount")) {
+                        /*取消拆量*/
+                        common.ajaxfuncURL(CANCEL_AMOUNT, "POST", {pk_segment: pk_segment}, eventCallBack);
+                    } else if ($(this).hasClass("section")) {
+                        $("#dispatch_match_div_list").hide();
+                        $("#dispatch_match_div_detail").show();
+                        requirejs(["module/userManage/driver/detail"], function (list) {
+                            list.load(id, checkStatus);
+                        });
+                    } else if ($(this).hasClass("amount")) {
+                        //拆量
+                        $("#dispatch_match_div_list").hide();
+                        $("#dispatch_match_div_detail").show();
+                        requirejs(["module/userManage/driver/detail"], function (list) {
+                            list.load(id, checkStatus);
+                        });
+                    }
                 })
 
             }
