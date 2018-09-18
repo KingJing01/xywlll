@@ -20,8 +20,7 @@
         function () {
             $.ajaxSetup({
                 complete: function (xhr, status) {
-                    var sessionStatus = xhr.getResponseHeader('sessionstatus');
-                    if (sessionStatus == 'timeout') {
+                    if (status == 'timeout') {
                         window.location.href = "loginout";
                     }
                 }
