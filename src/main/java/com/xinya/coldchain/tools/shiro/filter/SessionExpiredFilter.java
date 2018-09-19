@@ -35,7 +35,7 @@ public class SessionExpiredFilter extends PathMatchingFilter {
                 //普通的处理，直接给到下一个拦截器
                 return true;
             }
-        } 
+        }
         return true;
     }
 
@@ -43,6 +43,6 @@ public class SessionExpiredFilter extends PathMatchingFilter {
     private void onLoginFail(ServletResponse response) throws IOException {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         httpResponse.setStatus(403);
-        httpResponse.getWriter().write("session超时了");
+        httpResponse.getWriter().write("session过期");
     }
 }
