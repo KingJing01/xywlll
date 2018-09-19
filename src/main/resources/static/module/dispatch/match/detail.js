@@ -21,7 +21,7 @@
 
             }
 
-            var initCompoment = function (pk_segment, user_code) {
+            var initCompoment = function (pk_segment) {
 
                 detailInfoVue = new Vue({
                     el: '#dispatch_match_order_detail',
@@ -31,9 +31,7 @@
                     mounted: function () {
                         var _self = this;
                         common.ajaxfuncURL(JSON_DETAIL, "POST", {
-                            pk_segment: pk_segment,
-                            user_code: user_code
-                        }, function (resp) {
+                            pk_segment: pk_segment}, function (resp) {
                             var data = resp.data;
                             $('#carrier_raty').raty({
                                 readOnly: true,
@@ -49,10 +47,10 @@
 
             }
             var object = {};
-            object.load = function (pk_segment, user_code) {
+            object.load = function (pk_segment) {
                 initDetailHtml();
                 bindEvent();
-                initCompoment(pk_segment, user_code);
+                initCompoment(pk_segment);
             }
             return object;
         }

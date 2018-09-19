@@ -272,9 +272,8 @@
                     $("#dispatch_match_div_list").hide();
                     $("#dispatch_match_div_detail").show();
                     var data = $(this).attr("data");
-                    var user_code = sessionStorage.getItem("userCode");
                     requirejs(["module/dispatch/match/detail"], function (list) {
-                        list.load(data,user_code);
+                        list.load(data);
                     });
                 })
                 //表单界面的刷新
