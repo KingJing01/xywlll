@@ -1,9 +1,7 @@
 package com.xinya.coldchain.tools.shiro;
 
 import com.xinya.coldchain.tools.shiro.filter.SessionExpiredFilter;
-import org.apache.catalina.filters.SessionInitializerFilter;
 import org.apache.shiro.mgt.SecurityManager;
-import org.apache.shiro.session.SessionListenerAdapter;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -42,14 +40,14 @@ public class ShiroConfiguration {
         LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         //开放请求接口 调取旧版tms接口 全部开放
         filterChainDefinitionMap.put("/tms_system", "anon");
-        filterChainDefinitionMap.put("/dologin", "anon");
+     /*   filterChainDefinitionMap.put("/dologin", "anon");*/
         // static 静态资源可以访问
         filterChainDefinitionMap.put("/static/**", "anon");
         // shiro 默认的退出请求
         filterChainDefinitionMap.put("/loginout", "logout");
         // 配置需要验证的请求
         filterChainDefinitionMap.put("/login", "authc");
-        filterChainDefinitionMap.put("/**", "seExpir,authc");
+        filterChainDefinitionMap.put("/*.*", "seExpir,authc");
         bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return bean;
     }
