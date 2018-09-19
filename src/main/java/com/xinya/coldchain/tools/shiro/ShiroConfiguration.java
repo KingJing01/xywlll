@@ -1,5 +1,7 @@
 package com.xinya.coldchain.tools.shiro;
 
+import com.xinya.coldchain.tools.shiro.filter.SessionExpiredFilter;
+import org.apache.catalina.filters.SessionInitializerFilter;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.SessionListenerAdapter;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
@@ -29,20 +31,25 @@ public class ShiroConfiguration {
     @Bean(name = "shiroFilter")
     public ShiroFilterFactoryBean shiroFilter(@Qualifier("securityManager") SecurityManager manager) {
         ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
-        //获取默认的过滤器map
+        Map<String, Filter> filters = bean.getFilters();
+        //添加自定义的session过滤器
+        filters.put("seExpir",new SessionExpiredFilter());
         bean.setSecurityManager(manager);
         //TODO 配置登录的url和登录成功的url
         bean.setLoginUrl("/index");
         bean.setSuccessUrl("/loginSuccess");
         //TODO 配置访问权限
         LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-        //开放请求接口
+        //开放请求接口 调取旧版tms接口 全部开放
         filterChainDefinitionMap.put("/tms_system", "anon");
-        /* static 静态资源可以访问 */
+        filterChainDefinitionMap.put("/dologin", "anon");
+        // static 静态资源可以访问
         filterChainDefinitionMap.put("/static/**", "anon");
+        // shiro 默认的退出请求
         filterChainDefinitionMap.put("/loginout", "logout");
+        // 配置需要验证的请求
         filterChainDefinitionMap.put("/login", "authc");
-        filterChainDefinitionMap.put("/*.*", "authc");
+        filterChainDefinitionMap.put("/**", "seExpir,authc");
         bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return bean;
     }

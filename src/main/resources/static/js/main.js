@@ -21,7 +21,7 @@
         function () {
             $.ajaxSetup({
                 complete: function (xhr, status) {
-                    if (status == 'timeout') {
+                    if (xhr.status == 403) {
                         window.location.href = "loginout";
                     }
                 }
@@ -92,14 +92,14 @@
                 });
 
                 $("#login_out").on('click', function () {
-                    sessionStorage.setItem("currentMenu","");
-                    window.location.href="loginout";
+                    sessionStorage.setItem("currentMenu", "");
+                    window.location.href = "loginout";
                 });
-                $('#side-menu').metisMenu({ toggle: false });
-                
+                $('#side-menu').metisMenu({toggle: false});
+
                 $("#page-wrapper").resize(function () {
                     var height = $(this).height();
-                    $("#nav_div").css("height",height);
+                    $("#nav_div").css("height", height);
                 })
 
                 jpush.JimInit();
