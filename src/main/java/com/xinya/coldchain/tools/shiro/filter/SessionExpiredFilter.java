@@ -18,7 +18,7 @@ import java.io.IOException;
  * @author liyoujing
  */
 public class SessionExpiredFilter extends PathMatchingFilter {
-    private Logger logger = LoggerFactory.getLogger(SessionExpiredFilter.class);
+    private static final Logger logger = LoggerFactory.getLogger(SessionExpiredFilter.class);
 
     @Override
     protected boolean onPreHandle(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
