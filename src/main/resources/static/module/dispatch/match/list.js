@@ -169,7 +169,7 @@
                         title: '运段号',
                         align: 'center',
                         formatter: function (value, row) {
-                            return "<a href='#' class='a_vbillno'>" + value + "</a>";
+                            return "<a href='#' data=" + row.pk_segment + " class='a_vbillno'>" + value + "</a>";
                         }
                     }, {
                         field: 'invoice_vbillno',
@@ -271,8 +271,10 @@
                 $("#dispatch_match_table").on('click', '.a_vbillno', function () {
                     $("#dispatch_match_div_list").hide();
                     $("#dispatch_match_div_detail").show();
+                    var data = $(this).attr("data");
+                    var user_code = sessionStorage.getItem("userCode");
                     requirejs(["module/dispatch/match/detail"], function (list) {
-                        list.load();
+                        list.load(data,user_code);
                     });
                 })
                 //表单界面的刷新

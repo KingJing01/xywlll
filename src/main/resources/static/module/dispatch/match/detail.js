@@ -1,10 +1,13 @@
 /* 订单详情 */
 (function () {
     var HTML_DETAIL = "module/dispatch/match/detail.html";
+    var JSON_DETAIL = "tms_system/public/httpEdi/Sto/stoDetail.do";
     define([
             'jquery',
+            'vue',
             'text!' + HTML_DETAIL
-        ], function ($, htmlDetail) {
+        ], function ($, Vue, htmlDetail) {
+            var detailInfoVue;//
             /*指定位置加载html界面*/
             var initDetailHtml = function () {
                 $("#dispatch_match_div_detail").html(htmlDetail);
@@ -15,21 +18,41 @@
                     $("#dispatch_match_div_detail").hide();
                     $("#dispatch_match_div_list").show();
                 })
+
             }
 
-            var initCompoment = function () {
-                $('#carrier_raty').raty({
-                    readOnly: true,
-                    score: 3,
-                    starHalf   : 'images/star-half.png',
-                    starOff    : 'images/star-off.png',
-                    starOn     : 'images/star-on.png'});
+            var initCompoment = function (pk_segment, user_code) {
+
+                detailInfoVue = new Vue({
+                    el: '#dispatch_match_order_detail',
+                    data: {
+                        detail: {}
+                    },
+                    mounted: function () {
+                        var _self = this;
+                        common.ajaxfuncURL(JSON_DETAIL, "POST", {
+                            pk_segment: pk_segment,
+                            user_code: user_code
+                        }, function (resp) {
+                            var data = resp.data;
+                            $('#carrier_raty').raty({
+                                readOnly: true,
+                                score: data.score,
+                                starHalf: 'images/star-half.png',
+                                starOff: 'images/star-off.png',
+                                starOn: 'images/star-on.png'
+                            });
+                            _self.detail = data;
+                        })
+                    }
+                })
+
             }
             var object = {};
-            object.load = function () {
+            object.load = function (pk_segment, user_code) {
                 initDetailHtml();
                 bindEvent();
-                initCompoment();
+                initCompoment(pk_segment, user_code);
             }
             return object;
         }

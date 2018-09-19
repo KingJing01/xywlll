@@ -12,32 +12,32 @@
                 </div>
                 <div class="col-md-10">
                     <div class="col-md-4">
-                        <span class="span_label">上海欣雅供应链管理有限公司</span>
+                        <span class="span_label">{{detail.cust_corp_name}}</span>
                         <span class="span_label"><div id="carrier_raty"></div></span>
                         <span class="span_label">入驻2年</span>
                     </div>
                     <div class="col-md-8" style="margin-top: 25px">
-                        <img src="images/phone.png"><span>18098751231</span>
+                        <img src="images/phone.png"><span>{{detail.phone}}</span>
                     </div>
                 </div>
             </div>
             <span style="line-height: 50px">订单信息</span>
             <div style="float: left;margin-top: 10px;width: 100%;border: 1px solid  #E8EEF4;padding: 25px 0;">
                 <div class="row">
-                    <div style="width:40%;float: left"><span class="span_div">提货方：</span>沈天天，13852488151，上海远方供应链有限公司</div>
-                    <div style="width:25%;float: left"><span class="span_div">提货时间：</span>2018年04月16日 12:00</div>
-                    <div style="width:35%;float: left"><span class="span_div">提货地址：</span>上海市浦东新区碧波路690号7号楼5楼</div>
+                    <div style="width:40%;float: left"><span class="span_div">提货方：</span>{{detail.deli_addr}},{{detail.deli_phone}},{{detail.deli_addr_name}}</div>
+                    <div style="width:25%;float: left"><span class="span_div">提货时间：</span>{{detail.req_deli_date}}</div>
+                    <div style="width:35%;float: left"><span class="span_div">提货地址：</span>{{detail.deli_addr}}</div>
                 </div>
                 <div class="row">
-                    <div style="width:40%;float: left"><span class="span_div">收货方：</span>李晓蓝，13852488151，南京起航物流有限公司</div>
-                    <div style="width:25%;float: left"><span class="span_div">收货时间：</span>2018年04月16日 12:00</div>
-                    <div style="width:35%;float: left"><span class="span_div">收货地址：</span>江苏省南京市雨花台区丽园路203号</div>
+                    <div style="width:40%;float: left"><span class="span_div">收货方：</span>{{detail.arri_name}},{{detail.arri_phone}},{{detail.arri_addr_name}}</div>
+                    <div style="width:25%;float: left"><span class="span_div">收货时间：</span>{{detail.req_arri_date}}</div>
+                    <div style="width:35%;float: left"><span class="span_div">收货地址：</span>{{detail.arri_addr}}</div>
                 </div>
                 <div style="width: 94%;border: 0.5px solid #E8EEF4;margin:1% 3%"></div>
                 <div class="row span_div_type">
-                    <div style="float: left;width: 25%"><span class="span_div">货物类型：</span>煤炭及制品、焦炭</div>
-                    <div style="float: left;width: 25%"><span class="span_div">运输类型：</span>整批整车</div>
-                    <div style="float: left;width: 50%"><span class="span_div">件重体：</span>100件/1吨</div>
+                    <div style="float: left;width: 25%"><span class="span_div">货物类型：</span>{{detail.goods_type}}</div>
+                    <div style="float: left;width: 25%"><span class="span_div">运输类型：</span>{{detail.pk_trans_type}}</div>
+                    <div style="float: left;width: 50%"><span class="span_div">件重体：</span>{{detail.num_count}}件/{{detail.weight_count}}吨/{{detail.volume_count}}立方</div>
                 </div>
                 <div class="row span_div_type">
                     <div style="float: left;width: 25%"><span class="span_div">保险：</span>保险名称保险名称</div>
@@ -45,8 +45,8 @@
                     <div style="float: left;width: 50%"><span class="span_div">付款方：</span>发货方</div>
                 </div>
                 <div class="row span_div_type">
-                    <div style="float: left;width: 25%"><span class="span_div">订单编号：</span>2343435464443243</div>
-                    <div style="float: left;width: 25%"><span class="span_div">下单时间：</span>2018年04月16日 12:00</div>
+                    <div style="float: left;width: 25%"><span class="span_div">订单编号：</span>{{detail.invoice_vbillno}}</div>
+                    <div style="float: left;width: 25%"><span class="span_div">下单时间：</span>{{detail.create_time}}</div>
                 </div>
                 <div class="row span_div_type">
                     <div style="float: left;width: 25%"><span class="span_div">结算方式:</span>现结</div>
