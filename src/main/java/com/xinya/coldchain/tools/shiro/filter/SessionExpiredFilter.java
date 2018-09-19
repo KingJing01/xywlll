@@ -5,6 +5,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.web.filter.PathMatchingFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -14,6 +15,7 @@ import java.io.IOException;
 
 /**
  * shiro session 自定义拦截器
+ * 拦截 ajax请求，当session失效的时候,ajax返回403
  *
  * @author liyoujing
  */
@@ -33,7 +35,7 @@ public class SessionExpiredFilter extends PathMatchingFilter {
                 //普通的处理，直接给到下一个拦截器
                 return true;
             }
-        }
+        } 
         return true;
     }
 
