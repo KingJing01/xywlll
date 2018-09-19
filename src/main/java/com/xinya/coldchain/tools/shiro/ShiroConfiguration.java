@@ -1,7 +1,7 @@
 package com.xinya.coldchain.tools.shiro;
 
-import com.xinya.coldchain.tools.shiro.filter.ShiroPermissionsFilter;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.session.SessionListenerAdapter;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;

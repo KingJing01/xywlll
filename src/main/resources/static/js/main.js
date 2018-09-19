@@ -12,6 +12,7 @@
             "vendor/citypicker/citySet",
             "vendor/citypicker/Popt",
             "vendor/jquery_raty/jquery.raty",
+            "vendor/jquery_resize/jquery_resize_event.js",
             "js/common",
             "js/jpush",
             "js/admin",
@@ -95,6 +96,11 @@
                     window.location.href="loginout";
                 });
                 $('#side-menu').metisMenu({ toggle: false });
+                
+                $("#page-wrapper").resize(function () {
+                    var height = $(this).height();
+                    $("#nav_div").css("height",height);
+                })
 
                 jpush.JimInit();
             };
