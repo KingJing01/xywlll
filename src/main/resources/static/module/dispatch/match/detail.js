@@ -33,6 +33,11 @@
                         common.ajaxfuncURL(JSON_DETAIL, "POST", {
                             pk_segment: pk_segment}, function (resp) {
                             var data = resp.data;
+                            if(data.time<1){
+                                data.time="不到1"
+                            }else {
+                                data.time="约"+Math.round(data.time);
+                            }
                             $('#carrier_raty').raty({
                                 readOnly: true,
                                 score: data.score,
