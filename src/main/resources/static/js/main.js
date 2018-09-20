@@ -22,6 +22,7 @@
             $.ajaxSetup({
                 complete: function (xhr, status) {
                     if (xhr.status == 403) {
+                        sessionStorage.setItem("userCode","");
                         window.location.href = "loginout";
                     }
                 }
@@ -93,6 +94,7 @@
 
                 $("#login_out").on('click', function () {
                     sessionStorage.setItem("currentMenu", "");
+                    sessionStorage.setItem("userCode", "");
                     window.location.href = "loginout";
                 });
                 $('#side-menu').metisMenu({toggle: false});

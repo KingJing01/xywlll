@@ -126,6 +126,7 @@
                 }
                 resp.pageSize = size + "";
                 resp.pageNumber = number + "";
+                resp.user_code = sessionStorage.getItem("userCode");
                 return resp;
             }
             var initTable = function () {
@@ -142,7 +143,8 @@
                     queryParams: function queryParams(params) {   //设置查询参数
                         var param = {
                             pageSize: this.pageSize + '',   //每页多少条数据
-                            pageNumber: this.pageNumber + '' // 页码
+                            pageNumber: this.pageNumber + '', // 页码
+                            user_code:sessionStorage.getItem("userCode")
                         };
                         return param;
                     },
