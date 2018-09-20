@@ -4,6 +4,7 @@
     var JSON_DATA = "tms_system/public/httpEdi/Sto/loadData.do";
     var CANCEL_SECTION = "tms_system/public/httpEdi/Sto/cancelSplitSect.do";
     var CANCEL_AMOUNT = "tms_system/public/httpEdi/Sto/cancelSplitNum.do";
+    var GIVENUP_SEGMENT = "tms_system/public/httpEdi/Sto/giveUpBill.do";
     var JSON_TRANS = "/xinyang/json/trans_type.json";
     var JSON_TRANS_STATUS = "/xinyang/json/trans_status.json";
     define([
@@ -220,7 +221,7 @@
                             } else if (value == '1') {
                                 str += "<a href='#' class='a_action cancel_amount'>取消拆量</a>";
                             } else {
-                                str += "<a href='#' class='a_action amount'>拆量</a><a href='#' class='a_action section'>拆段</a>"
+                                str += "<a href='#' class='a_action amount'>拆量</a><a href='#' class='a_action section'>拆段</a><a href='#' class='a_action giveup_segment'>放弃运段</a>"
                             }
                             return str + "</div>";
                         }
@@ -290,6 +291,7 @@
                 /* 表格事件绑定*/
                 $("#dispatch_match_table").on('click', 'a', function () {
                     var pk_segment = $(this).parent("div").attr("id");
+                    var user_code = sessionStorage.getItem("userCode");
                     if ($(this).hasClass("cancel_section")) {
                         /*取消拆段*/
                         common.ajaxfuncURL(CANCEL_SECTION, "POST", {pk_segment: pk_segment}, eventCallBack);
@@ -309,6 +311,9 @@
                         requirejs(["module/userManage/driver/detail"], function (list) {
                             list.load(id, checkStatus);
                         });
+                    } else if ($(this).hasClass("giveup_segment")) {
+                        //放弃运单
+                        common.ajaxfuncURL(GIVENUP_SEGMENT, "POST", {pk_segment: pk_segment,user_code:user_code}, eventCallBack);
                     }
                 })
 
