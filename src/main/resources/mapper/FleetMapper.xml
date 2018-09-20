@@ -37,7 +37,7 @@
             <bind name="pattern" value="'%' + carrCode + '%'"/>
             and t.carr_code like #{pattern}
         </if>
-
+        order by t.create_time desc
     </select>
 
     <select id="getFleetPersonInfo" parameterType="string" resultType="java.util.Map">

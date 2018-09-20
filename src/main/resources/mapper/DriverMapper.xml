@@ -31,6 +31,7 @@
         <if test="pkDriver != null and  pkDriver !=''">
             and t.pk_driver = #{pkDriver}
         </if>
+        order by t1.create_time desc
     </select>
 
     <update id="updateDriver" parameterType="java.util.Map">

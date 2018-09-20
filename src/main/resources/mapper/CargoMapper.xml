@@ -21,6 +21,7 @@
         <if test="custCode != null and  custCode !=''">
             and t2.cust_code like #{pattern}
         </if>
+        order by t2.create_time desc
     </select>
 
     <update id="updateDrStatus" parameterType="string">
