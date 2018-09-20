@@ -144,7 +144,7 @@
                         var param = {
                             pageSize: this.pageSize + '',   //每页多少条数据
                             pageNumber: this.pageNumber + '', // 页码
-                            user_code:sessionStorage.getItem("userCode")
+                            user_code: sessionStorage.getItem("userCode")
                         };
                         return param;
                     },
@@ -224,6 +224,10 @@
                                 str += "<a href='#' class='a_action cancel_amount'>取消拆量</a>";
                             } else {
                                 str += "<a href='#' class='a_action amount'>拆量</a><a href='#' class='a_action section'>拆段</a><a href='#' class='a_action giveup_segment'>放弃运段</a>"
+                            }
+
+                            if (row.assign_stutas == 2) {
+                                str += "<a href='#' class='a_action modal_btn' data=" + row.bill_origin + " >处理</a>";
                             }
                             return str + "</div>";
                         }
@@ -315,7 +319,16 @@
                         });
                     } else if ($(this).hasClass("giveup_segment")) {
                         //放弃运单
-                        common.ajaxfuncURL(GIVENUP_SEGMENT, "POST", {pk_segment: pk_segment,user_code:user_code}, eventCallBack);
+                        common.ajaxfuncURL(GIVENUP_SEGMENT, "POST", {
+                            pk_segment: pk_segment,
+                            user_code: user_code
+                        }, eventCallBack);
+                    } else if ($(this).hasClass("modal_btn")) {
+                        $("#dispatch_match_modal").modal("show");
+                        var data = $(this).attr("data");
+                        requirejs(["module/dispatch/match/handle/handle"], function (list) {
+                            list.load(pk_segment, data);
+                        });
                     }
                 })
 
