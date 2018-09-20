@@ -24,37 +24,48 @@
             <span style="line-height: 50px">订单信息</span>
             <div style="float: left;margin-top: 10px;width: 100%;border: 1px solid  #E8EEF4;padding: 25px 0;">
                 <div class="row">
-                    <div style="width:40%;float: left"><span class="span_div">提货方：</span>{{detail.deli_addr}},{{detail.deli_phone}},{{detail.deli_addr_name}}</div>
+                    <div style="width:40%;float: left"><span class="span_div">提货方：</span>{{detail.deli_addr}},{{detail.deli_phone}},{{detail.deli_addr_name}}
+                    </div>
                     <div style="width:25%;float: left"><span class="span_div">提货时间：</span>{{detail.req_deli_date}}</div>
                     <div style="width:35%;float: left"><span class="span_div">提货地址：</span>{{detail.deli_addr}}</div>
                 </div>
                 <div class="row">
-                    <div style="width:40%;float: left"><span class="span_div">收货方：</span>{{detail.arri_name}},{{detail.arri_phone}},{{detail.arri_addr_name}}</div>
+                    <div style="width:40%;float: left"><span class="span_div">收货方：</span>{{detail.arri_name}},{{detail.arri_phone}},{{detail.arri_addr_name}}
+                    </div>
                     <div style="width:25%;float: left"><span class="span_div">收货时间：</span>{{detail.req_arri_date}}</div>
                     <div style="width:35%;float: left"><span class="span_div">收货地址：</span>{{detail.arri_addr}}</div>
                 </div>
                 <div style="width: 94%;border: 0.5px solid #E8EEF4;margin:1% 3%"></div>
                 <div class="row span_div_type">
                     <div style="float: left;width: 25%"><span class="span_div">货物类型：</span>{{detail.goods_type}}</div>
-                    <div style="float: left;width: 25%"><span class="span_div">运输类型：</span>{{detail.pk_trans_type}}</div>
-                    <div style="float: left;width: 50%"><span class="span_div">件重体：</span>{{detail.num_count}}件/{{detail.weight_count}}吨/{{detail.volume_count}}立方</div>
+                    <div style="float: left;width: 25%"><span class="span_div">运输类型：</span>{{detail.pk_trans_type}}
+                    </div>
+                    <div style="float: left;width: 50%"><span class="span_div">件重体：</span>{{detail.num_count}}件/{{detail.weight_count}}吨/{{detail.volume_count}}立方
+                    </div>
                 </div>
                 <div class="row span_div_type">
-                    <div style="float: left;width: 25%"><span class="span_div">保险：</span>保险名称保险名称</div>
-                    <div style="float: left;width: 25%"><span class="span_div">价格：</span>16000.00</div>
-                    <div style="float: left;width: 50%"><span class="span_div">付款方：</span>发货方</div>
+                    <div style="float: left;width: 25%"><span class="span_div">保险：</span><span v-if="detail.insurance">{{detail.insurance}}</span>
+                        <span v-else>无</span></div>
+                    <div style="float: left;width: 25%"><span class="span_div">价格：</span><span v-if="detail.est_amount">{{detail.est_amount}}</span>
+                        <span v-else>无</span></div>
+                    <div style="float: left;width: 50%"><span class="span_div">付款方：</span><span v-if="detail.bala_customer">{{detail.bala_customer}}</span>
+                        <span v-else>无</span></div>
                 </div>
                 <div class="row span_div_type">
-                    <div style="float: left;width: 25%"><span class="span_div">订单编号：</span>{{detail.invoice_vbillno}}</div>
+                    <div style="float: left;width: 25%"><span class="span_div">订单编号：</span>{{detail.invoice_vbillno}}
+                    </div>
                     <div style="float: left;width: 25%"><span class="span_div">下单时间：</span>{{detail.create_time}}</div>
                 </div>
                 <div class="row span_div_type">
-                    <div style="float: left;width: 25%"><span class="span_div">结算方式:</span>现结</div>
+                    <div style="float: left;width: 25%"><span class="span_div">结算方式: </span><span v-if="detail.balatype">{{detail.balatype}}</span>
+                        <span v-else>无</span></div>
                 </div>
                 <div style="width: 94%;border: 0.5px solid #E8EEF4;margin:1% 3%"></div>
                 <div class="row span_div_type">
-                    <div style="float: left;width: 25%"><span class="span_div">付款时间：</span>2018年04月16日 12:00</div>
-                    <div style="float: left;width: 25%"><span class="span_div">调度时间：</span>2018年04月16日 12:00</div>
+                    <div style="float: left;width: 25%"><span class="span_div">付款时间：</span><span v-if="detail.pay_time">{{detail.pay_time}}</span>
+                        <span v-else>未支付</span></div>
+                    <div style="float: left;width: 25%"><span class="span_div">调度时间：</span><span v-if="detail.send_car_time">{{detail.send_car_time}}</span>
+                        <span v-else>未调度</span></div>
                 </div>
             </div>
         </div>
