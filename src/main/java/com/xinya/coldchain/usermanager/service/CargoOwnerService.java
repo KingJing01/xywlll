@@ -14,6 +14,7 @@ import com.xinya.coldchain.usermanager.model.CargoOwner;
 import com.xinya.coldchain.sys.model.TsAddress;
 import com.xinya.coldchain.utils.CommonUtil;
 import com.xinya.coldchain.utils.DateUtils;
+import com.xinya.coldchain.utils.regexCamel;
 import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,9 +52,10 @@ public class CargoOwnerService {
     @Autowired
     private NwRoleMapper nwRoleMapper;
 
-    public PageInfo<CargoOwner> getListData(int pageSize, int pageNum, String custCode) {
+    public PageInfo<CargoOwner> getListData(int pageSize, int pageNum, String custCode, String sort, String order) {
+        String param = regexCamel.underline(new StringBuffer(sort)).toString();
         PageHelper.startPage(pageNum, pageSize);
-        List<CargoOwner> list = cargoOwnerMapper.getListData(custCode);
+        List<CargoOwner> list = cargoOwnerMapper.getListData(custCode, param, order);
         PageInfo<CargoOwner> pageInfo = new PageInfo<>(list);
         return pageInfo;
     }
@@ -95,12 +97,12 @@ public class CargoOwnerService {
         param.put("checkStatus", CommonUtil.audited);
         param.put("pkCustomer", pkCustomer);
         NwCorp result = corpMapper.getCorpInfoByPkCustomer(pkCustomer);
-        if(StringUtils.isEmpty(result.getAddress())){
+        if (StringUtils.isEmpty(result.getAddress())) {
             logger.error("货主绑定的企业信息的地址为空");
             throw new Exception();
         }
         TsAddress tsAddress = tsAddressMapper.getTsAddressInfo(result.getPkCorp());
-        if(StringUtils.isEmpty(tsAddress)){
+        if (StringUtils.isEmpty(tsAddress)) {
             logger.error("货主审核 ts_address中不存在货主绑定的企业地址");
             throw new Exception();
         }
@@ -108,9 +110,9 @@ public class CargoOwnerService {
         param.put("pkAddress", pkAddress);
         String custCode = cargoOwnerMapper.getCargoInfoByCode(pkCustomer).get("cust_code");
         String pkUser = tmsUserMapper.getUserInfoByUsername(custCode).getPkUser();
-        param.put("pkUser",pkUser);
+        param.put("pkUser", pkUser);
         String roleId = nwRoleMapper.getNwRoleInfo("货主经理").getPkRole();
-        param.put("pkRole",roleId);
+        param.put("pkRole", roleId);
         cargoOwnerMapper.updateCorp(param);
         cargoOwnerMapper.updateCust(param);
         cargoOwnerMapper.updateCustAndCorp(param);
@@ -121,19 +123,19 @@ public class CargoOwnerService {
     }
 
 
-    public void cargoAuditReject(String pkCustomer,String reason) {
+    public void cargoAuditReject(String pkCustomer, String reason) {
         TmsUser user = (TmsUser) SecurityUtils.getSubject().getPrincipal();
         Date date = new Date();
         String ts = DateUtils.dateToString(date, DateUtils.DATE_FORMAT_YYYYMMDDHHMMSSSSS);
         String modifyTime = DateUtils.dateToString(date, DateUtils.DEFAULT_DATE_FORMAT);
         String modifyUser = user.getPkUser();
-        Map<String,Object> param = new HashMap<>();
-        param.put("pkCustomer",pkCustomer);
-        param.put("memo",reason);
-        param.put("ts",ts);
-        param.put("modifyTime",modifyTime);
-        param.put("modifyUser",modifyUser);
-        param.put("checkStatus",CommonUtil.auditReject);
+        Map<String, Object> param = new HashMap<>();
+        param.put("pkCustomer", pkCustomer);
+        param.put("memo", reason);
+        param.put("ts", ts);
+        param.put("modifyTime", modifyTime);
+        param.put("modifyUser", modifyUser);
+        param.put("checkStatus", CommonUtil.auditReject);
         cargoOwnerMapper.updateCust(param);
         cargoOwnerMapper.updateCustAndCorp(param);
     }

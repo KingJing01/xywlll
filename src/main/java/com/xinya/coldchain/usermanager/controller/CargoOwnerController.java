@@ -26,14 +26,16 @@ public class CargoOwnerController {
     /**
      * 获取列表数据和搜索功能.
      *
-     * @param pageSize   页大小
-     * @param pageNumber 页号
-     * @param custCode   搜索字段
+     * @param pageSize    页大小
+     * @param pageNumber   页号
+     * @param custCode 搜索字段
+     * @param sort     排序字段
+     * @param order    ·排序顺序
      * @return 返回
      */
     @RequestMapping(value = "get_list_data")
-    public PageInfo<CargoOwner> getListData(int pageSize, int pageNumber, String custCode) {
-        return cargoOwnerService.getListData(pageSize, pageNumber, custCode);
+    public PageInfo<CargoOwner> getListData(int pageSize, int pageNumber, String custCode, String sort, String order) {
+        return cargoOwnerService.getListData(pageSize, pageNumber, custCode, sort, order);
     }
 
     /**
@@ -59,19 +61,20 @@ public class CargoOwnerController {
         int flag = 0;
         try {
             flag = cargoOwnerService.updatelockedFlag(id, status);
-            if(CommonUtil.respSuccess ==flag) {
-                return new RespMessage("操作成功",flag);
+            if (CommonUtil.respSuccess == flag) {
+                return new RespMessage("操作成功", flag);
             } else {
-                return new RespMessage("操作失败",flag);
+                return new RespMessage("操作失败", flag);
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return new RespMessage("操作失败",CommonUtil.respFail);
+            return new RespMessage("操作失败", CommonUtil.respFail);
         }
     }
 
     /**
      * 查看货主(管理员)的基本信息
+     *
      * @param pkCustomer 货主id
      * @return 返回
      */
@@ -89,10 +92,11 @@ public class CargoOwnerController {
 
     /**
      * 获取货主(管理员)相关的企业信息.
+     *
      * @param pkCustomer
      * @return
      */
-    @RequestMapping(value = "/cargecorpinfo/{pkCustomer}",method = RequestMethod.POST)
+    @RequestMapping(value = "/cargecorpinfo/{pkCustomer}", method = RequestMethod.POST)
     public RespMessage getCargoCorpInfoByCode(@PathVariable String pkCustomer) {
         Map<String, String> map = null;
         try {
@@ -106,35 +110,37 @@ public class CargoOwnerController {
 
     /**
      * 审核成功
+     *
      * @param pkCustomer 货主pk
      * @return 返回
      */
-    @RequestMapping(value = "/cargo_audit/{pkCustomer}",method = RequestMethod.POST)
+    @RequestMapping(value = "/cargo_audit/{pkCustomer}", method = RequestMethod.POST)
     public RespMessage cargoInfoAuditSuccess(@PathVariable String pkCustomer) {
         try {
             cargoOwnerService.cargoInfoAuditSuccess(pkCustomer);
-            return new RespMessage("审核成功",CommonUtil.respSuccess);
+            return new RespMessage("审核成功", CommonUtil.respSuccess);
         } catch (Exception e) {
             e.printStackTrace();
-            return new RespMessage("审核失败",CommonUtil.respFail);
+            return new RespMessage("审核失败", CommonUtil.respFail);
         }
 
     }
 
     /**
      * 审核驳回.
+     *
      * @param pkCustomer 货主pk
-     * @param reason  驳回原因
+     * @param reason     驳回原因
      * @return 返回
      */
-    @RequestMapping(value = "/cargo_audit_reject/{pkCustomer}",method = RequestMethod.POST)
-    public RespMessage cargoAuditReject(@PathVariable String pkCustomer,String reason) {
+    @RequestMapping(value = "/cargo_audit_reject/{pkCustomer}", method = RequestMethod.POST)
+    public RespMessage cargoAuditReject(@PathVariable String pkCustomer, String reason) {
         try {
-            cargoOwnerService.cargoAuditReject(pkCustomer,reason);
-            return new RespMessage("成功驳回",CommonUtil.respSuccess);
+            cargoOwnerService.cargoAuditReject(pkCustomer, reason);
+            return new RespMessage("成功驳回", CommonUtil.respSuccess);
         } catch (Exception e) {
             e.printStackTrace();
-            return new RespMessage("驳回失败",CommonUtil.respFail);
+            return new RespMessage("驳回失败", CommonUtil.respFail);
         }
     }
 

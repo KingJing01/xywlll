@@ -22,6 +22,9 @@
                 sidePagination: 'server',
                 pageSize: 10,
                 pageNumber: 1,
+                sortStable:true,
+                sortName:"create_time",
+                sortOrder:"desc",
                 columns: [{
                     field: 'num',
                     title: '序号',
@@ -57,6 +60,7 @@
                     field: 'createTime',
                     title: '注册时间',
                     align: 'center',
+                    sortable:true
                 }, {
                     field: 'lockedFlag',
                     title: '状态',
@@ -80,10 +84,12 @@
                     }
                 }],
                 queryParams: function queryParams(params) {   //设置查询参数
-                    var param = {
+                   var param = {
                         pageSize: this.pageSize,   //每页多少条数据
                         pageNumber: this.pageNumber, // 页码
-                        custCode: null
+                        custCode: null,
+                        sort: this.sortName,
+                        order: this.sortOrder
                     };
                     return param;
                 },

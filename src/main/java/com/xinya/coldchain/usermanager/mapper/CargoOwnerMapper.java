@@ -8,7 +8,8 @@ import java.util.Map;
 
 public interface CargoOwnerMapper {
 
-    List<CargoOwner> getListData(@Param("custCode") String custCode);
+    List<CargoOwner> getListData(@Param("custCode") String custCode,
+                                 @Param("sort") String sort,@Param("order") String order);
 
     int updateDrStatus(@Param("pkCustomer") String id);
 
