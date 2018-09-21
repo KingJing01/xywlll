@@ -21,8 +21,8 @@
     </resultMap>
 
     <select id="getListData" resultMap="driver" parameterType="java.util.Map">
-        SELECT t1.pk_driver,t1.driver_code, t1.driver_name,t1.check_status,t1.driver_status,t1.driver_picture,t1.mobile,
-        t1.driver_lic,t1.id_card_pos,t1.id_card_neg,t1.photo, t1.ts,t1.dr,t1.create_time,t1.locked_flag,t1.lic_type
+        SELECT t1.pk_driver,t1.driver_code, t1.driver_name,t1.check_status check_status,t1.driver_status,t1.driver_picture,t1.mobile,
+        t1.driver_lic,t1.id_card_pos,t1.id_card_neg,t1.photo, t1.ts,t1.dr,t1.create_time create_time,t1.locked_flag,t1.lic_type
         FROM ts_re_driver_carr t LEFT JOIN ts_driver t1 ON t.pk_driver = t1.pk_driver where t.dr=0 and t1.dr=0
         <if test="driverCode != null and  driverCode !=''">
             <bind name="pattern" value="'%' + driverCode + '%'"/>
@@ -31,7 +31,7 @@
         <if test="pkDriver != null and  pkDriver !=''">
             and t.pk_driver = #{pkDriver}
         </if>
-        order by t1.create_time desc
+        order by  ${sort}  ${order}
     </select>
 
     <update id="updateDriver" parameterType="java.util.Map">

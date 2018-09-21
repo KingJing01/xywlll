@@ -21,6 +21,9 @@
                 sidePagination: 'server',
                 pageSize: 10,
                 pageNumber: 1,
+                sortStable: true,
+                sortName: "createTime",
+                sortOrder: "desc",
                 queryParams: function queryParams(params) {   //设置查询参数
                     var param = {
                         pageSize: this.pageSize,   //每页多少条数据
@@ -63,6 +66,7 @@
                     field: 'checkStatus',
                     title: '是否认证',
                     align: 'center',
+                    sortable: true,
                     formatter: function (value) {
                         return value == 2 ? '是' : '否';
                     }
@@ -70,6 +74,7 @@
                     field: 'createTime',
                     title: '注册时间',
                     align: 'center',
+                    sortable: true
                 }, {
                     field: 'lockedFlag',
                     title: '状态',

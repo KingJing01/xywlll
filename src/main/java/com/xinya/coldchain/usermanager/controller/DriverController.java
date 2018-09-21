@@ -33,11 +33,13 @@ public class DriverController {
      * @param pageSize   一页大小
      * @param pageNumber 页号
      * @param code       司机编码
+     * @param sort       排序字段
+     * @param order      排序顺序
      * @return 返回
      */
     @RequestMapping(value = "get_list_data")
-    public PageInfo<Driver> getListData(int pageSize, int pageNumber, String code) {
-        return driverService.getListData(pageSize, pageNumber, code);
+    public PageInfo<Driver> getListData(int pageSize, int pageNumber, String code,String sort, String order) {
+        return driverService.getListData(pageSize, pageNumber, code,sort,order);
     }
 
     /**

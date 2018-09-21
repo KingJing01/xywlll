@@ -8,8 +8,7 @@ import java.util.Map;
 
 public interface FleetMapper {
 
-    List<Fleet> getListData(@Param("carrCode") String code);
-
+    List<Fleet> getListData(Map<String,String> map);
     Map<String, String> getFleetPersonInfo(@Param("pkCarrier") String pkCarrier);
 
     Map<String, String> getFleetEntInfo(@Param("pkCarrier") String pkCarrier);

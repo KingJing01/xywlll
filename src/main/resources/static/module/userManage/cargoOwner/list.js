@@ -22,16 +22,16 @@
                 sidePagination: 'server',
                 pageSize: 10,
                 pageNumber: 1,
-                sortStable:true,
-                sortName:"create_time",
-                sortOrder:"desc",
+                sortStable: true,
+                sortName: "createTime",
+                sortOrder: "desc",
                 columns: [{
                     field: 'num',
                     title: '序号',
                     align: 'center',
-                    formatter:function(value,row,index){
-                        var pageSize=$('#cargo_owner_table').bootstrapTable('getOptions').pageSize
-                        var pageNumber=$('#cargo_owner_table').bootstrapTable('getOptions').pageNumber;
+                    formatter: function (value, row, index) {
+                        var pageSize = $('#cargo_owner_table').bootstrapTable('getOptions').pageSize
+                        var pageNumber = $('#cargo_owner_table').bootstrapTable('getOptions').pageNumber;
                         return pageSize * (pageNumber - 1) + index + 1;
                     }
                 }, {
@@ -49,10 +49,11 @@
                     formatter: function (value) {
                         return "货主";
                     }
-                },{
+                }, {
                     field: 'checkStatus',
                     title: '是否认证',
                     align: 'center',
+                    sortable: true,
                     formatter: function (value) {
                         return value == 2 ? '是' : '否';
                     }
@@ -60,7 +61,7 @@
                     field: 'createTime',
                     title: '注册时间',
                     align: 'center',
-                    sortable:true
+                    sortable: true
                 }, {
                     field: 'lockedFlag',
                     title: '状态',
@@ -73,7 +74,7 @@
                     title: '操作',
                     align: 'center',
                     formatter: function (value, row) {
-                        var str = "<div id='" + value + "' checkStatus='"+row.checkStatus+"' lockedFlag='"+row.lockedFlag+"'><a href='#' class='detail'>查看</a>";
+                        var str = "<div id='" + value + "' checkStatus='" + row.checkStatus + "' lockedFlag='" + row.lockedFlag + "'><a href='#' class='detail'>查看</a>";
                         if (row.lockedFlag == 'Y') {
                             str += "<a href='#' class='thaw audit_a'>解冻</a>";
                         } else {
@@ -84,7 +85,7 @@
                     }
                 }],
                 queryParams: function queryParams(params) {   //设置查询参数
-                   var param = {
+                    var param = {
                         pageSize: this.pageSize,   //每页多少条数据
                         pageNumber: this.pageNumber, // 页码
                         custCode: null,
@@ -120,30 +121,29 @@
                 var url = null;
                 if ($(this).hasClass("freeze")) {
                     /*冻结*/
-                    url ="cargo_owner/" + id + "/" + common.yesStatus;
-                    common.ajaxfuncURL(url,"PUT",{},eventCallBack);
+                    url = "cargo_owner/" + id + "/" + common.yesStatus;
+                    common.ajaxfuncURL(url, "PUT", {}, eventCallBack);
                 } else if ($(this).hasClass("thaw")) {
                     /*解冻*/
-                    url ="cargo_owner/" + id + "/" + common.noStatus;
-                    common.ajaxfuncURL(url,"PUT",{},eventCallBack);
+                    url = "cargo_owner/" + id + "/" + common.noStatus;
+                    common.ajaxfuncURL(url, "PUT", {}, eventCallBack);
                 } else if ($(this).hasClass("del")) {
                     // 删除
                     url = "cargo_owner/" + id;
-                    common.ajaxfuncURL(url,"DELETE",{},eventCallBack);
-                } else if($(this).hasClass("detail")) {
+                    common.ajaxfuncURL(url, "DELETE", {}, eventCallBack);
+                } else if ($(this).hasClass("detail")) {
                     var checkStatus = $(this).parent("div").attr("checkStatus");
                     var lockedFlag = $(this).parent("div").attr("lockedFlag");
                     //查看
                     $("#cargo_table_div").hide();
                     requirejs(["module/userManage/cargoOwner/detail"], function (list) {
-                        list.load(id,checkStatus,lockedFlag);
+                        list.load(id, checkStatus, lockedFlag);
                     });
                 }
             })
 
 
         }
-
         var hostObject = {};
         hostObject.load = function () {
             initHtml();

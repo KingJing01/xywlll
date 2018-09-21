@@ -28,16 +28,16 @@
         <result column="billing_rule" property="billingRule" jdbcType="VARCHAR"></result>
     </resultMap>
 
-    <select id="getListData" resultMap="fleet" parameterType="string">
+    <select id="getListData" resultMap="fleet" parameterType="java.util.Map">
         SELECT  t.pk_carrier, t.dr,t.ts, t.carr_code,t.carr_name,t.carr_type,t.priority,t.pk_corp,t.pk_customer,
-       t.phone,t.mobile,t.email,t.contact,t.contact_post,
-        t.address,t.locked_flag,t.create_time,t.billing_rule,t.check_status FROM   ts_carrier t
+       t.phone,t.mobile,t.email,t.contact,t.contact_post,t.address,t.locked_flag,
+        t.create_time create_time ,t.billing_rule,t.check_status check_status FROM   ts_carrier t
        where  t.dr=0
         <if test="carrCode != null and  carrCode !=''">
             <bind name="pattern" value="'%' + carrCode + '%'"/>
             and t.carr_code like #{pattern}
         </if>
-        order by t.create_time desc
+        order by  ${sort}  ${order}
     </select>
 
     <select id="getFleetPersonInfo" parameterType="string" resultType="java.util.Map">

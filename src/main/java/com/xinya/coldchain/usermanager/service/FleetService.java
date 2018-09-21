@@ -10,6 +10,7 @@ import com.xinya.coldchain.usermanager.model.Fleet;
 import com.xinya.coldchain.utils.CommonUtil;
 import com.xinya.coldchain.utils.DateUtils;
 import com.xinya.coldchain.utils.RandomCodeUtil;
+import com.xinya.coldchain.utils.regexCamel;
 import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,9 +44,13 @@ public class FleetService {
     private CorpMapper corpMapper;
 
 
-    public PageInfo<Fleet> getListData(int pageSize, int pageNum, String code) {
+    public PageInfo<Fleet> getListData(int pageSize, int pageNum, String code,String sort, String order) {
+        Map<String,String> param = new HashMap<String, String>();
+        param.put("carrCode",code);
+        param.put("order",order);
+        param.put("sort",regexCamel.underline(new StringBuffer(sort)).toString());
         PageHelper.startPage(pageNum, pageSize);
-        List<Fleet> list = fleetMapper.getListData(code);
+        List<Fleet> list = fleetMapper.getListData(param);
         PageInfo<Fleet> pageInfo = new PageInfo<>(list);
         return pageInfo;
     }
