@@ -28,7 +28,9 @@
                     var param = {
                         pageSize: this.pageSize,   //每页多少条数据
                         pageNumber: this.pageNumber, // 页码
-                        code: null
+                        code: null,
+                        sort: this.sortName,
+                        order: this.sortOrder
                     };
                     return param;
                 },
