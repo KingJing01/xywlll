@@ -4,31 +4,25 @@
     <title>欣阳物流后台审核系统</title>
     <link rel="icon" href="images/favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+          href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
     <script src="vendor/jquery/jquery.min.js"></script>
 </head>
-<body style="background-image: url('images/login_group.png');background-size: 100% 100%">
-   <!-- &lt;!&ndash;登录头&ndash;&gt;
-    <div class="dlt">
-        <h4>
-            &lt;!&ndash; <img src="images/logo.png" alt="">&ndash;&gt;
-        </h4>
+<body id="login_body">
+<!-- 登录框窗体-->
+<div id="login_div">
+    <div id="login_top">
+        <span id="login_span">欣阳运输管理系统</span>
     </div>
+    <div id="login_content">
 
-    &lt;!&ndash; 登录主体&ndash;&gt;
-    <div class="dlbody">
-        <div class="dly">
-            <h5></h5>
-            <span> <i class="fa fa-user"></i> <input id="username"
-                                                     type="text" name="username">
-				</span> <span> <i class="fa fa-lock"></i> <input id="password"
-                                                                 type="password" name="password">
-				</span>
-            <p id="message_p" style="color:red;display:none"></p>
-            <span> <input type="button" value="登录" id="submit"
-                          onclick="login()">
-				</span>
-        </div>
-    </div>-->
+    </div>
+    <div id="login_button_div">
+         <p  id="login_button">登陆系统</p>
+    </div>
+</div>
+
 <script>
     $(document).ready(function () {
         $("#username,#password,#submit").keyup(function (event) {
