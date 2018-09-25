@@ -1,6 +1,6 @@
 #login_body {
-    background-image: url("../images/login_group.png");
-    background-size: 100% 100%;
+    background: url("../images/login_group.png");
+    background-size: cover;
 }
 
 #login_div {
@@ -10,7 +10,7 @@
     float: right;
     right: 15%;
     background-color: #F2F6FC;
-    top: 30%;
+    top: 32%;
     border-radius: 15px;
 }
 
