@@ -25,5 +25,7 @@ public interface CargoOwnerMapper {
 
     void updateCust(Map<String,Object> map);
 
+    void addCustBalaData(Map<String,Object> map);
+
 
 }

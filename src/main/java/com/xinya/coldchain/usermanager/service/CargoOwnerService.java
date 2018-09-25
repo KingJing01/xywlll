@@ -120,6 +120,7 @@ public class CargoOwnerService {
         tsAddressMapper.updateTsCustAddrisDefault(pkAddress);
         tsAddressMapper.addTsCustAddr(param);
         nwUserRoleMapper.addPkUserRoleInfo(param);
+        cargoOwnerMapper.addCustBalaData(param);
     }
 
 

@@ -70,5 +70,10 @@
          where t.pk_customer=#{pkCustomer} and t.dr=0)
     </update>
 
+    <insert id="addCustBalaData" parameterType="java.util.Map">
+      insert into ts_cust_bala(pk_cust_bala,pk_customer,pk_related_cust,is_default,dr,ts) VALUES
+       (REPLACE(NEWID(), '-', ''),#{pkCustomer},#{pkCustomer},'Y','0',#{ts});
+    </insert>
+
 
 </mapper>
