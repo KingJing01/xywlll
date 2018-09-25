@@ -216,10 +216,9 @@
                         title: '操作',
                         align: 'center',
                         formatter: function (value, row) {
-                            var str = "";
-                            if (row.vbill_status == '10') {
+                            if (row.vbillstatus ==10 ) {
                                 //seg_type  0表示分段  1表示分量  2表示原始的
-                                str = "<div id='" + row.pk_segment + "'>";
+                                var str = "<div id='" + row.pk_segment + "'>";
                                 if (value == '0') {
                                     str += "<a href='#' class='a_action cancel_section'>取消拆段</a>";
                                 } else if (value == '1') {
@@ -232,7 +231,7 @@
                                 }
                                 return str + "</div>";
                             } else {
-                                return str;
+                                return "----";
                             }
                         }
                     }],
