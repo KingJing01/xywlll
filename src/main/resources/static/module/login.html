@@ -7,7 +7,7 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="vendor/jquery_drag/drag.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css"
-          href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
+          href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/jquery_drag/drag.js"></script>
 </head>
@@ -18,19 +18,25 @@
         <span id="login_span">欣阳运输管理系统</span>
     </div>
     <div id="login_content">
-        <div class="login_input_div">1111</div>
-        <div class="login_input_div">2222</div>
-        <div id="drag"><div class="drag_bg"></div><div class="drag_text" onselectstart="return false;" unselectable="on">拖动滑块验证</div><div class="handler handler_bg"></div></div>
+        <div class="login_input_div">
+            <label class="fa fa-user-o"></label>
+            <input type="text" id="username" name="username" class="login_input" placeholder="请输入用户名">
+        </div>
+        <div class="login_input_div">
+            <label class="fa fa-lock"></label>
+            <input type="password" id="password" name="password" class="login_input" placeholder="请输入密码"></div>
+        <div id="drag">
 
+        </div>
     </div>
     <div id="login_button_div">
-         <p  id="login_button">登陆系统</p>
+        <p id="login_button">登陆系统</p>
     </div>
 </div>
 
 <script>
     $(document).ready(function () {
-        $('#drag').drag();
+        initDrag();
         $("#username,#password,#submit").keyup(function (event) {
             code = event.which;
             if (code == 13) {
@@ -40,7 +46,15 @@
         $("#login_button_div").click(function () {
             login();
         })
+        $(window).resize(function () {
+            initDrag();
+        })
     });
+
+    function initDrag() {
+        var html = " <div class=\"drag_bg\"></div><div class=\"drag_text\" onselectstart=\"return false;\" unselectable=\"on\">拖动滑块验证</div><div class=\"handler handler_bg\"></div>"
+        $("#drag").html(html).drag();
+    }
 
     function login() {
         if (!$("#username").val()) {

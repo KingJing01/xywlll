@@ -1,11 +1,12 @@
 #drag {
     position: relative;
     background-color: #e8e8e8;
-    width: 100%;
+    width: 80%;
     height: 34px;
     line-height: 34px;
     text-align: center;
     margin-top: 5%;
+    margin-left: 10%;
 }
 
 #drag .handler {
@@ -35,7 +36,7 @@
 #drag .drag_text {
     position: absolute;
     top: 0;
-    width: 100%;
+    width: 80%;
     -moz-user-select: none;
     -webkit-user-select: none;
     user-select: none;
