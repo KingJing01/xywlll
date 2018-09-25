@@ -57,14 +57,16 @@
     }
 
     function login() {
+        if($("#drag").children(".handler_ok_bg").length==0){
+            $("#message_p").fadeIn().html("请进行滑动验证!");
+            return false;
+        }
         if (!$("#username").val()) {
-           /* $("#username").focus();*/
-            $("#message_p").fadeIn().html("请输入用户名！");
+            $("#message_p").fadeIn().html("请输入用户名!");
             return false;
         }
         if (!$("#password").val()) {
-          /*  $("#password").focus();*/
-            $("#message_p").fadeIn().html("请输入密码！");
+            $("#message_p").fadeIn().html("请输入密码!");
             return false;
         }
         $.ajax({
