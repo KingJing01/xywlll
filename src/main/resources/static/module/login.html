@@ -11,29 +11,30 @@
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/jquery_drag/drag.js"></script>
 </head>
-<body id="login_body">
-<!-- 登录框窗体-->
-<div id="login_div">
-    <div id="login_top">
-        <span id="login_span">欣阳运输管理系统</span>
-    </div>
-    <div id="login_content">
-        <div class="login_input_div">
-            <label class="fa fa-user-o"></label>
-            <input type="text" id="username" name="username" class="login_input" placeholder="请输入用户名">
+<body style="margin: 0;padding: 0">
+<div id="login_body">
+    <!-- 登录框窗体-->
+    <div id="login_div">
+        <div id="login_top">
+            <span id="login_span">欣阳运输管理系统</span>
         </div>
-        <div class="login_input_div">
-            <label class="fa fa-lock"></label>
-            <input type="password" id="password" name="password" class="login_input" placeholder="请输入密码"></div>
-        <div id="drag">
+        <div id="login_content">
+            <div class="login_input_div">
+                <label class="fa fa-user-o"></label>
+                <input type="text" id="username" name="username" class="login_input" placeholder="请输入用户名">
+            </div>
+            <div class="login_input_div">
+                <label class="fa fa-lock"></label>
+                <input type="password" id="password" name="password" class="login_input" placeholder="请输入密码"></div>
+            <div id="drag">
+            </div>
+            <p id="message_p" style="color:red;display:none;margin-left: 10%;font-size: 13px;"></p>
         </div>
-        <p id="message_p" style="color:red;display:none;margin-left: 10%;font-size: 13px;"></p>
-    </div>
-    <div id="login_button_div">
-        <p id="login_button">登陆系统</p>
+        <div id="login_button_div">
+            <p id="login_button">登陆系统</p>
+        </div>
     </div>
 </div>
-
 <script>
     $(document).ready(function () {
         initDrag();
@@ -57,7 +58,7 @@
     }
 
     function login() {
-        if($("#drag").children(".handler_ok_bg").length==0){
+        if ($("#drag").children(".handler_ok_bg").length == 0) {
             $("#message_p").fadeIn().html("请进行滑动验证!");
             return false;
         }
@@ -78,12 +79,12 @@
                 password: $("#password").val()
             },
             success: function (data) {
-                if(data.flag=="success"){
+                if (data.flag == "success") {
                     window.location.href = data.url;
                     sessionStorage.setItem("timestamp", data.timestamp);
                     sessionStorage.setItem("signature", data.signature);
                     sessionStorage.setItem("userCode", data.userCode);
-                }else{
+                } else {
                     $("#message_p").fadeIn().html("登陆失败，请重新登陆！");
                 }
 
