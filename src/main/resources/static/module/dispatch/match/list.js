@@ -216,20 +216,24 @@
                         title: '操作',
                         align: 'center',
                         formatter: function (value, row) {
-                            //seg_type  0表示分段  1表示分量  2表示原始的
-                            var str = "<div id='" + row.pk_segment + "'>";
-                            if (value == '0') {
-                                str += "<a href='#' class='a_action cancel_section'>取消拆段</a>";
-                            } else if (value == '1') {
-                                str += "<a href='#' class='a_action cancel_amount'>取消拆量</a>";
+                            var str = "";
+                            if (row.vbill_status == '10') {
+                                //seg_type  0表示分段  1表示分量  2表示原始的
+                                str = "<div id='" + row.pk_segment + "'>";
+                                if (value == '0') {
+                                    str += "<a href='#' class='a_action cancel_section'>取消拆段</a>";
+                                } else if (value == '1') {
+                                    str += "<a href='#' class='a_action cancel_amount'>取消拆量</a>";
+                                } else {
+                                    str += "<a href='#' class='a_action amount'>拆量</a><a href='#' class='a_action section'>拆段</a><a href='#' class='a_action giveup_segment'>放弃运段</a>"
+                                }
+                                if (row.assign_stutas == 2) {
+                                    str += "<a href='#' class='a_action modal_btn' data=" + row.bill_origin + " >处理</a>";
+                                }
+                                return str + "</div>";
                             } else {
-                                str += "<a href='#' class='a_action amount'>拆量</a><a href='#' class='a_action section'>拆段</a><a href='#' class='a_action giveup_segment'>放弃运段</a>"
+                                return str;
                             }
-
-                            if (row.assign_stutas == 2) {
-                                str += "<a href='#' class='a_action modal_btn' data=" + row.bill_origin + " >处理</a>";
-                            }
-                            return str + "</div>";
                         }
                     }],
                     onCheck: function (row) {
