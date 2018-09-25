@@ -47,6 +47,12 @@
 
 }
 
+.login_input_div{
+    height: 25%;
+    background-color: #1b6d85;
+    margin-top: 5%;
+}
+
 @media (min-width: 1100px) {
     #login_span{
         padding-top: 5%;
