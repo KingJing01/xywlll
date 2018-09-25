@@ -26,8 +26,8 @@
             <label class="fa fa-lock"></label>
             <input type="password" id="password" name="password" class="login_input" placeholder="请输入密码"></div>
         <div id="drag">
-
         </div>
+        <p id="message_p" style="color:red;display:none;margin-left: 10%;font-size: 13px;"></p>
     </div>
     <div id="login_button_div">
         <p id="login_button">登陆系统</p>
@@ -58,12 +58,12 @@
 
     function login() {
         if (!$("#username").val()) {
-            $("#username").focus();
+           /* $("#username").focus();*/
             $("#message_p").fadeIn().html("请输入用户名！");
             return false;
         }
         if (!$("#password").val()) {
-            $("#password").focus();
+          /*  $("#password").focus();*/
             $("#message_p").fadeIn().html("请输入密码！");
             return false;
         }
@@ -76,10 +76,15 @@
                 password: $("#password").val()
             },
             success: function (data) {
-                window.location.href = data.url;
-                sessionStorage.setItem("timestamp", data.timestamp);
-                sessionStorage.setItem("signature", data.signature);
-                sessionStorage.setItem("userCode", data.userCode);
+                if(data.flag=="success"){
+                    window.location.href = data.url;
+                    sessionStorage.setItem("timestamp", data.timestamp);
+                    sessionStorage.setItem("signature", data.signature);
+                    sessionStorage.setItem("userCode", data.userCode);
+                }else{
+                    $("#message_p").fadeIn().html("登陆失败，请重新登陆！");
+                }
+
             },
             error: function (err) {
             }

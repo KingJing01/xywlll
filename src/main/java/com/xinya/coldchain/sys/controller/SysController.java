@@ -56,6 +56,7 @@ public class SysController {
 			str.append("&random_str="+user.getUserCode());
 			str.append("&key=5c0ead5838e03110b1e4bb6f");
 			String signature = DigestUtils.md5Hex(str.toString());
+			map.put("flag","success");
 			map.put("url","/xinyang/login");
 			map.put("timestamp",timestamp);
 			map.put("signature",signature);
@@ -63,6 +64,7 @@ public class SysController {
 			return map;
 		} catch(Exception e) {
 			//返回登录页面
+			map.put("flag","error");
 			map.put("url","/xinyang/index");
 			return map;
 		}
