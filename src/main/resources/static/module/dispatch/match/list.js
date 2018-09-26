@@ -226,7 +226,8 @@
                                 } else {
                                     str += "<a href='#' class='a_action amount'>拆量</a><a href='#' class='a_action section'>拆段</a><a href='#' class='a_action giveup_segment'>放弃运段</a>"
                                 }
-                                if (Number(row.assign_status) == 2) {
+                                // 判断任务状态 为1时 启用处理功能
+                                if (Number(row.assign_status) == 1) {
                                     str += "<a href='#' class='a_action modal_btn' data=" + row.bill_origin + " >处理</a>";
                                 }
                                 return str + "</div>";
