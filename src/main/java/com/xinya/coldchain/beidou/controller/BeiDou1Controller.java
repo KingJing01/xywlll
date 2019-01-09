@@ -19,7 +19,7 @@ import java.util.Map;
  * @author liyoujing
  */
 @RestController
-@RequestMapping(value = "/beidou")
+@RequestMapping(value = "/beidou1")
 public class BeiDou1Controller {
 
     public final String bdUrl = "http://www.hstsp.com/api/openPlatformController/";
