@@ -1,6 +1,7 @@
 package com.xinya.coldchain.beidou.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import com.xinya.coldchain.tools.RestEasyServcie;
 import org.springframework.data.domain.Pageable;
 import org.springframework.util.StringUtils;
@@ -87,7 +88,7 @@ public class BeiDouController {
         String value = RestEasyServcie.get(url);
         ObjectMapper objectMapper = new ObjectMapper();
         Map<String, Object> map = null;
-        List<Map<String, String>> dataList = new ArrayList<>();
+        List<Map<String, Object>> dataList = new ArrayList<>();
         try {
             map = objectMapper.readValue(value, Map.class);
             if (!StringUtils.isEmpty(map.get("data"))) {
@@ -96,9 +97,24 @@ public class BeiDouController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        List<Map<String, String>> resultList = new ArrayList<>();
+        Gson gson = new Gson();
+        for (Map<String, Object> item : dataList){
+                Map<String, String> result = new HashMap<>();
+                if(!StringUtils.isEmpty(item.get("gpsWrapperInfo"))){
+                    result.putAll((Map)item.get("gpsWrapperInfo"));
+                }
+                if(!StringUtils.isEmpty(item.get("historyRowKeyWrapperInfo"))){
+                    result.putAll((Map)item.get("historyRowKeyWrapperInfo"));
+                }
+                if(!StringUtils.isEmpty(item.get("canWrapperInfo"))){
+                    result.putAll((Map)item.get("canWrapperInfo"));
+                }
+                resultList.add(result);
+        }
         Map<String, Object> resultMap = new HashMap<>();
-        resultMap.put("total",dataList.size());
-        resultMap.put("list",dataList);
+        resultMap.put("total",resultList.size());
+        resultMap.put("list",resultList);
         return resultMap;
     }
     /**
