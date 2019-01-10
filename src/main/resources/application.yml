@@ -51,7 +51,7 @@ mybatis:
 
 #pagehelper
 pagehelper:
-  helper-dialect: sqlserver
+  helper-dialect: mysql
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
