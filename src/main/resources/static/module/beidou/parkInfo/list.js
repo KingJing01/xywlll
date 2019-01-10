@@ -15,62 +15,39 @@
         var initTable = function () {
             $('#park_info_table').bootstrapTable({
                 url: LIST_DATA,
+                contentType: 'application/x-www-form-urlencoded',
                 method: 'post',
+                pageList: [10, 15, 20],
+                pagination: true,
+                sidePagination: 'client',
+                sortStable: true,
                 columns: [ {
-                    field: 'custName',
-                    title: '昵称',
+                    field: 'beginTime',
+                    title: '开始时间',
+                    align: 'center'
+                },{
+                    field: 'endTime',
+                    title: '结束时间',
                     align: 'center'
                 }, {
-                    field: 'custCode',
-                    title: '注册账号',
-                    align: 'center'
-                }, {
-                    field: 'custType',
-                    title: '类型',
+                    field: 'beginLat',
+                    title: '开始纬度',
                     align: 'center',
-                    formatter: function (value) {
-                        return "货主";
-                    }
                 }, {
-                    field: 'checkStatus',
-                    title: '是否认证',
+                    field: 'begingLng',
+                    title: '开始经度',
                     align: 'center',
-                    sortable: true,
-                    formatter: function (value) {
-                        return value == 2 ? '是' : '否';
-                    }
                 }, {
-                    field: 'createTime',
-                    title: '注册时间',
+                    field: 'endLat',
+                    title: '结束纬度',
                     align: 'center',
-                    sortable: true
-                }, {
-                    field: 'lockedFlag',
-                    title: '状态',
+                },{
+                    field: 'endLng',
+                    title: '结束经度',
                     align: 'center',
-                    formatter: function (value) {
-                        return value == 'Y' ? '冻结' : '正常';
-                    }
-                }, {
-                    field: 'pkCustomer',
-                    title: '操作',
-                    align: 'center',
-                    formatter: function (value, row) {
-                        var str = "<div id='" + value + "' checkStatus='" + row.checkStatus + "' lockedFlag='" + row.lockedFlag + "'><a href='#' class='detail'>查看</a>";
-                        if (row.lockedFlag == 'Y') {
-                            str += "<a href='#' class='thaw audit_a'>解冻</a>";
-                        } else {
-                            str += "<a href='#' class='freeze audit_a'>冻结</a>";
-                        }
-                        //return str + "<a href='#' class='del audit_a'>删除</a></div>";
-                        return str + "</div>";
-                    }
                 }],
                 responseHandler: function (res) {
-                    return {
-                        "total": res.total,
-                        "rows": res.list
-                    };
+                   return res.list
                 }
 
             });

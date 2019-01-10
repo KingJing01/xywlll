@@ -51,7 +51,7 @@ public class BeiDouController {
         }
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("total",dataList.size());
-        resultMap.put("rows",dataList);
+        resultMap.put("list",dataList);
         return resultMap;
     }
     /**
@@ -98,7 +98,7 @@ public class BeiDouController {
         }
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("total",dataList.size());
-        resultMap.put("rows",dataList);
+        resultMap.put("list",dataList);
         return resultMap;
     }
     /**
@@ -122,7 +122,7 @@ public class BeiDouController {
         }
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("total",dataList.size());
-        resultMap.put("rows",dataList);
+        resultMap.put("list",dataList);
         return resultMap;
     }
     /**
@@ -146,7 +146,7 @@ public class BeiDouController {
         }
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("total",dataList.size());
-        resultMap.put("rows",dataList);
+        resultMap.put("list",dataList);
         return resultMap;
     }
 }

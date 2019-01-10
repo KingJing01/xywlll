@@ -15,48 +15,42 @@
         var initTable = function () {
             $('#cars_info_table').bootstrapTable({
                 url: LIST_DATA,
+                contentType: 'application/x-www-form-urlencoded',
                 method: 'post',
                 pageList: [10, 15, 20],
                 pagination: true,
                 sidePagination: 'client',
-                pageSize: 10,
-                pageNumber: 1,
-                columns: [ {
+                sortStable: true,
+                columns: [{
+                    field: 'enterpriseName',
+                    title: '企业名',
+                    align: 'center'
+                }, {
                     field: 'fleetName',
-                    title: '车组名称',
+                    title: '车队名',
                     align: 'center'
                 }, {
-                    field: 'isLogout',
-                    title: '注册账号',
+                    field: 'plateCode',
+                    title: '车牌号',
                     align: 'center'
-                }, {
+                },{
                     field: 'mobileCode',
-                    title: '类型',
+                    title: '设备号',
                     align: 'center'
                 }, {
                     field: 'onlineStatus',
-                    title: '是否认证',
+                    title: '是否在线',
                     align: 'center',
-                    sortable: true,
                     formatter: function (value) {
-                        return value == 2 ? '是' : '否';
+                        return value == 1 ? '在线' : '离线';
                     }
                 }, {
-                    field: 'enterpriseName',
-                    title: '注册时间',
-                    align: 'center',
-                    sortable: true
-                }, {
-                    field: 'plateCode',
-                    title: '状态',
+                    field: 'terminalCode',
+                    title: '设备编号',
                     align: 'center'
                 }],
                 responseHandler: function (res) {
-                    debugger
-                    return {
-                        "total": res.total,
-                        "rows": res.rows
-                    };
+                    return res.list
                 }
 
             });

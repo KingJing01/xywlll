@@ -93,7 +93,7 @@
                 });
 
                 /*北斗新增功能模块*/
-                /* 车辆信息*/
+                /* 车辆管理*/
                 $("#cars_info").on('click', function () {
                     sessionStorage.setItem("currentMenu", $(this).attr("id"));
                     requirejs(["module/beidou/carsInfo/list"], function (list) {

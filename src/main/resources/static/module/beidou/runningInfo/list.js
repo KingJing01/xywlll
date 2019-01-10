@@ -15,7 +15,12 @@
         var initTable = function () {
             $('#running_info_table').bootstrapTable({
                 url: LIST_DATA,
+                contentType: 'application/x-www-form-urlencoded',
                 method: 'post',
+                pageList: [10, 15, 20],
+                pagination: true,
+                sidePagination: 'client',
+                sortStable: true,
                 columns: [{
                     field: 'custName',
                     title: '昵称',
@@ -67,10 +72,7 @@
                     }
                 }],
                 responseHandler: function (res) {
-                    return {
-                        "total": res.total,
-                        "rows": res.list
-                    };
+                    return res.list
                 }
 
             });

@@ -1,7 +1,7 @@
 /* 车辆列表 js  */
 (function () {
     var HTML_PAGE = "module/beidou/vechicelInfo/list.html";
-    var LIST_DATA = "beidou/queryVehicleList";
+    var LIST_DATA = "beidou/queryVehicleJourneyByMyCat";
     define([
         'jquery',
         'text!' + HTML_PAGE
@@ -15,65 +15,80 @@
         var initTable = function () {
             $('#vechicel_info_table').bootstrapTable({
                 url: LIST_DATA,
+                contentType: 'application/x-www-form-urlencoded',
                 method: 'post',
+                pageList: [10, 15, 20],
+                pagination: true,
+                sidePagination: 'client',
+                sortStable: true,
                 columns: [ {
-                    field: 'custName',
-                    title: '昵称',
+                    field: 'vehicleId',
+                    title: 'Id',
                     align: 'center'
                 }, {
-                    field: 'custCode',
-                    title: '注册账号',
+                    field: 'beginTime',
+                    title: '开始时间',
+                    align: 'center'
+                },{
+                    field: 'endTime',
+                    title: '结束时间',
                     align: 'center'
                 }, {
-                    field: 'custType',
-                    title: '类型',
-                    align: 'center',
-                    formatter: function (value) {
-                        return "货主";
-                    }
+                    field: 'idlingDuration',
+                    title: '怠速时长',
+                    align: 'center'
                 }, {
-                    field: 'checkStatus',
-                    title: '是否认证',
+                    field: 'beginLat',
+                    title: '开始纬度',
                     align: 'center',
-                    sortable: true,
-                    formatter: function (value) {
-                        return value == 2 ? '是' : '否';
-                    }
                 }, {
-                    field: 'createTime',
-                    title: '注册时间',
+                    field: 'begingLng',
+                    title: '开始经度',
                     align: 'center',
-                    sortable: true
                 }, {
-                    field: 'lockedFlag',
-                    title: '状态',
+                    field: 'endLat',
+                    title: '结束纬度',
                     align: 'center',
-                    formatter: function (value) {
-                        return value == 'Y' ? '冻结' : '正常';
-                    }
+                },{
+                    field: 'endLng',
+                    title: '结束经度',
+                    align: 'center',
                 }, {
-                    field: 'pkCustomer',
-                    title: '操作',
-                    align: 'center',
-                    formatter: function (value, row) {
-                        var str = "<div id='" + value + "' checkStatus='" + row.checkStatus + "' lockedFlag='" + row.lockedFlag + "'><a href='#' class='detail'>查看</a>";
-                        if (row.lockedFlag == 'Y') {
-                            str += "<a href='#' class='thaw audit_a'>解冻</a>";
-                        } else {
-                            str += "<a href='#' class='freeze audit_a'>冻结</a>";
-                        }
-                        //return str + "<a href='#' class='del audit_a'>删除</a></div>";
-                        return str + "</div>";
-                    }
+                    field: 'stopDuration',
+                    title: '停车时长',
+                    align: 'center'
+                }, {
+                    field: 'passedAreaCode',
+                    title: '途径地市',
+                    align: 'center'
+                }, {
+                    field: 'economicalDuration',
+                    title: '经济转速时间',
+                    align: 'center'
+                }, {
+                    field: 'uneconomicalDuration',
+                    title: '非经济转速时间',
+                    align: 'center'
+                }, {
+                    field: 'duration',
+                    title: '持续时长',
+                    align: 'center'
+                }, {
+                    field: 'gpsMileage',
+                    title: 'GPS里程',
+                    align: 'center'
+                }, {
+                    field: 'oil',
+                    title: '油耗',
+                    align: 'center'
+                },{
+                    field: 'overSpeedAlarmCount',
+                    title: '超速次数',
+                    align: 'center'
                 }],
                 responseHandler: function (res) {
-                    debugger
-                    return {
-                        "total": res.total,
-                        "rows": res.rows
-                    };
+                    return res.list
                 }
-
             });
         }
         /* 列表点击事件的回调函数  列表数据刷新*/
