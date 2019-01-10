@@ -92,6 +92,36 @@
                     });
                 });
 
+                /*北斗新增功能模块*/
+                /* 车辆信息*/
+                $("#cars_info").on('click', function () {
+                    sessionStorage.setItem("currentMenu", $(this).attr("id"));
+                    requirejs(["module/beidou/carsInfo/list"], function (list) {
+                        list.load();
+                    });
+                });
+                //停车信息
+                $("#park_info").on('click', function () {
+                    sessionStorage.setItem("currentMenu", $(this).attr("id"));
+                    requirejs(["module/beidou/parkInfo/list"], function (list) {
+                        list.load();
+                    });
+                });
+                //运行状态
+                $("#running_info").on('click', function () {
+                    sessionStorage.setItem("currentMenu", $(this).attr("id"));
+                    requirejs(["module/beidou/runningInfo/list"], function (list) {
+                        list.load();
+                    });
+                });
+                // 行程信息
+                $("#vehicle_info").on('click', function () {
+                    sessionStorage.setItem("currentMenu", $(this).attr("id"));
+                    requirejs(["module/beidou/vechicelInfo/list"], function (list) {
+                        list.load();
+                    });
+                });
+
                 $("#login_out").on('click', function () {
                     sessionStorage.setItem("currentMenu", "");
                     sessionStorage.setItem("userCode", "");
