@@ -1,7 +1,7 @@
-/* 货主审核模块的 js  */
+/* 车辆列表 js  */
 (function () {
-    var HTML_PAGE = "module/userManage/cargoOwner/list.html";
-    var LIST_DATA = "cargo_owner/get_list_data";
+    var HTML_PAGE = "module/beidou/carsInfo/list.html";
+    var LIST_DATA = "beidou/queryVehicleList";
     define([
         'jquery',
         'text!' + HTML_PAGE
@@ -13,44 +13,28 @@
 
         //初始化bootstrap table
         var initTable = function () {
-            $('#cargo_owner_table').bootstrapTable({
+            $('#cars_info_table').bootstrapTable({
                 url: LIST_DATA,
-                contentType: 'application/x-www-form-urlencoded',
                 method: 'post',
                 pageList: [10, 15, 20],
                 pagination: true,
-                sidePagination: 'server',
+                sidePagination: 'client',
                 pageSize: 10,
                 pageNumber: 1,
-                sortStable: true,
-                sortName: "createTime",
-                sortOrder: "desc",
-                columns: [{
-                    field: 'num',
-                    title: '序号',
-                    align: 'center',
-                    formatter: function (value, row, index) {
-                        var pageSize = $('#cargo_owner_table').bootstrapTable('getOptions').pageSize
-                        var pageNumber = $('#cargo_owner_table').bootstrapTable('getOptions').pageNumber;
-                        return pageSize * (pageNumber - 1) + index + 1;
-                    }
-                }, {
-                    field: 'custName',
-                    title: '昵称',
+                columns: [ {
+                    field: 'fleetName',
+                    title: '车组名称',
                     align: 'center'
                 }, {
-                    field: 'custCode',
+                    field: 'isLogout',
                     title: '注册账号',
                     align: 'center'
                 }, {
-                    field: 'custType',
+                    field: 'mobileCode',
                     title: '类型',
-                    align: 'center',
-                    formatter: function (value) {
-                        return "货主";
-                    }
+                    align: 'center'
                 }, {
-                    field: 'checkStatus',
+                    field: 'onlineStatus',
                     title: '是否认证',
                     align: 'center',
                     sortable: true,
@@ -58,46 +42,20 @@
                         return value == 2 ? '是' : '否';
                     }
                 }, {
-                    field: 'createTime',
+                    field: 'enterpriseName',
                     title: '注册时间',
                     align: 'center',
                     sortable: true
                 }, {
-                    field: 'lockedFlag',
+                    field: 'plateCode',
                     title: '状态',
-                    align: 'center',
-                    formatter: function (value) {
-                        return value == 'Y' ? '冻结' : '正常';
-                    }
-                }, {
-                    field: 'pkCustomer',
-                    title: '操作',
-                    align: 'center',
-                    formatter: function (value, row) {
-                        var str = "<div id='" + value + "' checkStatus='" + row.checkStatus + "' lockedFlag='" + row.lockedFlag + "'><a href='#' class='detail'>查看</a>";
-                        if (row.lockedFlag == 'Y') {
-                            str += "<a href='#' class='thaw audit_a'>解冻</a>";
-                        } else {
-                            str += "<a href='#' class='freeze audit_a'>冻结</a>";
-                        }
-                        //return str + "<a href='#' class='del audit_a'>删除</a></div>";
-                        return str + "</div>";
-                    }
+                    align: 'center'
                 }],
-                queryParams: function queryParams(params) {   //设置查询参数
-                    var param = {
-                        pageSize: this.pageSize,   //每页多少条数据
-                        pageNumber: this.pageNumber, // 页码
-                        custCode: null,
-                        sort: this.sortName,
-                        order: this.sortOrder
-                    };
-                    return param;
-                },
                 responseHandler: function (res) {
+                    debugger
                     return {
                         "total": res.total,
-                        "rows": res.list
+                        "rows": res.rows
                     };
                 }
 
@@ -105,12 +63,12 @@
         }
         /* 列表点击事件的回调函数  列表数据刷新*/
         var eventCallBack = function (resp) {
-            if (resp.success == 1) $("#cargo_owner_table").bootstrapTable('refresh');
+            if (resp.success == 1) $("#cars_info_table").bootstrapTable('refresh');
         }
         //点击事件的绑定
         var bindEvent = function () {
             $("#cargo_search").click(function () {
-                $("#cargo_owner_table").bootstrapTable('refresh', {
+                $("#cars_info_table").bootstrapTable('refresh', {
                     query: {custCode: $("#cargo_text").val()}
                 });
                 $("#cargo_text").val("");
@@ -135,7 +93,7 @@
                     var checkStatus = $(this).parent("div").attr("checkStatus");
                     var lockedFlag = $(this).parent("div").attr("lockedFlag");
                     //查看
-                    $("#cargo_table_div").hide();
+                    $("#cars_info_table").hide();
                     requirejs(["module/userManage/cargoOwner/detail"], function (list) {
                         list.load(id, checkStatus, lockedFlag);
                     });

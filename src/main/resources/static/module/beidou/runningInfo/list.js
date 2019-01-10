@@ -1,7 +1,7 @@
-/* 货主审核模块的 js  */
+/* 车辆行驶状态 js  */
 (function () {
     var HTML_PAGE = "module/beidou/runningInfo/list.html";
-    var LIST_DATA = "cargo_owner/get_list_data";
+    var LIST_DATA = "beidou/queryVehicleOperatingDataByHbase";
     define([
         'jquery',
         'text!' + HTML_PAGE
@@ -13,28 +13,10 @@
 
         //初始化bootstrap table
         var initTable = function () {
-            $('#cargo_owner_table').bootstrapTable({
+            $('#running_info_table').bootstrapTable({
                 url: LIST_DATA,
-                contentType: 'application/x-www-form-urlencoded',
                 method: 'post',
-                pageList: [10, 15, 20],
-                pagination: true,
-                sidePagination: 'server',
-                pageSize: 10,
-                pageNumber: 1,
-                sortStable: true,
-                sortName: "createTime",
-                sortOrder: "desc",
                 columns: [{
-                    field: 'num',
-                    title: '序号',
-                    align: 'center',
-                    formatter: function (value, row, index) {
-                        var pageSize = $('#cargo_owner_table').bootstrapTable('getOptions').pageSize
-                        var pageNumber = $('#cargo_owner_table').bootstrapTable('getOptions').pageNumber;
-                        return pageSize * (pageNumber - 1) + index + 1;
-                    }
-                }, {
                     field: 'custName',
                     title: '昵称',
                     align: 'center'
@@ -84,16 +66,6 @@
                         return str + "</div>";
                     }
                 }],
-                queryParams: function queryParams(params) {   //设置查询参数
-                    var param = {
-                        pageSize: this.pageSize,   //每页多少条数据
-                        pageNumber: this.pageNumber, // 页码
-                        custCode: null,
-                        sort: this.sortName,
-                        order: this.sortOrder
-                    };
-                    return param;
-                },
                 responseHandler: function (res) {
                     return {
                         "total": res.total,
@@ -105,18 +77,18 @@
         }
         /* 列表点击事件的回调函数  列表数据刷新*/
         var eventCallBack = function (resp) {
-            if (resp.success == 1) $("#cargo_owner_table").bootstrapTable('refresh');
+            if (resp.success == 1) $("#running_info_table").bootstrapTable('refresh');
         }
         //点击事件的绑定
         var bindEvent = function () {
             $("#cargo_search").click(function () {
-                $("#cargo_owner_table").bootstrapTable('refresh', {
+                $("#running_info_table").bootstrapTable('refresh', {
                     query: {custCode: $("#cargo_text").val()}
                 });
                 $("#cargo_text").val("");
             })
             /* 表格事件绑定*/
-            $("#cargo_owner_table").on('click', 'a', function () {
+            $("#running_info_table").on('click', 'a', function () {
                 var id = $(this).parent("div").attr("id");
                 var url = null;
                 if ($(this).hasClass("freeze")) {
