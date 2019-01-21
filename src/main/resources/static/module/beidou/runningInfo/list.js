@@ -175,6 +175,9 @@
                     field: 'receiveTime',
                     title: '接收时间',
                     align: 'center',
+                    formatter: function (value) {
+                        return common.formatUnixtimestamp(value)
+                    }
                 },{
                     field: 'throttleRatio',
                     title: '风门踏板位置',
