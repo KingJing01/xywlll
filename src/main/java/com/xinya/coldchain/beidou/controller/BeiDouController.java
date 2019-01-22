@@ -98,7 +98,6 @@ public class BeiDouController {
             e.printStackTrace();
         }
         List<Map<String, String>> resultList = new ArrayList<>();
-        Gson gson = new Gson();
         for (Map<String, Object> item : dataList){
                 Map<String, String> result = new HashMap<>();
                 if(!StringUtils.isEmpty(item.get("gpsWrapperInfo"))){
