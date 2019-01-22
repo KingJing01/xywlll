@@ -9,10 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * 北斗接口访问数据Controller
@@ -37,7 +35,7 @@ public class BeiDouController {
      */
     @RequestMapping(value = "/queryVehicleList")
     public Map<String, Object> queryVehicleList(Pageable pageable) {
-        String url = bdUrl + "queryVehicleList?enterpriseCode=a0110238&plateCode=沪" + secret_key;
+        String url = bdUrl + "queryVehicleList?enterpriseCode=a0110238" + secret_key;
         String value = RestEasyServcie.get(url);
         ObjectMapper objectMapper = new ObjectMapper();
         Map<String, Object> map = null;
@@ -84,7 +82,11 @@ public class BeiDouController {
      */
     @RequestMapping(value = "/queryVehicleOperatingDataByHbase")
     public Map<String, Object> queryVehicleOperatingDataByHbase() {
-        String url = bdUrl + "queryVehicleOperatingDataByHbase?vehicleId=1029319149058837395&beginDate=2019-01-03%2000:00:00&endDate=2019-01-03%2010:59:59" + secret_key;;
+        String url = bdUrl + "queryVehicleOperatingDataByHbase?"
+                + "vehicleId=1029319149058837395"
+                + "&beginDate=" + getTime().get("beginTime")
+                + "&endDate=" + getTime().get("endTime")
+                + secret_key;
         String value = RestEasyServcie.get(url);
         ObjectMapper objectMapper = new ObjectMapper();
         Map<String, Object> map = null;
@@ -109,6 +111,17 @@ public class BeiDouController {
                 if(!StringUtils.isEmpty(item.get("canWrapperInfo"))){
                     result.putAll((Map)item.get("canWrapperInfo"));
                 }
+                if(!StringUtils.isEmpty(item.get("youWeiTemperatureBeans"))){
+                    List<Map> sensorList = (List)item.get("youWeiTemperatureBeans");
+                    Map<String, String> sensor1 = (Map)sensorList.get(0);
+                    Map<String, String> sensor2 = (Map)sensorList.get(1);
+                    Map<String, String> sensor3 = (Map)sensorList.get(2);
+                    Map<String, String> sensor4 = (Map)sensorList.get(3);
+                    result.put("temperature1",sensor1.get("sensorValue"));
+                    result.put("temperature2",sensor2.get("sensorValue"));
+                    result.put("temperature3",sensor3.get("sensorValue"));
+                    result.put("temperature4",sensor4.get("sensorValue"));
+                }
                 resultList.add(result);
         }
         Map<String, Object> resultMap = new HashMap<>();
@@ -122,7 +135,7 @@ public class BeiDouController {
      */
     @RequestMapping(value = "/queryVehicleJourneyByMyCat")
     public Map<String, Object> queryVehicleJourneyByMyCat() {
-        String url = bdUrl + "queryVehicleJourneyByMyCat?enterpriseCode=a0110072&vehicleId=1029319149058837395&beginTime=2019-01-03%2000:00:00&endTime=2019-01-03%2010:59:59" + secret_key;;
+        String url = bdUrl + "queryVehicleJourneyByMyCat?enterpriseCode=a0110072&vehicleId=1029319149058837395&beginTime=2019-01-18%2017:47:00&endTime=2019-01-18%2017:47:59" + secret_key;;
         String value = RestEasyServcie.get(url);
         ObjectMapper objectMapper = new ObjectMapper();
         Map<String, Object> map = null;
@@ -146,7 +159,7 @@ public class BeiDouController {
      */
     @RequestMapping(value = "/queryVehicleParkingByMyCat")
     public Map<String, Object> queryVehicleParkingByMyCat() {
-        String url = bdUrl + "queryVehicleParkingByMyCat?enterpriseCode=a0110072&vehicleId=1029319149058837395&beginTime=2019-01-03%2000:00:00&endTime=2019-01-03%2010:59:59" + secret_key;
+        String url = bdUrl + "queryVehicleParkingByMyCat?enterpriseCode=a0110072&vehicleId=1029319149058837395&beginTime=2019-01-18%2017:47:00&endTime=2019-01-18%2017:47:59" + secret_key;
         String value = RestEasyServcie.get(url);
         ObjectMapper objectMapper = new ObjectMapper();
         Map<String, Object> map = null;
@@ -162,6 +175,19 @@ public class BeiDouController {
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("total",dataList.size());
         resultMap.put("list",dataList);
+        return resultMap;
+    }
+
+    private Map<String,String> getTime(){
+        Map<String, String> resultMap = new HashMap<>();
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat sdf =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        resultMap.put("endTime",sdf.format(c.getTime()));
+
+        c.add(Calendar.SECOND, -30);
+        resultMap.put("beginTime",sdf.format(c.getTime()));
+
         return resultMap;
     }
 }
