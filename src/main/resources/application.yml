@@ -5,14 +5,13 @@ server:
   servlet:
     context-path: /xinyang
 
-
 spring:
   # 设置数据库的访问信息
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/tmstest?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false
-    password: root
+    url: jdbc:mysql://rm-8vb2a06qoj31utdhnlo.mysql.zhangbei.rds.aliyuncs.com:3306/tmstest?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
+    password: Xsungroup333
     name: coldchain
   #datasource:
     #driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver

@@ -2,6 +2,7 @@ package com.xinya.coldchain.beidou.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+import com.xinya.coldchain.beidou.service.MonitorService;
 import com.xinya.coldchain.tools.RestEasyServcie;
 import org.springframework.data.domain.Pageable;
 import org.springframework.util.StringUtils;
@@ -82,6 +83,13 @@ public class BeiDouController {
      */
     @RequestMapping(value = "/queryVehicleOperatingDataByHbase")
     public Map<String, Object> queryVehicleOperatingDataByHbase() {
+        MonitorService service = new MonitorService();
+        try {
+            service.insertMonitorRunData();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        /*
         String url = bdUrl + "queryVehicleOperatingDataByHbase?"
                 + "vehicleId=1029319149058837395"
                 + "&beginDate=" + getTime().get("beginTime")
@@ -124,9 +132,10 @@ public class BeiDouController {
                 }
                 resultList.add(result);
         }
+        */
         Map<String, Object> resultMap = new HashMap<>();
-        resultMap.put("total",resultList.size());
-        resultMap.put("list",resultList);
+        //resultMap.put("total",resultList.size());
+        //resultMap.put("list",resultList);
         return resultMap;
     }
     /**

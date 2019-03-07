@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xinya.coldchain.beidou.mapper.MonitorMapper">
+    <resultMap id="BaseResultMap" type="com.xinya.coldchain.beidou.model.MonitorRunData">
+        <result column="plate" jdbcType="VARCHAR" property="plate" />
+        <result column="rsa" jdbcType="BIT" property="rsa" />
+        <result column="acc_on" jdbcType="BIT" property="accOn" />
+        <result column="gnss_satelite_number" jdbcType="INTEGER" property="gnssSateliteNumber" />
+        <result column="latitude" jdbcType="DOUBLE" property="latitude" />
+        <result column="mars_longitude" jdbcType="DOUBLE" property="marsLongitude" />
+        <result column="speed" jdbcType="DOUBLE" property="speed" />
+        <result column="valid" jdbcType="INTEGER" property="valid" />
+        <result column="alarm_count" jdbcType="INTEGER" property="alarmCount" />
+        <result column="oil" jdbcType="DOUBLE" property="oil" />
+        <result column="direction" jdbcType="INTEGER" property="direction" />
+        <result column="height" jdbcType="INTEGER" property="height" />
+        <result column="longitude" jdbcType="DOUBLE" property="longitude" />
+        <result column="mileage" jdbcType="DOUBLE" property="mileage" />
+        <result column="mars_latitude" jdbcType="DOUBLE" property="marsLatitude" />
+        <result column="svt80" jdbcType="BIT" property="svt80" />
+        <result column="acc_off_time" jdbcType="INTEGER" property="accOffTime" />
+        <result column="signal_strength" jdbcType="INTEGER" property="signalStrength" />
+        <result column="alarms" jdbcType="VARCHAR" property="alarms" />
+        <result column="record_speed" jdbcType="DOUBLE" property="recordSpeed" />
+        <result column="receive_time" jdbcType="BIGINT" property="receiveTime" />
+        <result column="supplement_data" jdbcType="BIT" property="supplementData" />
+        <result column="area_code" jdbcType="VARCHAR" property="areaCode" />
+        <result column="stay_duration" jdbcType="INTEGER" property="stayDuration" />
+        <result column="fixed" jdbcType="BIT" property="fixed" />
+        <result column="acc_on_time" jdbcType="INTEGER" property="accOnTime" />
+        <result column="status" jdbcType="BIGINT" property="status" />
+        <result column="tick" jdbcType="VARCHAR" property="tick" />
+        <result column="vehicle_id" jdbcType="VARCHAR" property="vehicleId" />
+        <result column="fuel_level" jdbcType="DOUBLE" property="fuelLevel" />
+        <result column="coolant_level" jdbcType="DOUBLE" property="coolantLevel" />
+        <result column="engine_oil_temperature" jdbcType="DOUBLE" property="engineOilTemperature" />
+        <result column="engine_rev" jdbcType="DOUBLE" property="engineRev" />
+        <result column="in_let_temperature" jdbcType="DOUBLE" property="inLetTemperature" />
+        <result column="speed2" jdbcType="DOUBLE" property="speed2" />
+        <result column="accumulative_mileage" jdbcType="DOUBLE" property="accumulativeMileage" />
+        <result column="average_fuel_consumption" jdbcType="DOUBLE" property="averageFuelConsumption" />
+        <result column="coolant_temperature" jdbcType="DOUBLE" property="coolantTemperature" />
+        <result column="braking" jdbcType="DOUBLE" property="braking" />
+        <result column="brake_sub_sensitive" jdbcType="DOUBLE" property="brakeSubSensitive" />
+        <result column="fuel_temperature" jdbcType="DOUBLE" property="fuelTemperature" />
+        <result column="instantaneous_fuel_consumption" jdbcType="DOUBLE" property="instantaneousFuelConsumption" />
+        <result column="in_let_pressure" jdbcType="DOUBLE" property="inLetPressure" />
+        <result column="braking_length" jdbcType="DOUBLE" property="brakingLength" />
+        <result column="voltage" jdbcType="DOUBLE" property="voltage" />
+        <result column="throttle_ratio" jdbcType="DOUBLE" property="throttleRatio" />
+        <result column="urea_tank_level" jdbcType="DOUBLE" property="ureaTankLevel" />
+        <result column="clutch" jdbcType="DOUBLE" property="clutch" />
+        <result column="fuel_pressure" jdbcType="DOUBLE" property="fuelPressure" />
+        <result column="accumulative_fuel" jdbcType="DOUBLE" property="accumulativeFuel" />
+        <result column="current_gear" jdbcType="DOUBLE" property="currentGear" />
+        <result column="engine_fuel_rate" jdbcType="DOUBLE" property="engineFuelRate" />
+        <result column="torque_ratio" jdbcType="DOUBLE" property="torqueRatio" />
+        <result column="engine_oil_pressure" jdbcType="DOUBLE" property="engineOilPressure" />
+        <result column="engine_time" jdbcType="DOUBLE" property="engineTime" />
+        <result column="urea_tank_temperature" jdbcType="DOUBLE" property="ureaTankTemperature" />
+        <result column="temperature1" jdbcType="DOUBLE" property="temperature1" />
+        <result column="temperature2" jdbcType="DOUBLE" property="temperature2" />
+        <result column="temperature3" jdbcType="DOUBLE" property="temperature3" />
+        <result column="temperature4" jdbcType="DOUBLE" property="temperature4" />
+    </resultMap>
+    <insert id="insert" parameterType="com.xinya.coldchain.beidou.model.MonitorRunData">
+        insert into ts_iot_vehicle_run_status (plate, rsa, acc_on,
+        gnss_satelite_number, latitude, mars_longitude,
+        speed, valid, alarm_count,
+        oil, direction, height,
+        longitude, mileage, mars_latitude,
+        svt80, acc_off_time, signal_strength,
+        alarms, record_speed, receive_time,
+        supplement_data, area_code, stay_duration,
+        fixed, acc_on_time, status,
+        tick, vehicle_id, fuel_level,
+        coolant_level, engine_oil_temperature, engine_rev,
+        in_let_temperature, speed2, accumulative_mileage,
+        average_fuel_consumption, coolant_temperature,
+        braking, brake_sub_sensitive, fuel_temperature,
+        instantaneous_fuel_consumption, in_let_pressure,
+        braking_length, voltage, throttle_ratio,
+        urea_tank_level, clutch, fuel_pressure,
+        accumulative_fuel, current_gear, engine_fuel_rate,
+        torque_ratio, engine_oil_pressure, engine_time,
+        urea_tank_temperature, temperature1, temperature2,
+        temperature3, temperature4)
+        values (#{plate,jdbcType=VARCHAR}, #{rsa,jdbcType=BIT}, #{accOn,jdbcType=BIT},
+        #{gnssSateliteNumber,jdbcType=INTEGER}, #{latitude,jdbcType=DOUBLE}, #{marsLongitude,jdbcType=DOUBLE},
+        #{speed,jdbcType=DOUBLE}, #{valid,jdbcType=INTEGER}, #{alarmCount,jdbcType=INTEGER},
+        #{oil,jdbcType=DOUBLE}, #{direction,jdbcType=INTEGER}, #{height,jdbcType=INTEGER},
+        #{longitude,jdbcType=DOUBLE}, #{mileage,jdbcType=DOUBLE}, #{marsLatitude,jdbcType=DOUBLE},
+        #{svt80,jdbcType=BIT}, #{accOffTime,jdbcType=INTEGER}, #{signalStrength,jdbcType=INTEGER},
+        #{alarms,jdbcType=VARCHAR}, #{recordSpeed,jdbcType=DOUBLE}, #{receiveTime,jdbcType=BIGINT},
+        #{supplementData,jdbcType=BIT}, #{areaCode,jdbcType=VARCHAR}, #{stayDuration,jdbcType=INTEGER},
+        #{fixed,jdbcType=BIT}, #{accOnTime,jdbcType=INTEGER}, #{status,jdbcType=BIGINT},
+        #{tick,jdbcType=VARCHAR}, #{vehicleId,jdbcType=VARCHAR}, #{fuelLevel,jdbcType=DOUBLE},
+        #{coolantLevel,jdbcType=DOUBLE}, #{engineOilTemperature,jdbcType=DOUBLE}, #{engineRev,jdbcType=DOUBLE},
+        #{inLetTemperature,jdbcType=DOUBLE}, #{speed2,jdbcType=DOUBLE}, #{accumulativeMileage,jdbcType=DOUBLE},
+        #{averageFuelConsumption,jdbcType=DOUBLE}, #{coolantTemperature,jdbcType=DOUBLE},
+        #{braking,jdbcType=DOUBLE}, #{brakeSubSensitive,jdbcType=DOUBLE}, #{fuelTemperature,jdbcType=DOUBLE},
+        #{instantaneousFuelConsumption,jdbcType=DOUBLE}, #{inLetPressure,jdbcType=DOUBLE},
+        #{brakingLength,jdbcType=DOUBLE}, #{voltage,jdbcType=DOUBLE}, #{throttleRatio,jdbcType=DOUBLE},
+        #{ureaTankLevel,jdbcType=DOUBLE}, #{clutch,jdbcType=DOUBLE}, #{fuelPressure,jdbcType=DOUBLE},
+        #{accumulativeFuel,jdbcType=DOUBLE}, #{currentGear,jdbcType=DOUBLE}, #{engineFuelRate,jdbcType=DOUBLE},
+        #{torqueRatio,jdbcType=DOUBLE}, #{engineOilPressure,jdbcType=DOUBLE}, #{engineTime,jdbcType=DOUBLE},
+        #{ureaTankTemperature,jdbcType=DOUBLE}, #{temperature1,jdbcType=DOUBLE}, #{temperature2,jdbcType=DOUBLE},
+        #{temperature3,jdbcType=DOUBLE}, #{temperature4,jdbcType=DOUBLE})
+    </insert>
+    <insert id="insertSelective" parameterType="com.xinya.coldchain.beidou.model.MonitorRunData">
+        insert into ts_iot_vehicle_run_status
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="plate != null">
+                plate,
+            </if>
+            <if test="rsa != null">
+                rsa,
+            </if>
+            <if test="accOn != null">
+                acc_on,
+            </if>
+            <if test="gnssSateliteNumber != null">
+                gnss_satelite_number,
+            </if>
+            <if test="latitude != null">
+                latitude,
+            </if>
+            <if test="marsLongitude != null">
+                mars_longitude,
+            </if>
+            <if test="speed != null">
+                speed,
+            </if>
+            <if test="valid != null">
+                valid,
+            </if>
+            <if test="alarmCount != null">
+                alarm_count,
+            </if>
+            <if test="oil != null">
+                oil,
+            </if>
+            <if test="direction != null">
+                direction,
+            </if>
+            <if test="height != null">
+                height,
+            </if>
+            <if test="longitude != null">
+                longitude,
+            </if>
+            <if test="mileage != null">
+                mileage,
+            </if>
+            <if test="marsLatitude != null">
+                mars_latitude,
+            </if>
+            <if test="svt80 != null">
+                svt80,
+            </if>
+            <if test="accOffTime != null">
+                acc_off_time,
+            </if>
+            <if test="signalStrength != null">
+                signal_strength,
+            </if>
+            <if test="alarms != null">
+                alarms,
+            </if>
+            <if test="recordSpeed != null">
+                record_speed,
+            </if>
+            <if test="receiveTime != null">
+                receive_time,
+            </if>
+            <if test="supplementData != null">
+                supplement_data,
+            </if>
+            <if test="areaCode != null">
+                area_code,
+            </if>
+            <if test="stayDuration != null">
+                stay_duration,
+            </if>
+            <if test="fixed != null">
+                fixed,
+            </if>
+            <if test="accOnTime != null">
+                acc_on_time,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="tick != null">
+                tick,
+            </if>
+            <if test="vehicleId != null">
+                vehicle_id,
+            </if>
+            <if test="fuelLevel != null">
+                fuel_level,
+            </if>
+            <if test="coolantLevel != null">
+                coolant_level,
+            </if>
+            <if test="engineOilTemperature != null">
+                engine_oil_temperature,
+            </if>
+            <if test="engineRev != null">
+                engine_rev,
+            </if>
+            <if test="inLetTemperature != null">
+                in_let_temperature,
+            </if>
+            <if test="speed2 != null">
+                speed2,
+            </if>
+            <if test="accumulativeMileage != null">
+                accumulative_mileage,
+            </if>
+            <if test="averageFuelConsumption != null">
+                average_fuel_consumption,
+            </if>
+            <if test="coolantTemperature != null">
+                coolant_temperature,
+            </if>
+            <if test="braking != null">
+                braking,
+            </if>
+            <if test="brakeSubSensitive != null">
+                brake_sub_sensitive,
+            </if>
+            <if test="fuelTemperature != null">
+                fuel_temperature,
+            </if>
+            <if test="instantaneousFuelConsumption != null">
+                instantaneous_fuel_consumption,
+            </if>
+            <if test="inLetPressure != null">
+                in_let_pressure,
+            </if>
+            <if test="brakingLength != null">
+                braking_length,
+            </if>
+            <if test="voltage != null">
+                voltage,
+            </if>
+            <if test="throttleRatio != null">
+                throttle_ratio,
+            </if>
+            <if test="ureaTankLevel != null">
+                urea_tank_level,
+            </if>
+            <if test="clutch != null">
+                clutch,
+            </if>
+            <if test="fuelPressure != null">
+                fuel_pressure,
+            </if>
+            <if test="accumulativeFuel != null">
+                accumulative_fuel,
+            </if>
+            <if test="currentGear != null">
+                current_gear,
+            </if>
+            <if test="engineFuelRate != null">
+                engine_fuel_rate,
+            </if>
+            <if test="torqueRatio != null">
+                torque_ratio,
+            </if>
+            <if test="engineOilPressure != null">
+                engine_oil_pressure,
+            </if>
+            <if test="engineTime != null">
+                engine_time,
+            </if>
+            <if test="ureaTankTemperature != null">
+                urea_tank_temperature,
+            </if>
+            <if test="temperature1 != null">
+                temperature1,
+            </if>
+            <if test="temperature2 != null">
+                temperature2,
+            </if>
+            <if test="temperature3 != null">
+                temperature3,
+            </if>
+            <if test="temperature4 != null">
+                temperature4,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="plate != null">
+                #{plate,jdbcType=VARCHAR},
+            </if>
+            <if test="rsa != null">
+                #{rsa,jdbcType=BIT},
+            </if>
+            <if test="accOn != null">
+                #{accOn,jdbcType=INTEGER},
+            </if>
+            <if test="gnssSateliteNumber != null">
+                #{gnssSateliteNumber,jdbcType=INTEGER},
+            </if>
+            <if test="latitude != null">
+                #{latitude,jdbcType=DOUBLE},
+            </if>
+            <if test="marsLongitude != null">
+                #{marsLongitude,jdbcType=DOUBLE},
+            </if>
+            <if test="speed != null">
+                #{speed,jdbcType=REAL},
+            </if>
+            <if test="valid != null">
+                #{valid,jdbcType=INTEGER},
+            </if>
+            <if test="alarmCount != null">
+                #{alarmCount,jdbcType=INTEGER},
+            </if>
+            <if test="oil != null">
+                #{oil,jdbcType=REAL},
+            </if>
+            <if test="direction != null">
+                #{direction,jdbcType=DOUBLE},
+            </if>
+            <if test="height != null">
+                #{height,jdbcType=DOUBLE},
+            </if>
+            <if test="longitude != null">
+                #{longitude,jdbcType=DOUBLE},
+            </if>
+            <if test="mileage != null">
+                #{mileage,jdbcType=DOUBLE},
+            </if>
+            <if test="marsLatitude != null">
+                #{marsLatitude,jdbcType=DOUBLE},
+            </if>
+            <if test="svt80 != null">
+                #{svt80,jdbcType=BIT},
+            </if>
+            <if test="accOffTime != null">
+                #{accOffTime,jdbcType=INTEGER},
+            </if>
+            <if test="signalStrength != null">
+                #{signalStrength,jdbcType=INTEGER},
+            </if>
+            <if test="alarms != null">
+                #{alarms,jdbcType=VARCHAR},
+            </if>
+            <if test="recordSpeed != null">
+                #{recordSpeed,jdbcType=REAL},
+            </if>
+            <if test="receiveTime != null">
+                #{receiveTime,jdbcType=BIGINT},
+            </if>
+            <if test="supplementData != null">
+                #{supplementData,jdbcType=BIT},
+            </if>
+            <if test="areaCode != null">
+                #{areaCode,jdbcType=VARCHAR},
+            </if>
+            <if test="stayDuration != null">
+                #{stayDuration,jdbcType=INTEGER},
+            </if>
+            <if test="fixed != null">
+                #{fixed,jdbcType=BIT},
+            </if>
+            <if test="accOnTime != null">
+                #{accOnTime,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=BIGINT},
+            </if>
+            <if test="tick != null">
+                #{tick,jdbcType=VARCHAR},
+            </if>
+            <if test="vehicleId != null">
+                #{vehicleId,jdbcType=VARCHAR},
+            </if>
+            <if test="fuelLevel != null">
+                #{fuelLevel,jdbcType=DOUBLE},
+            </if>
+            <if test="coolantLevel != null">
+                #{coolantLevel,jdbcType=DOUBLE},
+            </if>
+            <if test="engineOilTemperature != null">
+                #{engineOilTemperature,jdbcType=DOUBLE},
+            </if>
+            <if test="engineRev != null">
+                #{engineRev,jdbcType=DOUBLE},
+            </if>
+            <if test="inLetTemperature != null">
+                #{inLetTemperature,jdbcType=DOUBLE},
+            </if>
+            <if test="speed2 != null">
+                #{speed2,jdbcType=DOUBLE},
+            </if>
+            <if test="accumulativeMileage != null">
+                #{accumulativeMileage,jdbcType=DOUBLE},
+            </if>
+            <if test="averageFuelConsumption != null">
+                #{averageFuelConsumption,jdbcType=DOUBLE},
+            </if>
+            <if test="coolantTemperature != null">
+                #{coolantTemperature,jdbcType=DOUBLE},
+            </if>
+            <if test="braking != null">
+                #{braking,jdbcType=DOUBLE},
+            </if>
+            <if test="brakeSubSensitive != null">
+                #{brakeSubSensitive,jdbcType=DOUBLE},
+            </if>
+            <if test="fuelTemperature != null">
+                #{fuelTemperature,jdbcType=DOUBLE},
+            </if>
+            <if test="instantaneousFuelConsumption != null">
+                #{instantaneousFuelConsumption,jdbcType=DOUBLE},
+            </if>
+            <if test="inLetPressure != null">
+                #{inLetPressure,jdbcType=DOUBLE},
+            </if>
+            <if test="brakingLength != null">
+                #{brakingLength,jdbcType=DOUBLE},
+            </if>
+            <if test="voltage != null">
+                #{voltage,jdbcType=DOUBLE},
+            </if>
+            <if test="throttleRatio != null">
+                #{throttleRatio,jdbcType=DOUBLE},
+            </if>
+            <if test="ureaTankLevel != null">
+                #{ureaTankLevel,jdbcType=DOUBLE},
+            </if>
+            <if test="clutch != null">
+                #{clutch,jdbcType=DOUBLE},
+            </if>
+            <if test="fuelPressure != null">
+                #{fuelPressure,jdbcType=DOUBLE},
+            </if>
+            <if test="accumulativeFuel != null">
+                #{accumulativeFuel,jdbcType=DOUBLE},
+            </if>
+            <if test="currentGear != null">
+                #{currentGear,jdbcType=DOUBLE},
+            </if>
+            <if test="engineFuelRate != null">
+                #{engineFuelRate,jdbcType=DOUBLE},
+            </if>
+            <if test="torqueRatio != null">
+                #{torqueRatio,jdbcType=DOUBLE},
+            </if>
+            <if test="engineOilPressure != null">
+                #{engineOilPressure,jdbcType=DOUBLE},
+            </if>
+            <if test="engineTime != null">
+                #{engineTime,jdbcType=DOUBLE},
+            </if>
+            <if test="ureaTankTemperature != null">
+                #{ureaTankTemperature,jdbcType=DOUBLE},
+            </if>
+            <if test="temperature1 != null">
+                #{temperature1,jdbcType=DOUBLE},
+            </if>
+            <if test="temperature2 != null">
+                #{temperature2,jdbcType=DOUBLE},
+            </if>
+            <if test="temperature3 != null">
+                #{temperature3,jdbcType=DOUBLE},
+            </if>
+            <if test="temperature4 != null">
+                #{temperature4,jdbcType=DOUBLE},
+            </if>
+        </trim>
+    </insert>
+</mapper>
